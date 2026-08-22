@@ -1,0 +1,31 @@
+schema_version = "1.4"
+
+[task]
+name = "small-ow-agent-bench/collect-nested-todos"
+version = "1.0.0"
+authors = []
+keywords = ["tool-use", "grep", "files"]
+
+[metadata]
+author_name = ""
+author_email = ""
+difficulty = "medium"
+category = "software"
+subcategory = "tool-use"
+tags = ["tool-use", "medium", "files"]
+difficulty_explanation = "The agent must recurse, skip non-.txt decoys, keep path order, and drop duplicate TODO lines."
+expert_time_estimate_hours = 0.25
+
+[verifier]
+timeout_sec = 240.0
+
+[agent]
+timeout_sec = 240.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+gpus = 0
+mcp_servers = []

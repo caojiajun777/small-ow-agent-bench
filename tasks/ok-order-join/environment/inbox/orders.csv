@@ -1,0 +1,6 @@
+id,status,sku,qty
+o1,ok,A,2
+o2,skip,B,9
+o3,ok,B,1
+o4,ok,A,3
+o5,hold,A,1

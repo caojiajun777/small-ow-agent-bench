@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+jobs/
+trials/
+__pycache__/
+*.pyc
+.pytest_cache/
+.harbor/
+*.log

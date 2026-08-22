@@ -1,0 +1,32 @@
+[
+  {
+    "id": "u-1042",
+    "name": "Alex Rivera",
+    "contact": {
+      "email": "alex.rivera@example.com",
+      "phone": "555-0104"
+    },
+    "ssn": "512-44-7781",
+    "role": "analyst"
+  },
+  {
+    "id": "u-1107",
+    "name": "Blair Chen",
+    "contact": {
+      "email": "blair.chen@example.com",
+      "phone": "555-0177"
+    },
+    "ssn": "219-88-4306",
+    "role": "ops"
+  },
+  {
+    "id": "u-2219",
+    "name": "Casey Okonkwo",
+    "contact": {
+      "email": "casey.okonkwo@example.com",
+      "phone": "555-0142"
+    },
+    "ssn": "604-12-9910",
+    "role": "support"
+  }
+]

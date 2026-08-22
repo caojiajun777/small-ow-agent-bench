@@ -1,0 +1,2 @@
+APPLY_VIP = True
+VIP_PERCENT_OFF = 0

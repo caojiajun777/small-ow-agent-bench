@@ -1,0 +1,6 @@
+id,status,amount
+a1,ok,10
+a2,skip,99
+a3,ok,2.5
+a4,ok,1
+a5,hold,0

@@ -1,0 +1,2 @@
+FAST_ENABLED = True
+FAST_MS = 30000
