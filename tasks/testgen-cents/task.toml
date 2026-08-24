@@ -1,0 +1,31 @@
+schema_version = "1.4"
+
+[task]
+name = "small-ow-agent-bench/testgen-cents"
+version = "1.0.0"
+authors = []
+keywords = ["agentic-coding", "unit-test-generation"]
+
+[metadata]
+author_name = ""
+author_email = ""
+difficulty = "medium"
+category = "software"
+subcategory = "unit-test-generation"
+tags = ["unit-test-generation", "medium", "agentic-coding", "atomic-skills"]
+difficulty_explanation = "Tests must catch float and dollars-as-cents mutants."
+expert_time_estimate_hours = 0.2
+
+[verifier]
+timeout_sec = 180.0
+
+[agent]
+timeout_sec = 180.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+gpus = 0
+mcp_servers = []

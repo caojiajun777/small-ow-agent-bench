@@ -1,0 +1,91 @@
+{
+  "kind": "small_model_agentic_coding_population",
+  "as_of": "2026-08-23",
+  "scope": "Published small / locally deployable models with coding or agent scores. Not limited to models we already ran. Do not pool classes into one theta without a covariate.",
+  "notes": [
+    "A published mean is not an item response. IRT for OUR items needs a models×MAIN_47 0/1 matrix (scripts/fit_irt.py), ≥8 models, same compact-shell.",
+    "Comparable slice below is mostly Seed-Coder 2025 (arXiv 2506.03524): same LCB window 2410–2502, Aider whole tries=2, SWE-Verified Agentless vs OpenHands.",
+    "SWE-SFT specialists (SWE-Gym / SWE-Hero / SERA) are a different population from vanilla instruct. Devstral-Small-24B is an agent-specialist ruler, not a 9B twin."
+  ],
+  "classes": {
+    "vanilla_instruct": "General chat instruct, not code-SFT",
+    "coder_instruct": "Code-pretrained or code-SFT instruct",
+    "reasoner": "Thinking / LongCoT variant of a small model",
+    "agent_sft": "SFT/RL on SWE trajectories; do not mix into unidimensional IRT",
+    "ruler": "≥24B or high-active MoE; anchor only"
+  },
+  "comparable_slice": {
+    "source": "https://arxiv.org/html/2506.03524v2",
+    "source_note": "Seed-Coder Tables 7, 13, 15. Same paper, same windows. Percentages as published.",
+    "metrics": {
+      "lcb_2410_2502": "LiveCodeBench pass@1, window 2410–2502",
+      "aider_whole_t2": "Aider edit bench, whole format, tries=2 (133 Exercism, not polyglot 225)",
+      "swe_verified_agentless": "SWE-bench Verified % resolved, Agentless",
+      "swe_verified_openhands": "SWE-bench Verified % resolved, OpenHands"
+    },
+    "rows": [
+      {"id": "codellama-7b-instruct", "class": "coder_instruct", "size": "7B", "lcb_2410_2502": 3.6, "aider_whole_t2": 1.5, "swe_verified_agentless": null, "swe_verified_openhands": null},
+      {"id": "deepseek-coder-6.7b-instruct", "class": "coder_instruct", "size": "6.7B", "lcb_2410_2502": 9.6, "aider_whole_t2": 44.4, "swe_verified_agentless": null, "swe_verified_openhands": null},
+      {"id": "codeqwen1.5-7b-chat", "class": "coder_instruct", "size": "7B", "lcb_2410_2502": 3.0, "aider_whole_t2": 38.3, "swe_verified_agentless": null, "swe_verified_openhands": null},
+      {"id": "yi-coder-9b-chat", "class": "coder_instruct", "size": "9B", "lcb_2410_2502": 17.5, "aider_whole_t2": 54.1, "swe_verified_agentless": 0.0, "swe_verified_openhands": 1.6},
+      {"id": "llama-3.1-8b-instruct", "class": "vanilla_instruct", "size": "8B", "lcb_2410_2502": 11.5, "aider_whole_t2": 33.1, "swe_verified_agentless": 1.0, "swe_verified_openhands": 1.2},
+      {"id": "opencoder-8b-instruct", "class": "coder_instruct", "size": "8B", "lcb_2410_2502": 17.1, "aider_whole_t2": 30.8, "swe_verified_agentless": null, "swe_verified_openhands": null},
+      {"id": "qwen2.5-coder-7b-instruct", "class": "coder_instruct", "size": "7B", "lcb_2410_2502": 17.3, "aider_whole_t2": 57.9, "swe_verified_agentless": 4.2, "swe_verified_openhands": 1.0},
+      {"id": "qwen3-8b", "class": "vanilla_instruct", "size": "8B", "lcb_2410_2502": 23.5, "aider_whole_t2": 55.6, "swe_verified_agentless": 14.6, "swe_verified_openhands": 3.4},
+      {"id": "qwen3-8b-thinking", "class": "reasoner", "size": "8B", "lcb_2410_2502": null, "aider_whole_t2": null, "swe_verified_agentless": 12.5, "swe_verified_openhands": 8.6},
+      {"id": "seed-coder-8b-instruct", "class": "coder_instruct", "size": "8B", "lcb_2410_2502": 24.7, "aider_whole_t2": 57.1, "swe_verified_agentless": 19.2, "swe_verified_openhands": 11.2},
+      {"id": "starcoder2-15b-instruct", "class": "coder_instruct", "size": "15B", "lcb_2410_2502": 5.3, "aider_whole_t2": 38.2, "swe_verified_agentless": 0.0, "swe_verified_openhands": 0.0},
+      {"id": "deepseek-coder-v2-lite-instruct", "class": "coder_instruct", "size": "2.4B/16B", "lcb_2410_2502": 14.2, "aider_whole_t2": 52.6, "swe_verified_agentless": 4.4, "swe_verified_openhands": 1.0},
+      {"id": "qwen2.5-coder-14b-instruct", "class": "coder_instruct", "size": "14B", "lcb_2410_2502": 19.3, "aider_whole_t2": 69.2, "swe_verified_agentless": 19.4, "swe_verified_openhands": 1.4}
+    ]
+  },
+  "other_official": [
+    {"id": "gemma-3-1b-it", "class": "vanilla_instruct", "size": "1B", "lcb": 1.9, "humaneval": 41.5, "source": "https://ai.google.dev/gemma/docs/core/model_card_3", "note": "Gemma 3 card LCB window ≠ Seed-Coder 2410–2502"},
+    {"id": "gemma-3-4b-it", "class": "vanilla_instruct", "size": "4B", "lcb": 12.6, "humaneval": 71.3, "source": "https://ai.google.dev/gemma/docs/core/model_card_3"},
+    {"id": "gemma-3-12b-it", "class": "vanilla_instruct", "size": "12B", "lcb": 24.6, "humaneval": 85.4, "source": "https://ai.google.dev/gemma/docs/core/model_card_3"},
+    {"id": "gemma-3-27b-it", "class": "ruler", "size": "27B", "lcb": 29.7, "humaneval": 87.8, "aider_polyglot": 4.9, "source": "https://ai.google.dev/gemma/docs/core/model_card_3", "note": "Official aider.chat polyglot whole 4.9 (2025-03-15)"},
+    {"id": "qwen3-4b-instruct-2507", "class": "vanilla_instruct", "size": "4B", "lcb_v6": 35.1, "aider_polyglot": 12.9, "source": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507"},
+    {"id": "qwen3.5-4b", "class": "vanilla_instruct", "size": "4B", "lcb_v6": 55.8, "source": "https://huggingface.co/Qwen/Qwen3.5-9B"},
+    {"id": "qwen3.5-9b", "class": "vanilla_instruct", "size": "9B", "lcb_v6": 65.6, "aider_polyglot_vanilla": 19.11, "source": "https://huggingface.co/Qwen/Qwen3.5-9B"},
+    {"id": "qwen3.5-27b", "class": "ruler", "size": "27B", "lcb_v6": 80.7, "swe_verified": 72.4, "source": "https://huggingface.co/Qwen/Qwen3.5-27B"},
+    {"id": "devstral-small-2505", "class": "agent_sft", "size": "24B", "swe_verified_openhands": 46.8, "source": "https://mistral.ai/news/devstral/"},
+    {"id": "devstral-small-2507", "class": "agent_sft", "size": "24B", "swe_verified_openhands": 53.6, "source": "https://huggingface.co/mistralai/Devstral-Small-2507"},
+    {"id": "swe-gym-7b", "class": "agent_sft", "size": "7B", "swe_verified_openhands": 10.6, "source": "https://arxiv.org/html/2604.01496v1"},
+    {"id": "swe-hero-7b", "class": "agent_sft", "size": "7B", "swe_verified_openhands": 52.7, "source": "https://arxiv.org/html/2604.01496v1", "note": "SFT on SWE trajectories; not a vanilla 7B theta"},
+    {"id": "swe-hero-14b", "class": "agent_sft", "size": "14B", "swe_verified_openhands": 60.8, "source": "https://arxiv.org/html/2604.01496v1"},
+    {"id": "glm-4.5-air", "class": "ruler", "size": "12B-active", "swe_verified_openhands": 57.6, "edit_sft": 0.458, "source": "https://arxiv.org/abs/2604.05013"}
+  ],
+  "theta_rank_comparable_8b": [
+    {"id": "seed-coder-8b-instruct", "z_mean": "top among ~8B on this slice", "why": "LCB 24.7 / Aider 57.1 / SWE-A 19.2"},
+    {"id": "qwen3-8b", "z_mean": "high-mid", "why": "LCB 23.5 / Aider 55.6 / SWE-A 14.6"},
+    {"id": "qwen2.5-coder-7b-instruct", "z_mean": "mid; edit strong, SWE weak", "why": "Aider 57.9 but SWE-A 4.2"},
+    {"id": "yi-coder-9b-chat", "z_mean": "mid; edit ok, SWE floor", "why": "Aider 54.1 / SWE-A 0.0"},
+    {"id": "llama-3.1-8b-instruct", "z_mean": "low-mid", "why": "LCB 11.5 / Aider 33.1 / SWE-A 1.0"},
+    {"id": "opencoder-8b-instruct", "z_mean": "low-mid", "why": "LCB 17.1 / Aider 30.8"},
+    {"id": "deepseek-coder-6.7b-instruct", "z_mean": "edit mid, contest low", "why": "Aider 44.4 / LCB 9.6"},
+    {"id": "codellama-7b-instruct", "z_mean": "floor", "why": "LCB 3.6 / Aider 1.5"}
+  ],
+  "irt_wave_compact_shell": {
+    "superseded_by": "models.lock.yaml",
+    "harness": "compact-shell + Novita n=1 thinking-off",
+    "frozen": true,
+    "catalog_checked_at": "2026-08-24T00:00:00+08:00",
+    "n_models": 11,
+    "n_main": 10,
+    "n_rulers": 1,
+    "n_protocol_trials": 22,
+    "n_core_trials": 517,
+    "n_trials_total": 539,
+    "batch_is_execution_order_only": true,
+    "do_not_substitute_after_scores": true,
+    "openrouter_allow_fallbacks": false,
+    "protocol_check": ["hello-world", "collect-todos"],
+    "rulers_excluded_from_theta": ["qwen3.8-27b"],
+    "repro_included": true,
+    "commands": {
+      "protocol": "python scripts/run_locked.py --run --protocol",
+      "core": "python scripts/run_locked.py --run --core",
+      "fit": "python scripts/fit_irt.py --group main"
+    }
+  }
+}

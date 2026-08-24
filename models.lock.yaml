@@ -1,0 +1,259 @@
+# Frozen compact-shell roster: OpenRouter-available 3B–14B instruct + one 27B ruler.
+# Batch is execution order only. Do not swap IDs after protocol check starts.
+# Catalog check: 2026-08-24 (Beijing) / 2026-08-23 (US Pacific).
+# 10-model full run (IRT-main, no ruler):
+#   python scripts/run_locked.py --run --full --group main
+#   protocol 10×2=20; core 10×47=470; total 490. Restart skips completed cells.
+# 11-model (add ruler): --group all  → 11×2=22 protocol; 11×47=517 core; total 539.
+
+frozen: true
+frozen_at: "2026-08-24"
+catalog_checked_at: "2026-08-24T00:00:00+08:00"
+substitution_policy: forbidden
+scope: >
+  Atomic Shell-Agent Benchmark for OpenRouter-Available 3B–14B
+  Open-Weight Instruct Models. Not a coding-specialist-only table:
+  OpenRouter currently has no stable dense 3B–14B dedicated coder.
+harness:
+  agent: agents.compact_shell:CompactShellAgent
+  agent_version: "0.1.1"
+  max_turns: 20
+  observation_limit: 8000
+  environment: novita
+  k: 1
+  n_concurrent: 1
+  retry_include:
+    - BuildException
+    - EnvironmentStartTimeoutError
+    - RateLimitException
+  retry_note: infra/network only; never change provider on retry
+inference:
+  temperature: 0.0
+  top_p: 1.0
+  max_tokens: 4096
+  timeout_sec: 180
+  thinking: off
+  openrouter_provider:
+    allow_fallbacks: false
+    require_parameters: true
+  note: >
+    OpenRouter extra_body.provider.order is pinned per model.
+    allow_fallbacks=false so BF16/FP8/INT4 cannot silently swap.
+    Qwen3 / Qwen3.5 / Qwen3.8 use reasoning.enabled=false and
+    enable_thinking=false. thinking-on is not a second subject.
+protocol_check:
+  purpose: compact-shell bash/finish loop only; ignore MAIN_47 scores
+  tasks:
+    - hello-world
+    - collect-todos
+  pass_rule: atomic_correct=1 and termination=clean
+  fail_rule: keep the model in the lock; record protocol_fail; do not replace
+core:
+  tasks: MAIN_47
+  n_models: 11
+  n_protocol_trials: 22
+  n_core_trials: 517
+  n_trials_total: 539
+irt:
+  main: irt-main
+  n_main: 10
+  rulers_excluded_from_theta: true
+  note: exploratory 1PL on 10 models; report item×model matrix, not a precise theta
+dropped_not_on_openrouter_or_out_of_band:
+  - Qwen3.5-4B
+  - Qwen3-4B
+  - Qwen2.5-Coder-7B-Instruct
+  - Seed-Coder-8B-Instruct
+  - Nemotron-3-Nano-4B
+  - Granite-4.1-3B
+  - Gemma-4-E4B-IT
+  - Gemma-4-12B-IT
+  - Llama-3.1-8B-Instruct
+  - Devstral-Small-2
+  - Qwen3.6-27B
+  - Qwen3-Coder-30B-A3B
+  - Gemma-4-26B-A4B
+  - Nemotron-3-Nano-30B-A3B
+  - gpt-oss-20B
+  - Nemotron-Nano-9B-V2-Free
+
+models:
+  - id: llama-3.2-3b-instruct
+    group: irt-main
+    batch: 1
+    display: Llama-3.2-3B-Instruct
+    family: meta
+    size: 3B
+    class: vanilla_instruct
+    hf_id: meta-llama/Llama-3.2-3B-Instruct
+    hf_revision: pin-at-protocol-check
+    openrouter_id: openrouter/meta-llama/llama-3.2-3b-instruct
+    openrouter_provider: parasail/bf16
+    quantization: bf16
+    chat_template: llama
+    reasoning: off
+    why: older 3B floor so Easy items are not all-pass on 2026 instruct models
+
+  - id: ministral-3b-2512
+    group: irt-main
+    batch: 1
+    display: Ministral-3-3B-2512
+    family: mistral
+    size: 3B
+    class: vanilla_instruct
+    hf_id: mistralai/Ministral-3-3B-Instruct-2512
+    hf_revision: pin-at-protocol-check
+    openrouter_id: openrouter/mistralai/ministral-3b-2512
+    openrouter_provider: mistral
+    quantization: mistral-hosted
+    chat_template: mistral
+    reasoning: off
+    why: current 3B floor; start of Mistral size gradient
+
+  - id: gemma-3-4b-it
+    group: irt-main
+    batch: 1
+    display: Gemma-3-4B-IT
+    family: google
+    size: 4B
+    class: vanilla_instruct
+    hf_id: google/gemma-3-4b-it
+    hf_revision: pin-at-protocol-check
+    openrouter_id: openrouter/google/gemma-3-4b-it
+    openrouter_provider: deepinfra/bf16
+    quantization: bf16
+    chat_template: gemma
+    reasoning: off
+    why: 4B low band; Google-family contrast
+
+  - id: qwen3-8b
+    group: irt-main
+    batch: 1
+    display: Qwen3-8B
+    family: qwen
+    size: 8B
+    class: vanilla_instruct
+    hf_id: Qwen/Qwen3-8B
+    hf_revision: pin-at-protocol-check
+    openrouter_id: openrouter/qwen/qwen3-8b
+    openrouter_provider: alibaba
+    quantization: alibaba-hosted
+    chat_template: qwen
+    reasoning: off
+    why: previous-gen Qwen 8B; thinking off; vs 3.5-9B and vs 14B
+
+  - id: ministral-8b-2512
+    group: irt-main
+    batch: 1
+    display: Ministral-3-8B-2512
+    family: mistral
+    size: 8B
+    class: vanilla_instruct
+    hf_id: mistralai/Ministral-3-8B-Instruct-2512
+    hf_revision: pin-at-protocol-check
+    openrouter_id: openrouter/mistralai/ministral-8b-2512
+    openrouter_provider: mistral
+    quantization: mistral-hosted
+    chat_template: mistral
+    reasoning: off
+    why: Mistral mid band; 3B/8B/14B same-generation gradient
+
+  - id: granite-4.1-8b
+    group: irt-main
+    batch: 1
+    display: Granite-4.1-8B
+    family: ibm
+    size: 8B
+    class: vanilla_instruct
+    hf_id: ibm-granite/granite-4.1-8b
+    hf_revision: pin-at-protocol-check
+    openrouter_id: openrouter/ibm-granite/granite-4.1-8b
+    openrouter_provider: coreweave/bf16
+    quantization: bf16
+    chat_template: granite
+    reasoning: off
+    why: 2026 tool-calling / coding cross-family contrast
+
+  - id: qwen3.5-9b
+    group: irt-main
+    batch: 1
+    display: Qwen3.5-9B
+    family: qwen
+    size: 9B
+    class: vanilla_instruct
+    hf_id: Qwen/Qwen3.5-9B
+    hf_revision: pin-at-protocol-check
+    openrouter_id: openrouter/qwen/qwen3.5-9b
+    openrouter_provider: parasail/bf16
+    quantization: bf16
+    chat_template: qwen
+    reasoning: off
+    why: primary target-band 9B
+
+  - id: gemma-3-12b-it
+    group: irt-main
+    batch: 2
+    display: Gemma-3-12B-IT
+    family: google
+    size: 12B
+    class: vanilla_instruct
+    hf_id: google/gemma-3-12b-it
+    hf_revision: pin-at-protocol-check
+    openrouter_id: openrouter/google/gemma-3-12b-it
+    openrouter_provider: deepinfra/bf16
+    quantization: bf16
+    chat_template: gemma
+    reasoning: off
+    why: Gemma upper end vs 4B scale
+
+  - id: qwen3-14b
+    group: irt-main
+    batch: 2
+    display: Qwen3-14B
+    family: qwen
+    size: 14B
+    class: vanilla_instruct
+    hf_id: Qwen/Qwen3-14B
+    hf_revision: pin-at-protocol-check
+    openrouter_id: openrouter/qwen/qwen3-14b
+    openrouter_provider: deepinfra/fp8
+    quantization: fp8
+    chat_template: qwen
+    reasoning: off
+    why: Qwen3 scale upper end vs Qwen3-8B
+
+  - id: ministral-14b-2512
+    group: irt-main
+    batch: 2
+    display: Ministral-3-14B-2512
+    family: mistral
+    size: 14B
+    class: vanilla_instruct
+    hf_id: mistralai/Ministral-3-14B-Instruct-2512
+    hf_revision: pin-at-protocol-check
+    openrouter_id: openrouter/mistralai/ministral-14b-2512
+    openrouter_provider: mistral
+    quantization: mistral-hosted
+    chat_template: mistral
+    reasoning: off
+    why: Mistral gradient upper end
+
+  - id: qwen3.8-27b
+    group: ruler
+    batch: 2
+    display: Qwen3.8-27B
+    family: qwen
+    size: 27B
+    class: ruler
+    hf_id: Qwen/Qwen3.8-27B
+    hf_revision: pin-at-protocol-check
+    openrouter_id: openrouter/qwen/qwen3.8-27b
+    openrouter_provider: akashml/bf16
+    quantization: bf16
+    chat_template: qwen
+    reasoning: off
+    why: current agentic 27B ceiling; not in theta; not Qwen3.6
+    irt: excluded_from_theta
+    do_not_substitute:
+      - openrouter/qwen/qwen3.6-27b
+      - openrouter/qwen/qwen3.5-27b

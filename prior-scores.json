@@ -1,0 +1,776 @@
+{
+  "kind": "external_prior_scores",
+  "as_of": "2026-08-23",
+  "notes": "Harnesses are not interchangeable. Same model can score 19% vs 46% on Aider under different scaffolds. Use only for relative theta and construct difficulty. Do not treat these as our task (b) parameters. Official cards, papers, and aider.chat / livecodebench / z.ai pages preferred; aggregator blogs discarded when they mix family-level numbers onto the wrong size.",
+  "gaps": [
+    "Official LiveCodeBench Easy/Medium/Hard splits are not on Qwen3.5 / Ministral / GLM cards. Only one independent paper (arXiv 2603.07777) gives E/M/H for Qwen3-4B-Instruct.",
+    "aider.chat polyglot leaderboard has no 3B–9B rows. 9B 19.11/45.56 is a third-party matched-scaffold study (Q4), not the official Aider table.",
+    "No official SWE-bench Verified/Lite resolve rate for Ministral-3B/8B, Qwen3-4B, Qwen2.5-3B/7B, or Qwen3.5-9B on their own cards.",
+    "Loc-Bench publishes LocAgent-finetuned Qwen2.5-7B(ft), not vanilla 3B–9B. Untuned 7B is described as poor with no numeric.",
+    "swtbench.com leaderboard is frontier-agent only. Small-model SWT numbers exist only in SWE-Tester (Qwen2.5-Coder-7B base success 1.15%)."
+  ],
+  "benches": [
+    {
+      "name": "LiveCodeBench",
+      "version": "v5 (2024.10–2025.02) and v6 (often 2025.02–2025.05 / 175-task eval split). Official cards rarely publish Easy/Medium/Hard.",
+      "what_it_measures": "contest codegen, not agent skills",
+      "url": "https://livecodebench.github.io/",
+      "scores": [
+        {
+          "model": "Qwen3.5-9B",
+          "size": "9B",
+          "metric": "pass@1 LCB v6",
+          "value": 65.6,
+          "source_url": "https://huggingface.co/Qwen/Qwen3.5-9B",
+          "source_note": "Official model-card table (Reasoning & Coding). Same 65.6 on the official README snapshot."
+        },
+        {
+          "model": "Qwen3.5-4B",
+          "size": "4B",
+          "metric": "pass@1 LCB v6",
+          "value": 55.8,
+          "source_url": "https://huggingface.co/Qwen/Qwen3.5-9B",
+          "source_note": "Same official Qwen3.5-9B card comparison column for Qwen3.5-4B."
+        },
+        {
+          "model": "Qwen3.5-27B",
+          "size": "27B",
+          "metric": "pass@1 LCB v6",
+          "value": 80.7,
+          "source_url": "https://huggingface.co/Qwen/Qwen3.5-27B",
+          "source_note": "Official model card."
+        },
+        {
+          "model": "Qwen3.6-27B",
+          "size": "27B",
+          "metric": "pass@1 LCB v6",
+          "value": 83.9,
+          "source_url": "https://huggingface.co/Qwen/Qwen3.6-27B",
+          "source_note": "Official model card."
+        },
+        {
+          "model": "Qwen3-4B-Instruct-2507",
+          "size": "4B",
+          "metric": "pass@1 LCB v6 (25.02-25.05)",
+          "value": 35.1,
+          "source_url": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+          "source_note": "Official 2507 instruct card. This is the ~35% cited in PRIOR.md for the 3B–4B floor (instruct, not thinking)."
+        },
+        {
+          "model": "Qwen3-4B Non-Thinking",
+          "size": "4B",
+          "metric": "pass@1 LCB v6 (25.02-25.05)",
+          "value": 26.4,
+          "source_url": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+          "source_note": "Same official 2507 card comparison column."
+        },
+        {
+          "model": "Qwen3-4B Thinking",
+          "size": "4B",
+          "metric": "pass@1 LCB v5 (2024.10-2025.02)",
+          "value": 54.2,
+          "source_url": "https://arxiv.org/html/2505.09388",
+          "source_note": "Qwen3 Technical Report Table 17 (thinking). v5 not v6; thinking vs instruct is a large gap."
+        },
+        {
+          "model": "Qwen3-8B Thinking",
+          "size": "8B",
+          "metric": "pass@1 LCB v5 (2024.10-2025.02)",
+          "value": 57.5,
+          "source_url": "https://arxiv.org/html/2505.09388",
+          "source_note": "Qwen3 Technical Report Table 17. Official HF card for Qwen/Qwen3-8B has no numeric table (points at the paper)."
+        },
+        {
+          "model": "Qwen3-8B Non-Thinking",
+          "size": "8B",
+          "metric": "pass@1 LCB v5",
+          "value": 22.8,
+          "source_url": "https://arxiv.org/html/2505.09388",
+          "source_note": "Qwen3 Technical Report Table 18."
+        },
+        {
+          "model": "Qwen3-4B Non-Thinking",
+          "size": "4B",
+          "metric": "pass@1 LCB v5",
+          "value": 21.3,
+          "source_url": "https://arxiv.org/html/2505.09388",
+          "source_note": "Qwen3 Technical Report Table 18."
+        },
+        {
+          "model": "Qwen2.5-7B-Instruct",
+          "size": "7B",
+          "metric": "pass@1 LCB 2305-2409",
+          "value": 28.7,
+          "source_url": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+          "source_note": "Official Qwen2.5-LLM blog. Older LCB window, not v5/v6."
+        },
+        {
+          "model": "Qwen2.5-3B-Instruct",
+          "size": "3B",
+          "metric": "pass@1 LCB 2305-2409",
+          "value": 19.9,
+          "source_url": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+          "source_note": "Official Qwen2.5-LLM blog."
+        },
+        {
+          "model": "Qwen2.5-7B-Instruct",
+          "size": "7B",
+          "metric": "pass@1 LCB v5",
+          "value": 14.4,
+          "source_url": "https://arxiv.org/html/2505.09388",
+          "source_note": "Qwen3 paper Table 18 restates Qwen2.5-7B-Instruct on v5 (different window than the 28.7 blog number)."
+        },
+        {
+          "model": "Qwen2.5-3B-Instruct",
+          "size": "3B",
+          "metric": "pass@1 LCB v5",
+          "value": 9.2,
+          "source_url": "https://arxiv.org/html/2505.09388",
+          "source_note": "Qwen3 paper Table 20."
+        },
+        {
+          "model": "Ministral-3-3B-Reasoning-2512",
+          "size": "3B",
+          "metric": "LCB v6 pass@5 (Ministral eval pipeline)",
+          "value": 54.8,
+          "source_url": "https://arxiv.org/pdf/2601.08584",
+          "source_note": "Ministral 3 paper Table 5. pass@5, not pass@1. Also on https://huggingface.co/mistralai/Ministral-3-8B-Base-2512 as 0.548."
+        },
+        {
+          "model": "Ministral-3-8B-Reasoning-2512",
+          "size": "8B",
+          "metric": "LCB v6 pass@5 (Ministral eval pipeline)",
+          "value": 61.6,
+          "source_url": "https://arxiv.org/pdf/2601.08584",
+          "source_note": "Ministral 3 paper Table 5. pass@5. HF family table lists 0.616."
+        },
+        {
+          "model": "Qwen3-VL-4B-Thinking",
+          "size": "4B",
+          "metric": "LCB v6 pass@5 (Ministral pipeline)",
+          "value": 51.3,
+          "source_url": "https://arxiv.org/pdf/2601.08584",
+          "source_note": "Same Table 5 comparison column. Not the official Qwen3-4B card."
+        },
+        {
+          "model": "Qwen3-VL-8B-Thinking",
+          "size": "8B",
+          "metric": "LCB v6 pass@5 (Ministral pipeline)",
+          "value": 58.0,
+          "source_url": "https://arxiv.org/pdf/2601.08584",
+          "source_note": "Same Table 5. Close to Qwen3-8B paper v5 thinking 57.5 but different version and pass@k."
+        },
+        {
+          "model": "GLM-4.5-Air",
+          "size": "106B-A12B",
+          "metric": "LCB 2407-2501 (official blog)",
+          "value": 70.7,
+          "source_url": "https://z.ai/blog/glm-4.5",
+          "source_note": "Official Z.ai blog table. Window labeled 2407-2501, not explicitly v6."
+        },
+        {
+          "model": "Qwen3-4B-Instruct-2507",
+          "size": "4B",
+          "metric": "pass@1 LCB v6 Easy / Medium / Hard",
+          "value": null,
+          "source_url": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+          "source_note": "Official card publishes overall 35.1 only. Independent arXiv 2603.07777 Table reports Easy 87.8 / Medium 31.7 / Hard 8.1 / All 34.7 at 8K (close to 35.1). Not official E/M/H."
+        },
+        {
+          "model": "Qwen3.5-9B",
+          "size": "9B",
+          "metric": "pass@1 LCB v6 Easy / Medium / Hard",
+          "value": null,
+          "source_url": "https://huggingface.co/Qwen/Qwen3.5-9B",
+          "source_note": "Searched official card, livecodebench.github.io, llm-stats LCB v6. Overall 65.6 only; no official E/M/H."
+        },
+        {
+          "model": "Ministral-3-3B-Instruct-2512",
+          "size": "3B",
+          "metric": "LCB v6 pass@1",
+          "value": null,
+          "source_url": "https://arxiv.org/pdf/2601.08584",
+          "source_note": "Instruct table (Table 4) has Arena/WildBench/MATH, not LCB. Only Reasoning variants report LCB, and only pass@5."
+        }
+      ]
+    },
+    {
+      "name": "SWE-bench Verified",
+      "version": "500 human-validated GitHub issues. Resolve rate is scaffold-dominated.",
+      "what_it_measures": "full agentic bugfix in real repos (composite, not atomic)",
+      "url": "https://www.swebench.com/",
+      "scores": [
+        {
+          "model": "Qwen3.5-27B",
+          "size": "27B",
+          "metric": "% resolved (official agent scaffold)",
+          "value": 72.4,
+          "source_url": "https://huggingface.co/Qwen/Qwen3.5-27B",
+          "source_note": "Own official card. Later Qwen3.6-27B comparison table restates Qwen3.5-27B as 75.0 — use 72.4 from the 3.5 card."
+        },
+        {
+          "model": "Qwen3.6-27B",
+          "size": "27B",
+          "metric": "% resolved (internal bash+file-edit scaffold)",
+          "value": 77.2,
+          "source_url": "https://huggingface.co/Qwen/Qwen3.6-27B",
+          "source_note": "Official card. Footnote: temp=1.0, top_p=0.95, 200K ctx. Same-model mini-SWE-agent reports are much lower (67.8 in a community writeup) — scaffold gap."
+        },
+        {
+          "model": "Qwen3.6-27B",
+          "size": "27B",
+          "metric": "SWE-bench Multilingual % resolved",
+          "value": 71.3,
+          "source_url": "https://huggingface.co/Qwen/Qwen3.6-27B",
+          "source_note": "Official card. This is the ~71% 'SWE-Multi' ruler cited in PRIOR.md."
+        },
+        {
+          "model": "Qwen3.6-27B",
+          "size": "27B",
+          "metric": "SWE-bench Pro % resolved",
+          "value": 53.5,
+          "source_url": "https://huggingface.co/Qwen/Qwen3.6-27B",
+          "source_note": "Official card; authors say they corrected some public Pro tasks."
+        },
+        {
+          "model": "GLM-4.5-Air",
+          "size": "106B-A12B",
+          "metric": "% resolved OpenHands v0.34 100-iter",
+          "value": 57.6,
+          "source_url": "https://z.ai/blog/glm-4.5",
+          "source_note": "Official Z.ai blog. temp=0.6, top_p=1.0, history truncation at 128K."
+        },
+        {
+          "model": "GLM-4.5-Air (Ma & Liu public thinking)",
+          "size": "106B-A12B",
+          "metric": "Avg@3 resolved (paper harness)",
+          "value": 55.9,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "Ma & Liu Table 2 OOD. Close to official 57.6; different harness."
+        },
+        {
+          "model": "GLM-4.5-Air-Base + SFT",
+          "size": "106B-A12B",
+          "metric": "Avg@3 resolved",
+          "value": 50.7,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "Ma & Liu Table 2. Atomic-skill SFT only."
+        },
+        {
+          "model": "GLM-4.5-Air-Base + SFT + joint RL",
+          "size": "106B-A12B",
+          "metric": "Avg@3 resolved",
+          "value": 58.5,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "Ma & Liu Table 2."
+        },
+        {
+          "model": "Qwen3-8B",
+          "size": "8B",
+          "metric": "% resolved OpenHands (no SWE SFT)",
+          "value": 7.6,
+          "source_url": "https://arxiv.org/html/2601.01426v2",
+          "source_note": "SWE-Lego Table 6. Untuned Qwen3-8B on OpenHands. After SWE-Lego SFT the same backbone is 42.2 hack-free — that is post-trained, not the base 8B prior."
+        },
+        {
+          "model": "Qwen2.5-Coder-Instruct-7B",
+          "size": "7B",
+          "metric": "% resolved MOpenHands",
+          "value": 1.0,
+          "source_url": "https://arxiv.org/html/2601.01426v2",
+          "source_note": "SWE-Lego Table 6. Canonical 'small models near 0' on composite SWE."
+        },
+        {
+          "model": "Qwen3.5-9B",
+          "size": "9B",
+          "metric": "% resolved SWE-bench Verified",
+          "value": null,
+          "source_url": "https://huggingface.co/Qwen/Qwen3.5-9B",
+          "source_note": "Official 9B card has LCB/OJBench/agent benches, no SWE-bench. Blog posts that put 76.4 on 'Qwen3.5' are family/flagship numbers, not 9B."
+        },
+        {
+          "model": "Qwen3-4B / Qwen2.5-3B / Ministral-3B",
+          "size": "3B-4B",
+          "metric": "% resolved SWE-bench Verified",
+          "value": null,
+          "source_url": "https://www.swebench.com/",
+          "source_note": "Searched official cards, SWE-Lego, z.ai, mistral.ai/news/mistral-3. No published Verified resolve rate for these sizes. Treat as floor (~0) only as a qualitative prior."
+        }
+      ]
+    },
+    {
+      "name": "SWE-bench Lite",
+      "version": "300-issue cheaper subset",
+      "what_it_measures": "same composite bugfix construct as SWE-bench, smaller N",
+      "url": "https://www.swebench.com/lite.html",
+      "scores": [
+        {
+          "model": "3B–9B class (vanilla, no SWE SFT)",
+          "size": "3B-9B",
+          "metric": "% resolved",
+          "value": null,
+          "source_url": "https://www.swebench.com/",
+          "source_note": "No official Lite resolve rates for Ministral-3B/8B, Qwen3-4B/8B, Qwen3.5-9B. LocAgent numbers below are localization Acc, not issue resolve."
+        }
+      ]
+    },
+    {
+      "name": "Aider Polyglot",
+      "version": "225 Exercism exercises, typically --tries 2. Edit format (diff vs whole) and scaffold dominate.",
+      "what_it_measures": "multi-language whole-file/diff code editing under an agent scaffold",
+      "url": "https://aider.chat/docs/leaderboards/",
+      "scores": [
+        {
+          "model": "Qwen3-4B-Instruct-2507",
+          "size": "4B",
+          "metric": "Aider-Polyglot % (official Qwen card)",
+          "value": 12.9,
+          "source_url": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+          "source_note": "Official card row. Scaffold not specified beyond the Aider-Polyglot label."
+        },
+        {
+          "model": "Qwen3-4B Non-Thinking",
+          "size": "4B",
+          "metric": "Aider-Polyglot % (official Qwen card)",
+          "value": 13.8,
+          "source_url": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+          "source_note": "Same official table."
+        },
+        {
+          "model": "Qwen3-30B-A3B Non-Thinking",
+          "size": "30B-A3B",
+          "metric": "Aider-Polyglot %",
+          "value": 24.4,
+          "source_url": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+          "source_note": "Same official 2507 card. 3B-active MoE, included as a small-active ruler."
+        },
+        {
+          "model": "Qwen3.5-9B Q4_K_M",
+          "size": "9B",
+          "metric": "pass@2 % vanilla Aider 0.86.2, 225 exercises",
+          "value": 19.11,
+          "source_url": "https://github.com/itayinbarr/little-coder/blob/main/docs/benchmark-baseline-aider.md",
+          "source_note": "43/225. Matched timeout/context. NOT on aider.chat official polyglot table (no sub-10B rows). Write-up: https://itayinbarr.substack.com/p/honey-i-shrunk-the-coding-agent"
+        },
+        {
+          "model": "Qwen3.5-9B Q4_K_M",
+          "size": "9B",
+          "metric": "pass@2 % little-coder scaffold (mean of 2 runs)",
+          "value": 45.56,
+          "source_url": "https://github.com/itayinbarr/little-coder",
+          "source_note": "Same weights as 19.11. Scaffold-only gap (~26 pp). This is the 19 vs 46 example in PRIOR.md. Prefer relative use only."
+        },
+        {
+          "model": "Qwen3-32B",
+          "size": "32B",
+          "metric": "% correct aider polyglot (official Aider blog)",
+          "value": 45.8,
+          "source_url": "https://aider.chat/2025/05/08/qwen3.html",
+          "source_note": "whole + vLLM bf16 /no_think. Diff format 41.3; OpenRouter thinking 40.0. Official aider.chat; above our 27B band but shows scaffold/format sensitivity."
+        },
+        {
+          "model": "Qwen3-8B / Ministral-8B / Qwen3.5-27B / Qwen3.6-27B",
+          "size": "8B-27B",
+          "metric": "official aider.chat polyglot %",
+          "value": null,
+          "source_url": "https://aider.chat/docs/leaderboards/",
+          "source_note": "Searched aider.chat/docs/leaderboards/ and 2025-05-08 Qwen3 blog. No 8B, 9B, 27B, or Ministral rows on the official polyglot table as of 2026-08-23."
+        }
+      ]
+    },
+    {
+      "name": "Loc-Bench / LocAgent",
+      "version": "Loc-Bench (660 recent Python issues) + SWE-bench Lite localization. LocAgent graph agent.",
+      "what_it_measures": "file/module/function localization, not patch success",
+      "url": "https://arxiv.org/html/2503.09089v1",
+      "scores": [
+        {
+          "model": "Qwen2.5-7B(ft) + LocAgent",
+          "size": "7B",
+          "metric": "SWE-bench Lite file-level Acc@1",
+          "value": 70.8,
+          "source_url": "https://arxiv.org/html/2503.09089v1",
+          "source_note": "LocAgent Table 3. Fine-tuned on successful localization trajectories, not vanilla Qwen2.5-7B."
+        },
+        {
+          "model": "Qwen2.5-7B(ft) + LocAgent",
+          "size": "7B",
+          "metric": "Loc-Bench file-level Acc@5",
+          "value": 79.2,
+          "source_url": "https://arxiv.org/html/2503.09089v1",
+          "source_note": "Table 6. Function-level Acc@10 is 51.93 — much harder than file-level."
+        },
+        {
+          "model": "Qwen2.5-7B vanilla + LocAgent",
+          "size": "7B",
+          "metric": "file-level Acc",
+          "value": null,
+          "source_url": "https://arxiv.org/html/2503.09089v1",
+          "source_note": "Paper: 'The original 7B model performs poorly due to its limited tool-use capability.' Figure 4 is qualitative; no numeric for the untuned 7B."
+        },
+        {
+          "model": "Qwen3.5-9B / Qwen3-8B / Ministral-3B/8B",
+          "size": "3B-9B",
+          "metric": "Loc-Bench / LocAgent Acc",
+          "value": null,
+          "source_url": "https://github.com/gersteinlab/locagent",
+          "source_note": "Searched LocAgent paper, GitHub, and Wizwand SOTA page. Published small-model rows are Qwen2.5-7B(ft) / 32B(ft) only."
+        }
+      ]
+    },
+    {
+      "name": "SWT-Bench",
+      "version": "Verified (433) / Lite / Full. Success S = fail-on-buggy and pass-on-fixed, no extra failures.",
+      "what_it_measures": "issue reproduction / unit-test generation on real GitHub issues",
+      "url": "https://swtbench.com/",
+      "scores": [
+        {
+          "model": "Qwen2.5-Coder-7B-Instruct",
+          "size": "7B",
+          "metric": "SWT-Bench Verified success rate S (base)",
+          "value": 1.15,
+          "source_url": "https://arxiv.org/html/2601.13713v1",
+          "source_note": "SWE-Tester Table. After SFT, 8.31. Applicability 40.42% base. Not on swtbench.com leaderboard."
+        },
+        {
+          "model": "Qwen2.5-Coder-14B-Instruct",
+          "size": "14B",
+          "metric": "SWT-Bench Verified success rate S (base)",
+          "value": 1.39,
+          "source_url": "https://arxiv.org/html/2601.13713v1",
+          "source_note": "SWE-Tester. SFT lifts to 11.79. Still near floor without testgen training."
+        },
+        {
+          "model": "Qwen3.5-9B / Qwen3-8B / Ministral / Qwen3.6-27B",
+          "size": "3B-27B",
+          "metric": "official swtbench.com S",
+          "value": null,
+          "source_url": "https://swtbench.com/",
+          "source_note": "Leaderboard is Devstral / GPT-5-mini / Claude-class agents. Searched swtbench.com, logic-star-ai/swt-bench, SWT-Bench paper. No 3B–27B official rows."
+        }
+      ]
+    },
+    {
+      "name": "Ma & Liu 2026 Atomic Skills",
+      "version": "arXiv 2604.05013. Avg@3. GLM-4.5-Air-Base 106B total / 12B active. Exact-set loc, hidden-test edit, gold+mutant testgen, dual-state repro, 0/1 review.",
+      "what_it_measures": "five atomic skills (Loc/Edit/Testgen/Repro/Review) plus OOD composite SWE/Terminal/refactor/security",
+      "url": "https://huggingface.co/papers/2604.05013",
+      "scores": [
+        {
+          "model": "GLM-4.5-Air (public thinking)",
+          "size": "106B-A12B",
+          "metric": "Loc Avg@3",
+          "value": 0.666,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "Table 1."
+        },
+        {
+          "model": "GLM-4.5-Air (public thinking)",
+          "size": "106B-A12B",
+          "metric": "Edit Avg@3",
+          "value": 0.556,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "Table 1. Their edit is real-repo hidden tests — harder than our named-function Edit."
+        },
+        {
+          "model": "GLM-4.5-Air (public thinking)",
+          "size": "106B-A12B",
+          "metric": "Repro Avg@3",
+          "value": 0.555,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "Table 1."
+        },
+        {
+          "model": "GLM-4.5-Air (public thinking)",
+          "size": "106B-A12B",
+          "metric": "Testgen Avg@3",
+          "value": 0.423,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "Table 1."
+        },
+        {
+          "model": "GLM-4.5-Air (public thinking)",
+          "size": "106B-A12B",
+          "metric": "Review Avg@3",
+          "value": 0.536,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "Table 1."
+        },
+        {
+          "model": "GLM-4.5-Air-Base + SFT",
+          "size": "106B-A12B",
+          "metric": "Loc Avg@3",
+          "value": 0.665,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "Table 1 / Table 3 SFT row."
+        },
+        {
+          "model": "GLM-4.5-Air-Base + SFT",
+          "size": "106B-A12B",
+          "metric": "Edit Avg@3",
+          "value": 0.458,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "The ~0.46 Edit prior in PRIOR.md. SFT on atomic skills only."
+        },
+        {
+          "model": "GLM-4.5-Air-Base + SFT",
+          "size": "106B-A12B",
+          "metric": "Repro Avg@3",
+          "value": 0.542,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "Table 1."
+        },
+        {
+          "model": "GLM-4.5-Air-Base + SFT",
+          "size": "106B-A12B",
+          "metric": "Testgen Avg@3",
+          "value": 0.359,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "Table 1. The 0.36 Testgen prior."
+        },
+        {
+          "model": "GLM-4.5-Air-Base + SFT",
+          "size": "106B-A12B",
+          "metric": "Review Avg@3",
+          "value": 0.563,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "Table 1."
+        },
+        {
+          "model": "GLM-4.5-Air-Base + SFT + joint RL",
+          "size": "106B-A12B",
+          "metric": "Loc Avg@3",
+          "value": 0.712,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "Table 1. 0.665→0.712."
+        },
+        {
+          "model": "GLM-4.5-Air-Base + SFT + joint RL",
+          "size": "106B-A12B",
+          "metric": "Edit Avg@3",
+          "value": 0.611,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "0.458→0.611. The 0.46→0.61 Edit lift in PRIOR.md."
+        },
+        {
+          "model": "GLM-4.5-Air-Base + SFT + joint RL",
+          "size": "106B-A12B",
+          "metric": "Repro Avg@3",
+          "value": 0.605,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "Table 1."
+        },
+        {
+          "model": "GLM-4.5-Air-Base + SFT + joint RL",
+          "size": "106B-A12B",
+          "metric": "Testgen Avg@3",
+          "value": 0.472,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "0.359→0.472."
+        },
+        {
+          "model": "GLM-4.5-Air-Base + SFT + joint RL",
+          "size": "106B-A12B",
+          "metric": "Review Avg@3",
+          "value": 0.622,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "Table 1."
+        },
+        {
+          "model": "3B–9B dense",
+          "size": "3B-9B",
+          "metric": "atomic Loc/Edit/Testgen/Repro/Review",
+          "value": null,
+          "source_url": "https://huggingface.co/papers/2604.05013",
+          "source_note": "Paper evaluates only GLM-4.5-Air-Base (12B active). No 3B–9B rows. Do not copy 0.46 Edit onto Qwen3.5-9B."
+        }
+      ]
+    },
+    {
+      "name": "HumanEval / MBPP (footnote only)",
+      "version": "HumanEval pass@1 / MBPP pass@1. Saturated, not agentic.",
+      "what_it_measures": "single-function codegen from docstring. Do not use for theta on agent tasks.",
+      "url": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "scores": [
+        {
+          "model": "Qwen2.5-3B-Instruct",
+          "size": "3B",
+          "metric": "HumanEval pass@1",
+          "value": 74.4,
+          "source_url": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+          "source_note": "Official blog. Footnote only."
+        },
+        {
+          "model": "Qwen2.5-3B-Instruct",
+          "size": "3B",
+          "metric": "MBPP pass@1",
+          "value": 72.7,
+          "source_url": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+          "source_note": "Official blog."
+        },
+        {
+          "model": "Qwen2.5-7B-Instruct",
+          "size": "7B",
+          "metric": "HumanEval pass@1",
+          "value": 84.8,
+          "source_url": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+          "source_note": "Official blog. Far above this model's SWE (~1) — construct mismatch."
+        },
+        {
+          "model": "Qwen2.5-7B-Instruct",
+          "size": "7B",
+          "metric": "MBPP pass@1",
+          "value": 79.2,
+          "source_url": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+          "source_note": "Official blog."
+        },
+        {
+          "model": "Ministral-3-3B-Base",
+          "size": "3B",
+          "metric": "MBPP 3-shot pass@1",
+          "value": 63.0,
+          "source_url": "https://arxiv.org/pdf/2601.08584",
+          "source_note": "Ministral 3 paper Table 3 (base, not instruct)."
+        },
+        {
+          "model": "Ministral-3-8B-Base",
+          "size": "8B",
+          "metric": "MBPP 3-shot pass@1",
+          "value": 70.0,
+          "source_url": "https://arxiv.org/pdf/2601.08584",
+          "source_note": "Table 3."
+        },
+        {
+          "model": "Qwen3.5-9B",
+          "size": "9B",
+          "metric": "HumanEval / MBPP",
+          "value": null,
+          "source_url": "https://huggingface.co/Qwen/Qwen3.5-9B",
+          "source_note": "Official card dropped HumanEval/MBPP in favor of LCB v6 / OJBench."
+        }
+      ]
+    }
+  ],
+  "models": [
+    {
+      "id": "ministral-3b-reasoning",
+      "display": "Ministral-3-3B-Reasoning-2512",
+      "size_class": "3B",
+      "theta_prior": "low",
+      "signals": [
+        "LCB v6 54.8 but pass@5 not pass@1",
+        "no official SWE / Aider / Loc-Bench",
+        "MBPP base 63 — HumanEval-class only"
+      ]
+    },
+    {
+      "id": "qwen2.5-3b-instruct",
+      "display": "Qwen2.5-3B-Instruct",
+      "size_class": "3B",
+      "theta_prior": "low",
+      "signals": [
+        "HumanEval 74.4 / MBPP 72.7 (saturated footnote)",
+        "LCB 19.9 (old window) / 9.2 (v5 in Qwen3 paper)",
+        "no official SWE or Aider"
+      ]
+    },
+    {
+      "id": "qwen3-4b",
+      "display": "Qwen3-4B",
+      "size_class": "4B",
+      "theta_prior": "low",
+      "signals": [
+        "Instruct-2507 LCB v6 35.1 (PRIOR floor)",
+        "Thinking LCB v5 54.2 vs non-think 21.3 — mode gap",
+        "official Aider-Polyglot 12.9",
+        "no SWE-Verified"
+      ]
+    },
+    {
+      "id": "qwen3.5-4b",
+      "display": "Qwen3.5-4B",
+      "size_class": "4B",
+      "theta_prior": "low_mid",
+      "signals": [
+        "official LCB v6 55.8 — step up from Qwen3-4B instruct 35.1",
+        "still no official SWE / Aider / Loc-Bench"
+      ]
+    },
+    {
+      "id": "qwen2.5-7b-instruct",
+      "display": "Qwen2.5-7B-Instruct",
+      "size_class": "7B",
+      "theta_prior": "mid",
+      "signals": [
+        "HumanEval 84.8 vs SWE ~1.0 (MOpenHands)",
+        "LCB 28.7 old / 14.4 v5",
+        "LocAgent needs FT; vanilla 7B 'performs poorly'",
+        "SWT-Verified S 1.15 for Coder-7B sibling"
+      ]
+    },
+    {
+      "id": "qwen3-8b",
+      "display": "Qwen3-8B",
+      "size_class": "8B",
+      "theta_prior": "mid",
+      "signals": [
+        "Thinking LCB v5 57.5; non-think 22.8",
+        "SWE-Verified 7.6 OpenHands untuned (SWE-Lego)",
+        "no official Aider or Loc-Bench"
+      ]
+    },
+    {
+      "id": "ministral-8b-reasoning",
+      "display": "Ministral-3-8B-Reasoning-2512",
+      "size_class": "8B",
+      "theta_prior": "mid",
+      "signals": [
+        "LCB v6 61.6 pass@5",
+        "no official SWE / Aider / Loc-Bench",
+        "MBPP base 70"
+      ]
+    },
+    {
+      "id": "qwen3.5-9b",
+      "display": "Qwen3.5-9B",
+      "size_class": "9B",
+      "theta_prior": "mid_high",
+      "signals": [
+        "LCB v6 strong (65.6 official)",
+        "Aider scaffold-sensitive (19.11 vanilla vs 45.56 little-coder, Q4, third-party)",
+        "SWE still unpublished / expected weak vs 27B 72+"
+      ]
+    },
+    {
+      "id": "qwen3.5-27b",
+      "display": "Qwen3.5-27B",
+      "size_class": "27B",
+      "theta_prior": "high",
+      "signals": [
+        "official SWE-Verified 72.4, LCB v6 80.7, Terminal-Bench 2 41.6",
+        "ruler only — not the small-model main board"
+      ]
+    },
+    {
+      "id": "qwen3.6-27b",
+      "display": "Qwen3.6-27B",
+      "size_class": "27B",
+      "theta_prior": "high",
+      "signals": [
+        "official SWE-Verified 77.2, SWE-Multi 71.3, LCB v6 83.9, TB2 59.3",
+        "same-model mini-SWE-agent vs engineered stack still moves tens of points"
+      ]
+    },
+    {
+      "id": "glm-4.5-air",
+      "display": "GLM-4.5-Air (12B active)",
+      "size_class": "12B-active",
+      "theta_prior": "high",
+      "signals": [
+        "official SWE-Verified 57.6; LCB 70.7",
+        "Ma & Liu SFT Edit 0.458 / Testgen 0.359; joint RL Edit 0.611",
+        "12B-active MoE ruler for atomic-skill b, not a 9B dense twin"
+      ]
+    }
+  ]
+}
