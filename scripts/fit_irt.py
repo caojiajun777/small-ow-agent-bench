@@ -4,6 +4,7 @@ Published bench means are not item responses. Do not pass LCB/SWE
 averages here. Fit only compact-shell atomic_correct on MAIN_47.
 
     python scripts/fit_irt.py
+    python scripts/fit_irt.py --k3
     python scripts/fit_irt.py --score both
     python scripts/fit_irt.py --score atomic
     python scripts/fit_irt.py --score e2e
@@ -33,12 +34,16 @@ from task_sets import MAIN_47  # noqa: E402
 
 LOCKED = ROOT / "jobs" / "locked-core.json"
 MATRICES = ROOT / "jobs" / "locked-matrices.json"
+K3_CORE = ROOT / "jobs" / "locked-core-k3.json"
+K3_UPPER = ROOT / "jobs" / "locked-upper-base-k3.json"
 SCREEN = ROOT / "jobs" / "core-k1-screen.json"
 POP = ROOT / "prior-population.json"
 OUT = ROOT / "jobs" / "irt-draft.json"
+K3_OUT = ROOT / "jobs" / "irt-k3.json"
 MIN_MODELS = 8
 MAX_ITERS = 80
 EPS = 1e-5
+K3_N = 3
 
 
 def _sigmoid(x: float) -> float:
@@ -118,27 +123,33 @@ def filter_group(
 
 
 def person_item_means(
-    matrix: dict[str, dict[str, int | None]], models: list[str]
+    matrix: dict[str, dict[str, int | None]],
+    models: list[str],
+    n_trials: int = 1,
 ) -> tuple[dict[str, float], dict[str, float]]:
     theta0: dict[str, float] = {}
     for m in models:
         vals = [row[m] for row in matrix.values() if m in row and row[m] is not None]
-        p = (sum(vals) + 0.5) / (len(vals) + 1.0) if vals else 0.5
+        denom = n_trials * len(vals) + 1.0
+        p = (sum(vals) + 0.5) / denom if vals else 0.5
         p = min(max(p, 0.02), 0.98)
         theta0[m] = math.log(p / (1.0 - p))
     b0: dict[str, float] = {}
     for task, row in matrix.items():
         vals = [v for v in row.values() if v is not None]
-        p = (sum(vals) + 0.5) / (len(vals) + 1.0) if vals else 0.5
+        denom = n_trials * len(vals) + 1.0
+        p = (sum(vals) + 0.5) / denom if vals else 0.5
         p = min(max(p, 0.02), 0.98)
         b0[task] = -math.log(p / (1.0 - p))
     return theta0, b0
 
 
 def split_calibrated(
-    matrix: dict[str, dict[str, int | None]], models: list[str]
+    matrix: dict[str, dict[str, int | None]],
+    models: list[str],
+    n_trials: int = 1,
 ) -> tuple[dict[str, dict[str, int | None]], list[str], list[str]]:
-    """Keep items with both 0 and 1. All-0 items have no finite MLE b."""
+    """Keep items with mixed counts. All-0 / all-n have no finite MLE b."""
     keep: dict[str, dict[str, int | None]] = {}
     above: list[str] = []
     below: list[str] = []
@@ -146,7 +157,7 @@ def split_calibrated(
         vals = [row[m] for m in models if row.get(m) is not None]
         if vals and all(v == 0 for v in vals):
             above.append(task)
-        elif vals and all(v == 1 for v in vals):
+        elif vals and all(v == n_trials for v in vals):
             below.append(task)
         else:
             keep[task] = row
@@ -154,9 +165,11 @@ def split_calibrated(
 
 
 def split_persons(
-    matrix: dict[str, dict[str, int | None]], models: list[str]
+    matrix: dict[str, dict[str, int | None]],
+    models: list[str],
+    n_trials: int = 1,
 ) -> tuple[list[str], list[str], list[str]]:
-    """All-0 / all-1 persons have no finite JML theta."""
+    """All-0 / all-n persons have no finite JML theta."""
     keep: list[str] = []
     below: list[str] = []
     above: list[str] = []
@@ -164,7 +177,7 @@ def split_persons(
         vals = [row[model] for row in matrix.values() if row.get(model) is not None]
         if vals and all(v == 0 for v in vals):
             below.append(model)
-        elif vals and all(v == 1 for v in vals):
+        elif vals and all(v == n_trials for v in vals):
             above.append(model)
         else:
             keep.append(model)
@@ -172,9 +185,11 @@ def split_persons(
 
 
 def fit_1pl(
-    matrix: dict[str, dict[str, int | None]], models: list[str]
+    matrix: dict[str, dict[str, int | None]],
+    models: list[str],
+    n_trials: int = 1,
 ) -> tuple[dict[str, float], dict[str, float]]:
-    theta, b = person_item_means(matrix, models)
+    theta, b = person_item_means(matrix, models, n_trials=n_trials)
     items = list(matrix)
     for _ in range(MAX_ITERS):
         delta = 0.0
@@ -186,8 +201,8 @@ def fit_1pl(
                 if x is None:
                     continue
                 p = _sigmoid(theta[m] - b[task])
-                num += x - p
-                den += p * (1.0 - p)
+                num += x - n_trials * p
+                den += n_trials * p * (1.0 - p)
             if den > 1e-8:
                 step = num / den
                 theta[m] += step
@@ -203,8 +218,8 @@ def fit_1pl(
                 if x is None:
                     continue
                 p = _sigmoid(theta[m] - b[task])
-                num += p - x
-                den += p * (1.0 - p)
+                num += n_trials * p - x
+                den += n_trials * p * (1.0 - p)
             if den > 1e-8:
                 step = num / den
                 b[task] += step
@@ -279,21 +294,28 @@ def rank_population() -> dict:
     }
 
 
-def _fit_kind(matrix: dict[str, dict[str, int | None]], kind: str) -> dict:
+def _fit_kind(
+    matrix: dict[str, dict[str, int | None]],
+    kind: str,
+    n_trials: int = 1,
+) -> dict:
     filtered, models, dropped = filter_group(matrix, kind)
     payload = {
         "kind": f"irt_1pl_{kind}",
         "group": kind,
+        "n_trials": n_trials,
         "n_models": len(models),
         "n_items": len(filtered),
         "models": models,
         "dropped_rulers_or_unlocked": dropped,
-        "excluded": "rulers never enter theta; Repro included",
+        "excluded": "rulers never enter main theta; Repro included",
         "min_models": MIN_MODELS,
         "lock": "models.lock.yaml",
     }
-    calibrated, above, below = split_calibrated(filtered, models)
-    persons, person_below, person_above = split_persons(calibrated, models)
+    calibrated, above, below = split_calibrated(filtered, models, n_trials=n_trials)
+    persons, person_below, person_above = split_persons(
+        calibrated, models, n_trials=n_trials
+    )
     payload["uncalibrated_above_range"] = above
     payload["uncalibrated_below_range"] = below
     payload["uncalibrated_person_below_range"] = person_below
@@ -310,17 +332,17 @@ def _fit_kind(matrix: dict[str, dict[str, int | None]], kind: str) -> dict:
         return payload
     if len(calibrated) < 2:
         payload["fit"] = None
-        payload["warning"] = "fewer than 2 calibrated items after dropping all-0/all-1"
+        payload["warning"] = "fewer than 2 calibrated items after dropping all-0/all-n"
         return payload
     if len(persons) < MIN_MODELS:
         payload["fit"] = None
         payload["warning"] = (
             f"{len(persons)} calibrated models < {MIN_MODELS} after dropping "
-            "all-0/all-1 persons"
+            "all-0/all-n persons"
         )
         return payload
-    theta, b = fit_1pl(calibrated, persons)
-    payload["fit"] = "1pl_jml"
+    theta, b = fit_1pl(calibrated, persons, n_trials=n_trials)
+    payload["fit"] = "1pl_jml_binomial" if n_trials > 1 else "1pl_jml"
     payload["theta"] = {m: round(theta[m], 3) for m in persons}
     payload["theta_excluded"] = {m: None for m in person_below + person_above}
     payload["b"] = {t: round(b[t], 3) for t in MAIN_47 if t in b}
@@ -341,6 +363,107 @@ def _score_flag() -> str:
     if MATRICES.is_file():
         return "both"
     return "atomic"
+
+
+def load_k3_counts(path: Path, score: str) -> dict[str, dict[str, int | None]]:
+    """Success counts 0..k, not majority-vote 0/1."""
+    key = "p_atomic" if score in {"atomic", "A"} else "p_e2e"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    matrix: dict[str, dict[str, int | None]] = {t: {} for t in MAIN_47}
+    for cell in data.get("cells") or []:
+        task = cell.get("task")
+        lock_id = cell.get("lock_id")
+        if task not in matrix or not lock_id:
+            continue
+        if cell.get("n_valid") != K3_N or cell.get(key) is None:
+            matrix[task][lock_id] = None
+        else:
+            matrix[task][lock_id] = int(round(float(cell[key]) * K3_N))
+    return {t: row for t, row in matrix.items() if row}
+
+
+def merge_counts(
+    base: dict[str, dict[str, int | None]],
+    extra: dict[str, dict[str, int | None]],
+) -> dict[str, dict[str, int | None]]:
+    out = {t: dict(row) for t, row in base.items()}
+    for task, row in extra.items():
+        out.setdefault(task, {}).update(row)
+    return out
+
+
+def load_k3_merged(score: str) -> dict[str, dict[str, int | None]]:
+    matrix = load_k3_counts(K3_CORE, score)
+    if K3_UPPER.is_file():
+        matrix = merge_counts(matrix, load_k3_counts(K3_UPPER, score))
+    return matrix
+
+
+def _dual_from_matrix(
+    matrix: dict[str, dict[str, int | None]],
+    e2e_matrix: dict[str, dict[str, int | None]],
+    kind: str,
+    n_trials: int,
+) -> dict:
+    atomic = _fit_kind(matrix, kind, n_trials=n_trials)
+    e2e = _fit_kind(e2e_matrix, kind, n_trials=n_trials)
+    models = [m for m in (atomic.get("theta") or {}) if m in (e2e.get("theta") or {})]
+    items = [
+        t for t in MAIN_47 if t in (atomic.get("b") or {}) and t in (e2e.get("b") or {})
+    ]
+    theta_rho = None
+    b_rho = None
+    if len(models) >= 3 and atomic.get("fit") and e2e.get("fit"):
+        theta_rho = round(
+            spearman(
+                [atomic["theta"][m] for m in models],
+                [e2e["theta"][m] for m in models],
+            ),
+            3,
+        )
+    if len(items) >= 3 and atomic.get("fit") and e2e.get("fit"):
+        b_rho = round(
+            spearman([atomic["b"][t] for t in items], [e2e["b"][t] for t in items]),
+            3,
+        )
+    return {
+        "atomic": atomic,
+        "e2e": e2e,
+        "theta_spearman": theta_rho,
+        "b_spearman": b_rho,
+    }
+
+
+def fit_k3_payload() -> dict:
+    atomic_m = load_k3_merged("atomic")
+    e2e_m = load_k3_merged("e2e")
+    main = _dual_from_matrix(atomic_m, e2e_m, "main", K3_N)
+    with_upper = _dual_from_matrix(atomic_m, e2e_m, "core", K3_N)
+    no_35 = {
+        t: {m: v for m, v in row.items() if m != "qwen3.6-35b-a3b"}
+        for t, row in atomic_m.items()
+    }
+    no_35_e = {
+        t: {m: v for m, v in row.items() if m != "qwen3.6-35b-a3b"}
+        for t, row in e2e_m.items()
+    }
+    exclude_35 = _dual_from_matrix(no_35, no_35_e, "core", K3_N)
+    return {
+        "kind": "irt_1pl_k3_binomial",
+        "published": False,
+        "n_trials": K3_N,
+        "note": (
+            "Exploratory 1PL on compact-shell k=3. Each cell is Binomial(3, p), "
+            "not majority vote. Main theta is 10 compact models only. "
+            "27B/35B are sensitivity. Hard-15 is not fitted. "
+            "All-0 / all-3 items have no finite b. Order only; not a scale."
+        ),
+        "source_core": str(K3_CORE),
+        "source_upper": str(K3_UPPER) if K3_UPPER.is_file() else None,
+        "main": main,
+        "sensitivity_with_upper": with_upper,
+        "sensitivity_exclude_35b": exclude_35,
+    }
 
 
 def _load_matrix(path: Path, score: str) -> dict[str, dict[str, int | None]]:
@@ -389,6 +512,31 @@ def _dual_score_payload(group: str) -> dict:
 
 
 def main() -> int:
+    if "--k3" in sys.argv:
+        payload = fit_k3_payload()
+        K3_OUT.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+        main_fit = payload["main"]
+        print(
+            json.dumps(
+                {
+                    "main_theta_spearman": main_fit.get("theta_spearman"),
+                    "main_b_spearman": main_fit.get("b_spearman"),
+                    "n_atomic_items": main_fit["atomic"].get("n_items_calibrated"),
+                    "theta_atomic": main_fit["atomic"].get("theta"),
+                    "theta_e2e": main_fit["e2e"].get("theta"),
+                    "sensitivity_with_upper_theta": (
+                        payload["sensitivity_with_upper"]["atomic"].get("theta")
+                    ),
+                    "sensitivity_exclude_35b_theta": (
+                        payload["sensitivity_exclude_35b"]["atomic"].get("theta")
+                    ),
+                },
+                indent=2,
+            )
+        )
+        print(f"wrote {K3_OUT}")
+        ok = bool(main_fit["atomic"].get("fit") and main_fit["e2e"].get("fit"))
+        return 0 if ok else 1
     if "--from-population" in sys.argv:
         out = rank_population()
         dest = ROOT / "jobs" / "prior-theta-z.json"

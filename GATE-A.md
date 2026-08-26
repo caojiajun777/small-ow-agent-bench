@@ -1,6 +1,6 @@
 # Gate A / 发布清单
 
-正式数字和 Hard 等 k=1 筛查。本清单不占 Novita。打 tag 前每一项都要绿。
+正式数字见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §6.2 / §11 / §12 / §13。Hard 按 k=3 在 Core 47 锁了 5 道（2 Loc + 1 Testgen + 2 Repro）。v1.0 发表口径是 **API Standard（系统表）**；Local Reference 不是本 tag 的前置。打 `benchmark-v1.0` 时公开仓库、Local Reference 全表仍可另开。v1.0 本身是 API Standard。
 
 ## 现在就能勾（不跑模型）
 
@@ -53,15 +53,39 @@ python scripts/run_locked.py --run --full --group main
 benchmark-v1.0-rc1
 ```
 
-条件：oracle/nop 绿、EVAL-NOTE §6.1 / §8–10 已填、README 不再把 Terminus-2 写成默认 agent。本地已打；**未 push**。
+条件：oracle/nop 绿、EVAL-NOTE §6.1 / §8–10 已填、README 不再把 Terminus-2 写成默认 agent。本地已打；**未 push**。k=3 主表后来写进 §6.2 / §11；打 `benchmark-v1.0` 另说。
 
 tag 之后改 instruction / verifier → 升 `v1.1` 或整表重跑。
 
-## tag 之后才做（不要提前）
+## rc1 之后（k=3 已齐）
 
-- Core k=3 正式表（API 或 Local Reference）
-- Frontier / Hard（9B 稳 0 且尺子稳 1；不能用 draft both_miss）
+正式 Core 表：补 attempts 2–3，使总重复数达到 k=3。**不要** `harbor run -k 3`，**不要**覆盖 `jobs/locked-core.json`。attempt=1 是已有 k=1 格子。
+
+```text
+python scripts/run_locked.py --k3-fill --group main
+python scripts/run_locked.py --run --k3-fill --group main
+python scripts/run_locked.py --run --k3-fill --group ruler
+```
+
+- [x] dry-run `--k3-fill --group main` 打出 **940**（10×47×2）
+- [x] dry-run `--k3-fill --group ruler` 打出 **14**（7 道 Loc 边界 ×2；不含 `loc-unused-fix`）
+- [x] 单条 Novita 串行补 main；每格 `n_valid=3` 才进 mean；infra 重试不占 attempt 号
+- [x] 尺子只补 7 道 Loc；产物 `jobs/locked-core-k3.json`（477 格，incomplete 0；未覆盖 `locked-core.json`）
+- [x] Core k=3 正式表（EVAL-NOTE §6.2 / §11）
+- [x] Frontier / Hard：`loc-member-discount`、`loc-vip-two-files`（9B 0/3 且 27B Atomic 3/3；后者 E2E 未锁）；另 §13 新锁 `testgen-anagram`、`repro-first-index`、`repro-whitespace`
+- [x] k=3 探索性 1PL（Binomial(3)，`python scripts/fit_irt.py --k3` → `jobs/irt-k3.json`；不进发表均值）
 - 公开 GitHub
+- [x] Local Reference：**权重 SHA 已钉**（[`models.local.yaml`](models.local.yaml)，HF `main` @ 2026-08-26）。全表未跑（Linux vLLM + `VLLM_BASE_URL`；`python scripts/run_local_ref.py`）。不覆盖 API 均值。
+
+## 12 模型 Core（2026-08-25 起）
+
+锁文件改为 **12 个正式 Core 模型**（10 compact_dense + Qwen3.8-27B + Qwen3.6-35B-A3B）。`--group main` 仍是原来 10 个。`jobs/locked-core.json` / `locked-core-k3.json` **不覆盖**。Hard-Dev 是 **10** 道，不是 12。
+
+- [x] 35B 协议烟测：`hello-world` + `collect-todos`，Venice，thinking 关，`protocol_pass=true`（2026-08-25）
+- [x] Hard-Dev-10（每项 2 道）oracle/nop 后冻结（`jobs/gate-a-hard-dev-oracle-nop.json`）
+- [x] Hard-Release-15 Gate-B（foil + 独立性 + grep 锚点）后重新 oracle/nop 冻结（`jobs/gate-a-hard-release-oracle-nop.json`）
+- [x] 27B Base-47 k=3 补缺口 + 35B Base-47 k=3 从零。2026-08-26 跑完：`jobs/locked-upper-base-k3.json`，94 格 `n_valid=3`，incomplete 0，infra 0。**未覆盖** `locked-core.json` / `locked-core-k3.json`。`enters_official_mean=false`。命令：`python scripts/run_locked.py --run --base-fill`。数字见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §13。
+- [x] Hard-15：6×15×k=3 = 270（Base 47 均 ≥ 0.40 的 compact + 27B + 35B；跳过的不当 0）。2026-08-26 跑完：`jobs/locked-hard-release-k3.json`，90 格 `n_valid=3`，incomplete 0，infra 0。失败构成：`python scripts/fail_compose.py` → `jobs/locked-hard-failure.json`（EVAL-NOTE §12.2）
 
 ## 不要做
 

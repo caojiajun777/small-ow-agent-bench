@@ -1,0 +1,13 @@
+{
+  "kind": "repro",
+  "foils": [
+    {
+      "id": "once-only",
+      "why": "asserts the first export only"
+    },
+    {
+      "id": "internal-iter",
+      "why": "reaches into _ROWS instead of export_rows"
+    }
+  ]
+}

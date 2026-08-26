@@ -33,6 +33,8 @@ INFRA_EXCEPTIONS = frozenset(
         "RewardFileEmptyError",
         "VerifierOutputParseError",
         "RateLimitException",
+        "RateLimitError",
+        "ReadError",
     }
 )
 
@@ -64,7 +66,7 @@ def _compact_shell_trace(data: dict[str, Any], trial_dir: Path | None = None) ->
             continue
         try:
             blob = json.loads(path.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError):
             break
         if isinstance(blob, dict):
             for key in ("finished", "n_turns", "n_shell", "n_parse_fail"):
@@ -101,7 +103,7 @@ def _sidecar(trial_dir: Path) -> dict[str, Any]:
         return {}
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError:
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
         return {}
     return data if isinstance(data, dict) else {}
 

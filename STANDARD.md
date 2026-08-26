@@ -6,27 +6,45 @@ Thesis: this bench does **not** chase a 50% mean. It asks what 3B–9B coding ag
 - **Frontier / Hard**: items where 9B *stably* fails and 27B or 34B *stably* passes. Separate table. Do not invent Hard by weakening atomicity, hiding tests, or adding harness intelligence.
 - Large models are rulers only. They do not enter the small-model Core table.
 
-This bench measures **model performance under a fixed minimal shell harness**, not intrinsic coding ability. The candidate Standard agent is `compact-shell` (`agents/compact_shell.py`). Terminus-2 is a **comparison harness**, not the published measurement object.
+This bench measures **end-to-end agent reliability under a frozen text-only compact-shell protocol**, not coding intelligence detached from a harness. A score is a **system** number: model + pinned OpenRouter provider/quant + Novita sandbox + compact-shell. It is procedurally fair (same grammar, budget, verifier, k=3). It is **not** a matched-weights table (providers, BF16/FP8, chat templates, and serving stacks differ).
 
-Say: “Qwen 9B Localization success rate under CompactShell is 75%.” Do not say: “Qwen 9B Localization ability is 75%.” Do not treat Terminus-2 calibration jobs as the official table.
+**v1.0 published track = API Standard.** Cite it as an API system table. Local Reference (pinned HF revision + vLLM) is a later **weight-control** experiment; it is not a prerequisite for this tag and does not overwrite the frozen API mean.
+
+Say: “Qwen 9B Localization success rate under CompactShell is 75%.” Do not say: “Qwen 9B Localization ability is 75%.” Do not say the API table proves one checkpoint’s inherent code skill is below another. Do not drop `protocol_error` / halt from the Atomic mean to “correct” a model. Do not treat Terminus-2 calibration jobs as the official table.
+
+Legal protocol limits (declare; do not change for v1.0 because a larger model scored low): one `bash` fence per turn; no XML/native tool calls; `max_turns=20`; 180s wall clock **includes** LLM wait; Loc must write `/app/answer.txt`; Repro must exit non-zero on the buggy repo. **`finish` is required for E2E / `termination=clean`, not for Atomic.** Unfinished episodes with a correct artifact stay `atomic_correct=1`.
+
+A protocol **bug** would be: instruction vs verifier contradiction; correct artifact scored 0; per-model budgets; parser not matching the documented grammar; silent provider fallback; infra counted as a task 0; crossed attempts. None of those are in evidence. Changing turns, parser, finish, Repro contract, or Atomic rules after seeing Hard-15 would start a new experiment. Sensitivity (looser protocol, Local vLLM) is a later track; it does not overwrite the frozen mean.
 
 Old 8B / 9B / 27B / Granite jobs are **pilot / calibration only**. They do **not** enter the official leaderboard. Formal tables are rerun from a frozen protocol.
 
 Internship / public writeup: [`EVAL-NOTE.md`](EVAL-NOTE.md). Release checklist: [`GATE-A.md`](GATE-A.md).
 
-Public **Core set** = **47** unique-trap Medium tasks in [`README.md`](README.md). L9 and isomorphs stay diagnostic / stock; they are not in the five-skill means. Do not blur 47 with 51. Frontier is empty until an item clears the Hard ladder in [`DIFFICULTY.md`](DIFFICULTY.md).
+Public **Core set** = **47** unique-trap tasks in [`README.md`](README.md) (frozen list; skill means average every item in the atom, including all-0 Loc). L9 and isomorphs stay diagnostic / stock; they are not in the five-skill means. Do not blur 47 with 51. Frontier / Hard under compact-shell k=3 (Atomic; 9B 0/3 and 27B Atomic 3/3): Core `loc-member-discount`, `loc-vip-two-files`, `testgen-anagram`, `repro-first-index`, `repro-whitespace`; Hard-15 `loc-hook-plugin` only. 27B k=3 on the three non-Loc Core items lives in `jobs/locked-upper-base-k3.json`. See [`DIFFICULTY.md`](DIFFICULTY.md).
 
 ## Tracks (do not mix)
 
-| Track | What it is | Runtime | Enters published 3B–9B table? |
+Empirical **run** tracks (what was actually executed):
+
+| Track | Models | Items | Product | Enters compact-10 Core mean? |
+|---|---|---|---|---|
+| **Compact Main** | 10 `compact_dense` | Base-47 | `jobs/locked-core-k3.json` | **Yes** (API) |
+| **Upper Reference** | 27B + 35B-A3B | Base-47 | `jobs/locked-upper-base-k3.json` | **No** |
+| **Hard Evaluation** | 6 pre-selected | Hard-15 | `jobs/locked-hard-release-k3.json` | **No** |
+
+Do not write “12 models completed 62 tasks.” Hard-15 was not run on floor models. **Missing ≠ 0.**
+
+Evidence **grade** tracks:
+
+| Track | What it is | Runtime | Cite as |
 |---|---|---|---|
-| **Calibration / Pilot** | Existing OpenRouter / DashScope / Novita `-n 4|5` jobs | Provider APIs | **No** |
-| **API Standard** | Protocol frozen; GPU not ready | OpenRouter + fixed model ids, thinking policy below, **k=3 n=1** | Internal only; label **API** |
-| **Local Reference** | Publish / cite this | Self-hosted **vLLM** + pinned HF revision + pinned **compact-shell** | **Yes** (models advertised ≤9B) |
-| **Ruler** | 27B / 34B ceiling for Core / Frontier / Unscored | DashScope or vLLM; thinking off | **No** (not laptop-small) |
-| **Frontier** | Hard items: 9B stable fail, 27B or 34B stable pass | Same harness as the Core run | **No** (boundary table only) |
-| **Reasoning** | Cannot disable thinking | Separate table | **No** (not Standard) |
-| **Upper-small** | 12B–14B | Same harness as the track they were run on | Appendix only |
+| **Calibration / Pilot** | Existing OpenRouter / DashScope / Novita `-n 4|5` jobs | Provider APIs | Not official |
+| **API Standard (v1.0)** | Protocol frozen; OpenRouter ids + thinking policy + **k=3 n=1** | OpenRouter + Novita | **Published system table**; label **API** |
+| **Local Reference** | Pinned HF revision + vLLM + compact-shell | Self-hosted | Future weight-control; not required for v1.0 |
+| **Ruler** | 27B / 35B-A3B ceiling for Core / Frontier / Unscored | Same API harness | **No** (not in compact-10 mean) |
+| **Frontier** | Hard items: 9B stable fail, 27B stable pass | Same harness | **No** (boundary table only) |
+| **Reasoning** | Cannot disable thinking | Separate table | **No** |
+| **Upper-small** | 12B–14B | Same harness as the track they were run on | Appendix / Compact Main if they are in the 10 |
 
 Chat templates still differ by family. Local Reference pins **per-model** `{revision, dtype, chat template, max_len, sampling}` and a **runtime family** (vLLM + Transformers versions). It does not pretend one template fits all.
 
@@ -93,19 +111,26 @@ Each main-set task, Standard run:
 p_i = \frac{\text{count of atomic\_correct}=1 \text{ in 3 trials}}{3}
 \]
 
-Skill mean:
+Skill mean (equal weight per item **inside** the atom):
 
 \[
 S_{\mathrm{atom}} = \frac{1}{N_{\mathrm{atom}}} \sum p_i
 \]
 
-**Primary table (Core):** Localization, Editing, Testgen, Repro, Review on the 47. No forced overall rank. A high 9B Core score is expected if Medium items are in-band; that is not a defect.
+Base-47 item counts are unbalanced (Loc 8, Edit 12, Testgen 10, Repro 10, Review 7). Two averages are both correct; **do not mix the labels**:
 
-**Frontier table:** same five atoms on locked Hard items only. Empty until calibration finds a stable 9B-fail / 27B-or-34B-pass boundary. Do not merge Frontier into the Core mean to pull 9B toward 50%.
+| Name | Formula | Role |
+|---|---|---|
+| **Five-skill macro** | \((S_{\mathrm{Loc}}+S_{\mathrm{Edit}}+S_{\mathrm{Testgen}}+S_{\mathrm{Repro}}+S_{\mathrm{Review}})/5\) | If one headline number is required |
+| **Task-micro** | \(\sum p_i / 47\) = successes / \((47\times 3)\) | Overall attempt rate; secondary |
+
+**Primary table (Core):** the five \(S_{\mathrm{atom}}\) columns. No forced overall rank. A high 9B Core score is expected if Medium items are in-band; that is not a defect. Hard-15 has 3 items per atom, so task-micro equals five-skill macro.
+
+**Frontier table:** same five atoms on locked Hard items only. Do not merge Frontier into the Core mean to pull 9B toward 50%.
 
 **Secondary table:** clean halt rate, TLE rate, timeout-after-pass, protocol error rate, public-green / hidden-red (edit), loc overprediction (canonical set ⊃ gold).
 
-**Order:** freeze the 11-model roster in [`models.lock.yaml`](models.lock.yaml) (10 main + Qwen3.8-27B ruler). Pin OpenRouter `provider.order` with `allow_fallbacks=false`. Ten-model full run: `python scripts/run_locked.py --run --full --group main` (protocol 20, then MAIN_47 470). Restart skips completed cells. `--group all` adds the ruler. Batch 1/2 is execution order only; do not swap models after seeing scores. Existing 9B/8B `run_core_k1.py` jobs are draft. A published Standard table is still **k=3 on Core**, not this k=1 matrix.
+**Order:** freeze the 12-model roster in [`models.lock.yaml`](models.lock.yaml) (10 compact_dense + Qwen3.8-27B + Qwen3.6-35B-A3B). Pin OpenRouter `provider.order` with `allow_fallbacks=false`. Ten-model full run: `python scripts/run_locked.py --run --full --group main` (protocol 20, then MAIN_47 470). Restart skips completed cells. `--group ruler` / `--group moe` are Upper Reference, not Compact Main. Batch 1/2 is execution order only; do not swap models after seeing scores. Existing 9B/8B `run_core_k1.py` jobs are draft. A published Compact Main table is **k=3 on Core**, not this k=1 matrix.
 
 k=1 item roles (screen only): `irt_candidate` (mix of 0 and 1 — not automatically a good discriminator), `all_pass`, `uncalibrated_above_range` (all 0 — keep in the raw matrix; **do not** Rasch-MLE a finite \(b\)). Use **corrected** item-total \(r\) (total excludes the item). Do not mint Hard from all-0 Loc.
 
@@ -157,7 +182,7 @@ Rerun (once), log `attempt_id`, `rerun_reason`, original error:
 
 Do not start the 10-model k=1 matrix before Gate A oracle/nop is green.
 
-**Gate A — freeze protocol / optional API Standard**
+**Gate A — freeze protocol / API Standard (v1.0 system table)**
 
 - [x] Loc canonicalize + review extract in verifiers
 - [x] Testgen isolation + repro dual-state — `scripts/test_verifier_chain.py`
@@ -169,28 +194,31 @@ Do not start the 10-model k=1 matrix before Gate A oracle/nop is green.
 - [x] Frozen Qwen3.8-27B ruler k=1 (49 cells merged into the same JSON; not in \(\theta\)). See EVAL-NOTE §10
 - [x] Main 47 + diagnostic: Oracle = 1, NOP = 0 (harness-independent)
 - [x] Thinking off for Qwen3 / 3.5 / 3.8 in `models.lock.yaml` (`reasoning.enabled=false`)
-- [ ] `k=3`, `n=1`, 180s after the Core screen (published table, not the screen)
+- [x] `k=3`, `n=1`, 180s: fill attempts 2–3 (`python scripts/run_locked.py --k3-fill --group main` then `--group ruler`). Pooled with attempt=1. Did not overwrite `jobs/locked-core.json`. All 477 published cells have `n_valid=3`. Table: [`EVAL-NOTE.md`](EVAL-NOTE.md) §6.2.
 - [x] Retry whitelist only (infra via Harbor `--retry-include`; stall retried once in `run_locked.py`; never swap provider)
 - [x] `atomic_correct` / `termination` recorded — `scripts/score_standard.py`
 - [x] Old pilot / Terminus-2 jobs **excluded** from the published table
 - [x] Benchmark git tag `benchmark-v1.0-rc1` (local; compact-shell is the official agent)
 
-**Gate B — published Local Reference**
+**Gate B — Local Reference (weight-control; not required for v1.0)**
 
-- [ ] Gate A
 - [ ] Per-model HF revision + vLLM / Transformers pins
 - [ ] Thinking off when a toggle exists
 - [ ] Untoggleable reasoners excluded from Standard
+- Does **not** overwrite the frozen API mean. Changelog if the citeable track changes.
 
-After the tag: do not silently edit instruction or verifier. Scoring semantics change → `v1.0` → `v1.1` or rerun the whole table.
+After the tag: do not silently edit instruction or verifier. Scoring semantics change → `v1.0` → `v1.1` or rerun the whole table. Changing API Standard vs Local Reference **evidence grade** is a release-note item, not a silent edit.
 
 ## Difficulty labels
 
-[`DIFFICULTY.md`](DIFFICULTY.md) still assigns Medium / Hard / Unscored from the calibration ladder. Those labels used pilot jobs. Do not mint Hard from TLE. A later Local Reference may **reconfirm** bands; it does not rewrite history of the pilot.
+[`DIFFICULTY.md`](DIFFICULTY.md) assigns Medium / Hard / Unscored from the compact-shell k=3 ladder (9B 0/3 and 27B Atomic 3/3). Do not mint Hard from TLE. A later Local Reference may **reconfirm** bands; it does not rewrite the API table.
 
 ## What this repo must not do yet
 
-- The 10-model k=1 matrix and the 27B ruler are done. Do not start a second Novita job while one is running. Command remains `python scripts/run_locked.py --run --full --group main` (resume skips completed cells).
-- Do not choose models from scores. Do not mint Frontier / Hard from k=1 all-0 Loc or from the four 27B-only loc passes.
+- Do not start a second Novita job while one is running.
+- Do not choose models from scores. Do not mint Frontier / Hard from k=1 all-0 Loc.
 - Do not mix Calibration jobs or the k=1 screen into a published Standard mean.
 - Do not keep polishing the stall classifier as if it were the scorer.
+- Do not treat five-skill macro and task-micro as the same headline.
+- Do not write that all 12 models ran Hard-15, or impute skipped Hard as 0.
+- Do not cite the API table as a matched-weights Local Reference.

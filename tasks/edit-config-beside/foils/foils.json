@@ -1,0 +1,15 @@
+{
+  "kind": "edit",
+  "foils": [
+    {
+      "id": "cwd-open",
+      "why": "open('settings.json') follows the process cwd",
+      "body": "import json\n\ndef load():\n    with open('settings.json') as handle:\n        return json.load(handle)\n"
+    },
+    {
+      "id": "hardcoded",
+      "why": "returns retry=5 without reading the file (mode missing)",
+      "body": "def load():\n    return {'retry': 5}\n"
+    }
+  ]
+}

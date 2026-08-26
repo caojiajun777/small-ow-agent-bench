@@ -1,0 +1,15 @@
+{
+  "kind": "edit",
+  "foils": [
+    {
+      "id": "or-guest",
+      "why": "empty string is falsy",
+      "body": "def display_name(user):\n    return user.get('name') or 'guest'\n"
+    },
+    {
+      "id": "always-guest-if-empty-method",
+      "why": "treats missing and empty the same via get default",
+      "body": "def display_name(user):\n    name = user.get('name', 'guest')\n    return name or 'guest'\n"
+    }
+  ]
+}

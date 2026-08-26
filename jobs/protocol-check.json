@@ -1,0 +1,620 @@
+{
+  "kind": "protocol_check",
+  "published": false,
+  "substitution_policy": "forbidden",
+  "pass_rule": "atomic_correct=1 and termination=clean; ignore MAIN_47 scores",
+  "fail_rule": "keep the model in the lock; record protocol_fail; do not replace",
+  "n_models": 12,
+  "tasks": [
+    "hello-world",
+    "collect-todos"
+  ],
+  "rows": [
+    {
+      "lock_id": "llama-3.2-3b-instruct",
+      "group": "irt-main",
+      "batch": 1,
+      "openrouter_id": "openrouter/meta-llama/llama-3.2-3b-instruct",
+      "task": "hello-world",
+      "atom": "protocol",
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "timeout_kind": "task_miss",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-26-54",
+      "reason": null
+    },
+    {
+      "lock_id": "llama-3.2-3b-instruct",
+      "group": "irt-main",
+      "batch": 1,
+      "openrouter_id": "openrouter/meta-llama/llama-3.2-3b-instruct",
+      "task": "collect-todos",
+      "atom": "protocol",
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "timeout_kind": "task_miss",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-27-45",
+      "reason": null
+    },
+    {
+      "lock_id": "ministral-3b-2512",
+      "group": "irt-main",
+      "batch": 1,
+      "openrouter_id": "openrouter/mistralai/ministral-3b-2512",
+      "task": "hello-world",
+      "atom": "protocol",
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "timeout_kind": "task_miss",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-28-44",
+      "reason": null
+    },
+    {
+      "lock_id": "ministral-3b-2512",
+      "group": "irt-main",
+      "batch": 1,
+      "openrouter_id": "openrouter/mistralai/ministral-3b-2512",
+      "task": "collect-todos",
+      "atom": "protocol",
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "timeout_kind": "task_miss",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-29-24",
+      "reason": null
+    },
+    {
+      "lock_id": "gemma-3-4b-it",
+      "group": "irt-main",
+      "batch": 1,
+      "openrouter_id": "openrouter/google/gemma-3-4b-it",
+      "task": "hello-world",
+      "atom": "protocol",
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "timeout_kind": "task_miss",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-30-14",
+      "reason": null
+    },
+    {
+      "lock_id": "gemma-3-4b-it",
+      "group": "irt-main",
+      "batch": 1,
+      "openrouter_id": "openrouter/google/gemma-3-4b-it",
+      "task": "collect-todos",
+      "atom": "protocol",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "timeout_kind": "task_miss",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-30-42",
+      "reason": null
+    },
+    {
+      "lock_id": "qwen3-8b",
+      "group": "irt-main",
+      "batch": 1,
+      "openrouter_id": "openrouter/qwen/qwen3-8b",
+      "task": "hello-world",
+      "atom": "protocol",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "timeout_kind": "pass",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-31-27",
+      "reason": null
+    },
+    {
+      "lock_id": "qwen3-8b",
+      "group": "irt-main",
+      "batch": 1,
+      "openrouter_id": "openrouter/qwen/qwen3-8b",
+      "task": "collect-todos",
+      "atom": "protocol",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "timeout_kind": "pass",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-31-56",
+      "reason": null
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "group": "irt-main",
+      "batch": 1,
+      "openrouter_id": "openrouter/mistralai/ministral-8b-2512",
+      "task": "hello-world",
+      "atom": "protocol",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "timeout_kind": "pass",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-32-26",
+      "reason": null
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "group": "irt-main",
+      "batch": 1,
+      "openrouter_id": "openrouter/mistralai/ministral-8b-2512",
+      "task": "collect-todos",
+      "atom": "protocol",
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "timeout_kind": "task_miss",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-32-52",
+      "reason": null
+    },
+    {
+      "lock_id": "granite-4.1-8b",
+      "group": "irt-main",
+      "batch": 1,
+      "openrouter_id": "openrouter/ibm-granite/granite-4.1-8b",
+      "task": "hello-world",
+      "atom": "protocol",
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "timeout_kind": "task_miss",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-33-57",
+      "reason": null
+    },
+    {
+      "lock_id": "granite-4.1-8b",
+      "group": "irt-main",
+      "batch": 1,
+      "openrouter_id": "openrouter/ibm-granite/granite-4.1-8b",
+      "task": "collect-todos",
+      "atom": "protocol",
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "timeout_kind": "task_miss",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-34-21",
+      "reason": null
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "group": "irt-main",
+      "batch": 1,
+      "openrouter_id": "openrouter/qwen/qwen3.5-9b",
+      "task": "hello-world",
+      "atom": "protocol",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "timeout_kind": "pass",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-34-51",
+      "reason": null
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "group": "irt-main",
+      "batch": 1,
+      "openrouter_id": "openrouter/qwen/qwen3.5-9b",
+      "task": "collect-todos",
+      "atom": "protocol",
+      "atomic_correct": 1,
+      "termination": "protocol_error",
+      "timeout_kind": "pass",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-35-17",
+      "reason": null
+    },
+    {
+      "lock_id": "gemma-3-12b-it",
+      "group": "irt-main",
+      "batch": 2,
+      "openrouter_id": "openrouter/google/gemma-3-12b-it",
+      "task": "hello-world",
+      "atom": "protocol",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "timeout_kind": "pass",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-37-06",
+      "reason": null
+    },
+    {
+      "lock_id": "gemma-3-12b-it",
+      "group": "irt-main",
+      "batch": 2,
+      "openrouter_id": "openrouter/google/gemma-3-12b-it",
+      "task": "collect-todos",
+      "atom": "protocol",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "timeout_kind": "pass",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-37-31",
+      "reason": null
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "group": "irt-main",
+      "batch": 2,
+      "openrouter_id": "openrouter/qwen/qwen3-14b",
+      "task": "hello-world",
+      "atom": "protocol",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "timeout_kind": "pass",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-38-07",
+      "reason": null
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "group": "irt-main",
+      "batch": 2,
+      "openrouter_id": "openrouter/qwen/qwen3-14b",
+      "task": "collect-todos",
+      "atom": "protocol",
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "timeout_kind": "other_error",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-38-37",
+      "reason": null
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "group": "irt-main",
+      "batch": 2,
+      "openrouter_id": "openrouter/mistralai/ministral-14b-2512",
+      "task": "hello-world",
+      "atom": "protocol",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "timeout_kind": "pass",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-39-44",
+      "reason": null
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "group": "irt-main",
+      "batch": 2,
+      "openrouter_id": "openrouter/mistralai/ministral-14b-2512",
+      "task": "collect-todos",
+      "atom": "protocol",
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "timeout_kind": "task_miss",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-40-13",
+      "reason": null
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "group": "ruler",
+      "batch": 2,
+      "openrouter_id": "openrouter/qwen/qwen3.8-27b",
+      "task": "hello-world",
+      "atom": "protocol",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "timeout_kind": "pass",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__15-45-47",
+      "reason": null
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "group": "ruler",
+      "batch": 2,
+      "openrouter_id": "openrouter/qwen/qwen3.8-27b",
+      "task": "collect-todos",
+      "atom": "protocol",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "timeout_kind": "pass",
+      "stall_retried": false,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__15-46-28",
+      "reason": null
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "group": "efficient_moe",
+      "batch": 2,
+      "openrouter_id": "openrouter/qwen/qwen3.6-35b-a3b",
+      "task": "hello-world",
+      "atom": "protocol",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "timeout_kind": "pass",
+      "stall_retried": false,
+      "infra_retries": 0,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-25__16-49-41",
+      "reason": null
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "group": "efficient_moe",
+      "batch": 2,
+      "openrouter_id": "openrouter/qwen/qwen3.6-35b-a3b",
+      "task": "collect-todos",
+      "atom": "protocol",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "timeout_kind": "pass",
+      "stall_retried": false,
+      "infra_retries": 0,
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-25__16-50-26",
+      "reason": null
+    }
+  ],
+  "subjects": [
+    {
+      "id": "llama-3.2-3b-instruct",
+      "group": "compact_dense",
+      "batch": 1,
+      "openrouter_id": "openrouter/meta-llama/llama-3.2-3b-instruct",
+      "routing": null,
+      "protocol_pass": false,
+      "tasks": {
+        "hello-world": {
+          "atomic_correct": 0,
+          "termination": "protocol_error",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-26-54",
+          "reason": null
+        },
+        "collect-todos": {
+          "atomic_correct": 0,
+          "termination": "protocol_error",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-27-45",
+          "reason": null
+        }
+      }
+    },
+    {
+      "id": "ministral-3b-2512",
+      "group": "compact_dense",
+      "batch": 1,
+      "openrouter_id": "openrouter/mistralai/ministral-3b-2512",
+      "routing": null,
+      "protocol_pass": false,
+      "tasks": {
+        "hello-world": {
+          "atomic_correct": 0,
+          "termination": "protocol_error",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-28-44",
+          "reason": null
+        },
+        "collect-todos": {
+          "atomic_correct": 0,
+          "termination": "protocol_error",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-29-24",
+          "reason": null
+        }
+      }
+    },
+    {
+      "id": "gemma-3-4b-it",
+      "group": "compact_dense",
+      "batch": 1,
+      "openrouter_id": "openrouter/google/gemma-3-4b-it",
+      "routing": null,
+      "protocol_pass": false,
+      "tasks": {
+        "hello-world": {
+          "atomic_correct": 0,
+          "termination": "protocol_error",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-30-14",
+          "reason": null
+        },
+        "collect-todos": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-30-42",
+          "reason": null
+        }
+      }
+    },
+    {
+      "id": "qwen3-8b",
+      "group": "compact_dense",
+      "batch": 1,
+      "openrouter_id": "openrouter/qwen/qwen3-8b",
+      "routing": null,
+      "protocol_pass": true,
+      "tasks": {
+        "hello-world": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-31-27",
+          "reason": null
+        },
+        "collect-todos": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-31-56",
+          "reason": null
+        }
+      }
+    },
+    {
+      "id": "ministral-8b-2512",
+      "group": "compact_dense",
+      "batch": 1,
+      "openrouter_id": "openrouter/mistralai/ministral-8b-2512",
+      "routing": null,
+      "protocol_pass": false,
+      "tasks": {
+        "hello-world": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-32-26",
+          "reason": null
+        },
+        "collect-todos": {
+          "atomic_correct": 0,
+          "termination": "protocol_error",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-32-52",
+          "reason": null
+        }
+      }
+    },
+    {
+      "id": "granite-4.1-8b",
+      "group": "compact_dense",
+      "batch": 1,
+      "openrouter_id": "openrouter/ibm-granite/granite-4.1-8b",
+      "routing": null,
+      "protocol_pass": false,
+      "tasks": {
+        "hello-world": {
+          "atomic_correct": 0,
+          "termination": "protocol_error",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-33-57",
+          "reason": null
+        },
+        "collect-todos": {
+          "atomic_correct": 0,
+          "termination": "protocol_error",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-34-21",
+          "reason": null
+        }
+      }
+    },
+    {
+      "id": "qwen3.5-9b",
+      "group": "compact_dense",
+      "batch": 1,
+      "openrouter_id": "openrouter/qwen/qwen3.5-9b",
+      "routing": null,
+      "protocol_pass": false,
+      "tasks": {
+        "hello-world": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-34-51",
+          "reason": null
+        },
+        "collect-todos": {
+          "atomic_correct": 1,
+          "termination": "protocol_error",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-35-17",
+          "reason": null
+        }
+      }
+    },
+    {
+      "id": "gemma-3-12b-it",
+      "group": "compact_dense",
+      "batch": 2,
+      "openrouter_id": "openrouter/google/gemma-3-12b-it",
+      "routing": null,
+      "protocol_pass": true,
+      "tasks": {
+        "hello-world": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-37-06",
+          "reason": null
+        },
+        "collect-todos": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-37-31",
+          "reason": null
+        }
+      }
+    },
+    {
+      "id": "qwen3-14b",
+      "group": "compact_dense",
+      "batch": 2,
+      "openrouter_id": "openrouter/qwen/qwen3-14b",
+      "routing": null,
+      "protocol_pass": false,
+      "tasks": {
+        "hello-world": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-38-07",
+          "reason": null
+        },
+        "collect-todos": {
+          "atomic_correct": 0,
+          "termination": "protocol_error",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-38-37",
+          "reason": null
+        }
+      }
+    },
+    {
+      "id": "ministral-14b-2512",
+      "group": "compact_dense",
+      "batch": 2,
+      "openrouter_id": "openrouter/mistralai/ministral-14b-2512",
+      "routing": null,
+      "protocol_pass": false,
+      "tasks": {
+        "hello-world": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-39-44",
+          "reason": null
+        },
+        "collect-todos": {
+          "atomic_correct": 0,
+          "termination": "protocol_error",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__01-40-13",
+          "reason": null
+        }
+      }
+    },
+    {
+      "id": "qwen3.8-27b",
+      "group": "upper_dense",
+      "batch": 2,
+      "openrouter_id": "openrouter/qwen/qwen3.8-27b",
+      "routing": null,
+      "protocol_pass": true,
+      "tasks": {
+        "hello-world": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__15-45-47",
+          "reason": null
+        },
+        "collect-todos": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-24__15-46-28",
+          "reason": null
+        }
+      }
+    },
+    {
+      "id": "qwen3.6-35b-a3b",
+      "group": "efficient_moe",
+      "batch": 2,
+      "openrouter_id": "openrouter/qwen/qwen3.6-35b-a3b",
+      "routing": null,
+      "protocol_pass": true,
+      "tasks": {
+        "hello-world": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-25__16-49-41",
+          "reason": null
+        },
+        "collect-todos": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-25__16-50-26",
+          "reason": null
+        }
+      }
+    }
+  ]
+}

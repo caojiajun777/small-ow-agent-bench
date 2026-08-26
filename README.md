@@ -1,14 +1,14 @@
 # small-ow-agent-bench
 
-Harbor 上的 **Atomic Shell-Agent Benchmark for OpenRouter-Available 3B–14B Open-Weight Instruct Models**。测的是 compact-shell 下、当前 OpenRouter **能稳定调用** 的 3B–14B 开源 instruct，不是「专用 coder 小模型榜」（OR 上目前没有稳定的 dense 3B–14B 专用 coder）。
+Harbor 上的 **Atomic Shell-Agent Benchmark**：在自己写的 `compact-shell` 下，测开源小模型从玩具档到部署档（约 3B–35B）的五项原子技能。当前 OpenRouter 上能稳定调用的 **3B–14B instruct** 是 Core 主表；27B / ~35B 是部署档与 Frontier，不进 3B–14B 均值。不是「专用 coder 小模型榜」（OR 上目前没有稳定的 dense 3B–14B 专用 coder）。
 
-**核心思想：** 不是追求大家都考 50 分，而是测清 3B–14B instruct 在真实 shell agent 里会什么、不会什么，以及和 27B 尺子的边界。用五项原子：`Core` 区分小模型内部；`Frontier` / Hard 找「目标档稳定做不到、27B 稳定能过」的题。大模型只作标尺，不进主 \(\theta\)。
+**核心思想：** 缺的是 HumanEval 和 SWE-bench 中间那一层——已经是 shell agent，但还能按一项技能打分。陷阱从已有 agent 题库总结，题是新写的、每种只出现一次。Core 分开 3B–14B；Frontier 找 9B 稳定不会、27B–35B 稳定会的边界。用途是后续分析和训练的**列级诊断**，不是刷总分。
 
 原子能力按 [Scaling Coding Agents via Atomic Skills](https://arxiv.org/abs/2604.05013)（Ma & Liu et al., 2026）拆成五项。每项自己的输入、结构化输出和沙箱奖励；SWE-bench 式修 issue 是这五项的复合，不当原子。
 
 **公开仓库还没推。** 先把题收成 **v1 公开集**（陷阱不重复），同构题只进库存。GitHub 等 v1 基线跑完再发。
 
-测的是 **固定极薄 shell harness（`compact-shell`）下的模型表现**，不是「模型固有 coding 能力」，也不是谁更会填 Terminus-2 的 JSON。正式协议见 [`STANDARD.md`](STANDARD.md)。Terminus-2 只做 harness 对照。旧 8B/9B/Granite job 只当 calibration，不进正式主表；Core 主表 47 道、k=3、n=1。难度标签见 [`DIFFICULTY.md`](DIFFICULTY.md)。超时分型见 [`TIMEOUT.md`](TIMEOUT.md)（只做诊断，不改 atomic 分）。打分字段由 `python scripts/score_standard.py jobs/<job>` 写出。
+测的是 **固定极薄 shell harness（`compact-shell`）下的模型表现**，不是「模型固有 coding 能力」，也不是谁更会填 JSON 工具。正式协议见 [`STANDARD.md`](STANDARD.md)。**v1.0 发表的是 API Standard（系统表）**：钉死的 OpenRouter 线路 + Novita + compact-shell。Local Reference（钉死 HF 权重 + vLLM）是后续权重控制实验，不是本 tag 的前置条件。早期 Terminus-2 job 只做 harness 对照，不进正式主表。旧 8B/9B/Granite 标定同样不进主表；Core 主表 47 道、k=3、n=1。难度标签见 [`DIFFICULTY.md`](DIFFICULTY.md)。超时分型见 [`TIMEOUT.md`](TIMEOUT.md)（只做诊断，不改 atomic 分）。打分字段由 `python scripts/score_standard.py jobs/<job>` 写出。
 
 | 集 / 档 | 作用 | 何时才能用这个名字 |
 |---|---|---|
@@ -16,29 +16,42 @@ Harbor 上的 **Atomic Shell-Agent Benchmark for OpenRouter-Available 3B–14B O
 | **Frontier（Hard）** | 找与 27B 尺子的能力边界；不进小模型主榜 mean | 9B **稳定**不过，并且 27B **稳定**能过 |
 | **不入档** | 诊断 / 库存 | 尺子也过不了 |
 
-27B 只当尺子。正式冻结尺子是 OpenRouter `qwen/qwen3.8-27b`（`akashml/bf16`，thinking 关）。还没有锁死的 Frontier 题。
+## 三个评测 track（不要写成一张 12×62 矩阵）
+
+| Track | 模型 | 题目 | 产物 | 进 compact-10 均值？ |
+|---|---|---|---|---|
+| **Compact Main** | 10 个 3B–14B | Base-47 | `jobs/locked-core-k3.json` | **是**（API） |
+| **Upper Reference** | 27B、35B-A3B | Base-47 | `jobs/locked-upper-base-k3.json` | **否** |
+| **Hard Evaluation** | 预先选定的 6 个 | Hard-15 | `jobs/locked-hard-release-k3.json` | **否** |
+
+Hard-15 没跑的地板模型记 **missing，不是 0**。不要写「12 个模型都完成了 62 道题」。
+
+主表是五项 \(S_{\mathrm{atom}}\)（**五项宏平均** 才是需要一个数时的标题分）。**题微平均**（成功 attempt / \(47\times 3\)）另报，不要和宏平均混用。Hard-15 每原子 3 道，两种平均相同。数字见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §6.2 / §12 / §13。
 
 ## 文档地图
 
 | 文件 | 看什么 |
 |---|---|
 | 本文 | 核心思想、47 道题表、怎么跑 |
-| [`EVAL-NOTE.md`](EVAL-NOTE.md) | 测什么 / 不测什么、相关工作、k=1 结果（§8–10）；k=3 主表仍空 |
+| [`项目说明.md`](项目说明.md) | 通俗总览（给自己 / 导师；不代替协议） |
+| [`EVAL-NOTE.md`](EVAL-NOTE.md) | 测什么 / 不测什么、相关工作、k=1（§8–10）、**k=3 主表（§6.2 / §11）、Hard-15（§12）、27B/35B Base-47（§13）** |
 | [`PRIOR.md`](PRIOR.md) | 外部先验 → 47 道留 / 改 / 弃；按五项补题 |
-| [`models.lock.yaml`](models.lock.yaml) | 冻结 10+1 模型；固定 OpenRouter provider |
+| [`models.lock.yaml`](models.lock.yaml) | 冻结 12 个 Core 模型；Hard-15 受试 6 个；固定 OpenRouter provider |
 | [`STANDARD.md`](STANDARD.md) | compact-shell 协议、打分、轨道不要混 |
 | [`DIFFICULTY.md`](DIFFICULTY.md) | Medium / Hard / 不入档 梯子 |
 | [`TRAPS.md`](TRAPS.md) | 每条陷阱只进 Core 一次 |
 | [`TIMEOUT.md`](TIMEOUT.md) | 超时分型（不改 atomic） |
 | [`GATE-A.md`](GATE-A.md) | 发布 / tag 清单 |
 
-## 当前进度（2026-08-24）
+## 当前进度（2026-08-26）
 
-- 协议和 Core 47 构造已冻。正式主表仍是 **47 × k=3**，还没开。
-- **模型名单已冻**（[`models.lock.yaml`](models.lock.yaml)）：10 个 3B–14B main + Qwen3.8-27B 尺子。OpenRouter provider 钉死、禁止 fallback。**不根据分数换模型，也不再等缺失模型。**
-- k=1 探索矩阵已齐：10×47 = 470，外加尺子 49 格（`jobs/locked-core.json`，517 格，incomplete 0）。三矩阵 / Loc 审计 / 探索性 1PL 见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §8–10。27B **不进** \(\theta\)。
-- draft k=1（9B/8B）只作草稿，不进 published mean，也不当 wave2 选模依据。
-- Repro oracle/nop 已绿（10/10）。本地 tag **`benchmark-v1.0-rc1`** 已打（未推远程）。Frontier / Hard 仍空。
+- 协议和 Core 47 构造已冻。正式主表 **47 × k=3 已齐**：补 attempts 2–3 池化 attempt=1，不是重跑 Harbor `-k 3`。产物 `jobs/locked-core-k3.json`（477 格，`n_valid=3`，未覆盖 `locked-core.json`）。数字见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §6.2 / §11。
+- **模型名单已冻**（[`models.lock.yaml`](models.lock.yaml)）：10 个 compact_dense + Qwen3.8-27B + Qwen3.6-35B-A3B。OpenRouter provider 钉死、禁止 fallback。**不根据分数换模型。** 35B-A3B 是 ~3B 激活 MoE，不必赢 27B dense。
+- Hard-Release-15 已冻（Gate-B oracle/nop + foils）。6 个受试 ×15×k=3 = 270，产物 `jobs/locked-hard-release-k3.json`（90 格 `n_valid=3`，infra=0）。地板模型跳过，不当 Hard 0。读法见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §12：主表不补分；35B 低分含停机税，不是「固有代码能力弱于 9B」。
+- Core Frontier / Hard（Atomic）：`loc-member-discount`、`loc-vip-two-files`、`testgen-anagram`、`repro-first-index`、`repro-whitespace`。Hard-15 按梯子只另锁 `loc-hook-plugin`。不按 Hard-15 分数改题。
+- k=1 探索矩阵仍在：10×47 = 470，外加尺子 49 格（`jobs/locked-core.json`）。27B **不进** \(\theta\)。
+- 27B / 35B 全量 Base-47 k=3 已齐（2026-08-26）：`jobs/locked-upper-base-k3.json`（94 格 `n_valid=3`），**不进** compact-10 均值，**未覆盖** core lock。数字见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §13。
+- 本地 tag **`benchmark-v1.0`** 打在本快照（API Standard）。Local Reference 的 HF SHA 钉在 [`models.local.yaml`](models.local.yaml)，全表未跑（需要 Linux vLLM，不覆盖 API 均值）。公开 GitHub 见仓库远程。不要把 API 表说成已控制权重。
 
 ## 五个原子
 
@@ -54,7 +67,7 @@ Harbor 上的 **Atomic Shell-Agent Benchmark for OpenRouter-Available 3B–14B O
 
 ## v1 Core 主集（47 道 unique-trap Medium）
 
-按**陷阱**去重，不是按换皮。这是小模型主榜。L9 等不入档只进诊断，不算五项 mean。Frontier / Hard 另表，目前为空。正式跑法见 [`STANDARD.md`](STANDARD.md)。
+按**陷阱**去重，不是按换皮。这是小模型主榜。L9 等不入档只进诊断，不算五项 mean。Frontier / Hard 另表（Core 47 里 5 道 + Hard-15，梯子见 EVAL-NOTE §11–§13）。正式跑法见 [`STANDARD.md`](STANDARD.md)。
 
 ### Core / Medium（47）
 
@@ -110,14 +123,18 @@ Harbor 上的 **Atomic Shell-Agent Benchmark for OpenRouter-Available 3B–14B O
 
 ### 经验档（27B + 目标档 loc 之后）
 
-| 档 | 题 | 依据 |
+下表 **Terminus-2** 标定不要写进 compact-shell 主表。compact-shell k=3 的档见下一小节和 [`EVAL-NOTE.md`](EVAL-NOTE.md) §11。
+
+| 档 | 题 | 依据（Terminus-2） |
 |---|---|---|
 | **不入档** | L9 精确集合（`loc-hardcoded-digital-vat` 等同构） | 9B / 14B / 27B 都是 gold+decoy |
 | **不是 Hard** | L2 `loc-bind-host` | 9B `k=3` 为 **2/3**；v0 的一次 0 是噪声 |
 | **不是 Hard** | L3 `loc-vip-two-files` | 9B `k=1` 漏文件，`k=3` 为 **3/3** |
 | **不是 Hard** | `testgen-gregorian` | 9B `k=1` 为 0；27B `k=1` 为 1；9B `k=3` 为 **3/3** |
 
-**定位分界在家族，不在 Hard：** Ministral 8B 本轮 unique-trap loc **0/8**（超时、多报 decoy、`app/repo/` 前缀）；Qwen3.5-9B 多数能过精确集合。没有「9B 稳定不过、27B 能过」的 Hard loc。
+**compact-shell k=3（正式协议）：** Hard = 9B 0/3 且 27B Atomic 3/3。锁了 `loc-member-discount`、`loc-vip-two-files`（后者尺子 E2E 0/3）。`loc-bind-host` / `loc-traceback-helper` / `loc-reexport` 尺子也 0/3，不入档。9B Loc 均分 0.33，不是「多数能过精确集合」。
+
+**定位分界在家族，也在 harness：** Terminus-2 上 Ministral 8B unique-trap loc **0/8**，Qwen3.5-9B 多数能过。换 compact-shell 之后 8B Loc 0.21、9B Loc 0.33，Hard 按尺子锁，不按「10 个小模型全失败」。
 
 **其余原子（Novita `-n 5`，`k=1`）：** 9B **38/39**，8B **28/39**。9B 编辑 / 复现 / 评审全过。`testgen-gregorian` 的一次 0 是噪声：27B 为 1，9B `k=3` 为 **3/3**，**不是 Hard**。8B Harbor 上 11 次超时：5 次是已经写对但没停（`timeout_after_pass`），6 次空转（`timeout_loop`），**0 次卡顿**。真正写错只有 4 道。不要用空转超时标 Hard。完整数字见 [`DIFFICULTY.md`](DIFFICULTY.md) 和 [`TIMEOUT.md`](TIMEOUT.md)。
 
@@ -217,6 +234,8 @@ python scripts/score_standard.py jobs/<job>
 python scripts/relabel_locked.py
 python scripts/audit_loc.py
 python scripts/fit_irt.py --score both --group main
+python scripts/fit_irt.py --k3
+python scripts/fail_compose.py
 ```
 
 题自洽（等当前筛查结束后再跑，避免 429）：
@@ -234,13 +253,16 @@ oracle 必须 1.0，nop 必须 0.0。清单见 [`GATE-A.md`](GATE-A.md)。
 
 ## 以后才做
 
-顺序：冻结名单 → 10×47 已齐 → 三矩阵 / Loc 审计 / 探索性 1PL → 尺子 k=1（已完成，见 EVAL-NOTE §8–10）→ tag `benchmark-v1.0-rc1`（本地已打）→ Frontier / 正式表 k=3。
+顺序：冻结名单 → 10×47 已齐 → 三矩阵 / Loc 审计 / 探索性 1PL → 尺子 k=1 → tag `benchmark-v1.0-rc1` → **正式表 k=3 已齐** → Hard-15 / Upper Base-47 已齐 → k=3 二项 1PL 已拟合 → tag **`benchmark-v1.0`（API Standard）**。Local Reference 全表仍待 Linux vLLM。
 
 先不做：
 
 - 用「9B 掉了」或 both_miss 发明 Hard
 - 把 L9 精确集合改成子集匹配来制造通过者
 - 为了压 9B 把 Frontier 并进 Core mean
+- 把没跑 Hard-15 的地板模型记成 0
+- 把五项宏平均和题微平均写成同一个「总分」
+- 把 API Standard 说成已控制权重的 Local Reference
 - 3B DPO / SFT / 论文里的 joint RL
 - Aider Polyglot 迁移与官方榜
 - 五项拼起来的复合 Issue Resolve

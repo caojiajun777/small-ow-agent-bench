@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import sys
+import warnings
 from collections import Counter
 from datetime import datetime
 from pathlib import Path
@@ -110,13 +111,34 @@ def task_name_from_trial(data: dict[str, Any], trial_dir: Path | None = None) ->
     return trial_dir.name if trial_dir else raw
 
 
+def _read_trial_json(path: Path) -> dict[str, Any] | None:
+    try:
+        raw = path.read_bytes()
+    except OSError as exc:
+        warnings.warn(f"{path} unreadable: {exc}")
+        return None
+    try:
+        text = raw.decode("utf-8")
+    except UnicodeDecodeError:
+        warnings.warn(f"{path} is not valid UTF-8; skipping")
+        return None
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError:
+        warnings.warn(f"{path} is not valid JSON; skipping")
+        return None
+    if not isinstance(data, dict):
+        return None
+    return data
+
+
 def load_trials(job_dir: Path) -> list[tuple[Path, dict[str, Any]]]:
     out: list[tuple[Path, dict[str, Any]]] = []
     for path in sorted(job_dir.glob("*/result.json")):
         if path.parent.name.startswith("."):
             continue
-        data = json.loads(path.read_text(encoding="utf-8"))
-        if not isinstance(data, dict) or "trial_name" not in data:
+        data = _read_trial_json(path)
+        if data is None or "trial_name" not in data:
             continue
         out.append((path.parent, data))
     return out

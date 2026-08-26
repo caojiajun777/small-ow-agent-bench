@@ -1,0 +1,251 @@
+{
+  "kind": "gate_a_hard_release_oracle_nop",
+  "n_tasks": 15,
+  "tasks": [
+    "loc-vendor-shadow",
+    "loc-env-wrapper",
+    "loc-hook-plugin",
+    "edit-config-beside",
+    "edit-retry-discount",
+    "edit-blank-name",
+    "testgen-tie-order",
+    "testgen-booking-touch",
+    "testgen-zero-qty",
+    "repro-second-export",
+    "repro-nested-alias",
+    "repro-stale-quote",
+    "review-bare-except",
+    "review-dead-helper",
+    "review-wired-helper"
+  ],
+  "rows": [
+    {
+      "agent": "oracle",
+      "task": "loc-vendor-shadow",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-07-36"
+    },
+    {
+      "agent": "oracle",
+      "task": "loc-env-wrapper",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-08-07"
+    },
+    {
+      "agent": "oracle",
+      "task": "loc-hook-plugin",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-08-45"
+    },
+    {
+      "agent": "oracle",
+      "task": "edit-config-beside",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-09-22"
+    },
+    {
+      "agent": "oracle",
+      "task": "edit-retry-discount",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-09-58"
+    },
+    {
+      "agent": "oracle",
+      "task": "edit-blank-name",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-10-28"
+    },
+    {
+      "agent": "oracle",
+      "task": "testgen-tie-order",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-11-05"
+    },
+    {
+      "agent": "oracle",
+      "task": "testgen-booking-touch",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-12-06"
+    },
+    {
+      "agent": "oracle",
+      "task": "testgen-zero-qty",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-12-50"
+    },
+    {
+      "agent": "oracle",
+      "task": "repro-second-export",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-13-36"
+    },
+    {
+      "agent": "oracle",
+      "task": "repro-nested-alias",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-14-09"
+    },
+    {
+      "agent": "oracle",
+      "task": "repro-stale-quote",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-14-42"
+    },
+    {
+      "agent": "oracle",
+      "task": "review-bare-except",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-15-08"
+    },
+    {
+      "agent": "oracle",
+      "task": "review-dead-helper",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-15-42"
+    },
+    {
+      "agent": "oracle",
+      "task": "review-wired-helper",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-16-09"
+    },
+    {
+      "agent": "nop",
+      "task": "loc-vendor-shadow",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-16-48"
+    },
+    {
+      "agent": "nop",
+      "task": "loc-env-wrapper",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-17-16"
+    },
+    {
+      "agent": "nop",
+      "task": "loc-hook-plugin",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-17-45"
+    },
+    {
+      "agent": "nop",
+      "task": "edit-config-beside",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-18-16"
+    },
+    {
+      "agent": "nop",
+      "task": "edit-retry-discount",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-18-47"
+    },
+    {
+      "agent": "nop",
+      "task": "edit-blank-name",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-19-16"
+    },
+    {
+      "agent": "nop",
+      "task": "testgen-tie-order",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-19-45"
+    },
+    {
+      "agent": "nop",
+      "task": "testgen-booking-touch",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-20-14"
+    },
+    {
+      "agent": "nop",
+      "task": "testgen-zero-qty",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-20-43"
+    },
+    {
+      "agent": "nop",
+      "task": "repro-second-export",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-21-13"
+    },
+    {
+      "agent": "nop",
+      "task": "repro-nested-alias",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-21-42"
+    },
+    {
+      "agent": "nop",
+      "task": "repro-stale-quote",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-22-11"
+    },
+    {
+      "agent": "nop",
+      "task": "review-bare-except",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-22-42"
+    },
+    {
+      "agent": "nop",
+      "task": "review-dead-helper",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-23-11"
+    },
+    {
+      "agent": "nop",
+      "task": "review-wired-helper",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-26__00-23-39"
+    }
+  ],
+  "oracle": {
+    "n": 15,
+    "n_ok": 15,
+    "n_bad": 0,
+    "n_infra": 0,
+    "missing": [],
+    "bad_tasks": [],
+    "pass": true
+  },
+  "nop": {
+    "n": 15,
+    "n_ok": 15,
+    "n_bad": 0,
+    "n_infra": 0,
+    "missing": [],
+    "bad_tasks": [],
+    "pass": true
+  }
+}

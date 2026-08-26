@@ -1,4 +1,4 @@
-"""Load the frozen 11-model roster from models.lock.yaml.
+"""Load the frozen 12-model Core roster from models.lock.yaml.
 
     python -c "from models_lock import load_lock, models; print(len(models(load_lock())))"
 """
@@ -11,16 +11,26 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 LOCK_PATH = ROOT / "models.lock.yaml"
 
-MAIN_GROUP = "irt-main"
-RULER_GROUP = "ruler"
+COMPACT_GROUP = "compact_dense"
+UPPER_GROUP = "upper_dense"
+MOE_GROUP = "efficient_moe"
+MAIN_GROUP = COMPACT_GROUP
+RULER_GROUP = UPPER_GROUP
+CORE_GROUPS = frozenset({COMPACT_GROUP, UPPER_GROUP, MOE_GROUP})
 IRT_GROUPS = {
-    "main": (MAIN_GROUP,),
-    "sensitivity": (MAIN_GROUP,),
+    "main": (COMPACT_GROUP,),
+    "sensitivity": (COMPACT_GROUP,),
+    "core": (COMPACT_GROUP, UPPER_GROUP, MOE_GROUP),
 }
 RUN_GROUPS = {
-    "main": MAIN_GROUP,
-    "irt-main": MAIN_GROUP,
-    "ruler": RULER_GROUP,
+    "main": COMPACT_GROUP,
+    "compact": COMPACT_GROUP,
+    "irt-main": COMPACT_GROUP,
+    "upper": UPPER_GROUP,
+    "ruler": UPPER_GROUP,
+    "moe": MOE_GROUP,
+    "35b": MOE_GROUP,
+    "core": None,
     "all": None,
 }
 
@@ -42,22 +52,35 @@ def load_lock(path: Path = LOCK_PATH) -> dict[str, Any]:
     if not isinstance(data, dict) or not data.get("frozen"):
         raise SystemExit(f"invalid lock file: {path}")
     rows = data.get("models") or []
-    if len(rows) != 11:
-        raise SystemExit(f"lock must list 11 models, got {len(rows)}")
+    if len(rows) != 12:
+        raise SystemExit(f"lock must list 12 Core models, got {len(rows)}")
     ids = [m["id"] for m in rows]
     if len(ids) != len(set(ids)):
         raise SystemExit("duplicate model id in lock")
-    n_main = sum(1 for m in rows if m.get("group") == MAIN_GROUP)
-    n_ruler = sum(1 for m in rows if m.get("group") == RULER_GROUP)
-    if n_main != 10 or n_ruler != 1:
-        raise SystemExit(f"lock groups must be 10 main + 1 ruler, got {n_main}/{n_ruler}")
+    n_compact = sum(1 for m in rows if m.get("group") == COMPACT_GROUP)
+    n_upper = sum(1 for m in rows if m.get("group") == UPPER_GROUP)
+    n_moe = sum(1 for m in rows if m.get("group") == MOE_GROUP)
+    if n_compact != 10 or n_upper != 1 or n_moe != 1:
+        raise SystemExit(
+            "lock groups must be 10 compact_dense + 1 upper_dense + "
+            f"1 efficient_moe, got {n_compact}/{n_upper}/{n_moe}"
+        )
     for row in rows:
         if not row.get("openrouter_id"):
             raise SystemExit(f"{row.get('id')} missing openrouter_id")
         if not row.get("openrouter_provider"):
             raise SystemExit(f"{row.get('id')} missing openrouter_provider")
-        if row.get("group") not in {MAIN_GROUP, RULER_GROUP}:
+        if row.get("group") not in CORE_GROUPS:
             raise SystemExit(f"unknown group {row.get('group')!r} on {row.get('id')}")
+        if not isinstance(row.get("hard_release"), bool):
+            raise SystemExit(f"{row.get('id')} missing hard_release bool")
+    n_hard = sum(1 for m in rows if m.get("hard_release") is True)
+    meta = data.get("hard_release") or {}
+    expected = int(meta.get("n_examinees") or 6)
+    if n_hard != expected:
+        raise SystemExit(
+            f"lock hard_release examinees must be {expected}, got {n_hard}"
+        )
     return data
 
 
@@ -67,7 +90,11 @@ def models(lock: dict[str, Any] | None = None) -> list[dict[str, Any]]:
 
 
 def by_group(group: str, lock: dict[str, Any] | None = None) -> list[dict[str, Any]]:
-    return [m for m in models(lock) if m.get("group") == group]
+    wanted = RUN_GROUPS.get(group, group)
+    rows = models(lock)
+    if wanted is None:
+        return rows
+    return [m for m in rows if m.get("group") == wanted]
 
 
 def by_batch(
@@ -95,6 +122,23 @@ def select_subjects(
     if batch is not None:
         rows = [m for m in rows if int(m.get("batch") or 0) == batch]
     return rows
+
+
+def hard_release_rows(
+    group: str = "main",
+    batch: int | None = None,
+    lock: dict[str, Any] | None = None,
+) -> list[dict[str, Any]]:
+    """Official Hard-15 examinees. --group all restores the full 12."""
+    data = lock or load_lock()
+    if group == "all":
+        return select_subjects("core", batch, data)
+    if group in {"main", "hard-release", "core"}:
+        rows = [m for m in models(data) if m.get("hard_release") is True]
+        if batch is not None:
+            rows = [m for m in rows if int(m.get("batch") or 0) == batch]
+        return rows
+    return [m for m in select_subjects(group, batch, data) if m.get("hard_release") is True]
 
 
 def irt_rows(kind: str, lock: dict[str, Any] | None = None) -> list[dict[str, Any]]:

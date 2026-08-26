@@ -7,7 +7,8 @@ Novita job is already running.
     python scripts/run_oracle_nop.py --run
     python scripts/run_oracle_nop.py --run oracle
     python scripts/run_oracle_nop.py --run nop
-    python scripts/run_oracle_nop.py --run --repro
+    python scripts/run_oracle_nop.py --run --hard-dev
+    python scripts/run_oracle_nop.py --run --hard-release
 """
 
 from __future__ import annotations
@@ -24,7 +25,7 @@ os.environ["PYTHONIOENCODING"] = "utf-8"
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from score_standard import format_report, score_job  # noqa: E402
-from task_sets import DIAGNOSTIC, MAIN_47  # noqa: E402
+from task_sets import DIAGNOSTIC, HARD_DEV_10, HARD_RELEASE_15, MAIN_47  # noqa: E402
 
 TASKS = ROOT / "tasks"
 ENV = ROOT / ".env"
@@ -139,7 +140,19 @@ def _write_summary(
 ) -> Path:
     expect = {"oracle": 1, "nop": 0}
     summary = {
-        "kind": "gate_a_repro_oracle_nop" if tasks == REPRO_10 else "gate_a_oracle_nop",
+        "kind": (
+            "gate_a_hard_release_oracle_nop"
+            if tasks == HARD_RELEASE_15
+            else (
+                "gate_a_hard_dev_oracle_nop"
+                if tasks == HARD_DEV_10
+                else (
+                    "gate_a_repro_oracle_nop"
+                    if tasks == REPRO_10
+                    else "gate_a_oracle_nop"
+                )
+            )
+        ),
         "n_tasks": len(tasks),
         "tasks": list(tasks),
         "rows": rows,
@@ -177,18 +190,44 @@ def _write_summary(
 
 def main() -> int:
     repro = "--repro" in sys.argv
-    names = REPRO_10 if repro else GATE_TASKS
-    out_name = "gate-a-repro-oracle-nop.json" if repro else "gate-a-oracle-nop.json"
-    label = "Repro-10" if repro else "Gate A"
+    hard_dev = "--hard-dev" in sys.argv
+    hard_release = "--hard-release" in sys.argv
+    if sum([repro, hard_dev, hard_release]) > 1:
+        print("use only one of --repro / --hard-dev / --hard-release", file=sys.stderr)
+        return 2
+    if hard_release:
+        names = HARD_RELEASE_15
+        out_name = "gate-a-hard-release-oracle-nop.json"
+        label = "Hard-Release-15"
+    elif hard_dev:
+        names = HARD_DEV_10
+        out_name = "gate-a-hard-dev-oracle-nop.json"
+        label = "Hard-Dev-10"
+    elif repro:
+        names = REPRO_10
+        out_name = "gate-a-repro-oracle-nop.json"
+        label = "Repro-10"
+    else:
+        names = GATE_TASKS
+        out_name = "gate-a-oracle-nop.json"
+        label = "Gate A"
     print(f"{label} oracle/nop Novita n=1 tasks={len(names)}")
     if "--run" not in sys.argv:
-        print("dry-run; pass --run [oracle|nop] [--repro]. Default: oracle then nop.")
+        print(
+            "dry-run; pass --run [oracle|nop] [--repro|--hard-dev|--hard-release]. "
+            "Default: oracle then nop."
+        )
         print(" ", " ".join(_cmd("oracle", names[0])))
         return 0
-    args = [a for a in sys.argv[1:] if a not in {"--run", "--repro"}]
+    args = [
+        a
+        for a in sys.argv[1:]
+        if a not in {"--run", "--repro", "--hard-dev", "--hard-release"}
+    ]
     if args and args[0] not in {"oracle", "nop"}:
         print(
-            "usage: python scripts/run_oracle_nop.py --run [oracle|nop] [--repro]",
+            "usage: python scripts/run_oracle_nop.py --run [oracle|nop] "
+            "[--repro|--hard-dev|--hard-release]",
             file=sys.stderr,
         )
         return 2

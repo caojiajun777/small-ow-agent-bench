@@ -1,0 +1,1 @@
+MAX_UPLOAD_MB = 25

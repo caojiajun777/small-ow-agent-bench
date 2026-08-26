@@ -1,0 +1,2811 @@
+{
+  "kind": "locked_hard_failure",
+  "published": false,
+  "source": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\locked-hard-release-k3.json",
+  "note": "lock_kind is the published composition: atomic \u00d7 termination from jobs/locked-hard-release-k3.json. Sidecar kinds need job dirs and are diagnostic. Missing Hard-15 examinees stay missing, not 0.",
+  "n_rows": 270,
+  "lock_kind_counts": {
+    "task_pass_clean": 118,
+    "task_pass_unfinished": 8,
+    "task_fail_clean": 91,
+    "task_fail_unfinished": 53,
+    "infra_fail": 0
+  },
+  "sidecar_kind_counts": {
+    "task_pass_clean": 118,
+    "task_pass_unfinished": 8,
+    "task_fail_clean": 91,
+    "task_fail_unfinished": 43,
+    "format_fail": 2,
+    "no_attempt": 8,
+    "infra_fail": 0
+  },
+  "by_model": {
+    "ministral-14b-2512": {
+      "n": 45,
+      "atomic_pass": 16,
+      "atomic_fail": 29,
+      "e2e_pass": 16,
+      "e2e_fail": 29,
+      "lock_kind": {
+        "task_pass_clean": 16,
+        "task_pass_unfinished": 0,
+        "task_fail_clean": 28,
+        "task_fail_unfinished": 1,
+        "infra_fail": 0
+      }
+    },
+    "ministral-8b-2512": {
+      "n": 45,
+      "atomic_pass": 16,
+      "atomic_fail": 29,
+      "e2e_pass": 15,
+      "e2e_fail": 30,
+      "lock_kind": {
+        "task_pass_clean": 15,
+        "task_pass_unfinished": 1,
+        "task_fail_clean": 19,
+        "task_fail_unfinished": 10,
+        "infra_fail": 0
+      }
+    },
+    "qwen3-14b": {
+      "n": 45,
+      "atomic_pass": 12,
+      "atomic_fail": 33,
+      "e2e_pass": 8,
+      "e2e_fail": 37,
+      "lock_kind": {
+        "task_pass_clean": 8,
+        "task_pass_unfinished": 4,
+        "task_fail_clean": 21,
+        "task_fail_unfinished": 12,
+        "infra_fail": 0
+      }
+    },
+    "qwen3.5-9b": {
+      "n": 45,
+      "atomic_pass": 30,
+      "atomic_fail": 15,
+      "e2e_pass": 30,
+      "e2e_fail": 15,
+      "lock_kind": {
+        "task_pass_clean": 30,
+        "task_pass_unfinished": 0,
+        "task_fail_clean": 6,
+        "task_fail_unfinished": 9,
+        "infra_fail": 0
+      }
+    },
+    "qwen3.6-35b-a3b": {
+      "n": 45,
+      "atomic_pass": 21,
+      "atomic_fail": 24,
+      "e2e_pass": 18,
+      "e2e_fail": 27,
+      "lock_kind": {
+        "task_pass_clean": 18,
+        "task_pass_unfinished": 3,
+        "task_fail_clean": 12,
+        "task_fail_unfinished": 12,
+        "infra_fail": 0
+      }
+    },
+    "qwen3.8-27b": {
+      "n": 45,
+      "atomic_pass": 31,
+      "atomic_fail": 14,
+      "e2e_pass": 31,
+      "e2e_fail": 14,
+      "lock_kind": {
+        "task_pass_clean": 31,
+        "task_pass_unfinished": 0,
+        "task_fail_clean": 5,
+        "task_fail_unfinished": 9,
+        "infra_fail": 0
+      }
+    }
+  },
+  "cells": [
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "no_attempt"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "no_attempt"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "protocol_error",
+      "lock_kind": "task_pass_unfinished",
+      "sidecar_kind": "task_pass_unfinished"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "no_attempt"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "no_attempt"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "no_attempt"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "no_attempt"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "no_attempt"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "protocol_error",
+      "lock_kind": "task_pass_unfinished",
+      "sidecar_kind": "task_pass_unfinished"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "protocol_error",
+      "lock_kind": "task_pass_unfinished",
+      "sidecar_kind": "task_pass_unfinished"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "protocol_error",
+      "lock_kind": "task_pass_unfinished",
+      "sidecar_kind": "task_pass_unfinished"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "protocol_error",
+      "lock_kind": "task_pass_unfinished",
+      "sidecar_kind": "task_pass_unfinished"
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "no_attempt"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "tle",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "format_fail"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "format_fail"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.8-27b",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "repro-second-export",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "protocol_error",
+      "lock_kind": "task_pass_unfinished",
+      "sidecar_kind": "task_pass_unfinished"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "protocol_error",
+      "lock_kind": "task_pass_unfinished",
+      "sidecar_kind": "task_pass_unfinished"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "protocol_error",
+      "lock_kind": "task_pass_unfinished",
+      "sidecar_kind": "task_pass_unfinished"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "clean",
+      "lock_kind": "task_fail_clean",
+      "sidecar_kind": "task_fail_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "review-bare-except",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "review-dead-helper",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 0,
+      "termination": "protocol_error",
+      "lock_kind": "task_fail_unfinished",
+      "sidecar_kind": "task_fail_unfinished"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 1,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 2,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "task": "review-wired-helper",
+      "atom": "review",
+      "attempt": 3,
+      "atomic_correct": 1,
+      "termination": "clean",
+      "lock_kind": "task_pass_clean",
+      "sidecar_kind": "task_pass_clean"
+    }
+  ]
+}

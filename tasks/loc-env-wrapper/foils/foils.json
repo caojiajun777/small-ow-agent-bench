@@ -1,0 +1,26 @@
+{
+  "kind": "loc",
+  "foils": [
+    {
+      "id": "yaml-decoy",
+      "why": "config already has the desired path",
+      "paths": [
+        "config.yaml"
+      ]
+    },
+    {
+      "id": "python-default",
+      "why": "the default in app.py is already correct",
+      "paths": [
+        "app.py"
+      ]
+    },
+    {
+      "id": "unused-logger",
+      "why": "logger.py is never imported",
+      "paths": [
+        "logger.py"
+      ]
+    }
+  ]
+}

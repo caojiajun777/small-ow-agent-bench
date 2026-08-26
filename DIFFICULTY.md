@@ -73,13 +73,30 @@ L9 stays in the task bank as a diagnostic: even the ceiling over-reports the dea
 | `loc-reexport` (L7) | **2/3** (k=1 extra `pkg/net.py` was noise) | |
 | `loc-unused-fix` (L8) | 1 | |
 
+### compact-shell k=3 lock (2026-08-25)
+
+Official agent. Source: `jobs/locked-core-k3.json` (477 cells, `n_valid=3`). Hard = Qwen3.5-9B **0/3** and Qwen3.8-27B Atomic **3/3**. Not “all 10 main fail.” Do not use Terminus-2 rows below to override this.
+
+| Task | 9B | 27B Atomic | 27B E2E | Band |
+|---|---|---|---|---|
+| `loc-member-discount` | 0/3 | 3/3 | 3/3 | **Hard** |
+| `loc-vip-two-files` | 0/3 | 3/3 | 0/3 | **Hard (Atomic)**; E2E not locked |
+| `loc-similar-filenames` | 1/3 | 3/3 | 3/3 | not Hard (9B not stably 0) |
+| `loc-failing-test-impl` | 2/3 | 3/3 | 3/3 | Medium (k=1 zero was noise) |
+| `loc-traceback-helper` | 2/3 | 0/3 | 0/3 | **Unscored**; 9B > ruler |
+| `loc-bind-host` | 0/3 | 0/3 | 0/3 | **Unscored** |
+| `loc-reexport` | 0/3 | 0/3 | 0/3 | **Unscored** |
+| `loc-unused-fix` | 3/3 | 3/3 | 3/3 | smoke / Medium (k=3 from `jobs/locked-upper-base-k3.json`) |
+
+Keep exact-set. The two Loc Hard items stay in the frozen 47 for scoring; they are also on the Frontier table. 9B still 0/3 on `testgen-anagram`, `repro-first-index`, `repro-whitespace`. 27B Base-47 k=3 (2026-08-26, `jobs/locked-upper-base-k3.json`) is Atomic 3/3 on all three → they **lock Hard (Atomic)**. Hard-Release-15 does not change.
+
 ### Next
 
-Do **not** mint Frontier / Hard yet. compact-shell k=1 Core (10 main + Qwen3.8-27B ruler) is in [`EVAL-NOTE.md`](EVAL-NOTE.md) §8–10. Three Loc items are still all-0 including the ruler (`loc-bind-host`, `loc-traceback-helper`, `loc-reexport`) — Unscored at k=1, not Hard. Four Loc items are 0/10 main and 27B atomic=1 — **k=1 candidates only**; lock Hard with k=3. Terminus-2 L5/L7 27B `k=3` does not replace this screen.
+Terminus-2 L5/L7 27B `k=3` does not replace the compact-shell screen. Three Loc items remain Unscored under compact-shell (`loc-bind-host`, `loc-traceback-helper`, `loc-reexport`).
 
 ### Target loc profile (2026-08-22)
 
-Terminus-2, OpenRouter, `n=1`. 9B = `qwen/qwen3.5-9b`. 8B = `mistralai/ministral-8b-2512`. L2/L5/L7 (and 9B L3) used `k=3`; other loc `k=1`.
+Terminus-2 calibration **only** (not compact-shell). OpenRouter, `n=1`. 9B = `qwen/qwen3.5-9b`. 8B = `mistralai/ministral-8b-2512`. L2/L5/L7 (and 9B L3) used `k=3`; other loc `k=1`. Published Hard labels are in the compact-shell k=3 table above.
 
 | Task | 9B | 8B | 27B | Band |
 |---|---|---|---|---|
@@ -93,7 +110,7 @@ Terminus-2, OpenRouter, `n=1`. 9B = `qwen/qwen3.5-9b`. 8B = `mistralai/ministral
 | L8 `loc-unused-fix` | 1 | 0 timeout | 1 | Medium for 9B |
 | L9 `loc-hardcoded-digital-vat` | 0 (prior) | — | 0 | Unscored |
 
-**Loc cutoff:** Ministral 8B does not close exact-set loc (0/8 tasks this run; mix of timeouts, extra decoys, `app/repo/` prefixes). Qwen3.5-9B closes most loc traps; remaining misses are extra files or k=1 noise, and `k=3` recovers L2/L3/L7. There is **no locked Hard loc** of the form “9B cannot, 27B can.”
+**Loc cutoff (Terminus-2, 2026-08-22):** Ministral 8B does not close exact-set loc (0/8 this run). Qwen3.5-9B closes most loc traps under that harness. **That is not the published table.** compact-shell k=3 locks two Hard loc items (`loc-member-discount`, `loc-vip-two-files`); see the lock table above.
 
 ### Target rest profile (2026-08-22)
 
@@ -117,6 +134,6 @@ Timeout classification (`python scripts/classify_timeouts.py`, rules in [`TIMEOU
 
 8B rest: Harbor listed 11 `AgentTimeoutError`. Five of those are `timeout_after_pass` (artifact already correct; halt failed). Six are `timeout_loop` (empty-spin TLE). Zero stalls, so no rerun. Genuine `task_miss`: `repro-float-cents`, `review-configured-timeout`, `testgen-cents`, `testgen-parse`. `testgen-gregorian` is `other_error` (tmux/RuntimeError), not a timeout.
 
-**Rest cutoff:** 9B saturates edit / repro / review and, after `k=3`, testgen too. The only 9B miss on the rest `k=1` slice was `testgen-gregorian`; 27B `k=1` = 1 and 9B `k=3` = **3/3**, so that zero was noise. **Not Hard.** 8B can pass most named-file edits; remaining 8B zeros mix `timeout_loop` and a few `task_miss`, unlike loc where 8B was 0/8 on the task. Do not mint Hard from `timeout_loop`. There is **no locked Hard atom** of the form “9B cannot, 27B can.”
+**Rest cutoff (Terminus-2):** 9B saturates edit / repro / review and, after `k=3` on gregorian, testgen too. That zero was noise. **Not Hard.** Do not mint Hard from `timeout_loop`. compact-shell k=3 still has three 9B 0/3 rest items (`testgen-anagram`, `repro-first-index`, `repro-whitespace`) without a 27B k=3 fill — leave them unlocked.
 
 

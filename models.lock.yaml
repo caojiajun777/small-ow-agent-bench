@@ -1,19 +1,29 @@
-# Frozen compact-shell roster: OpenRouter-available 3B–14B instruct + one 27B ruler.
+# Frozen compact-shell Core roster: 12 open-weight models (3B dense → 35B-A3B MoE).
+# All 12 enter Base / five-skill / IRT-core. Hard-Release examinees are the 6
+# with hard_release: true (Base-47 Atomic 47-mean ≥ 0.40, plus 27B and 35B).
+# Skipped models are not scored as Hard zeros. Escape hatch: --hard-release --group all.
+# --group main still selects the original 10 compact_dense models (Base-47 k=3 reuse).
 # Batch is execution order only. Do not swap IDs after protocol check starts.
-# Catalog check: 2026-08-24 (Beijing) / 2026-08-23 (US Pacific).
-# 10-model full run (IRT-main, no ruler):
+# Catalog check: 2026-08-25 (Beijing). 35B provider pin confirmed at protocol smoke.
+# 10 compact Base-47 k=3 (reuse jobs/locked-core-k3.json; do not overwrite):
 #   python scripts/run_locked.py --run --full --group main
-#   protocol 10×2=20; core 10×47=470; total 490. Restart skips completed cells.
-# 11-model (add ruler): --group all  → 11×2=22 protocol; 11×47=517 core; total 539.
+# 35B protocol only (this step):
+#   python scripts/run_locked.py --run --protocol --group moe
+# k=3 fill attempts 2–3 still do not overwrite jobs/locked-core.json.
 
 frozen: true
-frozen_at: "2026-08-24"
-catalog_checked_at: "2026-08-24T00:00:00+08:00"
+frozen_at: "2026-08-25"
+catalog_checked_at: "2026-08-25T16:44:00+08:00"
+archive_tag: benchmark-v0.1-base
+archive_note: >
+  10 compact_dense × Base-47 k=3 in jobs/locked-core-k3.json is the reusable
+  Base component. Do not relabel those items as new Hard. Do not overwrite
+  locked-core.json. Full 12-model Base+Hard is benchmark-v1.0-rc1 (not this tag).
 substitution_policy: forbidden
 scope: >
-  Atomic Shell-Agent Benchmark for OpenRouter-Available 3B–14B
-  Open-Weight Instruct Models. Not a coding-specialist-only table:
-  OpenRouter currently has no stable dense 3B–14B dedicated coder.
+  Atomic capability gradient for compact open-weight coding agents from 3B
+  dense to 35B-A3B MoE, under compact-shell. Not a parameter scaling law:
+  35B-A3B is MoE (~3B active) and need not beat 27B dense.
 harness:
   agent: agents.compact_shell:CompactShellAgent
   agent_version: "0.1.1"
@@ -39,7 +49,7 @@ inference:
   note: >
     OpenRouter extra_body.provider.order is pinned per model.
     allow_fallbacks=false so BF16/FP8/INT4 cannot silently swap.
-    Qwen3 / Qwen3.5 / Qwen3.8 use reasoning.enabled=false and
+    Qwen3 / Qwen3.5 / Qwen3.8 / Qwen3.6 use reasoning.enabled=false and
     enable_thinking=false. thinking-on is not a second subject.
 protocol_check:
   purpose: compact-shell bash/finish loop only; ignore MAIN_47 scores
@@ -50,15 +60,35 @@ protocol_check:
   fail_rule: keep the model in the lock; record protocol_fail; do not replace
 core:
   tasks: MAIN_47
-  n_models: 11
-  n_protocol_trials: 22
-  n_core_trials: 517
-  n_trials_total: 539
+  n_models: 12
+  n_compact: 10
+  n_upper: 1
+  n_moe: 1
+  n_protocol_trials: 24
+  n_core_trials: 564
+  n_trials_total: 588
+  note: >
+    k=1 census. Published Base uses k=3. The original 10 compact_dense
+    Base-47 k=3 is reused from jobs/locked-core-k3.json.
 irt:
-  main: irt-main
+  main: compact_dense
   n_main: 10
-  rulers_excluded_from_theta: true
-  note: exploratory 1PL on 10 models; report item×model matrix, not a precise theta
+  core: all-12
+  n_core: 12
+  rulers_excluded_from_theta: false
+  note: >
+    Exploratory 1PL. --group main still fits the original 10.
+    --group core fits all 12. Always run a no-MoE sensitivity.
+    Report item×model matrix, not a precise theta.
+hard_release:
+  n_examinees: 6
+  n_trials: 270
+  rule: >
+    Administer Hard-15 only if Base-47 Atomic 47-mean ≥ 0.40, plus the 27B
+    dense and 35B-A3B MoE bands. Floor / Medium-struggle models stay on the
+    Base table. Do not impute Hard p=0 for skipped IDs.
+  skipped_not_scored_as_zero: true
+  escape_hatch: "--hard-release --group all"
 dropped_not_on_openrouter_or_out_of_band:
   - Qwen3.5-4B
   - Qwen3-4B
@@ -79,7 +109,7 @@ dropped_not_on_openrouter_or_out_of_band:
 
 models:
   - id: llama-3.2-3b-instruct
-    group: irt-main
+    group: compact_dense
     batch: 1
     display: Llama-3.2-3B-Instruct
     family: meta
@@ -92,10 +122,11 @@ models:
     quantization: bf16
     chat_template: llama
     reasoning: off
+    hard_release: false
     why: older 3B floor so Easy items are not all-pass on 2026 instruct models
 
   - id: ministral-3b-2512
-    group: irt-main
+    group: compact_dense
     batch: 1
     display: Ministral-3-3B-2512
     family: mistral
@@ -108,10 +139,11 @@ models:
     quantization: mistral-hosted
     chat_template: mistral
     reasoning: off
+    hard_release: false
     why: current 3B floor; start of Mistral size gradient
 
   - id: gemma-3-4b-it
-    group: irt-main
+    group: compact_dense
     batch: 1
     display: Gemma-3-4B-IT
     family: google
@@ -124,10 +156,11 @@ models:
     quantization: bf16
     chat_template: gemma
     reasoning: off
+    hard_release: false
     why: 4B low band; Google-family contrast
 
   - id: qwen3-8b
-    group: irt-main
+    group: compact_dense
     batch: 1
     display: Qwen3-8B
     family: qwen
@@ -140,10 +173,11 @@ models:
     quantization: alibaba-hosted
     chat_template: qwen
     reasoning: off
+    hard_release: false
     why: previous-gen Qwen 8B; thinking off; vs 3.5-9B and vs 14B
 
   - id: ministral-8b-2512
-    group: irt-main
+    group: compact_dense
     batch: 1
     display: Ministral-3-8B-2512
     family: mistral
@@ -156,10 +190,11 @@ models:
     quantization: mistral-hosted
     chat_template: mistral
     reasoning: off
+    hard_release: true
     why: Mistral mid band; 3B/8B/14B same-generation gradient
 
   - id: granite-4.1-8b
-    group: irt-main
+    group: compact_dense
     batch: 1
     display: Granite-4.1-8B
     family: ibm
@@ -172,10 +207,11 @@ models:
     quantization: bf16
     chat_template: granite
     reasoning: off
+    hard_release: false
     why: 2026 tool-calling / coding cross-family contrast
 
   - id: qwen3.5-9b
-    group: irt-main
+    group: compact_dense
     batch: 1
     display: Qwen3.5-9B
     family: qwen
@@ -188,10 +224,11 @@ models:
     quantization: bf16
     chat_template: qwen
     reasoning: off
+    hard_release: true
     why: primary target-band 9B
 
   - id: gemma-3-12b-it
-    group: irt-main
+    group: compact_dense
     batch: 2
     display: Gemma-3-12B-IT
     family: google
@@ -204,10 +241,11 @@ models:
     quantization: bf16
     chat_template: gemma
     reasoning: off
+    hard_release: false
     why: Gemma upper end vs 4B scale
 
   - id: qwen3-14b
-    group: irt-main
+    group: compact_dense
     batch: 2
     display: Qwen3-14B
     family: qwen
@@ -220,10 +258,11 @@ models:
     quantization: fp8
     chat_template: qwen
     reasoning: off
+    hard_release: true
     why: Qwen3 scale upper end vs Qwen3-8B
 
   - id: ministral-14b-2512
-    group: irt-main
+    group: compact_dense
     batch: 2
     display: Ministral-3-14B-2512
     family: mistral
@@ -236,15 +275,16 @@ models:
     quantization: mistral-hosted
     chat_template: mistral
     reasoning: off
+    hard_release: true
     why: Mistral gradient upper end
 
   - id: qwen3.8-27b
-    group: ruler
+    group: upper_dense
     batch: 2
     display: Qwen3.8-27B
     family: qwen
     size: 27B
-    class: ruler
+    class: upper_dense
     hf_id: Qwen/Qwen3.8-27B
     hf_revision: pin-at-protocol-check
     openrouter_id: openrouter/qwen/qwen3.8-27b
@@ -252,8 +292,31 @@ models:
     quantization: bf16
     chat_template: qwen
     reasoning: off
-    why: current agentic 27B ceiling; not in theta; not Qwen3.6
-    irt: excluded_from_theta
+    hard_release: true
+    why: dense upper band on the 3B–35B gradient; not a spectator ruler
+    irt: included
     do_not_substitute:
       - openrouter/qwen/qwen3.6-27b
       - openrouter/qwen/qwen3.5-27b
+
+  - id: qwen3.6-35b-a3b
+    group: efficient_moe
+    batch: 2
+    display: Qwen3.6-35B-A3B
+    family: qwen
+    size: 35B-A3B
+    class: efficient_moe
+    hf_id: Qwen/Qwen3.6-35B-A3B
+    hf_revision: pin-at-protocol-check
+    openrouter_id: openrouter/qwen/qwen3.6-35b-a3b
+    openrouter_provider: Venice
+    quantization: fp8
+    chat_template: qwen
+    reasoning: off
+    hard_release: true
+    why: >
+      Efficient MoE (~3B active). Official Core member, not a ruler.
+      Need not outscore 27B dense. Pin Venice FP8; no FP4 fallback.
+    irt: included
+    do_not_substitute:
+      - openrouter/qwen/qwen3.6-27b

@@ -1,0 +1,13 @@
+{
+  "kind": "repro",
+  "foils": [
+    {
+      "id": "one-order-only",
+      "why": "never attaches the same customer twice"
+    },
+    {
+      "id": "mutate-source",
+      "why": "renames the input dict, not via the order API"
+    }
+  ]
+}

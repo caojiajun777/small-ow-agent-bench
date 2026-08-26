@@ -1,0 +1,27 @@
+{
+  "kind": "loc",
+  "foils": [
+    {
+      "id": "readme-decoy",
+      "why": "only the unused top-level module",
+      "paths": [
+        "billing/limits.py"
+      ]
+    },
+    {
+      "id": "both-copies",
+      "why": "gold plus decoy",
+      "paths": [
+        "billing/limits.py",
+        "vendor/billing/limits.py"
+      ]
+    },
+    {
+      "id": "loader-only",
+      "why": "the path insert is not the defect file",
+      "paths": [
+        "app.py"
+      ]
+    }
+  ]
+}

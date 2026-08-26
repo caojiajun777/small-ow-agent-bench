@@ -1,0 +1,836 @@
+{
+  "kind": "core_k1_screen",
+  "published": false,
+  "models": [
+    "openrouter/qwen/qwen3.5-9b",
+    "openrouter/mistralai/ministral-8b-2512"
+  ],
+  "n_tasks": 47,
+  "skill_means": {
+    "Localization": {
+      "qwen3.5-9b": 0.625,
+      "ministral-8b-2512": 0.125
+    },
+    "Editing": {
+      "qwen3.5-9b": 1.0,
+      "ministral-8b-2512": 0.9166666666666666
+    },
+    "Testgen": {
+      "qwen3.5-9b": 0.8,
+      "ministral-8b-2512": 0.3
+    },
+    "Repro": {
+      "qwen3.5-9b": 0.3,
+      "ministral-8b-2512": 0.4
+    },
+    "Review": {
+      "qwen3.5-9b": 1.0,
+      "ministral-8b-2512": 0.42857142857142855
+    }
+  },
+  "n_discriminator": 19,
+  "n_smoke": 19,
+  "n_both_miss": 9,
+  "n_incomplete": 0,
+  "items": [
+    {
+      "task": "loc-member-discount",
+      "atom": "loc",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__14-42-35"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-37-15"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "loc-bind-host",
+      "atom": "loc",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__14-43-24"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-37-50"
+        }
+      },
+      "role": "both_miss"
+    },
+    {
+      "task": "loc-vip-two-files",
+      "atom": "loc",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__14-45-13"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-38-36"
+        }
+      },
+      "role": "both_miss"
+    },
+    {
+      "task": "loc-similar-filenames",
+      "atom": "loc",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__14-46-47"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-39-31"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "loc-traceback-helper",
+      "atom": "loc",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__14-49-11"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-40-25"
+        }
+      },
+      "role": "both_miss"
+    },
+    {
+      "task": "loc-failing-test-impl",
+      "atom": "loc",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__14-50-20"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-41-02"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "loc-reexport",
+      "atom": "loc",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__14-51-17"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-41-43"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "loc-unused-fix",
+      "atom": "loc",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__14-52-30"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-42-16"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "edit-slugify",
+      "atom": "edit",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__14-53-35"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-42-53"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "edit-covered-length",
+      "atom": "edit",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__14-54-25"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-43-45"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "edit-deep-merge",
+      "atom": "edit",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__14-55-44"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-44-25"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "edit-int-list",
+      "atom": "edit",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__14-57-04"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-45-09"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "edit-top-k",
+      "atom": "edit",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__14-57-57"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-45-55"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "edit-jsonl-keep",
+      "atom": "edit",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__14-59-04"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-46-34"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "edit-hhmmss",
+      "atom": "edit",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-00-20"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-47-16"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "edit-prefix-sums",
+      "atom": "edit",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-01-30"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-48-05"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "edit-clip",
+      "atom": "edit",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-02-30"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-48-49"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "edit-timeout-zero",
+      "atom": "edit",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-03-15"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-49-27"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "edit-unique-keep",
+      "atom": "edit",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-04-08"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-49-54"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "edit-pad-left",
+      "atom": "edit",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-04-55"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-50-35"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "testgen-clip",
+      "atom": "testgen",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-06-02"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-51-21"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "testgen-unique-order",
+      "atom": "testgen",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-06-46"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-51-52"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "testgen-gregorian",
+      "atom": "testgen",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-07-25"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-52-29"
+        }
+      },
+      "role": "both_miss"
+    },
+    {
+      "task": "testgen-mean",
+      "atom": "testgen",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-08-29"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-53-11"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "testgen-parse",
+      "atom": "testgen",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-09-05"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-53-44"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "testgen-anagram",
+      "atom": "testgen",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 0,
+          "termination": "tle",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-09-49"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-54-15"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "testgen-timeout-zero",
+      "atom": "testgen",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-13-16"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-54-47"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "testgen-greet-none",
+      "atom": "testgen",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-13-55"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-55-17"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "testgen-cents",
+      "atom": "testgen",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-14-56"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-55-50"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "testgen-window",
+      "atom": "testgen",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-16-34"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-56-42"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "repro-off-by-one",
+      "atom": "repro",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-17-24"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-28-21"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "repro-end-exclusive",
+      "atom": "repro",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-19-21"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-29-14"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "repro-zero-timeout",
+      "atom": "repro",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-20-26"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-29-43"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "repro-keep-zero",
+      "atom": "repro",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-21-35"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-30-17"
+        }
+      },
+      "role": "both_miss"
+    },
+    {
+      "task": "repro-none-name",
+      "atom": "repro",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-22-39"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-30-57"
+        }
+      },
+      "role": "both_miss"
+    },
+    {
+      "task": "repro-float-cents",
+      "atom": "repro",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-23-36"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-31-58"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "repro-first-index",
+      "atom": "repro",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-24-19"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-32-36"
+        }
+      },
+      "role": "both_miss"
+    },
+    {
+      "task": "repro-empty-mean",
+      "atom": "repro",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-25-30"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-33-12"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "repro-whitespace",
+      "atom": "repro",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-26-32"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-33-40"
+        }
+      },
+      "role": "both_miss"
+    },
+    {
+      "task": "repro-truthy-flag",
+      "atom": "repro",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-27-29"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__23-34-32"
+        }
+      },
+      "role": "both_miss"
+    },
+    {
+      "task": "review-clip-incomplete",
+      "atom": "review",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-30-18"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__16-04-15"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "review-slug-almost",
+      "atom": "review",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-31-29"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__16-04-44"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "review-mean-wrong",
+      "atom": "review",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-32-12"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__16-05-18"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "review-slug-complete",
+      "atom": "review",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-32-54"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__16-05-51"
+        }
+      },
+      "role": "smoke"
+    },
+    {
+      "task": "review-configured-timeout",
+      "atom": "review",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-33-41"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__16-06-25"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "review-rotate-right",
+      "atom": "review",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-35-42"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__16-06-57"
+        }
+      },
+      "role": "discriminator"
+    },
+    {
+      "task": "review-prefix-complete",
+      "atom": "review",
+      "by_model": {
+        "openrouter/qwen/qwen3.5-9b": {
+          "atomic_correct": 1,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__15-36-37"
+        },
+        "openrouter/mistralai/ministral-8b-2512": {
+          "atomic_correct": 0,
+          "termination": "clean",
+          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__16-07-29"
+        }
+      },
+      "role": "discriminator"
+    }
+  ]
+}

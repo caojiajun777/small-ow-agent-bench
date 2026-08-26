@@ -1,0 +1,31 @@
+schema_version = "1.4"
+
+[task]
+name = "small-ow-agent-bench/loc-hook-plugin"
+version = "1.0.0"
+authors = []
+keywords = ["agentic-coding", "localization", "hard-release"]
+
+[metadata]
+author_name = ""
+author_email = ""
+difficulty = "hard"
+category = "software"
+subcategory = "localization"
+tags = ["localization", "hard", "hard-release", "agentic-coding", "atomic-skills"]
+difficulty_explanation = "Exact set: hooked plugin file, not the unused sibling."
+expert_time_estimate_hours = 0.3
+
+[verifier]
+timeout_sec = 180.0
+
+[agent]
+timeout_sec = 180.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+gpus = 0
+mcp_servers = []

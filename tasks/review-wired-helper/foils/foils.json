@@ -1,0 +1,14 @@
+{
+  "kind": "review",
+  "foils": [
+    {
+      "id": "flip",
+      "why": "the other bit",
+      "label": "0"
+    },
+    {
+      "id": "example-only",
+      "why": "judges only the stated example"
+    }
+  ]
+}

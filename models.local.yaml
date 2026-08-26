@@ -1,0 +1,70 @@
+# Local Reference pins. Does not overwrite models.lock.yaml or API Standard scores.
+#
+# These SHAs were read from Hugging Face `main` on 2026-08-26 (UTC+8).
+# They are weights pins for a future vLLM run, not evidence that Local
+# Reference has been administered.
+#
+# Runtime (when you actually run it): Linux + vLLM OpenAI server, then
+# Harbor compact-shell with VLLM_BASE_URL. Native Windows is not a vLLM host.
+# This laptop GPU (16 GB) cannot hold 27B/35B at BF16; compact-10 still
+# needs a dedicated Linux box and days of n=1 sandboxes.
+#
+#     python scripts/run_local_ref.py
+#     python scripts/run_local_ref.py --run   # requires VLLM_BASE_URL
+
+kind: local_reference_pins
+published: false
+enters_official_mean: false
+pinned_at: "2026-08-26"
+pin_source: huggingface_hub_api_main
+overwrites_api_standard: false
+runtime:
+  engine: vLLM
+  vllm_version: unset
+  transformers_version: unset
+  dtype: bfloat16
+  max_len: 8192
+  temperature: 0.0
+  top_p: 1.0
+  thinking: off
+note: >
+  Gate B weight-control track. API Standard (benchmark-v1.0) stays the
+  published system table until this file is used in a completed local run.
+
+models:
+  - id: llama-3.2-3b-instruct
+    hf_id: meta-llama/Llama-3.2-3B-Instruct
+    hf_revision: 0cb88a4f764b7a12671c53f0838cd831a0843b95
+  - id: ministral-3b-2512
+    hf_id: mistralai/Ministral-3-3B-Instruct-2512
+    hf_revision: b35d4dfe56c142746f54dbd64f579faab2744308
+  - id: gemma-3-4b-it
+    hf_id: google/gemma-3-4b-it
+    hf_revision: 093f9f388b31de276ce2de164bdc2081324b9767
+  - id: qwen3-8b
+    hf_id: Qwen/Qwen3-8B
+    hf_revision: b968826d9c46dd6066d109eabc6255188de91218
+  - id: ministral-8b-2512
+    hf_id: mistralai/Ministral-3-8B-Instruct-2512
+    hf_revision: 5b26027e7b19eeb4b7352e1fed3926375dd2cb4d
+  - id: granite-4.1-8b
+    hf_id: ibm-granite/granite-4.1-8b
+    hf_revision: 1504002f650e656a0a3789d99574df12e3e94ed0
+  - id: qwen3.5-9b
+    hf_id: Qwen/Qwen3.5-9B
+    hf_revision: c202236235762e1c871ad0ccb60c8ee5ba337b9a
+  - id: gemma-3-12b-it
+    hf_id: google/gemma-3-12b-it
+    hf_revision: 96b6f1eccf38110c56df3a15bffe176da04bfd80
+  - id: qwen3-14b
+    hf_id: Qwen/Qwen3-14B
+    hf_revision: 40c069824f4251a91eefaf281ebe4c544efd3e18
+  - id: ministral-14b-2512
+    hf_id: mistralai/Ministral-3-14B-Instruct-2512
+    hf_revision: 29439f81c2be264d8d393273f99e7db9c0961120
+  - id: qwen3.8-27b
+    hf_id: Qwen/Qwen3.8-27B
+    hf_revision: 1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0
+  - id: qwen3.6-35b-a3b
+    hf_id: Qwen/Qwen3.6-35B-A3B
+    hf_revision: 995ad96eacd98c81ed38be0c5b274b04031597b0

@@ -52,3 +52,34 @@ def test_missing_finished_stays_clean():
 def test_tle_wins_over_unfinished():
     data = _data(reward=0.0, exc="AgentTimeoutError", finished=False)
     assert termination_of(data) == "tle"
+
+
+def test_litellm_rate_limit_is_infra():
+    assert termination_of(_data(reward=0.0, exc="RateLimitError")) == "infra"
+    assert termination_of(_data(reward=0.0, exc="RateLimitException")) == "infra"
+
+
+def test_harbor_read_error_is_infra():
+    assert termination_of(_data(reward=0.0, exc="ReadError")) == "infra"
+
+
+def test_load_trials_skips_invalid_utf8(tmp_path):
+    from classify_timeouts import load_trials
+
+    trial = tmp_path / "review-mean-wrong__x"
+    trial.mkdir()
+    (trial / "result.json").write_bytes(b'{"trial_name": "x", "note": "\xd0\xc5"}')
+    assert load_trials(tmp_path) == []
+
+
+def test_load_trials_reads_utf8(tmp_path):
+    from classify_timeouts import load_trials
+
+    trial = tmp_path / "edit-clip__x"
+    trial.mkdir()
+    (trial / "result.json").write_text(
+        '{"trial_name": "edit-clip__x"}', encoding="utf-8"
+    )
+    rows = load_trials(tmp_path)
+    assert len(rows) == 1
+    assert rows[0][1]["trial_name"] == "edit-clip__x"

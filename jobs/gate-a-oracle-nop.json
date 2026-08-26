@@ -1,0 +1,707 @@
+{
+  "kind": "gate_a_oracle_nop",
+  "n_tasks": 48,
+  "rows": [
+    {
+      "agent": "oracle",
+      "task": "loc-member-discount",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-25-38"
+    },
+    {
+      "agent": "oracle",
+      "task": "loc-bind-host",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-26-06"
+    },
+    {
+      "agent": "oracle",
+      "task": "loc-vip-two-files",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-26-32"
+    },
+    {
+      "agent": "oracle",
+      "task": "loc-similar-filenames",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-27-03"
+    },
+    {
+      "agent": "oracle",
+      "task": "loc-traceback-helper",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-27-29"
+    },
+    {
+      "agent": "oracle",
+      "task": "loc-failing-test-impl",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-28-05"
+    },
+    {
+      "agent": "oracle",
+      "task": "loc-reexport",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-28-30"
+    },
+    {
+      "agent": "oracle",
+      "task": "loc-unused-fix",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-28-56"
+    },
+    {
+      "agent": "oracle",
+      "task": "edit-slugify",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-29-23"
+    },
+    {
+      "agent": "oracle",
+      "task": "edit-covered-length",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-29-49"
+    },
+    {
+      "agent": "oracle",
+      "task": "edit-deep-merge",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-30-13"
+    },
+    {
+      "agent": "oracle",
+      "task": "edit-int-list",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-30-39"
+    },
+    {
+      "agent": "oracle",
+      "task": "edit-top-k",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-31-05"
+    },
+    {
+      "agent": "oracle",
+      "task": "edit-jsonl-keep",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-31-36"
+    },
+    {
+      "agent": "oracle",
+      "task": "edit-hhmmss",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-32-00"
+    },
+    {
+      "agent": "oracle",
+      "task": "edit-prefix-sums",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-32-25"
+    },
+    {
+      "agent": "oracle",
+      "task": "edit-clip",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-32-52"
+    },
+    {
+      "agent": "oracle",
+      "task": "edit-timeout-zero",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-33-20"
+    },
+    {
+      "agent": "oracle",
+      "task": "edit-unique-keep",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-33-45"
+    },
+    {
+      "agent": "oracle",
+      "task": "edit-pad-left",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-34-11"
+    },
+    {
+      "agent": "oracle",
+      "task": "testgen-clip",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-34-39"
+    },
+    {
+      "agent": "oracle",
+      "task": "testgen-unique-order",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-35-09"
+    },
+    {
+      "agent": "oracle",
+      "task": "testgen-gregorian",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-35-38"
+    },
+    {
+      "agent": "oracle",
+      "task": "testgen-mean",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-36-12"
+    },
+    {
+      "agent": "oracle",
+      "task": "testgen-parse",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-36-40"
+    },
+    {
+      "agent": "oracle",
+      "task": "testgen-anagram",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-37-06"
+    },
+    {
+      "agent": "oracle",
+      "task": "testgen-timeout-zero",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-37-31"
+    },
+    {
+      "agent": "oracle",
+      "task": "testgen-greet-none",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-37-57"
+    },
+    {
+      "agent": "oracle",
+      "task": "testgen-cents",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-38-24"
+    },
+    {
+      "agent": "oracle",
+      "task": "testgen-window",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-38-51"
+    },
+    {
+      "agent": "oracle",
+      "task": "repro-off-by-one",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-39-18"
+    },
+    {
+      "agent": "oracle",
+      "task": "repro-end-exclusive",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-39-45"
+    },
+    {
+      "agent": "oracle",
+      "task": "repro-zero-timeout",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-40-14"
+    },
+    {
+      "agent": "oracle",
+      "task": "repro-keep-zero",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-40-42"
+    },
+    {
+      "agent": "oracle",
+      "task": "repro-none-name",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-41-08"
+    },
+    {
+      "agent": "oracle",
+      "task": "repro-float-cents",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-41-34"
+    },
+    {
+      "agent": "oracle",
+      "task": "repro-first-index",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-41-59"
+    },
+    {
+      "agent": "oracle",
+      "task": "repro-empty-mean",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-42-24"
+    },
+    {
+      "agent": "oracle",
+      "task": "repro-whitespace",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-42-52"
+    },
+    {
+      "agent": "oracle",
+      "task": "repro-truthy-flag",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-43-22"
+    },
+    {
+      "agent": "oracle",
+      "task": "review-clip-incomplete",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-43-48"
+    },
+    {
+      "agent": "oracle",
+      "task": "review-slug-almost",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-44-16"
+    },
+    {
+      "agent": "oracle",
+      "task": "review-mean-wrong",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-44-41"
+    },
+    {
+      "agent": "oracle",
+      "task": "review-slug-complete",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-45-09"
+    },
+    {
+      "agent": "oracle",
+      "task": "review-configured-timeout",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-45-37"
+    },
+    {
+      "agent": "oracle",
+      "task": "review-rotate-right",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-46-04"
+    },
+    {
+      "agent": "oracle",
+      "task": "review-prefix-complete",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-46-34"
+    },
+    {
+      "agent": "oracle",
+      "task": "loc-hardcoded-digital-vat",
+      "atomic_correct": 1,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-47-06"
+    },
+    {
+      "agent": "nop",
+      "task": "loc-member-discount",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-47-39"
+    },
+    {
+      "agent": "nop",
+      "task": "loc-bind-host",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-48-05"
+    },
+    {
+      "agent": "nop",
+      "task": "loc-vip-two-files",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-48-34"
+    },
+    {
+      "agent": "nop",
+      "task": "loc-similar-filenames",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-49-03"
+    },
+    {
+      "agent": "nop",
+      "task": "loc-traceback-helper",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-49-32"
+    },
+    {
+      "agent": "nop",
+      "task": "loc-failing-test-impl",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-50-02"
+    },
+    {
+      "agent": "nop",
+      "task": "loc-reexport",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-50-27"
+    },
+    {
+      "agent": "nop",
+      "task": "loc-unused-fix",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-50-51"
+    },
+    {
+      "agent": "nop",
+      "task": "edit-slugify",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-51-21"
+    },
+    {
+      "agent": "nop",
+      "task": "edit-covered-length",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-51-46"
+    },
+    {
+      "agent": "nop",
+      "task": "edit-deep-merge",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-52-11"
+    },
+    {
+      "agent": "nop",
+      "task": "edit-int-list",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-52-37"
+    },
+    {
+      "agent": "nop",
+      "task": "edit-top-k",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-53-03"
+    },
+    {
+      "agent": "nop",
+      "task": "edit-jsonl-keep",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-53-31"
+    },
+    {
+      "agent": "nop",
+      "task": "edit-hhmmss",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-54-00"
+    },
+    {
+      "agent": "nop",
+      "task": "edit-prefix-sums",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-54-28"
+    },
+    {
+      "agent": "nop",
+      "task": "edit-clip",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-54-57"
+    },
+    {
+      "agent": "nop",
+      "task": "edit-timeout-zero",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-55-25"
+    },
+    {
+      "agent": "nop",
+      "task": "edit-unique-keep",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-55-53"
+    },
+    {
+      "agent": "nop",
+      "task": "edit-pad-left",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-56-23"
+    },
+    {
+      "agent": "nop",
+      "task": "testgen-clip",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-56-51"
+    },
+    {
+      "agent": "nop",
+      "task": "testgen-unique-order",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-57-16"
+    },
+    {
+      "agent": "nop",
+      "task": "testgen-gregorian",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-57-43"
+    },
+    {
+      "agent": "nop",
+      "task": "testgen-mean",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-58-12"
+    },
+    {
+      "agent": "nop",
+      "task": "testgen-parse",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-58-38"
+    },
+    {
+      "agent": "nop",
+      "task": "testgen-anagram",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-59-04"
+    },
+    {
+      "agent": "nop",
+      "task": "testgen-timeout-zero",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-59-32"
+    },
+    {
+      "agent": "nop",
+      "task": "testgen-greet-none",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__17-59-59"
+    },
+    {
+      "agent": "nop",
+      "task": "testgen-cents",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-00-27"
+    },
+    {
+      "agent": "nop",
+      "task": "testgen-window",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-00-52"
+    },
+    {
+      "agent": "nop",
+      "task": "repro-off-by-one",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-01-22"
+    },
+    {
+      "agent": "nop",
+      "task": "repro-end-exclusive",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-01-49"
+    },
+    {
+      "agent": "nop",
+      "task": "repro-zero-timeout",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-02-16"
+    },
+    {
+      "agent": "nop",
+      "task": "repro-keep-zero",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-02-41"
+    },
+    {
+      "agent": "nop",
+      "task": "repro-none-name",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-03-06"
+    },
+    {
+      "agent": "nop",
+      "task": "repro-float-cents",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-03-32"
+    },
+    {
+      "agent": "nop",
+      "task": "repro-first-index",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-03-55"
+    },
+    {
+      "agent": "nop",
+      "task": "repro-empty-mean",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-04-19"
+    },
+    {
+      "agent": "nop",
+      "task": "repro-whitespace",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-04-44"
+    },
+    {
+      "agent": "nop",
+      "task": "repro-truthy-flag",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-05-10"
+    },
+    {
+      "agent": "nop",
+      "task": "review-clip-incomplete",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-05-35"
+    },
+    {
+      "agent": "nop",
+      "task": "review-slug-almost",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-06-02"
+    },
+    {
+      "agent": "nop",
+      "task": "review-mean-wrong",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-06-27"
+    },
+    {
+      "agent": "nop",
+      "task": "review-slug-complete",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-06-52"
+    },
+    {
+      "agent": "nop",
+      "task": "review-configured-timeout",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-07-18"
+    },
+    {
+      "agent": "nop",
+      "task": "review-rotate-right",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-07-43"
+    },
+    {
+      "agent": "nop",
+      "task": "review-prefix-complete",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-08-08"
+    },
+    {
+      "agent": "nop",
+      "task": "loc-hardcoded-digital-vat",
+      "atomic_correct": 0,
+      "termination": "clean",
+      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-23__18-08-34"
+    }
+  ],
+  "oracle": {
+    "n": 48,
+    "n_ok": 38,
+    "n_bad": 10,
+    "n_infra": 0,
+    "missing": [],
+    "bad_tasks": [
+      "repro-off-by-one",
+      "repro-end-exclusive",
+      "repro-zero-timeout",
+      "repro-keep-zero",
+      "repro-none-name",
+      "repro-float-cents",
+      "repro-first-index",
+      "repro-empty-mean",
+      "repro-whitespace",
+      "repro-truthy-flag"
+    ],
+    "pass": false
+  },
+  "nop": {
+    "n": 48,
+    "n_ok": 48,
+    "n_bad": 0,
+    "n_infra": 0,
+    "missing": [],
+    "bad_tasks": [],
+    "pass": true
+  }
+}
