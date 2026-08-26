@@ -1,6 +1,6 @@
 # Gate A / 发布清单
 
-正式数字见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §6.2 / §11 / §12 / §13。Hard 按 k=3 在 Core 47 锁了 5 道（2 Loc + 1 Testgen + 2 Repro）。v1.0 发表口径是 **API Standard（系统表）**；Local Reference 不是本 tag 的前置。打 `benchmark-v1.0` 时公开仓库、Local Reference 全表仍可另开。v1.0 本身是 API Standard。
+正式数字见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §6.2 / §11 / §12 / §13。Hard 按 k=3 在 Core 47 锁了 5 道（2 Loc + 1 Testgen + 2 Repro）。v1.0 发表口径是 **API Standard（系统表）**；Local Reference 不是本 tag 的前置。公开仓库已推：https://github.com/caojiajun777/small-ow-agent-bench。v1.0 本身是 API Standard。
 
 ## 现在就能勾（不跑模型）
 
@@ -53,7 +53,7 @@ python scripts/run_locked.py --run --full --group main
 benchmark-v1.0-rc1
 ```
 
-条件：oracle/nop 绿、EVAL-NOTE §6.1 / §8–10 已填、README 不再把 Terminus-2 写成默认 agent。本地已打；**未 push**。k=3 主表后来写进 §6.2 / §11；打 `benchmark-v1.0` 另说。
+条件：oracle/nop 绿、EVAL-NOTE §6.1 / §8–10 已填、README 不再把 Terminus-2 写成默认 agent。tag 已打并已推到 [github.com/caojiajun777/small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench)。k=3 主表后来写进 §6.2 / §11；正式发布 tag 是 `benchmark-v1.0`。
 
 tag 之后改 instruction / verifier → 升 `v1.1` 或整表重跑。
 
@@ -74,7 +74,7 @@ python scripts/run_locked.py --run --k3-fill --group ruler
 - [x] Core k=3 正式表（EVAL-NOTE §6.2 / §11）
 - [x] Frontier / Hard：`loc-member-discount`、`loc-vip-two-files`（9B 0/3 且 27B Atomic 3/3；后者 E2E 未锁）；另 §13 新锁 `testgen-anagram`、`repro-first-index`、`repro-whitespace`
 - [x] k=3 探索性 1PL（Binomial(3)，`python scripts/fit_irt.py --k3` → `jobs/irt-k3.json`；不进发表均值）
-- 公开 GitHub
+- [x] 公开 GitHub：https://github.com/caojiajun777/small-ow-agent-bench（`main` + `benchmark-v1.0` / `benchmark-v1.0-rc1`）
 - [x] Local Reference：**权重 SHA 已钉**（[`models.local.yaml`](models.local.yaml)，HF `main` @ 2026-08-26）。全表未跑（Linux vLLM + `VLLM_BASE_URL`；`python scripts/run_local_ref.py`）。不覆盖 API 均值。
 
 ## 12 模型 Core（2026-08-25 起）

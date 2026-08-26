@@ -6,7 +6,7 @@ Harbor 上的 **Atomic Shell-Agent Benchmark**：在自己写的 `compact-shell`
 
 原子能力按 [Scaling Coding Agents via Atomic Skills](https://arxiv.org/abs/2604.05013)（Ma & Liu et al., 2026）拆成五项。每项自己的输入、结构化输出和沙箱奖励；SWE-bench 式修 issue 是这五项的复合，不当原子。
 
-**公开仓库还没推。** 先把题收成 **v1 公开集**（陷阱不重复），同构题只进库存。GitHub 等 v1 基线跑完再发。
+公开仓库：[github.com/caojiajun777/small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench)。发布 tag 是 **`benchmark-v1.0`**（API Standard）。公开集按陷阱去重；同构题只进库存。
 
 测的是 **固定极薄 shell harness（`compact-shell`）下的模型表现**，不是「模型固有 coding 能力」，也不是谁更会填 JSON 工具。正式协议见 [`STANDARD.md`](STANDARD.md)。**v1.0 发表的是 API Standard（系统表）**：钉死的 OpenRouter 线路 + Novita + compact-shell。Local Reference（钉死 HF 权重 + vLLM）是后续权重控制实验，不是本 tag 的前置条件。早期 Terminus-2 job 只做 harness 对照，不进正式主表。旧 8B/9B/Granite 标定同样不进主表；Core 主表 47 道、k=3、n=1。难度标签见 [`DIFFICULTY.md`](DIFFICULTY.md)。超时分型见 [`TIMEOUT.md`](TIMEOUT.md)（只做诊断，不改 atomic 分）。打分字段由 `python scripts/score_standard.py jobs/<job>` 写出。
 
@@ -51,7 +51,7 @@ Hard-15 没跑的地板模型记 **missing，不是 0**。不要写「12 个模�
 - Core Frontier / Hard（Atomic）：`loc-member-discount`、`loc-vip-two-files`、`testgen-anagram`、`repro-first-index`、`repro-whitespace`。Hard-15 按梯子只另锁 `loc-hook-plugin`。不按 Hard-15 分数改题。
 - k=1 探索矩阵仍在：10×47 = 470，外加尺子 49 格（`jobs/locked-core.json`）。27B **不进** \(\theta\)。
 - 27B / 35B 全量 Base-47 k=3 已齐（2026-08-26）：`jobs/locked-upper-base-k3.json`（94 格 `n_valid=3`），**不进** compact-10 均值，**未覆盖** core lock。数字见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §13。
-- 本地 tag **`benchmark-v1.0`** 打在本快照（API Standard）。Local Reference 的 HF SHA 钉在 [`models.local.yaml`](models.local.yaml)，全表未跑（需要 Linux vLLM，不覆盖 API 均值）。公开 GitHub 见仓库远程。不要把 API 表说成已控制权重。
+- 发布 tag **`benchmark-v1.0`**（API Standard）已推到 [github.com/caojiajun777/small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench)。Local Reference 的 HF SHA 钉在 [`models.local.yaml`](models.local.yaml)，全表未跑（需要 Linux vLLM，不覆盖 API 均值）。不要把 API 表说成已控制权重。
 
 ## 五个原子
 
@@ -210,7 +210,7 @@ terminus-2，OpenRouter，`-k 1 -n 1`。testgen verifier 已隔离 `PYTHONPATH`�
 
 ## 怎么跑
 
-沙箱用 **Novita**（`-e novita`，`n=1`）。本机 Docker 内存紧，不要 `-n 8`。Agent 用 **compact-shell**，不要默认 Terminus-2。复制 `.env.example` 为 `.env`，不要提交 `.env`。先不要推 GitHub。
+沙箱用 **Novita**（`-e novita`，`n=1`）。本机 Docker 内存紧，不要 `-n 8`。Agent 用 **compact-shell**，不要默认 Terminus-2。复制 `.env.example` 为 `.env`，不要提交 `.env`。公开仓库已在 [github.com/caojiajun777/small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench)。
 
 ```powershell
 $env:PYTHONIOENCODING = "utf-8"

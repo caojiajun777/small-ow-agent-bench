@@ -1,6 +1,6 @@
 # small-ow-agent-bench：评测笔记（草稿）
 
-状态：协议已冻、Core 47 已冻；k=1 探索矩阵已齐；**正式 Core 主表 k=3 已齐**（10×47 + 尺子 7 道 Loc，每格 `n_valid=3`，产物 `jobs/locked-core-k3.json`，不覆盖 `locked-core.json`）。Hard-Release-15 已冻并跑完 6 个受试 × k=3（`jobs/locked-hard-release-k3.json`，90 格 `n_valid=3`，infra=0）。27B / 35B 全量 Base-47 k=3 已齐（`jobs/locked-upper-base-k3.json`，94 格 `n_valid=3`，**不进** compact-10 均值，见 §13）。k=3 探索性 1PL 已拟合（`jobs/irt-k3.json`，Binomial(3)，不进发表均值）。Core Frontier 现为 2 道 Loc + 1 道 Testgen + 2 道 Repro（§11 / §13）；Hard-15 按梯子只有 `loc-hook-plugin` 锁得住。**v1.0 = API Standard（系统表）**。Local Reference 全表未跑。本文不是正式论文，给公开仓库和评测实习答辩用。
+状态：协议已冻、Core 47 已冻；k=1 探索矩阵已齐；**正式 Core 主表 k=3 已齐**（10×47 + 尺子 7 道 Loc，每格 `n_valid=3`，产物 `jobs/locked-core-k3.json`，不覆盖 `locked-core.json`）。Hard-Release-15 已冻并跑完 6 个受试 × k=3（`jobs/locked-hard-release-k3.json`，90 格 `n_valid=3`，infra=0）。27B / 35B 全量 Base-47 k=3 已齐（`jobs/locked-upper-base-k3.json`，94 格 `n_valid=3`，**不进** compact-10 均值，见 §13）。k=3 探索性 1PL 已拟合（`jobs/irt-k3.json`，Binomial(3)，不进发表均值）。Core Frontier 现为 2 道 Loc + 1 道 Testgen + 2 道 Repro（§11 / §13）；Hard-15 按梯子只有 `loc-hook-plugin` 锁得住。**v1.0 = API Standard（系统表）**。公开仓库：https://github.com/caojiajun777/small-ow-agent-bench。Local Reference 全表未跑。本文不是正式论文，给公开仓库和评测实习答辩用。
 
 一句话：在 compact-shell 下用五项原子，区分从玩具档到部署档（约 3B–35B）的开源小模型在 shell agentic coding 上「哪一列会、哪一列不会」，给后续分析和训练当诊断表。不是追求大家都考 50 分。
 
