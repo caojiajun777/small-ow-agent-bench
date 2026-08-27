@@ -16,7 +16,7 @@ size_categories:
 
 # small-ow-agent-bench (catalog)
 
-Public **metadata catalog** for [small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench) tag **`benchmark-v1.0.1`**.
+Public **metadata catalog** for [small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench) tag **`benchmark-v1.0.1`**. Hugging Face dataset: [`junjun77/small-ow-agent-bench`](https://huggingface.co/datasets/junjun77/small-ow-agent-bench).
 
 This dataset is **not** the Harbor task dump. Each row is one of the 62 scored items:
 

@@ -113,7 +113,7 @@
 | [`EVAL-NOTE.md`](EVAL-NOTE.md) | 过程笔记；§6.2 / §13 是 v1.0 审计 |
 | [`results/hf_catalog.jsonl`](results/hf_catalog.jsonl) | 62 题公开目录（无 hidden verifier） |
 
-Gold、hidden 测试、mutant、foil 留在 Harbor `tasks/`。Hugging Face 目录只含 id / skill / difficulty / trap / 题面，不含 `tests/`、`solution/`、`foils/`、gold 名单或 `environment/repo`。登录后推送：`python scripts/export_hf_catalog.py --write --push`。
+Gold、hidden 测试、mutant、foil 留在 Harbor `tasks/`。Hugging Face 目录只含 id / skill / difficulty / trap / 题面，不含 `tests/`、`solution/`、`foils/`、gold 名单或 `environment/repo`。已发布：[huggingface.co/datasets/junjun77/small-ow-agent-bench](https://huggingface.co/datasets/junjun77/small-ow-agent-bench)。
 
 ## 怎么跑
 

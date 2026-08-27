@@ -87,7 +87,7 @@ def test_catalog_does_not_copy_hidden_verifiers():
 def test_readme_points_at_catalog_not_verifiers():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     assert "results/hf_catalog.jsonl" in readme
-    assert "export_hf_catalog.py --write --push" in readme
+    assert "huggingface.co/datasets/junjun77/small-ow-agent-bench" in readme
     assert "environment/repo" in readme
 
 

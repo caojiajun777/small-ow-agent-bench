@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -35,7 +36,7 @@ GITHUB_REPO = "caojiajun777/small-ow-agent-bench"
 GITHUB_TAG = "benchmark-v1.0.1"
 LICENSE = "Apache-2.0"
 COMPACT_SHELL = "0.1.1"
-DEFAULT_HF_REPO = "caojiajun777/small-ow-agent-bench"
+DEFAULT_HF_REPO = "junjun77/small-ow-agent-bench"
 
 ALLOWED_KEYS = (
     "id",
@@ -165,7 +166,7 @@ size_categories:
 
 # small-ow-agent-bench (catalog)
 
-Public **metadata catalog** for [small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench) tag **`benchmark-v1.0.1`**.
+Public **metadata catalog** for [small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench) tag **`benchmark-v1.0.1`**. Hugging Face dataset: [`junjun77/small-ow-agent-bench`](https://huggingface.co/datasets/junjun77/small-ow-agent-bench).
 
 This dataset is **not** the Harbor task dump. Each row is one of the 62 scored items:
 
@@ -186,6 +187,21 @@ Regenerate:
 python scripts/export_hf_catalog.py --write
 ```
 """
+
+
+def load_env_file() -> None:
+    path = ROOT / ".env"
+    if not path.is_file():
+        return
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        if key and key not in os.environ:
+            os.environ[key] = value
 
 
 def refuse_frozen(path: Path) -> None:
@@ -209,6 +225,9 @@ def write_outputs(text: str) -> None:
 def push_dataset(repo_id: str) -> None:
     from huggingface_hub import HfApi
 
+    load_env_file()
+    if not (os.environ.get("HF_TOKEN") or os.environ.get("HUGGING_FACE_HUB_TOKEN")):
+        raise SystemExit("missing HF_TOKEN in .env (do not paste the token into chat)")
     api = HfApi()
     api.create_repo(repo_id=repo_id, repo_type="dataset", exist_ok=True)
     api.upload_folder(
