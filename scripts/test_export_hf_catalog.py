@@ -91,7 +91,7 @@ def test_readme_points_at_catalog_not_verifiers():
     assert "benchmark--v1.0.1" in readme or "benchmark-v1.0.1" in readme
     assert "CITATION.cff" in readme or "Apache" in readme
     assert "results/figures/v1.0.1-compact10.svg" in readme
-    assert "environment/repo" in readme
+    assert "STANDARD.md" in readme
 
 
 def test_hf_dir_only_has_catalog_and_card():

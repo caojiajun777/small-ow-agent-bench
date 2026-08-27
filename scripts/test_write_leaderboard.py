@@ -24,15 +24,19 @@ def test_coverage_json_says_the_tag_is_cut():
 def test_readme_embeds_canonical_headline():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     assert "benchmark-v1.0.1" in readme
-    assert "148/186" in readme
-    assert "142/186" in readme
-    assert "162/186" in readme
-    assert "0.786" in readme
-    assert "0.863" in readme
-    assert "**105**" in readme
+    assert "78.6%" in readme
+    assert "75.7%" in readme
+    assert "86.3%" in readme
+    assert "105" in readme
+    assert "Qwen3.5-9B" in readme
+    assert "项目说明.md" in readme
+    assert "结果报表.md" in readme
     assert "玩具档" not in readme
     assert "目标档" not in readme
     assert "尺子" not in readme
+    assert "canonical matrix" not in readme
+    for banned in ("gold", "mutant", "foil", "oracle", "no-op", "Halt"):
+        assert banned not in readme
 
 
 def test_render_matches_canonical_micros():

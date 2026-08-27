@@ -1,158 +1,119 @@
-# small-ow-agent-bench
+# Small-OW-Agent-Bench
+
+小型开放权重模型做 Coding Agent 时，究竟是不会找文件、不会改代码，还是已经把任务做对了，却不知道如何提交和停止？
+
+本项目构建了 62 个短小、可自动判分的代码任务，分别测试找文件、修改代码、编写测试、复现 Bug 和判断补丁五类行为。我们在 12 个开放权重模型配置上将每道题独立运行 3 次，共完成 2,232 次有效沙箱实验。
+
+主要发现：
+
+- Qwen3.5-9B 是 10 个小型模型配置中整体表现最好的；
+- Ministral-14B 擅长复现 Bug，却几乎不会编写能发现错误的测试；
+- Gemma-3-12B 经常已经正确修改代码，却因为不能正常停止而丢分。
+
+A diagnostic benchmark for finding where small coding agents fail.
 
 [![Tag](https://img.shields.io/badge/tag-benchmark--v1.0.1-0f4c81)](https://github.com/caojiajun777/small-ow-agent-bench/releases/tag/benchmark-v1.0.1)
 [![License](https://img.shields.io/badge/license-Apache%202.0-2f6f4e)](LICENSE)
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-catalog-ffcc00)](https://huggingface.co/datasets/junjun77/small-ow-agent-bench)
 [![GitHub](https://img.shields.io/badge/GitHub-caojiajun777-181717)](https://github.com/caojiajun777/small-ow-agent-bench)
 
-Frozen compact-shell **system** reliability for compact open-weight coding agents — not coding IQ. Scores are model + pinned OpenRouter route + Novita sandbox + compact-shell v0.1.1.
+## 我们测什么
 
-在冻结的极薄 shell（**compact-shell** v0.1.1）下，测开放权重小型 coding agent 的**端到端系统可靠性**。分数是模型 + 钉死的 OpenRouter 线路 + Novita 沙箱 + compact-shell 的系统分，不是脱离 harness 的 coding IQ。
-
-- GitHub：[caojiajun777/small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench)
-- Hugging Face catalog：[junjun77/small-ow-agent-bench](https://huggingface.co/datasets/junjun77/small-ow-agent-bench)
-- Frozen results：tag **[`benchmark-v1.0.1`](https://github.com/caojiajun777/small-ow-agent-bench/releases/tag/benchmark-v1.0.1)**
-- Method：[`项目说明.md`](项目说明.md) · protocol：[`STANDARD.md`](STANDARD.md)
-
-当前阅读表是 **v1.0.1 canonical matrix**。
-
-## 两个指标
-
-不要混成一个「总分」。Headline = 五个任务族的**宏平均**。括号里的微平均 = 成功 / 186（62 题 × 3）。宏平均 ≠ 微平均。
-
-| 指标 | 定义 | `finish` |
+| 任务 | 模型要做什么 | 怎样算成功 |
 |---|---|---|
-| **Artifact**（规定产物正确率） | 隐藏评分器看规定产物过没过 | 不要求。写对了但没停，仍记 1。Headline。 |
-| **Clean**（干净完成率） | Artifact=1 且交互干净终止 | 要求空的 finish 围栏 |
+| 找文件（Localization） | 根据问题描述找出需要修改的文件 | 文件一个不能少，也不能多报 |
+| 修改代码（Editing） | 已经告诉目标文件，完成指定修改 | 隐藏测试全部通过 |
+| 编写测试（Test Generation） | 为给定函数编写测试 | 正确实现通过，错误实现被测试发现 |
+| 复现 Bug（Reproduction） | 编写能稳定触发问题的复现程序 | 修复前失败，修复后成功 |
+| 判断补丁（Patch Validation） | 判断给出的补丁是否真的解决问题 | 输出的判断与标准答案一致 |
 
-五个任务族是操作性切片，不是五种基础智力：Loc / Edit / Testgen / Repro / Review（本集里 Review = **Patch Validation**）。
+所有任务都由程序自动判分，不使用 LLM 进行主观打分。
 
-## Leaderboard（v1.0.1）
+## 两个分数
 
-12 配置 × 62 题 × 3 = **2,232** 次 scored trial。`remaining_dirty` 0。Halt（Artifact=1、非 clean）= **105**。Compact-10 按 Artifact 宏平均排序。27B / 35B-A3B 是 upper-reference，不进该排序。35B-A3B 是约 3B 激活的 MoE。
+不要混成一个「总分」。
 
-数字从 [`results/canonical-coverage.json`](results/canonical-coverage.json) 生成。完整五列技能表：[`results/leaderboard.md`](results/leaderboard.md)。再生：`python scripts/write_leaderboard.py --write`。
+| 通俗名称 | 技术名称 | 意思 |
+|---|---|---|
+| **结果正确率** | Artifact Correctness | Agent 最终是否留下了正确结果 |
+| **完整完成率** | Clean Completion | 结果正确，而且 Agent 正常宣布完成并停止 |
 
-![Compact-10 Artifact vs Clean](results/figures/v1.0.1-compact10.svg)
+例如，Agent 已经正确修改了文件，但仍然不断运行测试，直到 20 轮预算耗尽。这次实验的「结果正确率」记 1，但「完整完成率」记 0。下文把这类情况简称「做对但没停」。
 
-### Compact-10
+排行榜把五类任务**等权平均**，避免某一类因为题目更多而获得更大权重。全部尝试的直接统计、分子分母和五列明细见 [`结果报表.md`](结果报表.md)。
 
-| # | 模型 | Artifact 宏平均 | Clean 宏平均 | Gap | Artifact 微平均 | Clean 微平均 |
-|---:|---|---:|---:|---:|---:|---:|
-| 1 | Qwen3.5-9B | 0.786 | 0.757 | 0.029 | 148/186 | 142/186 |
-| 2 | Ministral-14B | 0.497 | 0.488 | 0.009 | 93/186 | 91/186 |
-| 3 | Ministral-8B | 0.456 | 0.411 | 0.045 | 87/186 | 78/186 |
-| 4 | Qwen3-14B | 0.404 | 0.333 | 0.072 | 76/186 | 65/186 |
-| 5 | Gemma-3-12B | 0.313 | 0.114 | **0.199** | 60/186 | 18/186 |
-| 6 | Granite-4.1-8B | 0.162 | 0.140 | 0.022 | 31/186 | 26/186 |
-| 7 | Gemma-3-4B | 0.067 | 0.067 | 0.000 | 11/186 | 11/186 |
-| 8 | Ministral-3B | 0.049 | 0.019 | 0.030 | 10/186 | 4/186 |
-| 9 | Qwen3-8B | 0.034 | 0.018 | 0.015 | 6/186 | 3/186 |
-| 10 | Llama-3.2-3B | 0.027 | 0.000 | 0.027 | 4/186 | 0/186 |
+## 排行榜（v1.0.1）
 
-### Upper-reference（不与 Compact-10 混排）
+10 个小型模型配置按结果正确率排序。图表与下表同源。
 
-| 模型 | Artifact 宏平均 | Clean 宏平均 | Gap | Artifact 微平均 | Clean 微平均 |
-|---|---:|---:|---:|---:|---:|
-| Qwen3.8-27B | 0.863 | 0.845 | 0.018 | 162/186 | 159/186 |
-| Qwen3.6-35B-A3B | 0.632 | 0.560 | 0.072 | 118/186 | 104/186 |
+![10 个小型配置的结果正确率与完整完成率](results/figures/v1.0.1-compact10.svg)
 
-### Artifact Correctness
+| 模型 | 结果正确率 | 完整完成率 |
+|---|---:|---:|
+| Qwen3.5-9B | 78.6% | 75.7% |
+| Ministral-14B | 49.7% | 48.8% |
+| Ministral-8B | 45.6% | 41.1% |
+| Qwen3-14B | 40.4% | 33.3% |
+| Gemma-3-12B | 31.3% | 11.4% |
+| Granite-4.1-8B | 16.2% | 14.0% |
+| Gemma-3-4B | 6.7% | 6.7% |
+| Ministral-3B | 4.9% | 1.9% |
+| Qwen3-8B | 3.4% | 1.8% |
+| Llama-3.2-3B | 2.7% | 0.0% |
 
-| 模型 | Loc | Edit | Testgen | Repro | Review | **宏平均** | 微平均 |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Qwen3.5-9B | 0.303 | 0.933 | 0.923 | 0.769 | 1.000 | **0.786** | 0.796（148/186） |
-| Ministral-14B | 0.091 | 0.689 | 0.026 | 0.846 | 0.833 | 0.497 | 0.500（93/186） |
-| Ministral-8B | 0.152 | 0.689 | 0.308 | 0.564 | 0.567 | 0.456 | 0.468（87/186） |
-| Qwen3-14B | 0.091 | 0.467 | 0.462 | 0.436 | 0.567 | 0.404 | 0.409（76/186） |
-| Gemma-3-12B | 0.000 | 0.533 | 0.179 | 0.385 | 0.467 | 0.313 | 0.323（60/186） |
-| Granite-4.1-8B | 0.000 | 0.356 | 0.077 | 0.077 | 0.300 | 0.162 | 0.167（31/186） |
-| Gemma-3-4B | 0.000 | 0.067 | 0.000 | 0.000 | 0.267 | 0.067 | 0.059（11/186） |
-| Ministral-3B | 0.030 | 0.111 | 0.103 | 0.000 | 0.000 | 0.049 | 0.054（10/186） |
-| Qwen3-8B | 0.091 | 0.000 | 0.000 | 0.077 | 0.000 | 0.034 | 0.032（6/186） |
-| Llama-3.2-3B | 0.000 | 0.000 | 0.000 | 0.000 | 0.133 | 0.027 | 0.022（4/186） |
-| Qwen3.8-27B | 0.576 | 0.978 | 0.923 | 0.872 | 0.967 | 0.863 | 0.871（162/186） |
-| Qwen3.6-35B-A3B | 0.364 | 0.644 | 0.923 | 0.462 | 0.767 | 0.632 | 0.634（118/186） |
+另外测试了两个更大的参考模型：Qwen3.8-27B 为 86.3% / 84.5%，Qwen3.6-35B-A3B 为 63.2% / 56.0%。它们不参加上述 10 个小型模型的排名。
 
-### Clean Completion
+在 105 次实验中，Agent 已经留下了正确结果，却没有按协议正常结束。Gemma-3-12B 是最清楚的例子：60 次结果正确，只有 18 次完整完成。
 
-行序与上表相同。Granite 的 Clean 宏平均高于 Gemma-12B，是停机税，不是 Granite 更会做题。
+## 评测方式
 
-| 模型 | Loc | Edit | Testgen | Repro | Review | **宏平均** | 微平均 |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Qwen3.5-9B | 0.303 | 0.867 | 0.923 | 0.692 | 1.000 | 0.757 | 0.763（142/186） |
-| Ministral-14B | 0.091 | 0.644 | 0.026 | 0.846 | 0.833 | 0.488 | 0.489（91/186） |
-| Ministral-8B | 0.091 | 0.578 | 0.282 | 0.538 | 0.567 | 0.411 | 0.419（78/186） |
-| Qwen3-14B | 0.091 | 0.467 | 0.462 | 0.410 | 0.233 | 0.333 | 0.349（65/186） |
-| Gemma-3-12B | 0.000 | 0.000 | 0.077 | 0.026 | 0.467 | 0.114 | 0.097（18/186） |
-| Granite-4.1-8B | 0.000 | 0.244 | 0.077 | 0.077 | 0.300 | 0.140 | 0.140（26/186） |
-| Gemma-3-4B | 0.000 | 0.067 | 0.000 | 0.000 | 0.267 | 0.067 | 0.059（11/186） |
-| Ministral-3B | 0.000 | 0.044 | 0.051 | 0.000 | 0.000 | 0.019 | 0.022（4/186） |
-| Qwen3-8B | 0.091 | 0.000 | 0.000 | 0.000 | 0.000 | 0.018 | 0.016（3/186） |
-| Llama-3.2-3B | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000（0/186） |
-| Qwen3.8-27B | 0.485 | 0.978 | 0.923 | 0.872 | 0.967 | 0.845 | 0.855（159/186） |
-| Qwen3.6-35B-A3B | 0.364 | 0.644 | 0.923 | 0.103 | 0.767 | 0.560 | 0.559（104/186） |
+每次实验都在独立 Linux 沙箱中运行。模型最多进行 20 轮终端交互，无法看到隐藏测试。每个模型与任务组合独立运行 3 次。
 
-## 两处诊断
+所有模型使用固定的 API 供应商、推理参数和交互接口。因此分数衡量的是「模型 + API 线路 + Agent 接口」这一完整配置，不能理解为模型权重本身的绝对能力。
 
-**同一 harness 下任务族可以显著分化。** Ministral-14B Artifact 宏平均 0.497：Repro 0.85、Testgen 0.03。Qwen3-8B 与 Qwen3.5-9B 也不是单纯的 8B→9B。
+完整协议见 [`STANDARD.md`](STANDARD.md)。冻结结果对应 tag [`benchmark-v1.0.1`](https://github.com/caojiajun777/small-ow-agent-bench/releases/tag/benchmark-v1.0.1)。
 
-**产物正确不等于干净完成。** 全表 halt **105** 次。Gemma-3-12B Artifact 宏平均 0.313（60/186），Clean 0.114（18/186），Gap **0.199**；Edit Artifact 0.53，Clean Edit 为 0。
+## 深入阅读
 
-明细、停机构成和 infra 勘误见 [`结果报表.md`](结果报表.md)。
+- [`项目说明.md`](项目说明.md)：为什么这样设计，以及主要发现
+- [`结果报表.md`](结果报表.md)：全部模型、任务族和失败分析
+- [`STANDARD.md`](STANDARD.md)：环境、参数和运行方式
 
-## 协议快照
+<details>
+<summary>运行一个任务</summary>
 
-- Agent：自写 compact-shell v0.1.1（Harbor `BaseAgent`）。每轮一条 bash 围栏或一个空 finish 围栏。不是 Terminus-2 fork。
-- 预算：最多 20 轮、命令 60 秒、观察 8000 字符。温度 0。Qwen thinking 关。禁止 provider fallback。
-- 沙箱：Harbor + Novita，`n=1`。k=3 独立沙箱重复。
-- 发表轨道：**API Standard**。Local Reference（钉死 HF 权重 + vLLM）尚未跑，不要把本表说成已控制权重。
-- 题库 62：Loc 11、Edit 15、Testgen 13、Repro 13、Review 10。Easy 12 / Medium 38 / Hard 7 / Uncalibrated 5。标签是本系统 + k=3 的经验档，不是绝对难度。
-- 有效性：infra 替换在后续时间窗口完成；provider / 顺序 / 采样冻结，API 后端时间漂移无法完全排除。
-
-完整协议：[`STANDARD.md`](STANDARD.md)。冻结结果：tag **`benchmark-v1.0.1`**。tag `benchmark-v1.0` 保留作缺测记 0 的审计快照，不再当阅读主表。
-
-## 文档
-
-| 文件 | 看什么 |
-|---|---|
-| 本文 | 落地页、v1.0.1 排行榜、怎么跑 |
-| [`项目说明.md`](项目说明.md) | 问题、设计、主结果、读法 |
-| [`结果报表.md`](结果报表.md) | 五列全表、halt、难度、infra 勘误 |
-| [`results/leaderboard.md`](results/leaderboard.md) | 从 canonical JSON 生成的排行榜 |
-| [`STANDARD.md`](STANDARD.md) | 冻结协议与指标 |
-| [`DIFFICULTY.md`](DIFFICULTY.md) | Easy / Medium / Hard / Uncalibrated |
-| [`TRAPS.md`](TRAPS.md) | 失败模式；同族不重复 |
-| [`models.lock.yaml`](models.lock.yaml) | 12 个配置 + 钉死的 provider |
-| [`EVAL-NOTE.md`](EVAL-NOTE.md) | 过程笔记；§6.2 / §13 是 v1.0 审计 |
-| [`results/hf_catalog.jsonl`](results/hf_catalog.jsonl) | 62 题公开目录（无 hidden verifier） |
-| [`CITATION.cff`](CITATION.cff) | GitHub 引用 |
-
-Gold、hidden 测试、mutant、foil 留在 Harbor `tasks/`。Hugging Face 目录只含 id / skill / difficulty / trap / 题面，不含 `tests/`、`solution/`、`foils/`、gold 名单或 `environment/repo`。已发布：[huggingface.co/datasets/junjun77/small-ow-agent-bench](https://huggingface.co/datasets/junjun77/small-ow-agent-bench)。
-
-## 怎么跑
-
-沙箱用 **Novita**（`-e novita`，`n=1`）。Agent 用 **compact-shell**，不要默认 Terminus-2。复制 `.env.example` 为 `.env`，不要提交 `.env`。已有一条 Novita job 时不要再开第二条。
+沙箱用 Novita，Agent 用 compact-shell。复制 `.env.example` 为 `.env`，不要提交 `.env`。已有一条评测任务在跑时不要再开第二条。
 
 ```powershell
 $env:PYTHONIOENCODING = "utf-8"
 $env:PYTHONPATH = (Get-Location).Path
 
-# 单题
 harbor run --env-file .env -o jobs -p ./tasks/loc-member-discount `
   -a agents.compact_shell:CompactShellAgent `
   -m openrouter/qwen/qwen3.5-9b -k 1 -n 1 -e novita `
   --ak 'llm_call_kwargs={"extra_body":{"enable_thinking":false}}'
 
-# 打分
 python scripts/score_standard.py jobs/<job>
 ```
 
-oracle 必须 1.0，nop 必须 0.0：
-
-```powershell
-harbor run --env-file .env -o jobs -p ./tasks/loc-bind-host -a oracle -k 1 -n 1 -e novita
-harbor run --env-file .env -o jobs -p ./tasks/review-clip-incomplete -a nop -k 1 -n 1 -e novita
-```
-
 锁定名单与补格子：`python scripts/run_locked.py`（见 [`STANDARD.md`](STANDARD.md)）。不要覆盖 `jobs/locked-core.json`、`jobs/locked-core-k3.json`、`jobs/locked-hard-release-k3.json`。
+
+</details>
+
+<details>
+<summary>更多审计与开发文档</summary>
+
+- [`DIFFICULTY.md`](DIFFICULTY.md)：Easy / Medium / Hard / Uncalibrated
+- [`TRAPS.md`](TRAPS.md)：失败模式
+- [`EVAL-NOTE.md`](EVAL-NOTE.md)：过程笔记
+- [`HARD-RELEASE.md`](HARD-RELEASE.md)：Hard-15
+- [`GATE-A.md`](GATE-A.md)：发布清单
+- [`results/RELEASE-v1.0.1.md`](results/RELEASE-v1.0.1.md)：相对 v1.0 改了什么
+- [`results/leaderboard.md`](results/leaderboard.md)：生成的五列排行榜
+- [`results/hf_catalog.jsonl`](results/hf_catalog.jsonl)：公开目录元数据；[Hugging Face](https://huggingface.co/datasets/junjun77/small-ow-agent-bench)
+- [`CITATION.cff`](CITATION.cff)：引用
+- [`models.lock.yaml`](models.lock.yaml)：12 个配置
+
+隐藏评分程序、标准答案和干扰补丁留在 Harbor `tasks/`，不会放进公开数据集。
+
+</details>

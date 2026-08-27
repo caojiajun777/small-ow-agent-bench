@@ -34,6 +34,18 @@ Always: oracle = 1, nop = 0. That is solvability, not a difficulty band.
 
 Published 62 under compact-shell k=3 (canonical coverage, 2026-08-27): **Easy 12, Medium 38, Hard 7, Out-of-range 5**. 57 items have empirical labels; 5 stay out of the ladder and still enter the mean. k=3 is an observation (0/3 or 3/3), not a proof of p=0 or p=1. Regenerated from `results/v1.0.1_difficulty.json`; v1.0 freeze was Easy 10 / Medium 40 / Hard 6 / Out-of-range 6.
 
+### v1.0.1 task lists
+
+**Easy (12):** `loc-unused-fix`; Edit `covered-length`, `deep-merge`, `prefix-sums`, `timeout-zero`, `retry-discount`; Testgen `timeout-zero`, `cents`; Review `slug-almost`, `slug-complete`, `rotate-right`, `bare-except`. Two Easy items come from Hard-15 floor hits: `edit-retry-discount` (Ministral-3B), `review-bare-except` (Gemma-4B).
+
+**Hard (7):** `loc-member-discount`, `loc-vip-two-files` (27B Clean 0/3), `testgen-anagram`, `repro-first-index`, `repro-whitespace`, `loc-hook-plugin`, `repro-nested-alias` (27B Artifact 3/3 after infra a3; previously 2/3).
+
+**Uncalibrated / Out-of-range (5):** 27B 0/3: `loc-bind-host`, `loc-reexport`, `loc-env-wrapper`. 27B 1/3 or 2/3: `loc-vendor-shadow`, `edit-config-beside`.
+
+**Medium:** the remaining 38. `loc-traceback-helper` is 9B 3/3, 27B 0/3, still Medium (3B/4B never hit). `loc-failing-test-impl` is 9B 3/3 after infra replacement.
+
+Do not mint Hard by relaxing Loc from exact-set to subset. Public ranking tables live in [`结果报表.md`](结果报表.md); this file keeps the item names.
+
 An item that everyone in 3B–27B passes stays in the set as smoke, not as Hard.
 
 `k=1` is noisy. A single 9B zero does not mint Hard. Prefer `k=3` on loc before locking a label.
