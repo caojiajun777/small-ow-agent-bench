@@ -1,4 +1,4 @@
-"""Write a 12-config Artifact vs Clean SVG from canonical-coverage.json.
+"""Write the public 12-config ranking SVG from canonical-coverage.json.
 
 Does not call Harbor or overwrite frozen locks. No matplotlib.
 
@@ -37,15 +37,14 @@ def render_svg(coverage: dict) -> str:
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
         f'viewBox="0 0 {width} {height}" role="img" '
-        'aria-label="12 configs Artifact vs Clean macro mean, v1.0.1">',
+        'aria-label="12 个配置的结果正确率与完整完成率">',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         '<text x="24" y="28" font-family="ui-sans-serif, system-ui, sans-serif" '
         'font-size="16" font-weight="600" fill="#111827">'
-        "12 configs · Artifact vs Clean (v1.0.1)</text>",
+        "12 个配置：结果正确率与完整完成率</text>",
         '<text x="24" y="48" font-family="ui-sans-serif, system-ui, sans-serif" '
         'font-size="12" fill="#6b7280">'
-        "All 12 configs ranked by five-skill macro mean on 62 items. "
-        "Micro denominator is 186.</text>",
+        "深色是最终结果对不对；浅色是做对了，并且正常停下来。五类任务等权平均。</text>",
     ]
     for tick in (0.0, 0.25, 0.5, 0.75, 1.0):
         x = x_of(tick)
@@ -58,7 +57,7 @@ def render_svg(coverage: dict) -> str:
         parts.append(
             f'<text x="{x:.1f}" y="{y2 + 16:.1f}" text-anchor="middle" '
             'font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" '
-            f'fill="#6b7280">{tick:.2f}</text>'
+            f'fill="#6b7280">{int(tick * 100)}%</text>'
         )
     for i, model in enumerate(ranked):
         y = top + i * row_h
@@ -81,20 +80,19 @@ def render_svg(coverage: dict) -> str:
         parts.append(
             f'<text x="{x_of(a) + 6:.1f}" y="{y + 6 + bar_h - 1:.1f}" '
             'font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" '
-            f'fill="#1f4e79">{a:.3f}</text>'
+            f'fill="#1f4e79">{a * 100:.1f}%</text>'
         )
     legend_y = height - 28
     parts += [
         f'<rect x="24" y="{legend_y - 10}" width="14" height="10" fill="#1f4e79"/>',
         f'<text x="44" y="{legend_y}" font-family="ui-sans-serif, system-ui, sans-serif" '
-        'font-size="12" fill="#111827">Artifact</text>',
-        f'<rect x="120" y="{legend_y - 10}" width="14" height="10" fill="#9db4c8"/>',
-        f'<text x="140" y="{legend_y}" font-family="ui-sans-serif, system-ui, sans-serif" '
-        'font-size="12" fill="#111827">Clean</text>',
-        f'<text x="210" y="{legend_y}" font-family="ui-sans-serif, system-ui, sans-serif" '
-        'font-size="11" fill="#6b7280">'
-        "Source: results/canonical-coverage.json · halt (Artifact=1, not clean) = "
-        f"{coverage['halt_unfinished_atomic']}</text>",
+        'font-size="12" fill="#111827">结果正确率</text>',
+        f'<rect x="148" y="{legend_y - 10}" width="14" height="10" fill="#9db4c8"/>',
+        f'<text x="168" y="{legend_y}" font-family="ui-sans-serif, system-ui, sans-serif" '
+        'font-size="12" fill="#111827">完整完成率</text>',
+        f'<text x="276" y="{legend_y}" font-family="ui-sans-serif, system-ui, sans-serif" '
+        'font-size="12" fill="#6b7280">'
+        f"两条差一截，就是做对了却没停：共 {coverage['halt_unfinished_atomic']} 次</text>",
         "</svg>",
         "",
     ]

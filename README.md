@@ -44,7 +44,7 @@ A diagnostic benchmark for finding where small coding agents fail.
 
 ## 排行榜（v1.0.1）
 
-12 个配置全部进入同一张排名，按结果正确率排序。图表与下表同源。
+12 个配置全部进入同一张排名，按结果正确率排序。图里深色条是「结果有没有做对」，浅色条是「做对了并且正常停下来」；两条差一截，就是做对了却没停。
 
 ![12 个配置的结果正确率与完整完成率](results/figures/v1.0.1-compact10.svg)
 

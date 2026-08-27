@@ -203,7 +203,7 @@ Do not train on this 62-item bank and then report the same items as evaluation.
 
 Headline = five-skill **macro** mean. Micro = successes / 186. Artifact does not require `finish`; Clean does. Halt (Artifact=1, not clean) = **{coverage['halt_unfinished_atomic']}**. 12×62×3 = **{coverage['n_scored']}** scored trials. All 12 configs enter one rank. Qwen3.6-35B-A3B is a MoE with ~3B active parameters.
 
-![12 configs Artifact vs Clean](v1.0.1-compact10.svg)
+![结果正确率与完整完成率](v1.0.1-compact10.svg)
 
 {rank_table}
 
