@@ -27,6 +27,11 @@ def test_readme_embeds_canonical_headline():
     assert "78.6%" in readme
     assert "75.7%" in readme
     assert "86.3%" in readme
+    assert "63.2%" in readme
+    assert "Qwen3.8-27B" in readme
+    assert "Qwen3.6-35B-A3B" in readme
+    assert "不参加" not in readme
+    assert "10 个小型模型配置中整体表现最好" not in readme
     assert "105" in readme
     assert "Qwen3.5-9B" in readme
     assert "项目说明.md" in readme
@@ -49,6 +54,10 @@ def test_render_matches_canonical_micros():
     assert "0.863" in text
     assert "`remaining_dirty` 0" in text
     assert "Halt (Artifact=1, not clean) = **105**" in text
-    compact_head = text.split("## Upper-reference")[0]
-    assert "Qwen3.8-27B" not in compact_head
-    assert "Qwen3.5-9B" in compact_head
+    assert "## Compact-10" not in text
+    assert "Upper-reference" not in text
+    assert "do not enter that rank" not in text
+    rank_head = text.split("## Artifact Correctness")[0]
+    assert "| 1 | Qwen3.8-27B |" in rank_head
+    assert "| 2 | Qwen3.5-9B |" in rank_head
+    assert "| 3 | Qwen3.6-35B-A3B |" in rank_head

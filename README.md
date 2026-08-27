@@ -6,7 +6,7 @@
 
 主要发现：
 
-- Qwen3.5-9B 是 10 个小型模型配置中整体表现最好的；
+- Qwen3.8-27B 是 12 个配置中整体表现最好的；Qwen3.5-9B 以 78.6% 排第二；
 - Ministral-14B 擅长复现 Bug，却几乎不会编写能发现错误的测试；
 - Gemma-3-12B 经常已经正确修改代码，却因为不能正常停止而丢分。
 
@@ -44,13 +44,15 @@ A diagnostic benchmark for finding where small coding agents fail.
 
 ## 排行榜（v1.0.1）
 
-10 个小型模型配置按结果正确率排序。图表与下表同源。
+12 个配置全部进入同一张排名，按结果正确率排序。图表与下表同源。
 
-![10 个小型配置的结果正确率与完整完成率](results/figures/v1.0.1-compact10.svg)
+![12 个配置的结果正确率与完整完成率](results/figures/v1.0.1-compact10.svg)
 
 | 模型 | 结果正确率 | 完整完成率 |
 |---|---:|---:|
+| Qwen3.8-27B | 86.3% | 84.5% |
 | Qwen3.5-9B | 78.6% | 75.7% |
+| Qwen3.6-35B-A3B | 63.2% | 56.0% |
 | Ministral-14B | 49.7% | 48.8% |
 | Ministral-8B | 45.6% | 41.1% |
 | Qwen3-14B | 40.4% | 33.3% |
@@ -61,7 +63,7 @@ A diagnostic benchmark for finding where small coding agents fail.
 | Qwen3-8B | 3.4% | 1.8% |
 | Llama-3.2-3B | 2.7% | 0.0% |
 
-另外测试了两个更大的参考模型：Qwen3.8-27B 为 86.3% / 84.5%，Qwen3.6-35B-A3B 为 63.2% / 56.0%。它们不参加上述 10 个小型模型的排名。
+Qwen3.6-35B-A3B 是约 3B 激活的 MoE，不是 27B dense 的下一档；它进入同一张排名，分数也不表示参数量越大越高。
 
 在 105 次实验中，Agent 已经留下了正确结果，却没有按协议正常结束。Gemma-3-12B 是最清楚的例子：60 次结果正确，只有 18 次完整完成。
 

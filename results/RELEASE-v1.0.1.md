@@ -9,7 +9,7 @@ API Standard 最终结果表。tag 钉在冻结提交上；之后的 README / �
 - 12 配置 × 62 题 × 3 = **2,232** 次有效实验；`remaining_dirty` 0
 - 做对但没停（Artifact=1，未 Clean）= **105**
 
-10 个小型配置按 Artifact 宏平均排序。27B / 35B-A3B 是更大模型参考。
+12 个配置全部按 Artifact 宏平均进入同一张排名。Qwen3.6-35B-A3B 是约 3B 激活的 MoE，不是 27B dense 的下一档。
 
 ## 相对 v1.0 改了什么
 

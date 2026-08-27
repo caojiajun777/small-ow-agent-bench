@@ -148,19 +148,16 @@ def render_jsonl(rows: list[dict[str, Any]]) -> str:
 
 
 def dataset_card() -> str:
-    from write_leaderboard import compact_and_upper, load_coverage, rank_row
+    from write_leaderboard import load_coverage, rank_row, ranked_models
 
     coverage = load_coverage()
-    compact, upper = compact_and_upper(coverage["models"])
+    ranked = ranked_models(coverage["models"])
     rank_header = (
         "| # | Model | Artifact macro | Clean macro | Gap | Artifact micro | Clean micro |\n"
         "|---:|---|---:|---:|---:|---:|---:|"
     )
-    compact_table = "\n".join(
-        [rank_header, *[rank_row(i, model) for i, model in enumerate(compact, start=1)]]
-    )
-    upper_table = "\n".join(
-        [rank_header, *[rank_row("—", model) for model in upper]]
+    rank_table = "\n".join(
+        [rank_header, *[rank_row(i, model) for i, model in enumerate(ranked, start=1)]]
     )
     return f"""---
 license: apache-2.0
@@ -202,17 +199,13 @@ It does **not** include hidden verifiers: `tests/`, `solution/`, `foils/`, gold 
 
 Do not train on this 62-item bank and then report the same items as evaluation.
 
-## Compact-10 (v1.0.1)
+## Leaderboard (v1.0.1)
 
-Headline = five-skill **macro** mean. Micro = successes / 186. Artifact does not require `finish`; Clean does. Halt (Artifact=1, not clean) = **{coverage['halt_unfinished_atomic']}**. 12×62×3 = **{coverage['n_scored']}** scored trials.
+Headline = five-skill **macro** mean. Micro = successes / 186. Artifact does not require `finish`; Clean does. Halt (Artifact=1, not clean) = **{coverage['halt_unfinished_atomic']}**. 12×62×3 = **{coverage['n_scored']}** scored trials. All 12 configs enter one rank. Qwen3.6-35B-A3B is a MoE with ~3B active parameters.
 
-![Compact-10 Artifact vs Clean](v1.0.1-compact10.svg)
+![12 configs Artifact vs Clean](v1.0.1-compact10.svg)
 
-{compact_table}
-
-## Upper-reference (not ranked with Compact-10)
-
-{upper_table}
+{rank_table}
 
 Full five-skill tables: [results/leaderboard.md](https://github.com/caojiajun777/small-ow-agent-bench/blob/main/results/leaderboard.md).
 
@@ -278,7 +271,7 @@ def push_dataset(repo_id: str) -> None:
         folder_path=str(HF_DIR),
         repo_id=repo_id,
         repo_type="dataset",
-        commit_message="Refresh v1.0.1 catalog card, viewer config, and Compact-10 figure.",
+        commit_message="Refresh v1.0.1 catalog card to rank all 12 configs.",
     )
     print(f"https://huggingface.co/datasets/{repo_id}")
 

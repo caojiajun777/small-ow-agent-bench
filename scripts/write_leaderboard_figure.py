@@ -1,4 +1,4 @@
-"""Write a Compact-10 Artifact vs Clean SVG from canonical-coverage.json.
+"""Write a 12-config Artifact vs Clean SVG from canonical-coverage.json.
 
 Does not call Harbor or overwrite frozen locks. No matplotlib.
 
@@ -15,20 +15,20 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from build_canonical_matrix import FROZEN_LOCKS  # noqa: E402
-from write_leaderboard import compact_and_upper, load_coverage  # noqa: E402
+from write_leaderboard import load_coverage, ranked_models  # noqa: E402
 
 OUT = ROOT / "results" / "figures" / "v1.0.1-compact10.svg"
 
 
 def render_svg(coverage: dict) -> str:
-    compact, _upper = compact_and_upper(coverage["models"])
+    ranked = ranked_models(coverage["models"])
 
     width = 860
-    left = 168
+    left = 176
     top = 64
     row_h = 36
-    plot_w = 620
-    height = top + row_h * len(compact) + 72
+    plot_w = 612
+    height = top + row_h * len(ranked) + 72
     bar_h = 11
 
     def x_of(value: float) -> float:
@@ -37,20 +37,20 @@ def render_svg(coverage: dict) -> str:
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
         f'viewBox="0 0 {width} {height}" role="img" '
-        'aria-label="Compact-10 Artifact vs Clean macro mean, v1.0.1">',
+        'aria-label="12 configs Artifact vs Clean macro mean, v1.0.1">',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         '<text x="24" y="28" font-family="ui-sans-serif, system-ui, sans-serif" '
         'font-size="16" font-weight="600" fill="#111827">'
-        "Compact-10 · Artifact vs Clean (v1.0.1)</text>",
+        "12 configs · Artifact vs Clean (v1.0.1)</text>",
         '<text x="24" y="48" font-family="ui-sans-serif, system-ui, sans-serif" '
         'font-size="12" fill="#6b7280">'
-        "Five-skill macro mean on 62 items. Micro denominator is 186. "
-        "27B / 35B-A3B are upper-reference and are not in this rank.</text>",
+        "All 12 configs ranked by five-skill macro mean on 62 items. "
+        "Micro denominator is 186.</text>",
     ]
     for tick in (0.0, 0.25, 0.5, 0.75, 1.0):
         x = x_of(tick)
         y1 = top - 6
-        y2 = top + row_h * len(compact)
+        y2 = top + row_h * len(ranked)
         parts.append(
             f'<line x1="{x:.1f}" y1="{y1:.1f}" x2="{x:.1f}" y2="{y2:.1f}" '
             'stroke="#e5e7eb" stroke-width="1"/>'
@@ -60,7 +60,7 @@ def render_svg(coverage: dict) -> str:
             'font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" '
             f'fill="#6b7280">{tick:.2f}</text>'
         )
-    for i, model in enumerate(compact):
+    for i, model in enumerate(ranked):
         y = top + i * row_h
         label = html.escape(model["display"])
         parts.append(

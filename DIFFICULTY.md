@@ -11,15 +11,15 @@ This is not Terminal-Bench 3 / SWE-bench: those may keep items that no current L
 
 ## Calibration ladder
 
-| Role | Model | Harbor id | On the 3B–9B leaderboard? |
+| Role | Model | Harbor id | Published ranking |
 |---|---|---|---|
-| Floor | Ministral 3B | `openrouter/mistralai/ministral-3b-2512` | appendix only |
+| Floor | Ministral 3B | `openrouter/mistralai/ministral-3b-2512` | yes |
 | Target | Qwen3.5-9B | `openrouter/qwen/qwen3.5-9b` | yes |
 | Target peer | Ministral 8B | `openrouter/mistralai/ministral-8b-2512` | yes |
-| Ceiling (label only) | Qwen3.5-27B | `dashscope/qwen3.5-27b` (also `openrouter/qwen/qwen3.5-27b`) | **no** |
-| Ceiling (optional) | 34B-class ruler | not pinned yet | **no** |
+| Ceiling (Hard labels) | Qwen3.8-27B | `openrouter/qwen/qwen3.8-27b` | yes |
+| Optional extra ceiling | 34B-class | not pinned yet | **no** |
 
-27B / 34B are rulers, not laptop-small results. Current Hard labels use 27B. A 34B pin can confirm Frontier; it does not enter the 3B–9B Core table. The old Groq 27B 4/4 was appendix terminal tasks only; it does not calibrate atomic Hard.
+Published ranking includes all 12 freeze configs. 27B is also the calibration ceiling for Hard / Uncalibrated labels. A 34B pin can confirm Frontier; it is not in this freeze. The old Groq 27B 4/4 was appendix terminal tasks only; it does not calibrate atomic Hard.
 
 Always: oracle = 1, nop = 0. That is solvability, not a difficulty band.
 

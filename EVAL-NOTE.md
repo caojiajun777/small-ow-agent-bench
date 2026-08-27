@@ -1,6 +1,6 @@
 # small-ow-agent-bench：评测笔记（草稿）
 
-状态：协议已冻、Core 47 已冻；k=1 探索矩阵已齐；**正式 Core 主表 k=3 已齐**（10×47 + 尺子 7 道 Loc，每格 `n_valid=3`，产物 `jobs/locked-core-k3.json`，不覆盖 `locked-core.json`）。Hard-Release-15 已冻并跑完 6 个受试 × k=3（`jobs/locked-hard-release-k3.json`，90 格 `n_valid=3`，infra=0）。6 个缺测 compact 的 Hard-15 补全已齐（`jobs/locked-hard-floor-k3.json`，90 格 `n_valid=3`，**不覆盖**官方 Hard 锁，见 §12.4）。27B / 35B 全量 Base-47 k=3 已齐（`jobs/locked-upper-base-k3.json`，94 格 `n_valid=3`，**不进** compact-10 均值，见 §13）。Gemma-4B 429 side table 已齐（`jobs/locked-gemma4b-rerun-k3.json`，67/67，**不覆盖** core lock，见 §14）。13 格 infra 已替换（`jobs/locked-infra-rerun-k3.json`，13/13，见 §15）。**当前对外主表**是 v1.0.1 canonical matrix `results/canonical-coverage.json`（Hard 补全 + Gemma-4B 429 + infra 13；Gemma-4B 11/186；`remaining_dirty` 0；Headline 9B 0.786 / 27B 0.863）。冻结审计表仍见 §6.2（缺测记 0）。k=3 探索性 1PL 已拟合（`jobs/irt-k3.json`，Binomial(3)，不进发表均值）。Core Frontier 现为 2 道 Loc + 1 道 Testgen + 3 道 Repro + Hard-15 `loc-hook-plugin`（§11 / §13 / §15）。**v1.0 = API Standard（系统表）**。公开仓库：https://github.com/caojiajun777/small-ow-agent-bench。Local Reference 全表未跑。本文不是正式论文，给公开仓库和评测实习答辩用。
+状态：协议已冻、Core 47 已冻；k=1 探索矩阵已齐；**正式 Core 主表 k=3 已齐**（10×47 + 尺子 7 道 Loc，每格 `n_valid=3`，产物 `jobs/locked-core-k3.json`，不覆盖 `locked-core.json`）。Hard-Release-15 已冻并跑完 6 个受试 × k=3（`jobs/locked-hard-release-k3.json`，90 格 `n_valid=3`，infra=0）。6 个缺测 compact 的 Hard-15 补全已齐（`jobs/locked-hard-floor-k3.json`，90 格 `n_valid=3`，**不覆盖**官方 Hard 锁，见 §12.4）。27B / 35B 全量 Base-47 k=3 已齐（`jobs/locked-upper-base-k3.json`，94 格 `n_valid=3`，已并入 v1.0.1 的 12 配置总排名，见 §13）。Gemma-4B 429 side table 已齐（`jobs/locked-gemma4b-rerun-k3.json`，67/67，**不覆盖** core lock，见 §14）。13 格 infra 已替换（`jobs/locked-infra-rerun-k3.json`，13/13，见 §15）。**当前对外主表**是 v1.0.1 canonical matrix `results/canonical-coverage.json`（Hard 补全 + Gemma-4B 429 + infra 13；Gemma-4B 11/186；`remaining_dirty` 0；Headline 27B 0.863 / 9B 0.786；12 个配置全部进入同一张排名）。冻结审计表仍见 §6.2（缺测记 0）。k=3 探索性 1PL 已拟合（`jobs/irt-k3.json`，Binomial(3)，不进发表均值）。Core Frontier 现为 2 道 Loc + 1 道 Testgen + 3 道 Repro + Hard-15 `loc-hook-plugin`（§11 / §13 / §15）。**v1.0 = API Standard（系统表）**。公开仓库：https://github.com/caojiajun777/small-ow-agent-bench。Local Reference 全表未跑。本文不是正式论文，给公开仓库和评测实习答辩用。
 
 一句话：在 compact-shell 下用五个诊断维度，区分从玩具档到部署档（约 3B–35B）的开源小模型在 shell agentic coding 上「哪一列会、哪一列不会」。不是追求大家都考 50 分，也不主张这五项是基础智力或相互正交。
 
@@ -23,7 +23,7 @@
 - 谁更会填 JSON / `task_complete`
 - 真实 GitHub 多文件 issue（SWE-bench 式复合修复）
 - 推理开着的 Reasoner（进 Reasoning 表）
-- 把 27B / 35B 的名次塞进 3B–14B 主均值（它们是部署档 / Frontier，不是那张表的选手）
+- 把 12 个配置拆成「小模型主榜 + 大模型旁观」；对外主表是一张 12 配置排名
 
 **能写：** 在固定 compact-shell + 钉死线路下，某模型某原子的端到端通过率。  
 **不能写：** 本 bench 证明 Qwen 35B 的固有代码能力低于 Qwen 9B。  
@@ -408,11 +408,11 @@ v1.0 不改回合数、parser、finish、Repro 合同或 Atomic 规则。宽松�
 | Qwen3-8B | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000（0/45） |
 | Llama-3.2-3B | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000（0/45） |
 
-合计 Atomic 23/270、E2E 14/270。Gemma-12B Hard Edit / Repro 的 Atomic 成功几乎全是 `protocol_error`（没 `finish`）。冻结 Base-47 + 本文件并成 62 后，Gemma-12B Atomic 0.313（60/186）、Granite 0.162（31/186）。compact-10 前六名不变。Headline 9B / 27B 不动。
+合计 Atomic 23/270、E2E 14/270。Gemma-12B Hard Edit / Repro 的 Atomic 成功几乎全是 `protocol_error`（没 `finish`）。冻结 Base-47 + 本文件并成 62 后，Gemma-12B Atomic 0.313（60/186）、Granite 0.162（31/186）。官方 Hard 锁没有改写。对外阅读表是 12 配置总排名。
 
-## 13. 27B / 35B Base-47 k=3（部署档，不进 compact-10 均值，2026-08-26）
+## 13. 27B / 35B Base-47 k=3（数据层 `locked-upper-base-k3`，2026-08-26）
 
-跑法：`python scripts/run_locked.py --run --base-fill`。27B 先从 `locked-core-k3.json` 种子已有格（47 题 a1 + 7 道 Loc a2/a3），再补其余；35B 从零 141 格。产物 **`jobs/locked-upper-base-k3.json`**（`kind=locked_upper_base_k3`，`enters_official_mean=false`）。**没有覆盖** `locked-core.json` / `locked-core-k3.json`。94 格全部 `n_valid=3`，infra=0，TLE=0。282 次：27B clean 131 / `protocol_error` 10；35B clean 97 / `protocol_error` 44。
+跑法：`python scripts/run_locked.py --run --base-fill`。27B 先从 `locked-core-k3.json` 种子已有格（47 题 a1 + 7 道 Loc a2/a3），再补其余；35B 从零 141 格。产物 **`jobs/locked-upper-base-k3.json`**（`kind=locked_upper_base_k3`，`enters_official_mean=false` 指这份锁文件单独不构成发表均值）。**没有覆盖** `locked-core.json` / `locked-core-k3.json`。94 格全部 `n_valid=3`，infra=0，TLE=0。282 次：27B clean 131 / `protocol_error` 10；35B clean 97 / `protocol_error` 44。v1.0.1 最终结果表已把这 282 格并入 12 配置总排名。
 
 发表均值用 §6.2 的 62 道（v1.0 缺测记 0；地板 Hard-15 补全见 §12.4）。本跑是 Base-47 补齐；下表已并进官方 Hard-15。9B 行来自 `locked-core-k3.json` + `locked-hard-release-k3.json`。35B-A3B 仍是 ~3B 激活 MoE。不按本表改 Hard-15，不给 35B 加分，不从 Atomic 剔除 protocol。
 

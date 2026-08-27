@@ -26,18 +26,19 @@ def load_coverage() -> dict:
     return json.loads(SUMMARY_OUT.read_text(encoding="utf-8"))
 
 
-def compact_and_upper(models: list[dict]) -> tuple[list[dict], list[dict]]:
-    compact = [m for m in models if m.get("group") == "compact_dense"]
-    upper = [m for m in models if m.get("group") != "compact_dense"]
-    return compact, upper
+def ranked_models(models: list[dict]) -> list[dict]:
+    return sorted(
+        models,
+        key=lambda row: (-float(row["atomic_macro"]), row["display"]),
+    )
 
 
-def skill_row(model: dict, *, e2e: bool) -> str:
+def skill_row(model: dict, *, e2e: bool, highlight: bool = False) -> str:
     skills = model["skills_e2e" if e2e else "skills_atomic"]
     macro = model["e2e_macro" if e2e else "atomic_macro"]
     ok = model["e2e_ok" if e2e else "atomic_ok"]
     cells = " | ".join(fmt3(skills[k]) for k in SKILLS)
-    macro_cell = f"**{fmt3(macro)}**" if model["lock_id"] == "qwen3.5-9b" and not e2e else fmt3(macro)
+    macro_cell = f"**{fmt3(macro)}**" if highlight and not e2e else fmt3(macro)
     micro = f"{fmt3(ok / 186)}（{ok}/186）"
     return f"| {model['display']} | {cells} | {macro_cell} | {micro} |"
 
@@ -55,7 +56,7 @@ def rank_row(rank: int | str, model: dict) -> str:
 
 
 def render(coverage: dict) -> str:
-    compact, upper = compact_and_upper(coverage["models"])
+    ranked = ranked_models(coverage["models"])
     skill_header = (
         "| 模型 | "
         + " | ".join(SKILL_HEAD)
@@ -73,36 +74,29 @@ def render(coverage: dict) -> str:
         "Regenerate: `python scripts/write_leaderboard.py --write`.",
         "",
         "Headline = five-skill **macro** mean on 62 items. Micro = successes / 186. "
-        "Compact-10 is ranked by Artifact macro. 27B / 35B-A3B are upper-reference "
-        "and do not enter that rank. Artifact does not require `finish`; Clean does.",
+        "All 12 configs enter one rank, sorted by Artifact macro. "
+        "Qwen3.6-35B-A3B is a MoE with ~3B active parameters, not a dense 35B step. "
+        "Artifact does not require `finish`; Clean does.",
         "",
         f"n = {coverage['n_models']} configs × {coverage['n_tasks']} tasks × 3 "
         f"= **{coverage['n_scored']}** scored trials. "
         f"`remaining_dirty` {len(coverage.get('remaining_dirty') or [])}. "
         f"Halt (Artifact=1, not clean) = **{coverage['halt_unfinished_atomic']}**.",
         "",
-        "## Compact-10",
+        "## Ranked (12 configs)",
         "",
         rank_header,
     ]
-    for i, model in enumerate(compact, start=1):
+    for i, model in enumerate(ranked, start=1):
         lines.append(rank_row(i, model))
-    lines += [
-        "",
-        "## Upper-reference (not ranked with Compact-10)",
-        "",
-        rank_header,
-    ]
-    for model in upper:
-        lines.append(rank_row("—", model))
     lines += [
         "",
         "## Artifact Correctness (five skills)",
         "",
         skill_header,
     ]
-    for model in compact + upper:
-        lines.append(skill_row(model, e2e=False))
+    for i, model in enumerate(ranked):
+        lines.append(skill_row(model, e2e=False, highlight=i == 0))
     lines += [
         "",
         "## Clean Completion (five skills)",
@@ -112,7 +106,7 @@ def render(coverage: dict) -> str:
         "",
         skill_header,
     ]
-    for model in compact + upper:
+    for model in ranked:
         lines.append(skill_row(model, e2e=True))
     lines.append("")
     return "\n".join(lines)
