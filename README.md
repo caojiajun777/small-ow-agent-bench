@@ -1,221 +1,126 @@
 # small-ow-agent-bench
 
-Harbor 上的 **Atomic Shell-Agent Benchmark**：在自己写的 `compact-shell` 下，测开源小模型从玩具档到部署档（约 3B–35B）的五个诊断维度。当前 OpenRouter 上能稳定调用的 **3B–14B instruct** 是 Core 主表；27B / ~35B 是部署档与 Frontier，不进 3B–14B 均值。不是「专用 coder 小模型榜」（OR 上目前没有稳定的 dense 3B–14B 专用 coder）。
+在冻结的极薄 shell（**compact-shell** v0.1.1）下，测开放权重小型 coding agent 的**端到端系统可靠性**。分数是模型 + 钉死的 OpenRouter 线路 + Novita 沙箱 + compact-shell 的系统分，不是脱离 harness 的 coding IQ。
 
-**核心思想：** 缺的是 HumanEval 和 SWE-bench 中间那一层——已经是 shell agent，但还能按一项诊断维度打分。五个任务族是操作性隔离，不是五种基础智力。当前主表是 62 道 v1.0.1 canonical matrix（Hard-15 已补全，Gemma-4B 429 与 13 格 infra 已按唯一键替换）。9B 实际跑过 Hard-15。Headline 是五项宏平均。数字见 [`结果报表.md`](结果报表.md)。
+公开仓库：[github.com/caojiajun777/small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench)。当前阅读表是 **v1.0.1 canonical matrix**，对应 git tag **`benchmark-v1.0.1`**。方法与读法见 [`项目说明.md`](项目说明.md)。
 
-公开仓库：[github.com/caojiajun777/small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench)。发布 tag 是 **`benchmark-v1.0`**（API Standard）。公开集按陷阱去重；同构题只进库存。
+## 两个指标
 
-测的是 **固定极薄 shell harness（`compact-shell`）下的模型表现**，不是「模型固有 coding 能力」，也不是谁更会填 JSON 工具。正式协议见 [`STANDARD.md`](STANDARD.md)。**v1.0 发表的是 API Standard（系统表）**：钉死的 OpenRouter 线路 + Novita + compact-shell。Local Reference（钉死 HF 权重 + vLLM）是后续权重控制实验，不是本 tag 的前置条件。早期 Terminus-2 job 只做 harness 对照，不进正式主表。旧 8B/9B/Granite 标定同样不进主表；Core 主表 62 道、k=3、n=1。当前阅读表是 v1.0.1 canonical matrix，不再把缺测 Hard 记 0。难度标签见 [`DIFFICULTY.md`](DIFFICULTY.md)。超时分型见 [`TIMEOUT.md`](TIMEOUT.md)（只做诊断，不改 atomic 分）。打分字段由 `python scripts/score_standard.py jobs/<job>` 写出。
+不要混成一个「总分」。Headline = 五个任务族的**宏平均**。括号里的微平均 = 成功 / 186（62 题 × 3）。宏平均 ≠ 微平均。
 
-| 档 | 作用 | 何时才能用这个名字 |
+| 指标 | 定义 | `finish` |
 |---|---|---|
-| **Easy** | 玩具档已能碰到 | 3B/4B 至少一次 Atomic=1，且 9B 为 3/3 |
-| **Medium** | 目标档才站得住 | 9B 能过，且不是 Easy |
-| **Hard** | 部署档尺子会、9B 还不会 | 9B 为 0/3，并且 27B Atomic 为 3/3（v1.0 观察） |
-| **未标定** | 超出当前梯子 | 9B 为 0/3，27B 达不到 3/3 |
+| **Artifact**（规定产物正确率） | 隐藏评分器看规定产物过没过 | 不要求。写对了但没停，仍记 1。Headline。 |
+| **Clean**（干净完成率） | Artifact=1 且交互干净终止 | 要求空的 finish 围栏 |
 
-## 核心题库 62
+五个任务族是操作性切片，不是五种基础智力：Loc / Edit / Testgen / Repro / Review（本集里 Review = **Patch Validation**）。
 
-题库 **62 道：Easy 12 / Medium 38 / Hard 7 / 未标定 5**（57 道完成经验标定）。当前主表按 62 计分，Hard-15 已对 12 个配置全部施测。官方 Hard 受试仍是 6 个（含 9B Atomic 30/45）；floor 补全在 `jobs/locked-hard-floor-k3.json`，不覆盖官方 Hard 锁。Headline 是五项宏平均。数字见 [`结果报表.md`](结果报表.md)。
+## Leaderboard（v1.0.1）
 
-## 文档地图
+12 配置 × 62 题 × 3 = **2,232** 次 scored trial。`remaining_dirty` 0。Halt（Artifact=1、非 clean）= **105**。Compact-10 按 Artifact 宏平均排序。27B / 35B-A3B 是 upper-reference，不进该排序。35B-A3B 是约 3B 激活的 MoE。
+
+数字从 [`results/canonical-coverage.json`](results/canonical-coverage.json) 生成。完整五列技能表：[`results/leaderboard.md`](results/leaderboard.md)。再生：`python scripts/write_leaderboard.py --write`。
+
+### Compact-10
+
+| # | 模型 | Artifact 宏平均 | Clean 宏平均 | Gap | Artifact 微平均 | Clean 微平均 |
+|---:|---|---:|---:|---:|---:|---:|
+| 1 | Qwen3.5-9B | 0.786 | 0.757 | 0.029 | 148/186 | 142/186 |
+| 2 | Ministral-14B | 0.497 | 0.488 | 0.009 | 93/186 | 91/186 |
+| 3 | Ministral-8B | 0.456 | 0.411 | 0.045 | 87/186 | 78/186 |
+| 4 | Qwen3-14B | 0.404 | 0.333 | 0.072 | 76/186 | 65/186 |
+| 5 | Gemma-3-12B | 0.313 | 0.114 | **0.199** | 60/186 | 18/186 |
+| 6 | Granite-4.1-8B | 0.162 | 0.140 | 0.022 | 31/186 | 26/186 |
+| 7 | Gemma-3-4B | 0.067 | 0.067 | 0.000 | 11/186 | 11/186 |
+| 8 | Ministral-3B | 0.049 | 0.019 | 0.030 | 10/186 | 4/186 |
+| 9 | Qwen3-8B | 0.034 | 0.018 | 0.015 | 6/186 | 3/186 |
+| 10 | Llama-3.2-3B | 0.027 | 0.000 | 0.027 | 4/186 | 0/186 |
+
+### Upper-reference（不与 Compact-10 混排）
+
+| 模型 | Artifact 宏平均 | Clean 宏平均 | Gap | Artifact 微平均 | Clean 微平均 |
+|---|---:|---:|---:|---:|---:|
+| Qwen3.8-27B | 0.863 | 0.845 | 0.018 | 162/186 | 159/186 |
+| Qwen3.6-35B-A3B | 0.632 | 0.560 | 0.072 | 118/186 | 104/186 |
+
+### Artifact Correctness
+
+| 模型 | Loc | Edit | Testgen | Repro | Review | **宏平均** | 微平均 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Qwen3.5-9B | 0.303 | 0.933 | 0.923 | 0.769 | 1.000 | **0.786** | 0.796（148/186） |
+| Ministral-14B | 0.091 | 0.689 | 0.026 | 0.846 | 0.833 | 0.497 | 0.500（93/186） |
+| Ministral-8B | 0.152 | 0.689 | 0.308 | 0.564 | 0.567 | 0.456 | 0.468（87/186） |
+| Qwen3-14B | 0.091 | 0.467 | 0.462 | 0.436 | 0.567 | 0.404 | 0.409（76/186） |
+| Gemma-3-12B | 0.000 | 0.533 | 0.179 | 0.385 | 0.467 | 0.313 | 0.323（60/186） |
+| Granite-4.1-8B | 0.000 | 0.356 | 0.077 | 0.077 | 0.300 | 0.162 | 0.167（31/186） |
+| Gemma-3-4B | 0.000 | 0.067 | 0.000 | 0.000 | 0.267 | 0.067 | 0.059（11/186） |
+| Ministral-3B | 0.030 | 0.111 | 0.103 | 0.000 | 0.000 | 0.049 | 0.054（10/186） |
+| Qwen3-8B | 0.091 | 0.000 | 0.000 | 0.077 | 0.000 | 0.034 | 0.032（6/186） |
+| Llama-3.2-3B | 0.000 | 0.000 | 0.000 | 0.000 | 0.133 | 0.027 | 0.022（4/186） |
+| Qwen3.8-27B | 0.576 | 0.978 | 0.923 | 0.872 | 0.967 | 0.863 | 0.871（162/186） |
+| Qwen3.6-35B-A3B | 0.364 | 0.644 | 0.923 | 0.462 | 0.767 | 0.632 | 0.634（118/186） |
+
+### Clean Completion
+
+行序与上表相同。Granite 的 Clean 宏平均高于 Gemma-12B，是停机税，不是 Granite 更会做题。
+
+| 模型 | Loc | Edit | Testgen | Repro | Review | **宏平均** | 微平均 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Qwen3.5-9B | 0.303 | 0.867 | 0.923 | 0.692 | 1.000 | 0.757 | 0.763（142/186） |
+| Ministral-14B | 0.091 | 0.644 | 0.026 | 0.846 | 0.833 | 0.488 | 0.489（91/186） |
+| Ministral-8B | 0.091 | 0.578 | 0.282 | 0.538 | 0.567 | 0.411 | 0.419（78/186） |
+| Qwen3-14B | 0.091 | 0.467 | 0.462 | 0.410 | 0.233 | 0.333 | 0.349（65/186） |
+| Gemma-3-12B | 0.000 | 0.000 | 0.077 | 0.026 | 0.467 | 0.114 | 0.097（18/186） |
+| Granite-4.1-8B | 0.000 | 0.244 | 0.077 | 0.077 | 0.300 | 0.140 | 0.140（26/186） |
+| Gemma-3-4B | 0.000 | 0.067 | 0.000 | 0.000 | 0.267 | 0.067 | 0.059（11/186） |
+| Ministral-3B | 0.000 | 0.044 | 0.051 | 0.000 | 0.000 | 0.019 | 0.022（4/186） |
+| Qwen3-8B | 0.091 | 0.000 | 0.000 | 0.000 | 0.000 | 0.018 | 0.016（3/186） |
+| Llama-3.2-3B | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000（0/186） |
+| Qwen3.8-27B | 0.485 | 0.978 | 0.923 | 0.872 | 0.967 | 0.845 | 0.855（159/186） |
+| Qwen3.6-35B-A3B | 0.364 | 0.644 | 0.923 | 0.103 | 0.767 | 0.560 | 0.559（104/186） |
+
+## 两处诊断
+
+**同一 harness 下任务族可以显著分化。** Ministral-14B Artifact 宏平均 0.497：Repro 0.85、Testgen 0.03。Qwen3-8B 与 Qwen3.5-9B 也不是单纯的 8B→9B。
+
+**产物正确不等于干净完成。** 全表 halt **105** 次。Gemma-3-12B Artifact 宏平均 0.313（60/186），Clean 0.114（18/186），Gap **0.199**；Edit Artifact 0.53，Clean Edit 为 0。
+
+明细、停机构成和 infra 勘误见 [`结果报表.md`](结果报表.md)。
+
+## 协议快照
+
+- Agent：自写 compact-shell v0.1.1（Harbor `BaseAgent`）。每轮一条 bash 围栏或一个空 finish 围栏。不是 Terminus-2 fork。
+- 预算：最多 20 轮、命令 60 秒、观察 8000 字符。温度 0。Qwen thinking 关。禁止 provider fallback。
+- 沙箱：Harbor + Novita，`n=1`。k=3 独立沙箱重复。
+- 发表轨道：**API Standard**。Local Reference（钉死 HF 权重 + vLLM）尚未跑，不要把本表说成已控制权重。
+- 题库 62：Loc 11、Edit 15、Testgen 13、Repro 13、Review 10。Easy 12 / Medium 38 / Hard 7 / Uncalibrated 5。标签是本系统 + k=3 的经验档，不是绝对难度。
+- 有效性：infra 替换在后续时间窗口完成；provider / 顺序 / 采样冻结，API 后端时间漂移无法完全排除。
+
+完整协议：[`STANDARD.md`](STANDARD.md)。冻结结果：tag **`benchmark-v1.0.1`**。tag `benchmark-v1.0` 保留作缺测记 0 的审计快照，不再当阅读主表。
+
+## 文档
 
 | 文件 | 看什么 |
 |---|---|
-| 本文 | 核心思想、47 道题表、怎么跑 |
-| [`项目说明.md`](项目说明.md) | **项目总结**：问题、设计、主结果、读法（给自己 / 导师；数字以结果报表为准） |
-| [`结果报表.md`](结果报表.md) | **对外结果报表**：完整 compact 面板、6 受试 62 汇总、infra 勘误 |
-| [`EVAL-NOTE.md`](EVAL-NOTE.md) | 测什么 / 不测什么、相关工作、k=1（§8–10）、**k=3 主表（§6.2 / §11）、Hard-15（§12）、Hard-floor 补全（§12.4）、27B/35B Base-47（§13）、停机审计（§14）** |
-| [`PRIOR.md`](PRIOR.md) | 外部先验 → 47 道留 / 改 / 弃；按五项补题 |
-| [`models.lock.yaml`](models.lock.yaml) | 冻结 12 个 Core 模型；Hard-15 受试 6 个；固定 OpenRouter provider |
-| [`STANDARD.md`](STANDARD.md) | compact-shell 协议、打分、轨道不要混 |
-| [`DIFFICULTY.md`](DIFFICULTY.md) | Easy / Medium / Hard / 未标定 |
-| [`TRAPS.md`](TRAPS.md) | 失败模式表；同族不重复，跨族可复用 |
-| [`TIMEOUT.md`](TIMEOUT.md) | 超时分型（不改 atomic） |
-| [`GATE-A.md`](GATE-A.md) | 发布 / tag 清单 |
+| 本文 | 落地页、v1.0.1 排行榜、怎么跑 |
+| [`项目说明.md`](项目说明.md) | 问题、设计、主结果、读法 |
+| [`结果报表.md`](结果报表.md) | 五列全表、halt、难度、infra 勘误 |
+| [`results/leaderboard.md`](results/leaderboard.md) | 从 canonical JSON 生成的排行榜 |
+| [`STANDARD.md`](STANDARD.md) | 冻结协议与指标 |
+| [`DIFFICULTY.md`](DIFFICULTY.md) | Easy / Medium / Hard / Uncalibrated |
+| [`TRAPS.md`](TRAPS.md) | 失败模式；同族不重复 |
+| [`models.lock.yaml`](models.lock.yaml) | 12 个配置 + 钉死的 provider |
+| [`EVAL-NOTE.md`](EVAL-NOTE.md) | 过程笔记；§6.2 / §13 是 v1.0 审计 |
 
-## 当前进度（2026-08-27）
-
-- 协议和 Core 47 构造已冻。正式主表 **47 × k=3 已齐**：补 attempts 2–3 池化 attempt=1，不是重跑 Harbor `-k 3`。产物 `jobs/locked-core-k3.json`（477 格，`n_valid=3`，未覆盖 `locked-core.json`）。数字见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §6.2 / §11。
-- **模型名单已冻**（[`models.lock.yaml`](models.lock.yaml)）：10 个 compact_dense + Qwen3.8-27B + Qwen3.6-35B-A3B。OpenRouter provider 钉死、禁止 fallback。**不根据分数换模型。** 35B-A3B 是 ~3B 激活 MoE，不必赢 27B dense。
-- Hard-Release-15 已冻（Gate-B oracle/nop + foils）。6 个受试 ×15×k=3 = 270，产物 `jobs/locked-hard-release-k3.json`（90 格 `n_valid=3`，infra=0）。地板模型跳过，不当 Hard 0。读法见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §12 / §14：主表不补分；Headline 是五项 Atomic 宏平均；E2E 是干净完成率；35B 低分含停机税，不是「固有代码能力弱于 9B」。
-- Core Frontier / Hard（Atomic）：`loc-member-discount`、`loc-vip-two-files`、`testgen-anagram`、`repro-first-index`、`repro-whitespace`、`loc-hook-plugin`、`repro-nested-alias`。不按 Hard-15 分数改题。
-- k=1 探索矩阵仍在：10×47 = 470，外加尺子 49 格（`jobs/locked-core.json`）。27B **不进** \(\theta\)。
-- 27B / 35B 全量 Base-47 k=3 已齐（2026-08-26）：`jobs/locked-upper-base-k3.json`（94 格 `n_valid=3`），**不进** compact-10 均值，**未覆盖** core lock。数字见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §13。
-- Gemma-4B 429 side table 已齐（2026-08-26）：67/67 写入 `jobs/locked-gemma4b-rerun-k3.json`，**未覆盖** `locked-core-k3.json`。
-- v1.0.1 canonical matrix 已按唯一键合并（2026-08-27）：`results/canonical-coverage.json`。Hard-15 已补全；Gemma-4B 为 **11/186**。13 格 infra 已替换，`remaining_dirty` 0。Headline 9B **0.786**（148/186）/ 27B **0.863**（162/186）。数字见 [`结果报表.md`](结果报表.md)。本表对应 tag **`benchmark-v1.0.1`**。
-- 发布 tag **`benchmark-v1.0`**（API Standard）已推到 [github.com/caojiajun777/small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench)。对外叙述见 [`结果报表.md`](结果报表.md)。Local Reference 的 HF SHA 钉在 [`models.local.yaml`](models.local.yaml)，全表未跑（需要 Linux vLLM，不覆盖 API 均值）。不要把 API 表说成已控制权重。
-
-## 五个诊断维度
-
-不是五种基础智力，也不是固定五步流水线。测 Edit 时直接给文件；测 Loc 时只要文件集合；Review 是对已给补丁的 0/1 **Patch Validation**，不是完整代码审查。
-
-| 维度 | 输入 | 输出 | 奖励 |
-|---|---|---|---|
-| **Code Localization** | issue + 仓库 | 最小相关文件集合 | 与 gold patch 改动文件 **集合精确匹配** |
-| **Code Editing** | 代码上下文 + **明确的改动说明** | 正确仓库状态 | 仓库单测 / 回归测试全过 |
-| **Unit-Test Generation** | 目标函数 + 说明 | 单测 | 在正确实现上全过，且能抓住注入的 mutant |
-| **Issue Reproduction** | issue + 仓库 | 可执行复现脚本 | 当前（有缺陷）代码上失败，打上 gold patch 后不再失败；禁止改仓 |
-| **Patch Review** | issue + 已应用的候选改动 | 二进制判断 0/1 | 与「该改动是否真的解决问题」的标签一致 |
-
-完整陷阱表在 [`TRAPS.md`](TRAPS.md)。同一任务族内避免重复同一失败模式；跨任务族允许复用同一编程错误并记录。同构题仍在 `tasks/` 里，不算公开集。instruction 只写契约；gold / mutant / 标签在 `tests/`。根据任务类型分别用 oracle/nop、mutant 或 foil 做质量控制。
-
-## v1 Core 主集（47 道 unique-trap Medium）
-
-按**陷阱**去重，不是按换皮。这是小模型主榜。L9 等同构只进库存，不算 62。Frontier / Hard 另表（Core 47 里 5 道 + Hard-15，梯子见 EVAL-NOTE §11–§13）。正式跑法见 [`STANDARD.md`](STANDARD.md)。
-
-### Core / Medium（47）
-
-| 原子 | 题 | 考的陷阱 |
-|---|---|---|
-| Loc | `loc-member-discount` | 配置是对的，活代码写死错值 |
-| Loc | `loc-bind-host` | 同上，但 decoy 文件共享同一字符串 |
-| Loc | `loc-vip-two-files` | gold 是两个文件，文件名相近 |
-| Loc | `loc-similar-filenames` | 多个 helper 文件名相近，gold 只有一个 |
-| Loc | `loc-traceback-helper` | 要标 parser，不要标 traceback 包装 |
-| Loc | `loc-failing-test-impl` | 要标实现，不要标失败的测试文件 |
-| Loc | `loc-reexport` | 要标定义模块，不要标 `__init__.py` 再导出 |
-| Loc | `loc-unused-fix` | 未引用文件已经长得像修复，不要标它 |
-| Edit | `edit-slugify` | 文本规范化（大小写、标点、连字符） |
-| Edit | `edit-covered-length` | 半开区间并集长度 |
-| Edit | `edit-deep-merge` | 嵌套合并、列表替换、不改输入 |
-| Edit | `edit-int-list` | 逗号分隔整数，空白和空项 |
-| Edit | `edit-top-k` | 按分数稳定 top-k |
-| Edit | `edit-jsonl-keep` | 过滤 JSONL，跳过坏行 |
-| Edit | `edit-hhmmss` | 时长格式、零填充 |
-| Edit | `edit-prefix-sums` | 前缀和，不修改输入 |
-| Edit | `edit-clip` | 上下界都要夹 |
-| Edit | `edit-timeout-zero` | 显式 `0` 不是缺省（`or` 默认值） |
-| Edit | `edit-unique-keep` | 去重且保持首次出现顺序 |
-| Edit | `edit-pad-left` | 已经够长时 pad 必须是 no-op |
-| Testgen | `testgen-clip` | 缺下界 / 缺上界 / 恒等 mutant |
-| Testgen | `testgen-unique-order` | `set()` 丢序、last-wins |
-| Testgen | `testgen-gregorian` | 闰年不是 `year%4`；不能只测 2024/2023 |
-| Testgen | `testgen-mean` | sum / 只取首元素 |
-| Testgen | `testgen-parse` | 不 strip / 保留空项 |
-| Testgen | `testgen-anagram` | 大小写、空格 |
-| Testgen | `testgen-timeout-zero` | `or` 默认值丢掉显式 `0` |
-| Testgen | `testgen-greet-none` | 缺 key / `None` vs 有名字 |
-| Testgen | `testgen-cents` | `float` 变分 |
-| Testgen | `testgen-window` | 切片 `end+1` / `start+1` |
-| Repro | `repro-off-by-one` | 切片 `end+1` |
-| Repro | `repro-end-exclusive` | 右端点包含，内部点测不出来 |
-| Repro | `repro-zero-timeout` | `or 30` 把显式 `0` 吃掉 |
-| Repro | `repro-keep-zero` | `if n` 丢掉 `0` |
-| Repro | `repro-none-name` | 缺 key / `None` |
-| Repro | `repro-float-cents` | `float` 变分 |
-| Repro | `repro-first-index` | last-wins，必须用重复元素 |
-| Repro | `repro-empty-mean` | 空输入必须报错；返回 `0` 测不出来 |
-| Repro | `repro-whitespace` | 周围空白；`'1,2'` 过、`' 1, 2'` 不过 |
-| Repro | `repro-truthy-flag` | 缺 key vs 显式 `0`（flag） |
-| Review | `review-clip-incomplete` | 只处理下界，标签 0 |
-| Review | `review-slug-almost` | 近乎完整但 collapse/strip 不对，标签 0 |
-| Review | `review-mean-wrong` | 返回总和，标签 0 |
-| Review | `review-slug-complete` | 完整实现，标签 1 |
-| Review | `review-configured-timeout` | `or` 默认值丢掉显式 0 |
-| Review | `review-rotate-right` | 方向写反，标签 0 |
-| Review | `review-prefix-complete` | 完整前缀和，标签 1 |
-
-### 经验档（27B + 目标档 loc 之后）
-
-下表 **Terminus-2** 标定不要写进 compact-shell 主表。compact-shell k=3 的档见下一小节和 [`EVAL-NOTE.md`](EVAL-NOTE.md) §11。
-
-| 档 | 题 | 依据（Terminus-2） |
-|---|---|---|
-| **未标定（库存，不在 62）** | L9 精确集合（`loc-hardcoded-digital-vat` 等同构） | 9B / 14B / 27B 都是 gold+decoy |
-| **不是 Hard** | L2 `loc-bind-host` | 9B `k=3` 为 **2/3**；v0 的一次 0 是噪声 |
-| **不是 Hard** | L3 `loc-vip-two-files` | 9B `k=1` 漏文件，`k=3` 为 **3/3** |
-| **不是 Hard** | `testgen-gregorian` | 9B `k=1` 为 0；27B `k=1` 为 1；9B `k=3` 为 **3/3** |
-
-**compact-shell k=3（正式协议）：** Hard = 9B 0/3 且 27B Atomic 3/3（v1.0 观察）。锁了 `loc-member-discount`、`loc-vip-two-files`（后者尺子 E2E 0/3）。`loc-bind-host` / `loc-reexport` 尺子也 0/3，标 **未标定**。`loc-traceback-helper` 是 9B 2/3，标 Medium。9B Loc 均分 0.33。
-
-**定位分界在家族，也在 harness：** Terminus-2 上 Ministral 8B unique-trap loc **0/8**，Qwen3.5-9B 多数能过。换 compact-shell 之后 8B Loc 0.21、9B Loc 0.33，Hard 按尺子锁，不按「10 个小模型全失败」。
-
-**其余原子（Novita `-n 5`，`k=1`）：** 9B **38/39**，8B **28/39**。9B 编辑 / 复现 / 评审全过。`testgen-gregorian` 的一次 0 是噪声：27B 为 1，9B `k=3` 为 **3/3**，**不是 Hard**。8B Harbor 上 11 次超时：5 次是已经写对但没停（`timeout_after_pass`），6 次空转（`timeout_loop`），**0 次卡顿**。真正写错只有 4 道。不要用空转超时标 Hard。完整数字见 [`DIFFICULTY.md`](DIFFICULTY.md) 和 [`TIMEOUT.md`](TIMEOUT.md)。
-
-## 同构库存（不算公开集）
-
-| 原子 | 题 | 相对 v1 重复了什么 |
-|---|---|---|
-| Loc | `loc-config-key`, `loc-log-path`, `loc-retry-max`, `loc-cache-ttl` | 配置对、活代码写死，同 `loc-member-discount` |
-| Loc | `loc-hardcoded-vip-branch`, `loc-hardcoded-digital-vat` | 活分支 vs 死 RATE，同 `loc-hardcoded-fast-timeout` |
-| Edit | `edit-digits-only`, `edit-rotate-left` | 点名小函数 + 边角，分别近过滤 / 不改输入 |
-| Testgen | `testgen-pad`, `testgen-digits`, `testgen-rotate` | 近 clip / 字符类 / 方向 mutant |
-| Repro | `repro-start-index` | 近 `repro-off-by-one` |
-| Review | `review-hi-only`, `review-no-lower` | 近 `review-clip-incomplete`（只做了一半） |
-| Review | `review-digits-complete` | 近 `review-slug-complete`（标签 1） |
-
-`rec-*` 是复合修复，不在五项里。
-
-## v0 内部切片（已跑，不是公开集）
-
-当时每原子 1 旧 + 1 同构，用来看小模型掉在哪。terminus-2，OpenRouter，`-k 1 -n 1`。testgen verifier 已隔离 `PYTHONPATH`。
-
-| 角色 | Harbor 模型 | 权重发布 |
-|---|---|---|
-| 主力 | `openrouter/qwen/qwen3.5-9b` | 2026-03-02 |
-| 同档对照 | `openrouter/mistralai/ministral-8b-2512` | 2025-12-02 |
-
-更早浅题还跑过 Ministral 3B/14B（2025-12-02）、Nemotron Nano 9B v2（2025-08-18）、Granite 4.1 8B（2026-04-29），不进切片表。
-
-### Medium（10 道）
-
-terminus-2，OpenRouter，`-k 1 -n 1`。testgen verifier 已隔离 `PYTHONPATH`，防止测例 `sys.path.insert(0, "/app/repo")` 绑到活仓库里的 gold。
-
-| 角色 | Harbor 模型 | 权重发布 |
-|---|---|---|
-| 主力 | `openrouter/qwen/qwen3.5-9b` | 2026-03-02 |
-| 同档对照 | `openrouter/mistralai/ministral-8b-2512` | 2025-12-02 |
-
-更早浅题还跑过 Ministral 3B/14B（同日 2025-12-02）、Nemotron Nano 9B v2（2025-08-18）、Granite 4.1 8B（2026-04-29）。那些不进本切片主表。
-
-### Medium（10 道）
-
-每原子 1 道旧题 + 1 道同构新题。
-
-| 原子 | 题 | Qwen3.5-9B | Ministral 8B |
-|---|---|---|---|
-| Loc | `loc-member-discount` | 1 | 0 |
-| Loc | `loc-bind-host` | 0 | 0 |
-| Edit | `edit-slugify` | 1 | 1 |
-| Edit | `edit-digits-only` | 1 | 1 |
-| Testgen | `testgen-clip` | 1 | 1 |
-| Testgen | `testgen-digits` | 1 | 1 |
-| Repro | `repro-off-by-one` | 1 | 1 |
-| Repro | `repro-keep-zero` | 1 | 1 |
-| Review | `review-clip-incomplete` | 1 | 1 |
-| Review | `review-rotate-right` | 1 | 1 |
-| | **合计** | **9/10** | **8/10** |
-
-### 当时叫 Hard 的 2 道（经验档作废前）
-
-| 题 | Qwen3.5-9B | Ministral 8B |
-|---|---|---|
-| `loc-hardcoded-fast-timeout` | 0 | 0 |
-| `review-dollar-cents` | 1 | 0 |
-
-### 失败怎么记
-
-- **定位**：精确集合对不上。9B 在 `loc-bind-host` 多写 decoy `netutil.py`；8B 在 `loc-member-discount` 写成散文标题 + `app/repo/` 前缀；`loc-bind-host` 超时且没有 `answer.txt`。Hard loc：9B 是 gold + decoy，8B 列了 profile、漏了 `resolve.py`。
-- **测例**：隔离前 9B 因 `sys.path.insert(0, "/app/repo")` 被记 0，测例本身能抓住 mutant。那是脚手架/量法问题，**不要记成「不会写测」**。隔离后两家切片 testgen 都是 1。
-- **Hard 评审**：8B 只跑了 issue 里的 `'10'` / `'1.00'` 就写 1（例子过了 ≠ 实现对）。9B 这次跑了 `0.29` 才判 0。k=1，换一次可能翻。
-- **协议/JSON**：单独记。8B 若干 loc/review 轨迹里有 JSON 脚手架噪音；超时且 0 token 记超时，不记定位能力。
-
-不宣称：3B/8B/14B 梯子；官方 aider.chat 分数；7B～9B 是一条能力带。v0 切片里的 `edit-digits-only` / `testgen-digits` 是同构题，正式分数改看 v1。
+Gold、hidden 测试、mutant、foil 留在 Harbor `tasks/`，不会作为公开数据集泄露。
 
 ## 怎么跑
 
-沙箱用 **Novita**（`-e novita`，`n=1`）。本机 Docker 内存紧，不要 `-n 8`。Agent 用 **compact-shell**，不要默认 Terminus-2。复制 `.env.example` 为 `.env`，不要提交 `.env`。公开仓库已在 [github.com/caojiajun777/small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench)。
+沙箱用 **Novita**（`-e novita`，`n=1`）。Agent 用 **compact-shell**，不要默认 Terminus-2。复制 `.env.example` 为 `.env`，不要提交 `.env`。已有一条 Novita job 时不要再开第二条。
 
 ```powershell
 $env:PYTHONIOENCODING = "utf-8"
 $env:PYTHONPATH = (Get-Location).Path
-
-# 10 个 IRT-main 全跑（协议 20 + MAIN_47 470 = 490）。当前若已有一条 Novita job，不要再开第二条。
-# 中断后同样命令会跳过已完成的格子。尺子用 --group ruler 或 --group all。
-python scripts/run_locked.py
-python scripts/run_locked.py --run --full --group main
 
 # 单题
 harbor run --env-file .env -o jobs -p ./tasks/loc-member-discount `
@@ -223,43 +128,15 @@ harbor run --env-file .env -o jobs -p ./tasks/loc-member-discount `
   -m openrouter/qwen/qwen3.5-9b -k 1 -n 1 -e novita `
   --ak 'llm_call_kwargs={"extra_body":{"enable_thinking":false}}'
 
-# 打分（单 job）
+# 打分
 python scripts/score_standard.py jobs/<job>
-
-# 冻结 490 重标：A / T / E 三矩阵 + 失败分类 + Loc P/R（不覆盖 locked-core.json）
-python scripts/relabel_locked.py
-python scripts/audit_loc.py
-python scripts/fit_irt.py --score both --group main
-python scripts/fit_irt.py --k3
-python scripts/fail_compose.py
 ```
 
-题自洽（等当前筛查结束后再跑，避免 429）：
+oracle 必须 1.0，nop 必须 0.0：
 
 ```powershell
 harbor run --env-file .env -o jobs -p ./tasks/loc-bind-host -a oracle -k 1 -n 1 -e novita
 harbor run --env-file .env -o jobs -p ./tasks/review-clip-incomplete -a nop -k 1 -n 1 -e novita
 ```
 
-oracle 必须 1.0，nop 必须 0.0。清单见 [`GATE-A.md`](GATE-A.md)。
-
-## 附录：协议检查 / 终端烟测
-
-`hello-world` 与 `collect-todos` 只是 **preflight**（两题都对且干净停 = `preflight_both_pass`）。legacy 字段仍叫 `protocol_pass`，**不是** harness 兼容性。真协议率从 `compact-shell.json` 重算。
-
-## 以后才做
-
-顺序：冻结名单 → 10×47 已齐 → 三矩阵 / Loc 审计 / 探索性 1PL → 尺子 k=1 → tag `benchmark-v1.0-rc1` → **正式表 k=3 已齐** → Hard-15 / Upper Base-47 已齐 → k=3 二项 1PL 已拟合 → tag **`benchmark-v1.0`（API Standard）**。Local Reference 全表仍待 Linux vLLM。
-
-先不做：
-
-- 用「9B 掉了」或 both_miss 发明 Hard
-- 把 L9 精确集合改成子集匹配来制造通过者
-- 为了压 9B 把 Frontier 并进 Core mean
-- 锁文件里不要伪造未跑的 Hard-15 格子，也不要把地板模型写进 `locked-hard-release-k3.json`。v1.0 发表 62 均值把缺测记 0 并标出来；补全只写 `locked-hard-floor-k3.json`
-- 把五项宏平均和题微平均写成同一个「总分」
-- 把 API Standard 说成已控制权重的 Local Reference
-- 3B DPO / SFT / 在原子上做联合强化学习
-- Aider Polyglot 迁移与官方榜
-- 五项拼起来的复合 Issue Resolve
-- Harbor registry / 自建提交站
+锁定名单与补格子：`python scripts/run_locked.py`（见 [`STANDARD.md`](STANDARD.md)）。不要覆盖 `jobs/locked-core.json`、`jobs/locked-core-k3.json`、`jobs/locked-hard-release-k3.json`。
