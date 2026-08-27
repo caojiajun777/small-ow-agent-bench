@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: If you use this benchmark, please cite it as below.
+title: small-ow-agent-bench
+type: software
+authors:
+  - family-names: Cao
+    given-names: Junjun
+repository-code: https://github.com/caojiajun777/small-ow-agent-bench
+url: https://huggingface.co/datasets/junjun77/small-ow-agent-bench
+license: Apache-2.0
+version: benchmark-v1.0.1
+date-released: "2026-08-27"
+abstract: >-
+  Atomic-skill evaluation of compact open-weight coding agents under a frozen
+  compact-shell protocol. Headline numbers are five-skill Artifact / Clean
+  macro means on 62 items × 3 independent sandbox trials (API Standard).
+keywords:
+  - agents
+  - code
+  - benchmark
+  - open-weight
+  - compact-shell

@@ -148,7 +148,21 @@ def render_jsonl(rows: list[dict[str, Any]]) -> str:
 
 
 def dataset_card() -> str:
-    return """---
+    from write_leaderboard import compact_and_upper, load_coverage, rank_row
+
+    coverage = load_coverage()
+    compact, upper = compact_and_upper(coverage["models"])
+    rank_header = (
+        "| # | Model | Artifact macro | Clean macro | Gap | Artifact micro | Clean micro |\n"
+        "|---:|---|---:|---:|---:|---:|---:|"
+    )
+    compact_table = "\n".join(
+        [rank_header, *[rank_row(i, model) for i, model in enumerate(compact, start=1)]]
+    )
+    upper_table = "\n".join(
+        [rank_header, *[rank_row("—", model) for model in upper]]
+    )
+    return f"""---
 license: apache-2.0
 pretty_name: small-ow-agent-bench
 task_categories:
@@ -160,26 +174,47 @@ tags:
   - code
   - evaluation
   - harbor
+  - benchmark
 size_categories:
   - n<1K
+configs:
+  - config_name: catalog
+    data_files: catalog.jsonl
+    default: true
 ---
 
 # small-ow-agent-bench (catalog)
 
-Public **metadata catalog** for [small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench) tag **`benchmark-v1.0.1`**. Hugging Face dataset: [`junjun77/small-ow-agent-bench`](https://huggingface.co/datasets/junjun77/small-ow-agent-bench).
+Frozen compact-shell **system** reliability for compact open-weight coding agents — not coding IQ.
 
-This dataset is **not** the Harbor task dump. Each row is one of the 62 scored items:
+- GitHub: [caojiajun777/small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench)
+- Tag: [`benchmark-v1.0.1`](https://github.com/caojiajun777/small-ow-agent-bench/releases/tag/benchmark-v1.0.1)
+- This dataset: [`junjun77/small-ow-agent-bench`](https://huggingface.co/datasets/junjun77/small-ow-agent-bench)
+
+This dataset is **not** the Harbor task dump. Each of the 62 rows is catalog metadata plus the agent-visible instruction:
 
 - `id`, `skill`, `difficulty`, `bank`
 - `trap_id` / `trap` (failure-mode label from `TRAPS.md`)
-- agent-visible `instruction` / `instruction_summary`
+- `instruction` / `instruction_summary`
 - license, GitHub tag, compact-shell version
 
-It does **not** include hidden verifiers: `tests/`, `solution/`, `foils/`, gold file lists, mutants, or `environment/repo`. Those stay in the Harbor `tasks/` tree on GitHub and are required to score a run.
+It does **not** include hidden verifiers: `tests/`, `solution/`, `foils/`, gold file lists, mutants, or `environment/repo`. Those stay in Harbor `tasks/` on GitHub.
 
-Do not train on this 62-item bank and then report the same items as evaluation. The published table measures compact-shell **system** reliability, not coding IQ detached from the harness.
+Do not train on this 62-item bank and then report the same items as evaluation.
 
-Headline numbers and the 12×62×3 matrix live on GitHub (`results/canonical-coverage.json`, `results/v1.0.1_trials.jsonl`), not in this catalog.
+## Compact-10 (v1.0.1)
+
+Headline = five-skill **macro** mean. Micro = successes / 186. Artifact does not require `finish`; Clean does. Halt (Artifact=1, not clean) = **{coverage['halt_unfinished_atomic']}**. 12×62×3 = **{coverage['n_scored']}** scored trials.
+
+![Compact-10 Artifact vs Clean](v1.0.1-compact10.svg)
+
+{compact_table}
+
+## Upper-reference (not ranked with Compact-10)
+
+{upper_table}
+
+Full five-skill tables: [results/leaderboard.md](https://github.com/caojiajun777/small-ow-agent-bench/blob/main/results/leaderboard.md).
 
 Regenerate:
 
@@ -211,15 +246,24 @@ def refuse_frozen(path: Path) -> None:
 
 
 def write_outputs(text: str) -> None:
+    from write_leaderboard_figure import OUT as FIGURE_OUT, render_svg
+    from write_leaderboard import load_coverage
+
     for path in (CATALOG_OUT, HF_CATALOG, HF_CARD):
         refuse_frozen(path)
     HF_DIR.mkdir(parents=True, exist_ok=True)
     CATALOG_OUT.write_text(text, encoding="utf-8")
     HF_CATALOG.write_text(text, encoding="utf-8")
     HF_CARD.write_text(dataset_card(), encoding="utf-8")
+    figure = render_svg(load_coverage())
+    if FIGURE_OUT.resolve() not in {p.resolve() for p in FROZEN_LOCKS}:
+        FIGURE_OUT.parent.mkdir(parents=True, exist_ok=True)
+        FIGURE_OUT.write_text(figure, encoding="utf-8")
+        (HF_DIR / FIGURE_OUT.name).write_text(figure, encoding="utf-8")
     print(f"wrote {CATALOG_OUT}")
     print(f"wrote {HF_CATALOG}")
     print(f"wrote {HF_CARD}")
+    print(f"wrote {FIGURE_OUT}")
 
 
 def push_dataset(repo_id: str) -> None:
@@ -234,7 +278,7 @@ def push_dataset(repo_id: str) -> None:
         folder_path=str(HF_DIR),
         repo_id=repo_id,
         repo_type="dataset",
-        commit_message="Add v1.0.1 metadata catalog (no hidden verifiers).",
+        commit_message="Refresh v1.0.1 catalog card, viewer config, and Compact-10 figure.",
     )
     print(f"https://huggingface.co/datasets/{repo_id}")
 

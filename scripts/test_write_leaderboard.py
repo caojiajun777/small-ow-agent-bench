@@ -14,6 +14,13 @@ def test_output_is_not_frozen_lock():
     assert OUT.resolve() not in frozen
 
 
+def test_coverage_json_says_the_tag_is_cut():
+    coverage = load_coverage()
+    assert coverage["published"] is True
+    assert coverage["benchmark_version"] == "benchmark-v1.0.1"
+    assert "is not cut" not in coverage["note"]
+
+
 def test_readme_embeds_canonical_headline():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     assert "benchmark-v1.0.1" in readme

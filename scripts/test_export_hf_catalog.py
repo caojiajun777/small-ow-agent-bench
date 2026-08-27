@@ -88,10 +88,13 @@ def test_readme_points_at_catalog_not_verifiers():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     assert "results/hf_catalog.jsonl" in readme
     assert "huggingface.co/datasets/junjun77/small-ow-agent-bench" in readme
+    assert "benchmark--v1.0.1" in readme or "benchmark-v1.0.1" in readme
+    assert "CITATION.cff" in readme or "Apache" in readme
+    assert "results/figures/v1.0.1-compact10.svg" in readme
     assert "environment/repo" in readme
 
 
 def test_hf_dir_only_has_catalog_and_card():
     HF_DIR.mkdir(parents=True, exist_ok=True)
     names = {p.name for p in HF_DIR.iterdir() if p.is_file()}
-    assert names <= {"catalog.jsonl", "README.md"}
+    assert names <= {"catalog.jsonl", "README.md", "v1.0.1-compact10.svg"}

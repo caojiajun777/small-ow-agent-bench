@@ -252,17 +252,17 @@ def build_summary(
     n_scored = sum(scores[i]["n_scored"] for i in order)
     payload = {
         "kind": "canonical_coverage_k3",
-        "published": False,
-        "enters_official_mean": False,
-        "benchmark_version": "benchmark-v1.0-rc1",
+        "published": True,
+        "enters_official_mean": True,
+        "benchmark_version": "benchmark-v1.0.1",
         "overwrites_locked_core": False,
         "overwrites_locked_core_k3": False,
         "overwrites_locked_hard_release_k3": False,
         "note": (
             "Unique-key merge of frozen Base + official Hard + Hard-floor "
             "+ Gemma-4B 429 replacements + 13 infra-dirty replacements. "
-            "remaining_dirty=0. Numbers are the v1.0.1 reading table; "
-            "tag benchmark-v1.0.1 is not cut. Frozen v1.0 locks unchanged."
+            "remaining_dirty=0. This is the v1.0.1 canonical matrix. "
+            "Tag benchmark-v1.0.1 is on the freeze commit. Frozen v1.0 locks unchanged."
         ),
         "n_models": 12,
         "n_tasks": 62,

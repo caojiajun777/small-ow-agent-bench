@@ -1,8 +1,20 @@
 # small-ow-agent-bench
 
+[![Tag](https://img.shields.io/badge/tag-benchmark--v1.0.1-0f4c81)](https://github.com/caojiajun777/small-ow-agent-bench/releases/tag/benchmark-v1.0.1)
+[![License](https://img.shields.io/badge/license-Apache%202.0-2f6f4e)](LICENSE)
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-catalog-ffcc00)](https://huggingface.co/datasets/junjun77/small-ow-agent-bench)
+[![GitHub](https://img.shields.io/badge/GitHub-caojiajun777-181717)](https://github.com/caojiajun777/small-ow-agent-bench)
+
+Frozen compact-shell **system** reliability for compact open-weight coding agents — not coding IQ. Scores are model + pinned OpenRouter route + Novita sandbox + compact-shell v0.1.1.
+
 在冻结的极薄 shell（**compact-shell** v0.1.1）下，测开放权重小型 coding agent 的**端到端系统可靠性**。分数是模型 + 钉死的 OpenRouter 线路 + Novita 沙箱 + compact-shell 的系统分，不是脱离 harness 的 coding IQ。
 
-公开仓库：[github.com/caojiajun777/small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench)。当前阅读表是 **v1.0.1 canonical matrix**，对应 git tag **`benchmark-v1.0.1`**。方法与读法见 [`项目说明.md`](项目说明.md)。
+- GitHub：[caojiajun777/small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench)
+- Hugging Face catalog：[junjun77/small-ow-agent-bench](https://huggingface.co/datasets/junjun77/small-ow-agent-bench)
+- Frozen results：tag **[`benchmark-v1.0.1`](https://github.com/caojiajun777/small-ow-agent-bench/releases/tag/benchmark-v1.0.1)**
+- Method：[`项目说明.md`](项目说明.md) · protocol：[`STANDARD.md`](STANDARD.md)
+
+当前阅读表是 **v1.0.1 canonical matrix**。
 
 ## 两个指标
 
@@ -20,6 +32,8 @@
 12 配置 × 62 题 × 3 = **2,232** 次 scored trial。`remaining_dirty` 0。Halt（Artifact=1、非 clean）= **105**。Compact-10 按 Artifact 宏平均排序。27B / 35B-A3B 是 upper-reference，不进该排序。35B-A3B 是约 3B 激活的 MoE。
 
 数字从 [`results/canonical-coverage.json`](results/canonical-coverage.json) 生成。完整五列技能表：[`results/leaderboard.md`](results/leaderboard.md)。再生：`python scripts/write_leaderboard.py --write`。
+
+![Compact-10 Artifact vs Clean](results/figures/v1.0.1-compact10.svg)
 
 ### Compact-10
 
@@ -112,6 +126,7 @@
 | [`models.lock.yaml`](models.lock.yaml) | 12 个配置 + 钉死的 provider |
 | [`EVAL-NOTE.md`](EVAL-NOTE.md) | 过程笔记；§6.2 / §13 是 v1.0 审计 |
 | [`results/hf_catalog.jsonl`](results/hf_catalog.jsonl) | 62 题公开目录（无 hidden verifier） |
+| [`CITATION.cff`](CITATION.cff) | GitHub 引用 |
 
 Gold、hidden 测试、mutant、foil 留在 Harbor `tasks/`。Hugging Face 目录只含 id / skill / difficulty / trap / 题面，不含 `tests/`、`solution/`、`foils/`、gold 名单或 `environment/repo`。已发布：[huggingface.co/datasets/junjun77/small-ow-agent-bench](https://huggingface.co/datasets/junjun77/small-ow-agent-bench)。
 
