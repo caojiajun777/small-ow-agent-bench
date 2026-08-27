@@ -11,6 +11,8 @@ Do not overwrite jobs/locked-core.json or jobs/locked-core-k3.json.
     python scripts/run_locked.py --run --hard-dev
     python scripts/run_locked.py --hard-release
     python scripts/run_locked.py --run --hard-release
+    python scripts/run_locked.py --hard-floor
+    python scripts/run_locked.py --run --hard-floor
     python scripts/run_locked.py --base-fill
     python scripts/run_locked.py --run --base-fill
 """
@@ -35,6 +37,7 @@ from models_lock import (  # noqa: E402
     COMPACT_GROUP,
     MOE_GROUP,
     UPPER_GROUP,
+    hard_floor_rows,
     hard_release_rows,
     llm_kwargs,
     load_lock,
@@ -42,7 +45,13 @@ from models_lock import (  # noqa: E402
     openrouter_id,
     select_subjects,
 )
-from score_standard import ATOMS, atom_of, format_report, score_job  # noqa: E402
+from score_standard import (  # noqa: E402
+    ATOMS,
+    atom_of,
+    format_report,
+    is_rate_limit,
+    score_job,
+)
 from task_sets import (  # noqa: E402
     HARD_DEV_10,
     HARD_RELEASE_15,
@@ -60,6 +69,7 @@ CORE_OUT = JOBS / "locked-core.json"
 K3_OUT = JOBS / "locked-core-k3.json"
 HARD_DEV_OUT = JOBS / "locked-hard-dev-k3.json"
 HARD_RELEASE_OUT = JOBS / "locked-hard-release-k3.json"
+HARD_FLOOR_OUT = JOBS / "locked-hard-floor-k3.json"
 UPPER_BASE_OUT = JOBS / "locked-upper-base-k3.json"
 BENCHMARK_VERSION = "benchmark-v1.0-rc1"
 K3_ATTEMPTS = (2, 3)
@@ -67,12 +77,22 @@ HARD_DEV_ATTEMPTS = (1, 2, 3)
 HARD_RELEASE_ATTEMPTS = (1, 2, 3)
 UPPER_BASE_ATTEMPTS = (1, 2, 3)
 K3_K = 3
+# BuildException / no_job / non-429 API flake: give up the visit after this many
+# Harbor calls and record termination=infra (resume can retry later).
 INFRA_RETRY_CAP = 3
+# 429 must not fill the k=3 slot or be recorded as a model 0. None = unbounded.
+RATE_LIMIT_RETRY_CAP: int | None = None
+INFRA_BACKOFF_SEC = 60
 
 RETRY_INCLUDE = (
     "BuildException",
     "EnvironmentStartTimeoutError",
     "RateLimitException",
+    "RateLimitError",
+    "ConnectError",
+    "APIConnectionError",
+    "ServiceUnavailableError",
+    "AuthenticationError",
 )
 SCORED_TERMINATIONS = frozenset({"clean", "tle", "protocol_error"})
 
@@ -260,6 +280,23 @@ def _write_hard_release_k3(
     )
 
 
+def _write_hard_floor_k3(
+    rows: list[dict], lock: dict[str, Any], subjects: list[dict[str, Any]]
+) -> Path:
+    if HARD_FLOOR_OUT.resolve() == HARD_RELEASE_OUT.resolve():
+        raise SystemExit("hard-floor must not write locked-hard-release-k3.json")
+    return _write_hard_k3(
+        rows,
+        lock,
+        subjects,
+        tasks=HARD_RELEASE_15,
+        out_path=HARD_FLOOR_OUT,
+        kind="locked_hard_floor_k3",
+        enters_official_mean=False,
+        banner="HARD-FLOOR",
+    )
+
+
 def _execute_hard_set(
     rows_out: list[dict],
     subjects: list[dict[str, Any]],
@@ -345,6 +382,24 @@ def _execute_hard_release(
         cells=plan_hard_release_cells(subjects),
         write=_write_hard_release_k3,
         label="hard-release",
+    )
+
+
+def _execute_hard_floor(
+    rows_out: list[dict],
+    subjects: list[dict[str, Any]],
+    lock: dict[str, Any],
+    *,
+    force: bool,
+) -> int:
+    return _execute_hard_set(
+        rows_out,
+        subjects,
+        lock,
+        force=force,
+        cells=plan_hard_release_cells(subjects),
+        write=_write_hard_floor_k3,
+        label="hard-floor",
     )
 
 
@@ -486,6 +541,15 @@ def hard_release_subjects(
     return hard_release_rows(group, batch, lock)
 
 
+def hard_floor_subjects(
+    group: str,
+    batch: int | None,
+    lock: dict[str, Any],
+) -> list[dict[str, Any]]:
+    """Hard-15 completeness for the 6 skipped compact models."""
+    return hard_floor_rows(group, batch, lock)
+
+
 def _env() -> dict[str, str]:
     env = os.environ.copy()
     env["PYTHONPATH"] = str(ROOT) + os.pathsep + env.get("PYTHONPATH", "")
@@ -581,6 +645,66 @@ def _all_infra(report: dict) -> bool:
     if not trials:
         return True
     return all(row.get("termination") == "infra" for row in trials)
+
+
+def report_is_scored(report: dict | None) -> bool:
+    """True when a trial has a non-infra termination and atomic_correct is set."""
+    if not report:
+        return False
+    trials = report.get("trials") or []
+    if not trials:
+        return False
+    row = trials[0]
+    if row.get("atomic_correct") is None:
+        return False
+    return row.get("termination") in SCORED_TERMINATIONS
+
+
+def _job_exception(job: Path | None) -> tuple[str | None, str | None]:
+    if job is None:
+        return None, None
+    trials = load_trials(job)
+    if not trials:
+        return None, None
+    info = trials[0][1].get("exception_info") or {}
+    exc = info.get("exception_type")
+    msg = info.get("exception_message")
+    return (
+        str(exc) if exc else None,
+        msg if isinstance(msg, str) else None,
+    )
+
+
+def slot_fill_kind(
+    report: dict | None,
+    *,
+    exc: str | None = None,
+    message: str | None = None,
+    no_job: bool = False,
+) -> str:
+    """Classify one Harbor visit: scored | rate_limit | infra."""
+    if no_job or report is None:
+        return "infra"
+    if report_is_scored(report):
+        return "scored"
+    trial_exc = exc
+    if trial_exc is None:
+        trials = report.get("trials") or []
+        if trials:
+            trial_exc = trials[0].get("exception")
+    if is_rate_limit(trial_exc, message):
+        return "rate_limit"
+    return "infra"
+
+
+def infra_retry_exhausted(
+    kind: str, *, visit_infra: int, visit_rate_limit: int
+) -> bool:
+    """Rate-limit is unbounded (RATE_LIMIT_RETRY_CAP=None); other infra uses INFRA_RETRY_CAP."""
+    if kind == "rate_limit":
+        cap = RATE_LIMIT_RETRY_CAP
+        return cap is not None and visit_rate_limit >= cap
+    return visit_infra >= INFRA_RETRY_CAP
 
 
 def _timeout_kind(job: Path | None) -> str | None:
@@ -990,9 +1114,15 @@ def _run_k3_slot(
     lock: dict[str, Any],
     prev: dict[str, Any] | None,
 ) -> dict[str, Any]:
-    """New Harbor trial for one (model, task, attempt). Infra does not fill the slot."""
+    """New Harbor trial for one (model, task, attempt).
+
+    429 / RateLimit does not fill the slot and is retried until a scored
+    trial exists (clean / tle / protocol_error with atomic_correct set).
+    Other infra keeps INFRA_RETRY_CAP visits then records termination=infra.
+    """
     infra_retries = int((prev or {}).get("infra_retries") or 0)
     visit_infra = 0
+    visit_rate_limit = 0
     stall_retried = False
     job: Path | None = None
     kind: str | None = None
@@ -1003,7 +1133,10 @@ def _run_k3_slot(
             visit_infra += 1
             infra_retries += 1
             reason = "no_job"
-            if visit_infra >= INFRA_RETRY_CAP:
+            fill = "infra"
+            if infra_retry_exhausted(
+                fill, visit_infra=visit_infra, visit_rate_limit=visit_rate_limit
+            ):
                 return _trial_row(
                     model,
                     name,
@@ -1015,17 +1148,45 @@ def _run_k3_slot(
                 )
             print(
                 f"{model['id']} {name} a{attempt}: no_job, "
-                f"wait 60s infra retry {visit_infra}/{INFRA_RETRY_CAP}",
+                f"wait {INFRA_BACKOFF_SEC}s infra retry {visit_infra}/{INFRA_RETRY_CAP}",
                 flush=True,
             )
-            time.sleep(60)
+            time.sleep(INFRA_BACKOFF_SEC)
             continue
         report = json.loads((job / "standard-scores.json").read_text(encoding="utf-8"))
-        if _all_infra(report):
-            visit_infra += 1
+        exc, message = _job_exception(job)
+        fill = slot_fill_kind(report, exc=exc, message=message)
+        if fill == "scored":
+            kind = _timeout_kind(job)
+            if kind == KIND_STALL and not stall_retried:
+                stall_retried = True
+                print(
+                    f"{model['id']} {name} a{attempt}: timeout_stall, "
+                    f"wait {INFRA_BACKOFF_SEC}s retry once",
+                    flush=True,
+                )
+                time.sleep(INFRA_BACKOFF_SEC)
+                continue
+            return _trial_row(
+                model,
+                name,
+                job,
+                None,
+                timeout_kind=kind,
+                stall_retried=stall_retried,
+                attempt=attempt,
+                infra_retries=infra_retries,
+                lock=lock,
+            )
+        if fill == "rate_limit":
+            visit_rate_limit += 1
             infra_retries += 1
             reason = "infra"
-            if visit_infra >= INFRA_RETRY_CAP:
+            if infra_retry_exhausted(
+                fill,
+                visit_infra=visit_infra,
+                visit_rate_limit=visit_rate_limit,
+            ):
                 return _trial_row(
                     model,
                     name,
@@ -1036,33 +1197,38 @@ def _run_k3_slot(
                     infra_retries=infra_retries,
                     lock=lock,
                 )
+            cap_shown = RATE_LIMIT_RETRY_CAP if RATE_LIMIT_RETRY_CAP is not None else "unbounded"
             print(
-                f"{model['id']} {name} a{attempt}: infra, "
-                f"wait 60s retry {visit_infra}/{INFRA_RETRY_CAP} (slot not filled)",
+                f"{model['id']} {name} a{attempt}: rate-limit {exc or 'RateLimit'}, "
+                f"wait {INFRA_BACKOFF_SEC}s retry {visit_rate_limit}/{cap_shown} "
+                f"(slot not filled)",
                 flush=True,
             )
-            time.sleep(60)
+            time.sleep(INFRA_BACKOFF_SEC)
             continue
-        kind = _timeout_kind(job)
-        if kind == KIND_STALL and not stall_retried:
-            stall_retried = True
-            print(
-                f"{model['id']} {name} a{attempt}: timeout_stall, wait 60s retry once",
-                flush=True,
+        visit_infra += 1
+        infra_retries += 1
+        reason = "infra"
+        if infra_retry_exhausted(
+            fill, visit_infra=visit_infra, visit_rate_limit=visit_rate_limit
+        ):
+            return _trial_row(
+                model,
+                name,
+                job,
+                reason,
+                timeout_kind=_timeout_kind(job),
+                attempt=attempt,
+                infra_retries=infra_retries,
+                lock=lock,
             )
-            time.sleep(60)
-            continue
-        return _trial_row(
-            model,
-            name,
-            job,
-            None,
-            timeout_kind=kind,
-            stall_retried=stall_retried,
-            attempt=attempt,
-            infra_retries=infra_retries,
-            lock=lock,
+        print(
+            f"{model['id']} {name} a{attempt}: infra, "
+            f"wait {INFRA_BACKOFF_SEC}s retry {visit_infra}/{INFRA_RETRY_CAP} "
+            f"(slot not filled)",
+            flush=True,
         )
+        time.sleep(INFRA_BACKOFF_SEC)
 
 
 def _write_core_k3(
@@ -1275,9 +1441,48 @@ def _print_hard_release_plan(
     skipped = [m["id"] for m in models(lock) if m.get("hard_release") is not True]
     if group != "all" and skipped:
         print(
-            "skipped (Base floor / Medium-struggle; not scored as 0): "
+            "skipped (Base floor / Medium-struggle; completeness is --hard-floor): "
             + ", ".join(skipped)
         )
+    for row in subjects:
+        oid = openrouter_id(row) or "UNROUTABLE"
+        print(
+            f"  {row['id']:36} {row['group']:14} "
+            f"{len(HARD_RELEASE_15)} tasks × {len(HARD_RELEASE_ATTEMPTS)} = "
+            f"{len(HARD_RELEASE_15) * len(HARD_RELEASE_ATTEMPTS)}  {oid}"
+        )
+    if subjects:
+        sample = next((s for s in subjects if openrouter_id(s)), subjects[0])
+        print(" ", " ".join(_cmd(sample, HARD_RELEASE_15[0], lock)))
+    return cells
+
+
+def _print_hard_floor_plan(
+    subjects: list[dict[str, Any]],
+    lock: dict[str, Any],
+    group: str,
+    force: bool,
+) -> list[tuple[dict[str, Any], str, int]]:
+    cells = plan_hard_release_cells(subjects)
+    rows = _load_rows(HARD_FLOOR_OUT)
+    n_skip = 0
+    n_pending = 0
+    for model, name, attempt in cells:
+        prev = _find_k3_row(rows, model["id"], name, attempt)
+        if trial_is_done(prev, force=force):
+            n_skip += 1
+        else:
+            n_pending += 1
+    print(
+        f"===== HARD-FLOOR k=3 PLAN =====\n"
+        f"benchmark_version={BENCHMARK_VERSION}\n"
+        f"group={group} n_subjects={len(subjects)} force={force}\n"
+        f"attempts={list(HARD_RELEASE_ATTEMPTS)}  n_trials={len(cells)}\n"
+        f"pending={n_pending} already_done={n_skip}\n"
+        f"writes={HARD_FLOOR_OUT}\n"
+        f"does not overwrite {CORE_OUT} or {K3_OUT} or {HARD_RELEASE_OUT}\n"
+        f"each attempt is a new Harbor -k 1 sandbox; infra retries do not fill the slot"
+    )
     for row in subjects:
         oid = openrouter_id(row) or "UNROUTABLE"
         print(
@@ -1413,12 +1618,14 @@ def _parse_argv(argv: list[str]) -> dict[str, Any]:
     k3_fill = "--k3-fill" in argv
     hard_dev = "--hard-dev" in argv
     hard_release = "--hard-release" in argv
+    hard_floor = "--hard-floor" in argv
     base_fill = "--base-fill" in argv
-    if sum([k3_fill, hard_dev, hard_release, base_fill]) > 1:
+    if sum([k3_fill, hard_dev, hard_release, hard_floor, base_fill]) > 1:
         raise SystemExit(
-            "use only one of --k3-fill / --hard-dev / --hard-release / --base-fill"
+            "use only one of --k3-fill / --hard-dev / --hard-release / "
+            "--hard-floor / --base-fill"
         )
-    exclusive = k3_fill or hard_dev or hard_release or base_fill
+    exclusive = k3_fill or hard_dev or hard_release or hard_floor or base_fill
     protocol = False if exclusive else ("--protocol" in argv or full)
     core = False if exclusive else ("--core" in argv or full)
     force = "--force" in argv
@@ -1437,6 +1644,7 @@ def _parse_argv(argv: list[str]) -> dict[str, Any]:
         "k3_fill": k3_fill,
         "hard_dev": hard_dev,
         "hard_release": hard_release,
+        "hard_floor": hard_floor,
         "base_fill": base_fill,
         "force": force,
         "group": group,
@@ -1447,7 +1655,15 @@ def _parse_argv(argv: list[str]) -> dict[str, Any]:
 def main() -> int:
     opts = _parse_argv(sys.argv[1:])
     lock = load_lock()
-    if opts["hard_release"]:
+    if opts["hard_release"] and opts["run"] and opts["group"] == "all":
+        raise SystemExit(
+            "--hard-release --group all --run would write floor cells into "
+            f"{HARD_RELEASE_OUT.name}. Use --run --hard-floor "
+            f"(writes {HARD_FLOOR_OUT.name})."
+        )
+    if opts["hard_floor"]:
+        subjects = hard_floor_subjects(opts["group"], opts["batch"], lock)
+    elif opts["hard_release"]:
         subjects = hard_release_subjects(opts["group"], opts["batch"], lock)
     elif opts["hard_dev"]:
         subjects = hard_dev_subjects(opts["group"], opts["batch"], lock)
@@ -1459,6 +1675,30 @@ def main() -> int:
         f"lock frozen={lock.get('frozen')} n_lock={len(lock['models'])} "
         f"selected={len(subjects)} group={opts['group']} batch={opts['batch'] or 'all'}"
     )
+    if opts["hard_floor"]:
+        cells = _print_hard_floor_plan(subjects, lock, opts["group"], opts["force"])
+        if not opts["run"]:
+            print(
+                "dry-run; pass --run --hard-floor to execute on Novita n=1",
+                flush=True,
+            )
+            return 0
+        if not ENV.is_file():
+            print("missing .env", file=sys.stderr)
+            return 2
+        needed = sorted({name for _, name, _ in cells})
+        missing = [n for n in needed if not (TASKS / n / "task.toml").is_file()]
+        if missing:
+            print(f"missing tasks: {missing}", file=sys.stderr)
+            return 2
+        restore = _prevent_sleep()
+        try:
+            rows = _load_rows(HARD_FLOOR_OUT)
+            code = _execute_hard_floor(rows, subjects, lock, force=opts["force"])
+            _write_hard_floor_k3(rows, lock, subjects)
+        finally:
+            restore()
+        return code
     if opts["hard_release"]:
         cells = _print_hard_release_plan(subjects, lock, opts["group"], opts["force"])
         if not opts["run"]:
@@ -1563,8 +1803,10 @@ def main() -> int:
             "k=3 fill: --k3-fill --group main (940). "
             "Hard-Dev 27B+35B: --run --hard-dev (60). "
             "Hard-Release 6×15×k=3: --run --hard-release (270). "
+            "Hard-Floor skipped 6×15×k=3: --run --hard-floor (270, new file). "
             "27B/35B Base-47 k=3: --run --base-fill (seeds 27B; 35B from scratch). "
-            "Do not overwrite locked-core.json or locked-core-k3.json.",
+            "Do not overwrite locked-core.json, locked-core-k3.json, "
+            "or locked-hard-release-k3.json.",
             flush=True,
         )
         return 0

@@ -53,7 +53,7 @@
     {"id": "swe-gym-7b", "class": "agent_sft", "size": "7B", "swe_verified_openhands": 10.6, "source": "https://arxiv.org/html/2604.01496v1"},
     {"id": "swe-hero-7b", "class": "agent_sft", "size": "7B", "swe_verified_openhands": 52.7, "source": "https://arxiv.org/html/2604.01496v1", "note": "SFT on SWE trajectories; not a vanilla 7B theta"},
     {"id": "swe-hero-14b", "class": "agent_sft", "size": "14B", "swe_verified_openhands": 60.8, "source": "https://arxiv.org/html/2604.01496v1"},
-    {"id": "glm-4.5-air", "class": "ruler", "size": "12B-active", "swe_verified_openhands": 57.6, "edit_sft": 0.458, "source": "https://arxiv.org/abs/2604.05013"}
+    {"id": "glm-4.5-air", "class": "ruler", "size": "12B-active", "swe_verified_openhands": 57.6, "source": "https://z.ai/blog/glm-4.5"}
   ],
   "theta_rank_comparable_8b": [
     {"id": "seed-coder-8b-instruct", "z_mean": "top among ~8B on this slice", "why": "LCB 24.7 / Aider 57.1 / SWE-A 19.2"},

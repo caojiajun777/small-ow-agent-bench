@@ -7,15 +7,22 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from classify_timeouts import KIND_STALL  # noqa: E402
 from run_locked import (  # noqa: E402
+    INFRA_RETRY_CAP,
+    RATE_LIMIT_RETRY_CAP,
     _parse_argv,
+    _run_k3_slot,
     _upsert_k3,
     attempt_is_valid,
     hard_dev_subjects,
+    hard_floor_subjects,
     hard_release_subjects,
+    infra_retry_exhausted,
     plan_hard_dev_cells,
     plan_hard_release_cells,
     plan_k3_cells,
     plan_upper_base_cells,
+    report_is_scored,
+    slot_fill_kind,
     tasks_for_k3_subject,
     trial_is_done,
     upper_base_subjects,
@@ -149,6 +156,208 @@ def test_infra_is_not_a_valid_k3_attempt():
     )
 
 
+def test_slot_fill_kind_rate_limit_vs_scored():
+    infra_rl = {
+        "trials": [
+            {
+                "termination": "infra",
+                "atomic_correct": 0,
+                "exception": "RateLimitError",
+            }
+        ]
+    }
+    scored = {
+        "trials": [
+            {
+                "termination": "protocol_error",
+                "atomic_correct": 0,
+                "exception": "OutputLengthExceededError",
+            }
+        ]
+    }
+    clean = {
+        "trials": [{"termination": "clean", "atomic_correct": 1, "exception": None}]
+    }
+    assert slot_fill_kind(infra_rl, exc="RateLimitError") == "rate_limit"
+    assert slot_fill_kind(infra_rl, exc="RateLimitException") == "rate_limit"
+    assert (
+        slot_fill_kind(
+            {"trials": [{"termination": "infra", "atomic_correct": 0}]},
+            exc="APIStatusError",
+            message="Error code: 429",
+        )
+        == "rate_limit"
+    )
+    assert slot_fill_kind(scored, exc="OutputLengthExceededError") == "scored"
+    assert slot_fill_kind(clean) == "scored"
+    assert slot_fill_kind(None, no_job=True) == "infra"
+    assert (
+        slot_fill_kind(
+            {"trials": [{"termination": "infra", "atomic_correct": 0}]},
+            exc="AuthenticationError",
+        )
+        == "infra"
+    )
+    assert (
+        slot_fill_kind(
+            {
+                "trials": [
+                    {
+                        "termination": "infra",
+                        "atomic_correct": 0,
+                        "exception": "BuildException",
+                    }
+                ]
+            },
+            exc="BuildException",
+        )
+        == "infra"
+    )
+    assert not report_is_scored(infra_rl)
+    assert report_is_scored(scored)
+
+
+def test_rate_limit_retry_is_unbounded_other_infra_caps():
+    assert RATE_LIMIT_RETRY_CAP is None
+    assert not infra_retry_exhausted(
+        "rate_limit", visit_infra=99, visit_rate_limit=50
+    )
+    assert not infra_retry_exhausted(
+        "rate_limit", visit_infra=3, visit_rate_limit=INFRA_RETRY_CAP
+    )
+    assert infra_retry_exhausted(
+        "infra", visit_infra=INFRA_RETRY_CAP, visit_rate_limit=0
+    )
+    assert not infra_retry_exhausted(
+        "infra", visit_infra=INFRA_RETRY_CAP - 1, visit_rate_limit=0
+    )
+
+
+def _fake_k3_job(root, *, termination, atomic, exception=None, finished=True, n_shell=1):
+    import json
+
+    job = root
+    job.mkdir(parents=True, exist_ok=True)
+    trial = job / "hello-world__x"
+    trial.mkdir(exist_ok=True)
+    payload = {
+        "trial_name": "hello-world__x",
+        "exception_info": {"exception_type": exception} if exception else {},
+        "verifier_result": {"rewards": {"reward": float(atomic)}},
+        "agent_result": {
+            "metadata": {"finished": finished, "n_shell": n_shell, "n_turns": 2}
+        },
+    }
+    (trial / "result.json").write_text(json.dumps(payload), encoding="utf-8")
+    (job / "standard-scores.json").write_text(
+        json.dumps(
+            {
+                "trials": [
+                    {
+                        "termination": termination,
+                        "atomic_correct": atomic,
+                        "exception": exception,
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    return job
+
+
+def test_k3_slot_keeps_retrying_rate_limit_until_scored(monkeypatch, tmp_path):
+    n_rl = INFRA_RETRY_CAP + 2
+    jobs = [
+        _fake_k3_job(
+            tmp_path / f"rl{i}",
+            termination="infra",
+            atomic=0,
+            exception="RateLimitError",
+        )
+        for i in range(n_rl)
+    ]
+    jobs.append(
+        _fake_k3_job(tmp_path / "ok", termination="clean", atomic=1, exception=None)
+    )
+    it = iter(jobs)
+    sleeps: list[float] = []
+    monkeypatch.setattr("run_locked._run_task", lambda *a, **k: next(it))
+    monkeypatch.setattr("run_locked.time.sleep", lambda s: sleeps.append(s))
+    rec = _run_k3_slot(
+        {"id": "m", "group": "g", "batch": "b", "openrouter_id": "x"},
+        "hello-world",
+        1,
+        {},
+        None,
+    )
+    assert rec["termination"] == "clean"
+    assert rec["atomic_correct"] == 1
+    assert rec["reason"] is None
+    assert len(sleeps) == n_rl
+    assert rec["infra_retries"] == n_rl
+
+
+def test_k3_slot_other_infra_still_caps(monkeypatch, tmp_path):
+    jobs = [
+        _fake_k3_job(
+            tmp_path / f"b{i}",
+            termination="infra",
+            atomic=0,
+            exception="BuildException",
+        )
+        for i in range(INFRA_RETRY_CAP)
+    ]
+    it = iter(jobs)
+    monkeypatch.setattr("run_locked._run_task", lambda *a, **k: next(it))
+    monkeypatch.setattr("run_locked.time.sleep", lambda s: None)
+    rec = _run_k3_slot(
+        {"id": "m", "group": "g", "batch": "b", "openrouter_id": "x"},
+        "hello-world",
+        2,
+        {},
+        None,
+    )
+    assert rec["termination"] == "infra"
+    assert rec["reason"] == "infra"
+    assert rec["infra_retries"] == INFRA_RETRY_CAP
+    assert not trial_is_done(rec)
+
+
+def test_k3_slot_output_length_is_scored_not_retried(monkeypatch, tmp_path):
+    job = _fake_k3_job(
+        tmp_path / "ole",
+        termination="protocol_error",
+        atomic=0,
+        exception="OutputLengthExceededError",
+        finished=False,
+        n_shell=0,
+    )
+    calls = {"n": 0}
+
+    def once(*a, **k):
+        calls["n"] += 1
+        return job
+
+    monkeypatch.setattr("run_locked._run_task", once)
+    monkeypatch.setattr(
+        "run_locked.time.sleep",
+        lambda s: (_ for _ in ()).throw(AssertionError("no sleep")),
+    )
+    rec = _run_k3_slot(
+        {"id": "m", "group": "g", "batch": "b", "openrouter_id": "x"},
+        "hello-world",
+        1,
+        {},
+        None,
+    )
+    assert calls["n"] == 1
+    assert rec["termination"] == "protocol_error"
+    assert rec["atomic_correct"] == 0
+    assert rec["reason"] is None
+    assert trial_is_done(rec)
+
+
 def test_ruler_k3_tasks_exclude_easy_loc():
     from task_sets import LOC_RULER_K3, MAIN_47
 
@@ -209,6 +418,7 @@ def test_hard_dev_rejects_core_group():
 def test_hard_release_flag_disables_protocol():
     opts = _parse_argv(["--run", "--hard-release", "--full", "--group", "main"])
     assert opts["hard_release"] is True
+    assert opts["hard_floor"] is False
     assert opts["hard_dev"] is False
     assert opts["k3_fill"] is False
     assert opts["protocol"] is False
@@ -219,6 +429,15 @@ def test_hard_release_flag_disables_protocol():
 def test_hard_release_exclusive_with_hard_dev():
     try:
         _parse_argv(["--hard-release", "--hard-dev"])
+    except SystemExit as exc:
+        assert "only one" in str(exc)
+    else:
+        raise AssertionError("expected SystemExit")
+
+
+def test_hard_floor_exclusive_with_hard_release():
+    try:
+        _parse_argv(["--hard-floor", "--hard-release"])
     except SystemExit as exc:
         assert "only one" in str(exc)
     else:
@@ -277,12 +496,54 @@ def test_hard_release_group_all_is_540():
     assert len(cells) == 540
 
 
+def test_hard_floor_flag_disables_protocol():
+    opts = _parse_argv(["--run", "--hard-floor", "--full", "--group", "main"])
+    assert opts["hard_floor"] is True
+    assert opts["hard_release"] is False
+    assert opts["k3_fill"] is False
+    assert opts["protocol"] is False
+    assert opts["core"] is False
+    assert opts["run"] is True
+
+
+def test_hard_floor_plan_is_270_skipped_ids():
+    from models_lock import load_lock
+    from task_sets import HARD_RELEASE_15
+
+    lock = load_lock()
+    subjects = hard_floor_subjects("main", None, lock)
+    cells = plan_hard_release_cells(subjects)
+    assert [m["id"] for m in subjects] == [
+        "llama-3.2-3b-instruct",
+        "ministral-3b-2512",
+        "gemma-3-4b-it",
+        "qwen3-8b",
+        "granite-4.1-8b",
+        "gemma-3-12b-it",
+    ]
+    assert len(HARD_RELEASE_15) == 15
+    assert len(cells) == 270
+    assert {a for _, _, a in cells} == {1, 2, 3}
+    assert {name for _, name, _ in cells} == set(HARD_RELEASE_15)
+    official = {m["id"] for m in hard_release_subjects("main", None, lock)}
+    assert official.isdisjoint({m["id"] for m in subjects})
+
+
+def test_hard_floor_out_is_not_official_lock():
+    from run_locked import HARD_FLOOR_OUT, HARD_RELEASE_OUT
+
+    assert HARD_FLOOR_OUT.name == "locked-hard-floor-k3.json"
+    assert HARD_RELEASE_OUT.name == "locked-hard-release-k3.json"
+    assert HARD_FLOOR_OUT.resolve() != HARD_RELEASE_OUT.resolve()
+
+
 def test_base_fill_flag_disables_protocol():
     opts = _parse_argv(["--run", "--base-fill", "--full", "--group", "main"])
     assert opts["base_fill"] is True
     assert opts["k3_fill"] is False
     assert opts["hard_dev"] is False
     assert opts["hard_release"] is False
+    assert opts["hard_floor"] is False
     assert opts["protocol"] is False
     assert opts["core"] is False
     assert opts["run"] is True

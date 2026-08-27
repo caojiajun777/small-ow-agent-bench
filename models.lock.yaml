@@ -1,7 +1,8 @@
 # Frozen compact-shell Core roster: 12 open-weight models (3B dense → 35B-A3B MoE).
 # All 12 enter Base / five-skill / IRT-core. Hard-Release examinees are the 6
 # with hard_release: true (Base-47 Atomic 47-mean ≥ 0.40, plus 27B and 35B).
-# Skipped models are not scored as Hard zeros. Escape hatch: --hard-release --group all.
+# Floor completeness: --hard-floor writes jobs/locked-hard-floor-k3.json.
+# Do not run --hard-release --group all --run (would expand the official lock).
 # --group main still selects the original 10 compact_dense models (Base-47 k=3 reuse).
 # Batch is execution order only. Do not swap IDs after protocol check starts.
 # Catalog check: 2026-08-25 (Beijing). 35B provider pin confirmed at protocol smoke.
@@ -36,6 +37,7 @@ harness:
     - BuildException
     - EnvironmentStartTimeoutError
     - RateLimitException
+    - RateLimitError
   retry_note: infra/network only; never change provider on retry
 inference:
   temperature: 0.0
@@ -86,9 +88,10 @@ hard_release:
   rule: >
     Administer Hard-15 only if Base-47 Atomic 47-mean ≥ 0.40, plus the 27B
     dense and 35B-A3B MoE bands. Floor / Medium-struggle models stay on the
-    Base table. Do not impute Hard p=0 for skipped IDs.
+    Base table in the official 6-examinee Hard lock. Completeness backfill is
+    --hard-floor → jobs/locked-hard-floor-k3.json; do not expand this lock.
   skipped_not_scored_as_zero: true
-  escape_hatch: "--hard-release --group all"
+  escape_hatch: "--hard-floor"
 dropped_not_on_openrouter_or_out_of_band:
   - Qwen3.5-4B
   - Qwen3-4B

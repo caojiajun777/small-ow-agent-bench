@@ -5,7 +5,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from models_lock import by_group, hard_release_rows, llm_kwargs, load_lock, models, openrouter_id, select_subjects  # noqa: E402
+from models_lock import by_group, hard_floor_rows, hard_release_rows, llm_kwargs, load_lock, models, openrouter_id, select_subjects  # noqa: E402
 from task_sets import HARD_DEV_10, HARD_RELEASE_15, MAIN_47, PROTOCOL_SMOKE  # noqa: E402
 
 MAIN_IDS = (
@@ -171,3 +171,8 @@ def test_hard_release_examinees_are_six():
     assert "qwen3-8b" in skipped
     assert "gemma-3-12b-it" in skipped
     assert "granite-4.1-8b" in skipped
+    assert [m["id"] for m in hard_floor_rows("main", lock=lock)] == skipped
+    assert len(hard_floor_rows("main", lock=lock)) == 6
+    assert not {m["id"] for m in hard_floor_rows("main", lock=lock)} & {
+        m["id"] for m in hard_release_rows("main", lock=lock)
+    }

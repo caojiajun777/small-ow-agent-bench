@@ -8,10 +8,15 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from score_standard import score_trial, termination_of  # noqa: E402
 
 
-def _data(*, reward=1.0, exc=None, finished=None, n_shell=1, n_turns=3, n_parse=0):
+def _data(*, reward=1.0, exc=None, exc_msg=None, finished=None, n_shell=1, n_turns=3, n_parse=0):
+    info = {}
+    if exc:
+        info["exception_type"] = exc
+    if exc_msg is not None:
+        info["exception_message"] = exc_msg
     payload = {
         "verifier_result": {"rewards": {"reward": reward}},
-        "exception_info": {"exception_type": exc} if exc else {},
+        "exception_info": info,
         "agent_result": {
             "metadata": {
                 "finished": finished,
@@ -61,6 +66,37 @@ def test_litellm_rate_limit_is_infra():
 
 def test_harbor_read_error_is_infra():
     assert termination_of(_data(reward=0.0, exc="ReadError")) == "infra"
+
+
+def test_api_flake_connect_and_unavailable_are_infra():
+    assert termination_of(_data(reward=0.0, exc="ConnectError")) == "infra"
+    assert termination_of(_data(reward=0.0, exc="APIConnectionError")) == "infra"
+    assert termination_of(_data(reward=0.0, exc="ServiceUnavailableError")) == "infra"
+
+
+def test_api_status_429_and_401_are_infra():
+    assert (
+        termination_of(
+            _data(reward=0.0, exc="APIStatusError", exc_msg="Error code: 429 rate limit")
+        )
+        == "infra"
+    )
+    assert (
+        termination_of(_data(reward=0.0, exc="APIStatusError", exc_msg="Error code: 401"))
+        == "infra"
+    )
+    assert termination_of(_data(reward=0.0, exc="AuthenticationError")) == "infra"
+
+
+def test_output_length_exceeded_is_protocol_error_not_rate_limit():
+    from score_standard import is_rate_limit
+
+    data = _data(reward=0.0, exc="OutputLengthExceededError")
+    assert termination_of(data) == "protocol_error"
+    assert not is_rate_limit("OutputLengthExceededError", "hit max_tokens limit")
+    row = score_trial(Path("."), data)
+    assert row["scored"] is True
+    assert row["atomic_correct"] == 0
 
 
 def test_load_trials_skips_invalid_utf8(tmp_path):

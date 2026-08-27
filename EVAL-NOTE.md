@@ -1,8 +1,8 @@
 # small-ow-agent-bench：评测笔记（草稿）
 
-状态：协议已冻、Core 47 已冻；k=1 探索矩阵已齐；**正式 Core 主表 k=3 已齐**（10×47 + 尺子 7 道 Loc，每格 `n_valid=3`，产物 `jobs/locked-core-k3.json`，不覆盖 `locked-core.json`）。Hard-Release-15 已冻并跑完 6 个受试 × k=3（`jobs/locked-hard-release-k3.json`，90 格 `n_valid=3`，infra=0）。27B / 35B 全量 Base-47 k=3 已齐（`jobs/locked-upper-base-k3.json`，94 格 `n_valid=3`，**不进** compact-10 均值，见 §13）。k=3 探索性 1PL 已拟合（`jobs/irt-k3.json`，Binomial(3)，不进发表均值）。Core Frontier 现为 2 道 Loc + 1 道 Testgen + 2 道 Repro（§11 / §13）；Hard-15 按梯子只有 `loc-hook-plugin` 锁得住。**v1.0 = API Standard（系统表）**。公开仓库：https://github.com/caojiajun777/small-ow-agent-bench。Local Reference 全表未跑。本文不是正式论文，给公开仓库和评测实习答辩用。
+状态：协议已冻、Core 47 已冻；k=1 探索矩阵已齐；**正式 Core 主表 k=3 已齐**（10×47 + 尺子 7 道 Loc，每格 `n_valid=3`，产物 `jobs/locked-core-k3.json`，不覆盖 `locked-core.json`）。Hard-Release-15 已冻并跑完 6 个受试 × k=3（`jobs/locked-hard-release-k3.json`，90 格 `n_valid=3`，infra=0）。6 个缺测 compact 的 Hard-15 补全已齐（`jobs/locked-hard-floor-k3.json`，90 格 `n_valid=3`，**不覆盖**官方 Hard 锁，见 §12.4）。27B / 35B 全量 Base-47 k=3 已齐（`jobs/locked-upper-base-k3.json`，94 格 `n_valid=3`，**不进** compact-10 均值，见 §13）。Gemma-4B 429 side table 已齐（`jobs/locked-gemma4b-rerun-k3.json`，67/67，**不覆盖** core lock，见 §14）。13 格 infra 已替换（`jobs/locked-infra-rerun-k3.json`，13/13，见 §15）。**当前对外主表**是 v1.0.1 canonical matrix `results/canonical-coverage.json`（Hard 补全 + Gemma-4B 429 + infra 13；Gemma-4B 11/186；`remaining_dirty` 0；Headline 9B 0.786 / 27B 0.863）。冻结审计表仍见 §6.2（缺测记 0）。k=3 探索性 1PL 已拟合（`jobs/irt-k3.json`，Binomial(3)，不进发表均值）。Core Frontier 现为 2 道 Loc + 1 道 Testgen + 3 道 Repro + Hard-15 `loc-hook-plugin`（§11 / §13 / §15）。**v1.0 = API Standard（系统表）**。公开仓库：https://github.com/caojiajun777/small-ow-agent-bench。Local Reference 全表未跑。本文不是正式论文，给公开仓库和评测实习答辩用。
 
-一句话：在 compact-shell 下用五项原子，区分从玩具档到部署档（约 3B–35B）的开源小模型在 shell agentic coding 上「哪一列会、哪一列不会」，给后续分析和训练当诊断表。不是追求大家都考 50 分。
+一句话：在 compact-shell 下用五个诊断维度，区分从玩具档到部署档（约 3B–35B）的开源小模型在 shell agentic coding 上「哪一列会、哪一列不会」。不是追求大家都考 50 分，也不主张这五项是基础智力或相互正交。
 
 ## 1. 测什么，不测什么
 
@@ -38,15 +38,15 @@
 | 表 | 问题 | 题从哪来 |
 |---|---|---|
 | **Core** | 3B / 8B / 9B 差在哪一列 | 47 道 unique-trap Medium |
-| **Frontier** | 9B 稳定不会、27B 或 34B 稳定会的边界 | Core 47 里 5 道（§11 / §13）；Hard-15 按同一梯子只锁住 `loc-hook-plugin`（§12） |
+| **Frontier** | 9B 在 v1.0 为 0/3、27B 或 34B Atomic 为 3/3 | Core 47 里 5 道（§11 / §13）；Hard-15 按同一梯子只锁住 `loc-hook-plugin`（§12） |
 
 9B 在 Core 上偏高，如果题确实在档内，**不是 bench 坏了**。不要为了压分改成 subset loc、露出 hidden tests、或加 planner。
 
 ## 2. 相关工作：借了什么，没搬什么
 
-五项原子的接口来自 Ma & Liu et al., 2026，[Scaling Coding Agents via Atomic Skills](https://arxiv.org/abs/2604.05013)。那篇是对 GLM-4.5-Air（106B / 12B 激活）做 joint RL 的**训练**工作。公开小模型评测集、Core vs Frontier、3B–9B 主榜，他们没有做。我们做的是同一组原子的 **小模型评测对照**。
+我们不主张 Agentic Coding 只有五种基础能力。选 Loc / Edit / Testgen / Repro / Review，是因为它们同时满足：仓库级 issue 里高频出现；能通过任务设计隔离；产物明确；可确定性判分。SWE / Terminal-Bench 只有复合 Pass/Fail；Loc-Bench / Agentless 说明定位可单独测；SWT-Bench 说明复现可单独测；Aider 与 SWE 经常对不上，说明编辑 ≠ 修 issue。本 bench 把这五列写成同一套短题协议。能力解耦看完整 62 的列间差。
 
-单原子前人已经分别测过，我们借构造和验收，不借原题：
+单列前人已经分别测过，我们借构造和验收，不借原题：
 
 | 工作 | 他们测 | 我们借 | 我们不搬 |
 |---|---|---|---|
@@ -56,11 +56,11 @@
 | LiveCodeBench / HumanEval / Aider | 单次写代码 | 边角陷阱（`or` 默认值、闰年） | 竞赛题当 agent 原子 |
 | SmallCode 内部 100 题 | 产品烟测 | — | 不当研究主表 |
 
-`TRAPS.md` 每条陷阱只进 Core 一次。同构换皮进库存，不算 47。
+`TRAPS.md`：同一任务族内不重复同一失败模式；跨任务族允许复用（如显式 `0` 被 `or` 吃掉）并记录。同构换皮进库存，不算公开 47。
 
 ## 3. 协议（冻结对象）
 
-Agent 是 `compact-shell`：每轮只输出一个 ` ```bash ` 或 ` ```finish `。没有 JSON 工具、planner、记忆、自动停。Harbor 管沙箱和 hidden verifier。Terminus-2 只做对照，不进正式表。测量对象的完整表述见 §1 与 [`STANDARD.md`](STANDARD.md)。
+Agent 是 `compact-shell`：每轮只输出一个 ` ```bash ` 或 ` ```finish `。钉死的是交互接口和资源预算（无 JSON 工具、无 harness 侧 planner / 自动停）。规划、搜索和上下文管理仍是影响五项结果的潜在机制，暂不做成独立产物任务；格式、提交和终止作为交互可靠性单独报告。Harbor 管沙箱和 hidden verifier。Terminus-2 只做对照，不进正式表。测量对象的完整表述见 §1 与 [`STANDARD.md`](STANDARD.md)。
 
 评分只看冻结沙箱：
 
@@ -82,7 +82,7 @@ Agent 是 `compact-shell`：每轮只输出一个 ` ```bash ` 或 ` ```finish `�
 | Edit | 12 | 改 `/app/repo` | hidden `/tests` 全过 |
 | Testgen | 10 | `tests/test_*.py` | gold 过且全部 mutant 挂 |
 | Repro | 10 | `/app/repro.py` | 坏仓失败、gold 后成功 |
-| Review | 7 | `/app/answer.txt` 的 0/1 | 抽出唯一 bit == 标签 |
+| Review | 7 | `/app/answer.txt` 的 0/1 | 抽出唯一 bit == 标签（Patch Validation，不是完整代码审查） |
 
 Loc 仍是 Core 最硬的一列。compact-shell k=3 上 8B Loc 0.21、9B Loc 0.33，都远谈不上「多数能过精确集合」（那是 Terminus-2 标定，不要混进主表）。Edit 对 9B 饱和（12/12，`p=1.00`）。完整题表见 [`README.md`](README.md)。Hard 锁法见 §11。
 
@@ -95,11 +95,11 @@ Loc 仍是 Core 最硬的一列。compact-shell k=3 上 8B Loc 0.21、9B Loc 0.3
 | 同档 | Ministral 8B | 是 |
 | 尺子 | Qwen3.8-27B（thinking 关，`akashml/bf16`）；34B 可选 | **否** |
 
-- Medium / Core：8B 或 9B 能过
-- Hard / Frontier：9B **稳定**不过，且 27B 或 34B **稳定**能过（本协议：9B 0/3 且尺子 3/3，Atomic）
-- 不入档：尺子也过不了（如 L9 精确集合）
+- Medium：8B 或 9B 能过，且不是 Easy
+- Hard / Frontier：v1.0 观察到 9B 为 0/3，且 27B 或 34B Atomic 为 3/3
+- 未标定：9B 为 0/3，尺子达不到 3/3（仍计分，不是有序「极难」）
 
-不准用一次 k=1 零、TLE、或 halt 失败造 Hard。Terminus-2 2026-08-22 标定当时没有 Frontier。compact-shell k=3 先锁了 2 道 Atomic Hard Loc（`loc-member-discount`、`loc-vip-two-files`），见 §11。27B Base-47 k=3 齐了之后又锁 `testgen-anagram`、`repro-first-index`、`repro-whitespace`（§13）。L5 `loc-traceback-helper` 在本协议下是 9B 2/3、27B 0/3，更不是 Hard。
+不准用一次 k=1 零、TLE、或 halt 失败造 Hard。Terminus-2 2026-08-22 标定当时没有 Frontier。compact-shell k=3 先锁了 2 道 Atomic Hard Loc（`loc-member-discount`、`loc-vip-two-files`），见 §11。27B Base-47 k=3 齐了之后又锁 `testgen-anagram`、`repro-first-index`、`repro-whitespace`（§13）。infra 勘误后另锁 `repro-nested-alias`（§15）。L5 `loc-traceback-helper` 在本协议下是 9B 3/3、27B 0/3，更不是 Hard。
 
 ## 6. 结果表
 
@@ -121,50 +121,56 @@ Loc 仍是 Core 最硬的一列。compact-shell k=3 上 8B Loc 0.21、9B Loc 0.3
 | both_miss | 7 | loc-bind-host、loc-vip-two-files、loc-traceback-helper、testgen-gregorian、repro-zero-timeout、repro-whitespace、repro-truthy-flag |
 | incomplete | 0 | — |
 
-读法：Core **有区分度**，主要在 Loc / Testgen / Review，不在 Edit。9B Repro（0.40）低于 8B（0.60）——和 10 题烟测一样，9B 更容易写完 repro 再去改仓库。both_miss **不是 Hard**，除非 27B/34B 稳定能过。
+读法：Core **有区分度**，主要在 Loc / Testgen / Review，不在 Edit。9B Repro（0.40）低于 8B（0.60）——和 10 题烟测一样，9B 更容易写完 repro 再去改仓库。both_miss **不是 Hard**，除非尺子在 v1.0 为 Atomic 3/3。
 
 ### 6.2 正式 Core 表（compact-shell k=3，API，2026-08-25）
 
 跑法：`python scripts/run_locked.py --run --k3-fill --group main`，再 `--group ruler`。attempt=1 来自 `jobs/locked-core.json`，只补 2 和 3。产物 **`jobs/locked-core-k3.json`**（**不覆盖** k=1）。范围 477 格，全部 `n_valid=3`。尺子只补 7 道 Loc（不含易题 `loc-unused-fix`）。轨迹仍是 OpenRouter API；Local Reference 未做。
 
-格子分数是三次独立沙箱的 \(p_i\)。技能列是该原子上 \(p\) 的均分（\(S_{\mathrm{atom}}\)）。**五项宏平均** = 五列再平均；**题微平均** = 47 道 \(p\) 的均分 = 成功 attempt / \(141\)。两数都对，标签不要混。需要一个标题分时用五项宏平均。主表仍是五列，不强行总分。
+格子分数是三次独立沙箱的 \(p_i\)。技能列是该原子上全部 62 道 \(p\) 的均分（\(S_{\mathrm{atom}}\)：Loc 11 / Edit 15 / Testgen 13 / Repro 13 / Review 10）。**五项宏平均** = 五列再平均；**题微平均** = 成功 attempt / \(186\)。v1.0 冻结表把未跑的 Hard-15 记 \(p=0\)（标 †）。补测见 §12.4。需要一个标题分时用五项宏平均。
 
-**Atomic（会不会做；写对但没停仍记 1）**
+**Atomic（规定产物正确率；写对但没停仍记 1）**
 
 | 模型 | Loc | Edit | Testgen | Repro | Review | 五项宏平均 | 题微平均 |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Qwen3.5-9B | 0.333 | 1.000 | 0.900 | 0.800 | 1.000 | 0.807 | **0.823**（116/141） |
-| Ministral-14B | 0.125 | 0.778 | 0.033 | 0.900 | 0.857 | 0.539 | 0.546（77/141） |
-| Ministral-8B | 0.208 | 0.778 | 0.333 | 0.533 | 0.524 | 0.475 | 0.496（70/141） |
-| Qwen3-14B | 0.125 | 0.556 | 0.533 | 0.533 | 0.429 | 0.435 | 0.454（64/141） |
-| Gemma-3-12B | 0.000 | 0.583 | 0.233 | 0.333 | 0.429 | 0.316 | 0.333（47/141） |
-| Granite-4.1-8B | 0.000 | 0.361 | 0.100 | 0.100 | 0.286 | 0.169 | 0.177（25/141） |
-| Ministral-3B | 0.042 | 0.111 | 0.133 | 0.000 | 0.000 | 0.057 | 0.064（9/141） |
-| Qwen3-8B | 0.125 | 0.000 | 0.000 | 0.100 | 0.000 | 0.045 | 0.043（6/141） |
-| Gemma-3-4B | 0.000 | 0.028 | 0.000 | 0.000 | 0.190 | 0.044 | 0.035（5/141） |
-| Llama-3.2-3B | 0.000 | 0.000 | 0.000 | 0.000 | 0.190 | 0.038 | 0.028（4/141） |
+| Qwen3.5-9B | 0.242 | 0.933 | 0.923 | 0.769 | 1.000 | **0.774** | 0.785（146/186） |
+| Ministral-14B | 0.091 | 0.689 | 0.026 | 0.846 | 0.833 | 0.497 | 0.500（93/186） |
+| Ministral-8B | 0.152 | 0.689 | 0.308 | 0.564 | 0.533 | 0.449 | 0.462（86/186） |
+| Qwen3-14B | 0.091 | 0.467 | 0.462 | 0.436 | 0.567 | 0.404 | 0.409（76/186） |
+| Gemma-3-12B † | 0.000 | 0.467 | 0.179 | 0.256 | 0.300 | 0.241 | 0.253（47/186） |
+| Granite-4.1-8B † | 0.000 | 0.289 | 0.077 | 0.077 | 0.200 | 0.129 | 0.134（25/186） |
+| Ministral-3B † | 0.030 | 0.089 | 0.103 | 0.000 | 0.000 | 0.044 | 0.048（9/186） |
+| Qwen3-8B † | 0.091 | 0.000 | 0.000 | 0.077 | 0.000 | 0.034 | 0.032（6/186） |
+| Gemma-3-4B †‡ | 0.000 | 0.022 | 0.000 | 0.000 | 0.133 | 0.031 | 0.027（5/186） |
+| Llama-3.2-3B † | 0.000 | 0.000 | 0.000 | 0.000 | 0.133 | 0.027 | 0.022（4/186） |
+| Qwen3.8-27B（上沿） | 0.576 | 0.978 | 0.923 | 0.846 | 0.967 | 0.858 | 0.866（161/186） |
+| Qwen3.6-35B-A3B（上沿） | 0.364 | 0.644 | 0.923 | 0.462 | 0.767 | 0.632 | 0.634（118/186） |
 
 **E2E（Atomic ∧ 干净 `finish`）**
 
 | 模型 | Loc | Edit | Testgen | Repro | Review | 五项宏平均 | 题微平均 |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Qwen3.5-9B | 0.333 | 0.917 | 0.900 | 0.700 | 1.000 | 0.770 | **0.780**（110/141） |
-| Ministral-14B | 0.125 | 0.722 | 0.033 | 0.900 | 0.857 | 0.527 | 0.532（75/141） |
-| Ministral-8B | 0.125 | 0.667 | 0.300 | 0.500 | 0.524 | 0.423 | 0.440（62/141） |
-| Qwen3-14B | 0.125 | 0.556 | 0.533 | 0.500 | 0.143 | 0.371 | 0.404（57/141） |
-| Granite-4.1-8B | 0.000 | 0.222 | 0.100 | 0.100 | 0.286 | 0.142 | 0.142（20/141） |
-| Gemma-3-12B | 0.000 | 0.000 | 0.100 | 0.033 | 0.429 | 0.112 | 0.092（13/141） |
-| Gemma-3-4B | 0.000 | 0.028 | 0.000 | 0.000 | 0.190 | 0.044 | 0.035（5/141） |
-| Ministral-3B | 0.000 | 0.056 | 0.067 | 0.000 | 0.000 | 0.025 | 0.028（4/141） |
-| Qwen3-8B | 0.125 | 0.000 | 0.000 | 0.000 | 0.000 | 0.025 | 0.021（3/141） |
-| Llama-3.2-3B | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000（0/141） |
+| Qwen3.5-9B | 0.242 | 0.867 | 0.923 | 0.692 | 1.000 | **0.745** | 0.753（140/186） |
+| Ministral-14B | 0.091 | 0.644 | 0.026 | 0.846 | 0.833 | 0.488 | 0.489（91/186） |
+| Ministral-8B | 0.091 | 0.578 | 0.282 | 0.538 | 0.533 | 0.405 | 0.414（77/186） |
+| Qwen3-14B | 0.091 | 0.467 | 0.462 | 0.410 | 0.233 | 0.333 | 0.349（65/186） |
+| Granite-4.1-8B † | 0.000 | 0.178 | 0.077 | 0.077 | 0.200 | 0.106 | 0.108（20/186） |
+| Gemma-3-12B † | 0.000 | 0.000 | 0.077 | 0.026 | 0.300 | 0.081 | 0.070（13/186） |
+| Gemma-3-4B †‡ | 0.000 | 0.022 | 0.000 | 0.000 | 0.133 | 0.031 | 0.027（5/186） |
+| Ministral-3B † | 0.000 | 0.044 | 0.051 | 0.000 | 0.000 | 0.019 | 0.022（4/186） |
+| Qwen3-8B † | 0.091 | 0.000 | 0.000 | 0.000 | 0.000 | 0.018 | 0.016（3/186） |
+| Llama-3.2-3B † | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000（0/186） |
+| Qwen3.8-27B（上沿） | 0.485 | 0.978 | 0.923 | 0.846 | 0.967 | 0.840 | 0.849（158/186） |
+| Qwen3.6-35B-A3B（上沿） | 0.364 | 0.644 | 0.923 | 0.103 | 0.767 | 0.560 | 0.559（104/186） |
 
-读法（细节 §11）：
+† v1.0 冻结时 Hard-15 未跑，15 道 \(p=0\)。补测见 §12.4。‡ Gemma-4B 已评格子含 67 次被记成 `protocol_error` 的 429。side table 重跑后 Atomic/E2E 均为 8/186，仍是地板。正式锁不改。见 §14。
 
-- 排序和 k=1 一致：9B ≫ 两个 Ministral ≫ Qwen3-14B ≫ Gemma-12B。Qwen3-8B 仍贴地板，和同代 9B 不是一条带。
-- Gemma-12B Atomic 0.33、E2E 0.09：Edit Atomic 0.58 而 E2E Edit **0.00**——会做，几乎从不干净停。
-- 3B / 4B / Qwen3-8B 的 `protocol_error` 占 77–96%。这是能力地板，不是 harness 坏了。
-- 正式 Hard 只锁 **9B 0/3 且 27B 3/3（Atomic）**。Core 47 现 5 道（§11 / §13）。不要用「10 个 main 全 0」。
+读法（细节 §11 / §12）：
+
+- 排序：9B ≫ 两个 Ministral ≫ Qwen3-14B ≫ Gemma-12B。Qwen3-8B 仍贴地板，和同代 9B 不是一条带。
+- Gemma-12B Edit Atomic 0.47、E2E Edit **0.00**——产物对了几乎从不干净停；v1.0 表 Hard-15 记 0。补测后 `edit-blank-name` 3/3 Atomic 仍全部 `protocol_error`，E2E Edit 还是 0。
+- 3B / 4B / Qwen3-8B 已评格子里 `protocol_error` 占 77–96%。这是能力地板，不是 harness 坏了。
+- 9B Hard-15 实测 Atomic 30/45，不是 0。正式 Hard 只锁 **9B 0/3 且 27B 3/3（Atomic）**。
 
 ### 6.3 已有、但不得写入上表的标定（Terminus-2）
 
@@ -173,8 +179,8 @@ Loc 仍是 Core 最硬的一列。compact-shell k=3 上 8B Loc 0.21、9B Loc 0.3
 ## 7. 已经看到的负结果
 
 - k=1 的 4 道 Hard 候选里，k=3 只锁住 **2** 道（§11）。`loc-similar-filenames`（9B 1/3）、`loc-failing-test-impl`（9B 2/3）不是 Hard。
-- 三道尺子也 0/3：`loc-bind-host`、`loc-traceback-helper`、`loc-reexport` → **不入档**。`traceback-helper` 甚至是 9B 2/3、27B 0/3。
-- L9 精确集合：9B / 14B / 27B 都是 gold+decoy → 不入档，不改成 subset。
+- `loc-bind-host`、`loc-reexport` 尺子也 0/3 → **未标定**。`loc-traceback-helper` 是 9B 2/3、27B 0/3 → **Medium**。
+- L9 精确集合：9B / 14B / 27B 都是 gold+decoy → 库存未标定，不在发表的 62 里，不改成 subset。
 - `review-dollar-cents`：9B 过过、27B k=1 写过 1 → 不是 Hard。
 - compact-shell 10 题烟测：9B 9/10；唯一 0 是 `repro-whitespace`（写出 repro 后又修了仓库）。协议 clean。这是任务理解，不是 JSON 税。k=3 上 9B 这道仍是 0/3，但 27B 未补 k=3，**还不能**锁 Hard。
 
@@ -289,9 +295,9 @@ k=1 一次成功会虚高（Gemma-4B、Granite），三次平均把地板压实�
 | loc-vip-two-files | **0/3** | **3/3** | **0/3** | 0.000 | **Hard（Atomic）**；E2E 未锁（尺子三次都写对没停） |
 | loc-similar-filenames | 1/3 | 3/3 | 3/3 | 0.067 | 不是 Hard（9B 不稳 0） |
 | loc-failing-test-impl | 2/3 | 3/3 | 3/3 | 0.067 | Medium（k=1 的 0 是噪声） |
-| loc-traceback-helper | 2/3 | 0/3 | 0/3 | 0.067 | **不入档**；9B > 尺子 |
-| loc-bind-host | 0/3 | 0/3 | 0/3 | 0.033 | **不入档**（尺子过报 decoy） |
-| loc-reexport | 0/3 | 0/3 | 0/3 | 0.000 | **不入档** |
+| loc-traceback-helper | 2/3 | 0/3 | 0/3 | 0.067 | **Medium**；9B 能过 |
+| loc-bind-host | 0/3 | 0/3 | 0/3 | 0.033 | **未标定**（尺子过报 decoy） |
+| loc-reexport | 0/3 | 0/3 | 0/3 | 0.000 | **未标定** |
 | loc-unused-fix | 3/3 | **3/3** | 3/3 | 0.533 | 易题 / smoke（k=3 来自 §13，不在 `locked-core-k3.json`） |
 
 两道 Loc Hard **仍留在冻结的 47 里出分**（10 个 main 全是 0，不改变 main 内部名次），另表叫 Frontier。不事后抽成 45 题来抬 9B。Terminus-2 上 9B 过 `loc-vip-two-files` 3/3——那是另一套 harness，**不能**用来否掉 compact-shell 的 Hard。
@@ -304,7 +310,7 @@ k=1 一次成功会虚高（Gemma-4B、Granite），三次平均把地板压实�
 
 官方 Hard 题集 15 道（Gate-B：oracle=1、nop=0、≥2 foils；见 [`HARD-RELEASE.md`](HARD-RELEASE.md)）。Hard-Dev-10 是废纸，不进 mean。题已冻：**不按本表改 instruction / verifier。**
 
-受试不是 12 个 Core 全跑。Base-47 Atomic 47 均低于 0.40 的地板 / Medium 挣扎模型跳过，**不当 Hard \(p=0\)**。跑的 6 个：Ministral-8B、Qwen3.5-9B、Qwen3-14B、Ministral-14B、Qwen3.8-27B、Qwen3.6-35B-A3B。跳过：Llama-3.2-3B、Ministral-3B、Gemma-3-4B、Qwen3-8B、Granite-4.1-8B、Gemma-3-12B。
+受试不是 12 个 Core 全跑。Base-47 Atomic 47 均低于 0.40 的地板 / Medium 挣扎模型不是官方 Hard 受试。跑的 6 个：Ministral-8B、Qwen3.5-9B、Qwen3-14B、Ministral-14B、Qwen3.8-27B、Qwen3.6-35B-A3B。官方锁不写另外 6 个。v1.0 发表 62 均值把那 15 道记 0（标 †）。后来的完整性补测见 §12.4，不进本锁。
 
 跑法：`python scripts/run_locked.py --run --hard-release`。三次独立 Harbor `-k 1`，不是 `harbor run -k 3`。产物 **`jobs/locked-hard-release-k3.json`**（不覆盖 Base lock / Hard-Dev）。90 格全部 `n_valid=3`，infra=0。270 次：clean 209、`protocol_error` 60、TLE 1。线路仍是钉死的 OpenRouter provider（9B Parasail BF16、27B Akash BF16、35B Venice FP8）。Local Reference 未做。
 
@@ -339,10 +345,10 @@ k=1 一次成功会虚高（Gemma-4B、Granite），三次平均把地板压实�
 | 题 | 9B | 27B A | 35B A | 档 |
 |---|---:|---:|---:|---|
 | `loc-hook-plugin` | **0/3** | **3/3** | 0/3 | **Hard** |
-| `loc-vendor-shadow` | 0/3 | 1/3 | 3/3 | 不是 Hard（27B 不稳） |
-| `loc-env-wrapper` | 0/3 | 0/3 | 3/3 | **不入档**（尺子三次不交卷） |
-| `edit-config-beside` | 0/3 | 2/3 | 0/3 | 不是 Hard（27B 不稳 3/3） |
-| `repro-nested-alias` | 0/3 | 2/3 | 3/3 A · 0/3 E | 不是 Hard |
+| `loc-vendor-shadow` | 0/3 | 1/3 | 3/3 | **未标定**（27B 不稳） |
+| `loc-env-wrapper` | 0/3 | 0/3 | 3/3 | **未标定**（尺子三次不交卷） |
+| `edit-config-beside` | 0/3 | 2/3 | 0/3 | **未标定**（27B 不稳 3/3） |
+| `repro-nested-alias` | 0/3 | 2/3 | 3/3 A · 0/3 E | **未标定** |
 | 其余 10 道 | 9B 均为 3/3 | — | — | **不是 Hard**（目标档会过） |
 
 Core 47 里的 Frontier（`loc-member-discount`、`loc-vip-two-files`，以及 §13 新锁的 `testgen-anagram` / `repro-first-index` / `repro-whitespace`）仍有效。Hard-15 **没有**把 Edit / Testgen / Repro / Review 推到 Frontier；9B 在 Testgen / Review 上仍是 1.00（Hard-15 那 3 道 Testgen / Review）。这是题带与梯子不一致，不是 270 格记分记反。不改题。
@@ -376,34 +382,62 @@ Core 47 里的 Frontier（`loc-member-discount`、`loc-vip-two-files`，以及 �
 
 v1.0 不改回合数、parser、finish、Repro 合同或 Atomic 规则。宽松协议或 Local vLLM 只做后续 sensitivity。v1.0 正式发表的是本 API 系统表；Local Reference 以后补，不覆盖本表。
 
+### 12.4 Hard-floor 补全（6 个缺测 compact × Hard-15，2026-08-27）
+
+完整性，不是新的官方 Hard 受试。命令：`python scripts/run_locked.py --run --hard-floor`。产物 **`jobs/locked-hard-floor-k3.json`**。**没有覆盖** `locked-hard-release-k3.json`。90 格 `n_valid=3`，incomplete 0。270 次：`protocol_error` 189、clean 80、TLE 1。不按本表改题。对外表见 [`结果报表.md`](结果报表.md) §2.4。
+
+**Atomic**
+
+| 模型 | Loc | Edit | Testgen | Repro | Review | 五项宏平均 | 15 均 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Gemma-3-12B | 0.000 | 0.333 | 0.000 | 0.556 | 0.556 | 0.289 | 0.289（13/45） |
+| Granite-4.1-8B | 0.000 | 0.333 | 0.000 | 0.000 | 0.333 | 0.133 | 0.133（6/45） |
+| Gemma-3-4B | 0.000 | 0.000 | 0.000 | 0.000 | 0.333 | 0.067 | 0.067（3/45） |
+| Ministral-3B | 0.000 | 0.111 | 0.000 | 0.000 | 0.000 | 0.022 | 0.022（1/45） |
+| Qwen3-8B | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000（0/45） |
+| Llama-3.2-3B | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000（0/45） |
+
+**E2E**
+
+| 模型 | Loc | Edit | Testgen | Repro | Review | 五项宏平均 | 15 均 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Granite-4.1-8B | 0.000 | 0.333 | 0.000 | 0.000 | 0.333 | 0.133 | 0.133（6/45） |
+| Gemma-3-12B | 0.000 | 0.000 | 0.000 | 0.000 | 0.556 | 0.111 | 0.111（5/45） |
+| Gemma-3-4B | 0.000 | 0.000 | 0.000 | 0.000 | 0.333 | 0.067 | 0.067（3/45） |
+| Ministral-3B | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000（0/45） |
+| Qwen3-8B | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000（0/45） |
+| Llama-3.2-3B | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000（0/45） |
+
+合计 Atomic 23/270、E2E 14/270。Gemma-12B Hard Edit / Repro 的 Atomic 成功几乎全是 `protocol_error`（没 `finish`）。冻结 Base-47 + 本文件并成 62 后，Gemma-12B Atomic 0.313（60/186）、Granite 0.162（31/186）。compact-10 前六名不变。Headline 9B / 27B 不动。
+
 ## 13. 27B / 35B Base-47 k=3（部署档，不进 compact-10 均值，2026-08-26）
 
 跑法：`python scripts/run_locked.py --run --base-fill`。27B 先从 `locked-core-k3.json` 种子已有格（47 题 a1 + 7 道 Loc a2/a3），再补其余；35B 从零 141 格。产物 **`jobs/locked-upper-base-k3.json`**（`kind=locked_upper_base_k3`，`enters_official_mean=false`）。**没有覆盖** `locked-core.json` / `locked-core-k3.json`。94 格全部 `n_valid=3`，infra=0，TLE=0。282 次：27B clean 131 / `protocol_error` 10；35B clean 97 / `protocol_error` 44。
 
-这张表**不是** §6.2 的 compact-10 主均值。9B 行只作对照，数字来自 `locked-core-k3.json`。35B-A3B 仍是 ~3B 激活 MoE。不按本表改 Hard-15，不给 35B 加分，不从 Atomic 剔除 protocol。
+发表均值用 §6.2 的 62 道（v1.0 缺测记 0；地板 Hard-15 补全见 §12.4）。本跑是 Base-47 补齐；下表已并进官方 Hard-15。9B 行来自 `locked-core-k3.json` + `locked-hard-release-k3.json`。35B-A3B 仍是 ~3B 激活 MoE。不按本表改 Hard-15，不给 35B 加分，不从 Atomic 剔除 protocol。
 
 **Atomic**
 
 | 模型 | Loc | Edit | Testgen | Repro | Review | 五项宏平均 | 题微平均 |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Qwen3.8-27B | 0.625 | 1.000 | 1.000 | 0.933 | 1.000 | 0.912 | **0.922**（130/141） |
-| Qwen3.5-9B（§6.2 对照） | 0.333 | 1.000 | 0.900 | 0.800 | 1.000 | 0.807 | 0.823（116/141） |
-| Qwen3.6-35B-A3B | 0.250 | 0.806 | 1.000 | 0.500 | 0.810 | 0.673 | 0.688（97/141） |
+| Qwen3.8-27B | 0.576 | 0.978 | 0.923 | 0.846 | 0.967 | **0.858** | 0.866（161/186） |
+| Qwen3.5-9B | 0.242 | 0.933 | 0.923 | 0.769 | 1.000 | 0.774 | 0.785（146/186） |
+| Qwen3.6-35B-A3B | 0.364 | 0.644 | 0.923 | 0.462 | 0.767 | 0.632 | 0.634（118/186） |
 
 **E2E（Atomic ∧ 干净 `finish`）**
 
 | 模型 | Loc | Edit | Testgen | Repro | Review | 五项宏平均 | 题微平均 |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Qwen3.8-27B | 0.500 | 1.000 | 1.000 | 0.933 | 1.000 | 0.887 | **0.901**（127/141） |
-| Qwen3.5-9B（§6.2 对照） | 0.333 | 0.917 | 0.900 | 0.700 | 1.000 | 0.770 | 0.780（110/141） |
-| Qwen3.6-35B-A3B | 0.250 | 0.806 | 1.000 | 0.133 | 0.810 | 0.600 | 0.610（86/141） |
+| Qwen3.8-27B | 0.485 | 0.978 | 0.923 | 0.846 | 0.967 | **0.840** | 0.849（158/186） |
+| Qwen3.5-9B | 0.242 | 0.867 | 0.923 | 0.692 | 1.000 | 0.745 | 0.753（140/186） |
+| Qwen3.6-35B-A3B | 0.364 | 0.644 | 0.923 | 0.103 | 0.767 | 0.560 | 0.559（104/186） |
 
 读法：
 
-- 27B 在 Base-47 上明显高于 9B（Atomic 130/141 vs 116/141）。Edit / Testgen / Review 全 1.00。Atomic−E2E 差 3 次，全是 `loc-vip-two-files`（产物对、没 `finish`）——与 §11 已锁的 Hard（Atomic）一致。`repro-zero-timeout` 是尺子唯一不稳的 Repro（1/3）。
-- 35B Testgen 天花板（30/30 clean）。拖均值的是 Loc（2/8：`loc-member-discount`、`loc-failing-test-impl`）和 Repro。Loc 另外 6 道是 **Atomic 0 + `protocol_error`**（没交卷），不是 Hard-15 `repro-nested-alias` 那种产物对但没停。
-- 35B Atomic 97/141、E2E 86/141：差的 **11 次全在 Repro**（`repro-none-name` 3/3 A·0/3 E；`repro-end-exclusive` 3/3 A·1/3 E；`repro-zero-timeout` / `keep-zero` / `truthy-flag` 各 2/3 A·0/3 E）。不要从 Atomic 里抠这 11 次。
-- 35B Edit 非满分：`edit-deep-merge` 0/3；`edit-timeout-zero`、`edit-pad-left` 各 1/3。Review 非满分：`review-clip-incomplete` 0/3；`review-slug-almost` 2/3。
+- 27B 在 62 道上明显高于 9B（Atomic 161/186 vs 146/186）。Hard-15 上 27B 31/45、9B 30/45。Atomic−E2E 差里含 `loc-vip-two-files`（产物对、没 `finish`）。
+- 35B Testgen 天花板。拖均值的是 Loc 和 Repro。Base Loc 另外 6 道是 **Atomic 0 + `protocol_error`**（没交卷），不是 Hard-15 `repro-nested-alias` 那种产物对但没停。
+- 35B Atomic 118/186、E2E 104/186：Base Repro 里有 11 次产物对没停，Hard-15 `repro-nested-alias` 另有 3 次。不要从 Atomic 里抠这些。
+- 35B Edit 非满分：`edit-deep-merge` 0/3；`edit-timeout-zero`、`edit-pad-left` 各 1/3；Hard-15 Edit 0/9。Review 非满分：`review-clip-incomplete` 0/3；`review-slug-almost` 2/3。
 
 **梯子（Hard = 9B 0/3 且 27B Atomic 3/3；27B 非 Loc 的 k=3 以本 JSON 为准）：**
 
@@ -417,3 +451,80 @@ v1.0 不改回合数、parser、finish、Repro 合同或 Atomic 规则。宽松�
 | `repro-zero-timeout` | 0/3 | 1/3 | 1/3 | 2/3 | 不是 Hard（27B 不稳） |
 
 Hard-Release-15 题集与分数不改。k=3 探索性 1PL 见 §9。Local Reference 全表未跑。
+
+## 14. 两张发表表、`finish`、以及「没停 ≠ 不会做」
+
+v1.0 对外两张表（同一冻结试验，不要混）：
+
+| 表 | 问题 | `finish` |
+|---|---|---|
+| **Atomic** | 隐藏评分器看产物过没过 | **不要求。** 写对了但没停仍记 1 |
+| **E2E** | Atomic=1 **且** `termination=clean` | **要求。** 这是停机合规，不是「原子技能的端到端」 |
+
+第三张表（Aider / 用户口中的 Adam）是 **微调之后的迁移实验**，不是现在这张 E2E。Core 47 / Hard-15 / Aider 34 都不进训练集。
+
+### 没停的时候模型在干什么
+
+对 Core k=3 + upper-base + Hard-15 里 **Atomic=1 且非 clean** 的 99 次轨迹逐条看最后一轮（不是只看 `termination` 标签）：
+
+| 最后行为 | n | 典型 |
+|---|---:|---|
+| 20 轮上限仍在行动 | 44 | 继续写文件 / grep |
+| pytest 验证环 | 33 | 几乎全是 Gemma-12B Edit |
+| 反复改写直到上限 | 19 | 35B Repro、Granite |
+| 非协议终止表达（shell 里喊完成） | 2 | 9B `echo "Task complete."` |
+| 未归入上表 | 1 | 归类缺口；合计仍是 99 |
+
+**0** 次是「已经打出空的 ` ```finish `、评分器漏解析」。49/99 在撞上限至少 5 轮之前就已经写出正确产物。所以 E2E 掉分主要是 **不会按契约停**，不是「不会做这道题」。
+
+### 教学弱在哪（不是「整个 system prompt 被忽略」）
+
+`finish` **只**写在 `agents/protocol.py` 的 `SYSTEM_PROMPT`（塞进第一轮 user 的那坨）。任务 `instruction.md` 只写「You have 180/240 seconds」「You may run pytest」——**从不提 finish**。第二轮起模型只看见 `exit 0` + stdout。解析器是严格围栏：
+
+```
+FINISH_FENCE = r"```finish\s*```"
+```
+
+围栏**里面**写 `finish`（如 Qwen3-14B 的 `finish\n0`）不算。同一段 prompt 也教了 bash；bash **每轮都在用**。被丢掉的是「做完之后发一次空围栏」这一条——只出现一次、容易被非协议终止表达替代（`echo done`、`cat` 再确认、再改一版）。
+
+不要把这写成「模型无视了整个 system prompt」。要写成：**弱教学 + 非协议终止表达 + 严格围栏**。
+
+Atomic 已过、其中又干净 finish 的比例（v1.0 冻结 Core 62；† 的 Hard-15 成功数为 0，不进分子）：
+
+| 模型 | Atomic 成功里干净停 |
+|---|---|
+| Ministral-14B | 91/93（98%） |
+| **Qwen3.5-9B** | **140/146（96%）** |
+| Qwen3-14B | 65/76（86%） |
+| Ministral-8B | 77/86（90%） |
+| Granite-8B † | 20/25（80%） |
+| **Gemma-12B †** | **13/47（28%）** — 这是停机税，不是 Edit 不会 |
+| Llama-3.2-3B † | 0/4 |
+
+9B 不是「不会 finish」。Gemma-12B 才是。Hard-floor 补测后 Gemma-12B 是 18/60（30%），停机税还在。27B 在 `loc-vip-two-files` 上 Atomic 3/3、E2E 0/3：三次都是产物对了还 `cat` 到 20 轮。
+
+### 设计判断（v1.0 不改）
+
+**不要**为了把 E2E 刷好看，把「请 `finish`」写进每道 `instruction.md`。现在的 Atomic / E2E 分裂就是要测的东西。把 finish 写进题面是 **v1.1 / sensitivity**，新实验，不覆盖冻结分。Headline 是五项 Atomic 宏平均；E2E 是干净完成率。
+
+Grok 4.6 探针（**非正式**，k=1，`openrouter/x-ai/grok-4.6`，`tasks/loc-vip-two-files`，job `jobs/2026-08-26__18-05-30`）：Atomic=1，`termination=clean`，7 轮（探目录 → 写 `checkout.py` + `pricing/vip.py` → `cat` 一次 → `finish`）。对照 27B 同题 Atomic 3/3 E2E 0/3。说明「做完就停」对强模型不是难动作；27B 在这道题上的 E2E 0 是 **这套薄 agent + 弱教学** 下的停机失败。
+
+### 计分器旁注（不改 v1.0 分）
+
+Harbor 抛的是 **`RateLimitError`**；v1.0 `RETRY_INCLUDE` 当时只有 `RateLimitException`。Gemma-3-4B Core 有 **67/141** 格锁成 `protocol_error`，trial `result.json` 实际是 429。现 `scripts/score_standard.py` 已认 `RateLimitError` 为 infra。这 67 格已重跑到 side table `jobs/locked-gemma4b-rerun-k3.json`（2026-08-26，67/67），**不覆盖** `locked-core-k3.json`。并进 v1.0.1 canonical matrix 后 Gemma-4B 是 **11/186**（Base 重跑 8/141 + Hard-15 的 3 次）。冻结审计仍是 5/186。仍是低表现端；429 没有藏着一个会做题的 4B。另外 13 格 infra 已替换，见 §15。
+
+另外会漏进 `protocol_error`、也不该当任务 0 的：`OutputLengthExceededError`（`max_tokens=4096` 直接掐死 episode；Llama / Qwen3-14B Core 各 18 次）。这仍按协议/模型计分，不按 infra 重跑。
+
+## 15. infra 13 格勘误（2026-08-27）
+
+命令：`python scripts/rerun_infra.py --run`。产物 **`jobs/locked-infra-rerun-k3.json`**（13/13，**不覆盖**冻结锁）。v1.0.1 canonical matrix 第六层。`remaining_dirty` 0。
+
+| 配置 | n | 原异常 | 替换后 |
+|---|---:|---|---|
+| Llama-3.2-3B | 4 | RateLimitError | 全部 Artifact=0，`protocol_error` |
+| Qwen3.5-9B | 4 | RateLimitError | 2× Artifact=1 clean（`loc-failing-test-impl`、`loc-traceback-helper`）；2× Artifact=0（`loc-similar-filenames`、`loc-vip-two-files`） |
+| Qwen3-8B | 2 | ConnectError | 全部 Artifact=0，`protocol_error` |
+| Qwen3.8-27B | 2 | ServiceUnavailableError | `repro-nested-alias` a3 Artifact=1 clean；`repro-stale-quote` a1 Artifact=0 |
+| Ministral-8B | 1 | AuthenticationError | `review-rotate-right` a3 Artifact=1 clean |
+
+当前阅读表：9B Artifact **0.786**（148/186），Clean 0.757（142/186）；27B Artifact **0.863**（162/186）。halt 仍是 105。Hard-15：9B 30/45，27B 32/45。难度从 canonical 全表重算：Easy 12 / Medium 38 / Hard 7 / Uncalibrated 5。`repro-nested-alias` 升为 Hard。脱敏 trials：`results/v1.0.1_trials.jsonl`。本表对应 tag `benchmark-v1.0.1`。§6.2 / §13 冻结表不改写。Infra replacement 在后续时间窗口完成；路由与采样冻结，API 后端时间漂移无法完全排除。

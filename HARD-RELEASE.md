@@ -80,11 +80,18 @@ Writes only `jobs/locked-hard-release-k3.json`. Does not overwrite `locked-core.
 ```text
 python scripts/run_locked.py --hard-release
 python scripts/run_locked.py --run --hard-release
+python scripts/run_locked.py --hard-floor
+python scripts/run_locked.py --run --hard-floor
 ```
 
-Dry-run must print **270** (6×15×3). Full 12 is `--group all` (540), not the official table. Resume skips completed `(model, task, attempt)`. Infra retries do not consume attempt numbers. One Novita job at a time.
+Dry-run must print **270** (6×15×3). Completeness for the skipped 6 is `--hard-floor` (also 270), writing `jobs/locked-hard-floor-k3.json`. `--hard-release --group all --run` is refused so the official 6-examinee lock is not expanded. Resume skips completed `(model, task, attempt)`. Infra retries do not consume attempt numbers. One Novita job at a time.
 
 ## Results (do not rewrite items)
 
-Ran 2026-08-26: 90 cells, `n_valid=3`, infra=0. Official numbers and failure composition: [`EVAL-NOTE.md`](EVAL-NOTE.md) §12. Atomic means stay as recorded. Do not impute zeros for skipped models (**missing ≠ 0**). Do not change tasks from these scores. Do not write that all 12 Core models ran Hard-15.
+Official Hard examinees ran 2026-08-26: 90 cells, `n_valid=3`, infra=0. Official numbers and failure composition: [`EVAL-NOTE.md`](EVAL-NOTE.md) §12. Atomic means stay as recorded. This lock still has only those 6 models. Do not copy floor rows into it.
 
+## Hard-floor completeness (skipped 6)
+
+Ran 2026-08-26–27: `python scripts/run_locked.py --run --hard-floor` → `jobs/locked-hard-floor-k3.json`. 90 cells, `n_valid=3`, incomplete 0. 270 trials: `protocol_error` 189, clean 80, TLE 1. Does not overwrite `locked-hard-release-k3.json`. Do not rewrite items from these scores.
+
+Hard-15 Atomic: Gemma-3-12B 13/45, Granite-4.1-8B 6/45, Gemma-3-4B 3/45, Ministral-3B 1/45, Qwen3-8B 0/45, Llama-3.2-3B 0/45. Tables: [`结果报表.md`](结果报表.md) §2.4 / [`EVAL-NOTE.md`](EVAL-NOTE.md) §12.4. The v1.0 published 62 table still imputes these 15 as 0 and marks †. Completeness 62 (core-k3 + this file) does not change the 9B / 27B headline or compact-10 top six.

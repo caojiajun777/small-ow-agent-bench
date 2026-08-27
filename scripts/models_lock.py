@@ -129,7 +129,7 @@ def hard_release_rows(
     batch: int | None = None,
     lock: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
-    """Official Hard-15 examinees. --group all restores the full 12."""
+    """Official Hard-15 examinees. --group all restores the full 12 (plan only)."""
     data = lock or load_lock()
     if group == "all":
         return select_subjects("core", batch, data)
@@ -139,6 +139,24 @@ def hard_release_rows(
             rows = [m for m in rows if int(m.get("batch") or 0) == batch]
         return rows
     return [m for m in select_subjects(group, batch, data) if m.get("hard_release") is True]
+
+
+def hard_floor_rows(
+    group: str = "main",
+    batch: int | None = None,
+    lock: dict[str, Any] | None = None,
+) -> list[dict[str, Any]]:
+    """Hard-15 completeness: the 6 IDs skipped on the official 6-examinee table."""
+    data = lock or load_lock()
+    rows = [m for m in models(data) if m.get("hard_release") is not True]
+    if group in {"moe", "35b", "upper", "ruler"}:
+        return []
+    if group not in {"main", "hard-floor", "compact", "core", "all"}:
+        selected = {m["id"] for m in select_subjects(group, batch, data)}
+        rows = [m for m in rows if m["id"] in selected]
+    if batch is not None:
+        rows = [m for m in rows if int(m.get("batch") or 0) == batch]
+    return rows
 
 
 def irt_rows(kind: str, lock: dict[str, Any] | None = None) -> list[dict[str, Any]]:

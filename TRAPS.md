@@ -6,7 +6,7 @@ Each trap is **one failure mode**. Surfaces (VIP vs VAT vs TTL) do not count as 
 
 Difficulty is **not** a trap attribute. See [`DIFFICULTY.md`](DIFFICULTY.md): Medium / Hard are empirical labels after the 3B / 8B–9B / 27B ladder. A trap that 9B fails is only Hard if 27B can pass.
 
-Status: `v1` = public unique trap, `unscored` = 27B also fails (not a difficulty band), `stock` = isomorph kept on disk.
+Status: `v1` = public unique trap, `unscored` = out of the current 9B/27B ladder (not an ordered band), `stock` = isomorph kept on disk. Same-family items do not reuse one failure mode; the same programming error may recur across atoms (e.g. explicit `0` eaten by `or`) and is recorded here.
 
 ## Localization (exact file set)
 
@@ -74,7 +74,9 @@ Status: `v1` = public unique trap, `unscored` = 27B also fails (not a difficulty
 | R10 | Omitted key vs explicit `0` (flag) | `repro-truthy-flag` | v1 (was stock) |
 | — | Slice `start+1` | `repro-start-index` | stock |
 
-## Code review (binary 0/1)
+## Patch review (binary 0/1)
+
+Validates whether a **given patch** actually fixes the stated issue. Not full code review (style, security, maintainability).
 
 | ID | Trap | Task | Status |
 |---|---|---|---|

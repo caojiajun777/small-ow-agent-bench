@@ -126,7 +126,7 @@
       "task": "edit-slugify",
       "atom": "edit",
       "construct_b": "easy",
-      "construct_reason": "Named-file text normalize with the spec written out; Ma & Liu repo-edit is a harder class.",
+      "construct_reason": "Named-file text normalize with the spec written out; full-repo named edits are a harder class.",
       "keep": "keep",
       "rewrite_what": null,
       "k1_9b": 1,

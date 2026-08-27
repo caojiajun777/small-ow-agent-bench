@@ -75,7 +75,7 @@ python scripts/run_locked.py --run --k3-fill --group ruler
 - [x] Frontier / Hard：`loc-member-discount`、`loc-vip-two-files`（9B 0/3 且 27B Atomic 3/3；后者 E2E 未锁）；另 §13 新锁 `testgen-anagram`、`repro-first-index`、`repro-whitespace`
 - [x] k=3 探索性 1PL（Binomial(3)，`python scripts/fit_irt.py --k3` → `jobs/irt-k3.json`；不进发表均值）
 - [x] 公开 GitHub：https://github.com/caojiajun777/small-ow-agent-bench（`main` + `benchmark-v1.0` / `benchmark-v1.0-rc1`）
-- [x] Local Reference：**权重 SHA 已钉**（[`models.local.yaml`](models.local.yaml)，HF `main` @ 2026-08-26）。全表未跑（Linux vLLM + `VLLM_BASE_URL`；`python scripts/run_local_ref.py`）。不覆盖 API 均值。
+- [x] 停机审计写入 EVAL-NOTE §14：Atomic vs E2E（halt compliance）；v1.0.1 canonical matrix halt=105；finish 只在 SYSTEM_PROMPT；v1.0 不把 finish 写进题面。Gemma-4B 429 已按唯一键并进 canonical matrix（11/186，不覆盖 core lock）。13 格 infra 已替换（EVAL-NOTE §15）。当前阅读表：[`结果报表.md`](结果报表.md) / [`项目说明.md`](项目说明.md) 第 7 节
 
 ## 12 模型 Core（2026-08-25 起）
 
@@ -85,11 +85,14 @@ python scripts/run_locked.py --run --k3-fill --group ruler
 - [x] Hard-Dev-10（每项 2 道）oracle/nop 后冻结（`jobs/gate-a-hard-dev-oracle-nop.json`）
 - [x] Hard-Release-15 Gate-B（foil + 独立性 + grep 锚点）后重新 oracle/nop 冻结（`jobs/gate-a-hard-release-oracle-nop.json`）
 - [x] 27B Base-47 k=3 补缺口 + 35B Base-47 k=3 从零。2026-08-26 跑完：`jobs/locked-upper-base-k3.json`，94 格 `n_valid=3`，incomplete 0，infra 0。**未覆盖** `locked-core.json` / `locked-core-k3.json`。`enters_official_mean=false`。命令：`python scripts/run_locked.py --run --base-fill`。数字见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §13。
-- [x] Hard-15：6×15×k=3 = 270（Base 47 均 ≥ 0.40 的 compact + 27B + 35B；跳过的不当 0）。2026-08-26 跑完：`jobs/locked-hard-release-k3.json`，90 格 `n_valid=3`，incomplete 0，infra 0。失败构成：`python scripts/fail_compose.py` → `jobs/locked-hard-failure.json`（EVAL-NOTE §12.2）
+- [x] Hard-15：6×15×k=3 = 270（Base 47 均 ≥ 0.40 的 compact + 27B + 35B；锁文件不伪造跳过格子）。2026-08-26 跑完：`jobs/locked-hard-release-k3.json`，90 格 `n_valid=3`，incomplete 0，infra 0。失败构成：`python scripts/fail_compose.py` → `jobs/locked-hard-failure.json`（EVAL-NOTE §12.2）
+- [x] Hard-floor 补全：跳过的 6 个 compact × 15 × k=3 = 270。2026-08-27 跑完：`jobs/locked-hard-floor-k3.json`，90 格 `n_valid=3`，incomplete 0。**未覆盖** `locked-hard-release-k3.json`。数字见 结果报表 §2.4 / EVAL-NOTE §12.4
+- [x] infra 13 格：2026-08-27 跑完 `jobs/locked-infra-rerun-k3.json`，13/13，`remaining_dirty` 0。**未覆盖**冻结锁。数字从 canonical trial 表再生。EVAL-NOTE §15 / [`结果报表.md`](结果报表.md) 第 5 节
 
 ## 不要做
 
 - 同时再开一条 Novita job（并发沙箱上限 5）
 - 把 k=1 筛查或 Terminus-2 标定写进 published mean
-- 为了压 9B 合并 Frontier 或放宽 loc
+- 锁文件里伪造未跑的 Hard-15 格子，或把 6 个地板模型写进 `locked-hard-release-k3.json`。完整性补测只写 `locked-hard-floor-k3.json`。v1.0 发表 62 均值把缺测记 0 并标 †
+- 抽掉 Frontier 抬 9B，或放宽 loc
 - 看完第一批分数再换模型 / 自动换 OpenRouter provider / 把缺失槽换成 26B MoE 或 30B

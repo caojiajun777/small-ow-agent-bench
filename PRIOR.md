@@ -24,7 +24,7 @@ IRT 的对象是 **题目** \(j\) 的 \(a_j,b_j\)，数据必须是「谁在哪�
 - **精炼** = 只留 Easy / informative 尾的考点，改写成五项原子短题  
   TB Easy 尾例子：`modernize-scientific-stack`、`fix-git`、`git-leak-recovery`（\(b\approx -5\)～\(-3.5\)）  
   丢掉：`make-doom-for-mips`、`install-windows-3.11`
-- SWE Easy 尾仍是复合修 issue（`django__*`、`scikit-learn__*`），对 3B–9B 仍然太整。拆成 Loc / Edit / Repro 才有信息量——这就是五项原子的来由，不是另起一套感觉题
+- SWE Easy 尾仍是复合修 issue（`django__*`、`scikit-learn__*`），对 3B–9B 仍然太整。拆成 Loc / Edit / Repro 才有信息量——这是诊断切面的来由，不是另起一套感觉题，也不是五种基础智力
 
 ## 1. 外部先验（已发布 agent 编程题 + 分数）
 
@@ -48,7 +48,7 @@ IRT 的对象是 **题目** \(j\) 的 \(a_j,b_j\)，数据必须是「谁在哪�
 
 ### 1.2 构造难度 \(b\) 先验（按五项）
 
-来自 Ma & Liu（精确集合 loc、hidden 测 edit、gold+mutant testgen、双状态 repro、0/1 review）、Loc-Bench、SWT-Bench、2026 本地 agent 失败分析（定位往往不是主因；策略上「修完再停」常见）。
+来自 Loc-Bench、SWT-Bench、Aider 与 SWE 的公开分数差，以及本地 agent 失败分析（定位往往不是主因；策略上「修完再停」常见）。验收形态：精确集合 loc、hidden 测 edit、gold+mutant testgen、双状态 repro、0/1 review。
 
 | 原子 | 偏易（\(b\) 低） | 偏难（\(b\) 高） | 3B–9B 信息量 |
 |---|---|---|---|
@@ -58,7 +58,7 @@ IRT 的对象是 **题目** \(j\) 的 \(a_j,b_j\)，数据必须是「谁在哪�
 | Repro | 明显 off-by-one | 只复现不改仓；空白 / `or 0` | **中高**（instruction 必须禁止改仓） |
 | Review | 补丁明显错或明显对 | 例子过、契约不过 | **中** |
 
-Ma & Liu 在 **更大** 模型上：Edit 0.46、Testgen 0.36（SFT）。他们的 edit 是真仓库改动，比我们「点名小函数」难一档。所以我们的 Edit 先验应标 **Easy**，不能当 Medium 主区分。
+公开榜上点名编辑（Aider）远比修 issue（SWE）容易；我们的 Edit 又是点名小函数，比真仓库改动再低一档。所以 Edit 先验应标 **Easy**，不能当 Medium 主区分。
 
 ### 1.3 公开分数表（带出处）
 
@@ -76,7 +76,7 @@ Ma & Liu 在 **更大** 模型上：Edit 0.46、Testgen 0.36（SFT）。他们�
 | Qwen3.5-9B | 中高 | v6 **65.6** | **官方卡无 SWE** | vanilla Aider **19.11** vs little-coder **45.56**（Q4，第三方） | 无官方 Loc/SWT | [Qwen3.5-9B](https://huggingface.co/Qwen/Qwen3.5-9B)；[little-coder](https://github.com/itayinbarr/little-coder) |
 | Qwen3.5-27B（尺子） | 高 | v6 **80.7** | Verified **72.4** | 官方 aider 无 27B 行 | TB2 41.6 | [Qwen3.5-27B](https://huggingface.co/Qwen/Qwen3.5-27B) |
 | Qwen3.6-27B（尺子） | 高 | v6 **83.9** | Verified **77.2**；Multi **71.3** | 官方 aider 无行 | TB2 59.3 | [Qwen3.6-27B](https://huggingface.co/Qwen/Qwen3.6-27B) |
-| GLM-4.5-Air 12B 激活（尺子） | 高 | 2407–2501 **70.7** | Verified **57.6**（OpenHands） | 未查到官方 Aider | Ma & Liu SFT Edit **0.458** / Testgen **0.359**；joint RL Edit **0.611** | [z.ai/glm-4.5](https://z.ai/blog/glm-4.5)；[arXiv 2604.05013](https://huggingface.co/papers/2604.05013) |
+| GLM-4.5-Air 12B 激活（尺子） | 高 | 2407–2501 **70.7** | Verified **57.6**（OpenHands） | 未查到官方 Aider | — | [z.ai/glm-4.5](https://z.ai/blog/glm-4.5) |
 
 Loc-Bench 仅有 **LocAgent 微调后的** Qwen2.5-7B(ft)：SWE-Lite file Acc@1 **70.8**，Loc-Bench file Acc@5 **79.2**（[LocAgent](https://arxiv.org/html/2503.09089v1)）。这不是 vanilla 7B 的 \(\theta\)。
 
@@ -183,7 +183,7 @@ LCB Easy/Medium/Hard：各官方卡几乎都不拆。唯一接近的独立表是
 
 | 原子 | 问题 | 补什么 |
 |---|---|---|
-| Loc | Medium 够；Hard 可能全是 Unscored | 尺子能过的精确集合（少 decoy、路径规范），不要再堆 L9 |
+| Loc | Medium 够；Hard 候选可能超出尺子 | 尺子能过的精确集合（少 decoy、路径规范），不要再堆 L9 |
 | Edit | 几乎全 Easy | 若要 Medium Edit：说明仍清楚，但要 **两个约束同时满足**（不改输入 + 稳定排序 + 显式 0）。不要上真实多文件 SWE |
 | Testgen | Medium 够；Hard 只有闰年 | 再 1–2 个「例子过、mutant 不过」的历法 / 钱 / 时区类 |
 | Repro | 被「修仓」污染 | 先改 instruction；稳定后再看要不要加题 |

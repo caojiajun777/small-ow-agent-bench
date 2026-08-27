@@ -1,4 +1,4 @@
-"""Harbor pilot tasks for the five Atomic Skills (Ma & Liu et al., 2026)."""
+"""Harbor pilot tasks for the five atomic skills (Loc / Edit / Testgen / Repro / Review)."""
 
 from __future__ import annotations
 

@@ -2,9 +2,9 @@
 
 Thesis: this bench does **not** chase a 50% mean. It asks what 3B–9B coding agents can and cannot do, and where that band ends against a larger ruler.
 
-- **Core** (published 3B–9B table): unique-trap Medium items that discriminate *inside* 3B–9B.
-- **Frontier / Hard**: items where 9B *stably* fails and 27B or 34B *stably* passes. Separate table. Do not invent Hard by weakening atomicity, hiding tests, or adding harness intelligence.
-- Large models are rulers only. They do not enter the small-model Core table.
+- **Core** (published item bank): **62** = Easy 12 / Medium 38 / Hard 7 / Out-of-range 5. Headline is the five-skill **macro** mean on all 62. Hard-Release-15 was run on 6 examinees (including 9B). The other 6 compact models did not sit those 15 items; the **published 62 mean imputes them as 0** (marked). Lock files still omit those cells. The 47-item table is the same-item panel without imputation.
+- **Frontier / Hard** (ladder label): items where v1.0 observed 9B 0/3 and 27B or 34B Atomic 3/3. They **stay inside Core 62** and enter the mean. Do not invent Hard by weakening atomicity, hiding tests, or adding harness intelligence.
+- Large models are rulers. They appear on the published Core-62 table as contrast. They do **not** enter the compact-10 rank.
 
 This bench measures **end-to-end agent reliability under a frozen text-only compact-shell protocol**, not coding intelligence detached from a harness. A score is a **system** number: model + pinned OpenRouter provider/quant + Novita sandbox + compact-shell. It is procedurally fair (same grammar, budget, verifier, k=3). It is **not** a matched-weights table (providers, BF16/FP8, chat templates, and serving stacks differ).
 
@@ -12,27 +12,28 @@ This bench measures **end-to-end agent reliability under a frozen text-only comp
 
 Say: “Qwen 9B Localization success rate under CompactShell is 75%.” Do not say: “Qwen 9B Localization ability is 75%.” Do not say the API table proves one checkpoint’s inherent code skill is below another. Do not drop `protocol_error` / halt from the Atomic mean to “correct” a model. Do not treat Terminus-2 calibration jobs as the official table.
 
-Legal protocol limits (declare; do not change for v1.0 because a larger model scored low): one `bash` fence per turn; no XML/native tool calls; `max_turns=20`; 180s wall clock **includes** LLM wait; Loc must write `/app/answer.txt`; Repro must exit non-zero on the buggy repo. **`finish` is required for E2E / `termination=clean`, not for Atomic.** Unfinished episodes with a correct artifact stay `atomic_correct=1`.
+Legal protocol limits (declare; do not change for v1.0 because a larger model scored low): one `bash` fence per turn; no XML/native tool calls; `max_turns=20`; 180s wall clock **includes** LLM wait; Loc must write `/app/answer.txt`; Repro must exit non-zero on the buggy repo. **`finish` is required for E2E / `termination=clean`, not for Atomic.** Unfinished episodes with a correct artifact stay `atomic_correct=1`. Published E2E is **halt compliance** (Atomic ∧ clean `finish`), not “atomic skill end-to-end.” Do **not** add a finish sentence to every `instruction.md` to pretty up E2E; that is a v1.1 / sensitivity experiment. `finish` is taught only in `SYSTEM_PROMPT`; task text never mentions it; the parser requires an empty ` ```finish ` fence (body inside the fence does not count). Trace audit of 99 Atomic=1 unfinished trials: 0 missed empty-finish parses; most keep acting, pytest-loop, or rewrite to the turn cap. Gemma-12B pays the halt tax (13/47 Atomic successes also clean-finish). 9B does not (140/146). See [`EVAL-NOTE.md`](EVAL-NOTE.md) §14.
 
 A protocol **bug** would be: instruction vs verifier contradiction; correct artifact scored 0; per-model budgets; parser not matching the documented grammar; silent provider fallback; infra counted as a task 0; crossed attempts. None of those are in evidence. Changing turns, parser, finish, Repro contract, or Atomic rules after seeing Hard-15 would start a new experiment. Sensitivity (looser protocol, Local vLLM) is a later track; it does not overwrite the frozen mean.
 
 Old 8B / 9B / 27B / Granite jobs are **pilot / calibration only**. They do **not** enter the official leaderboard. Formal tables are rerun from a frozen protocol.
 
-Internship / public writeup: [`EVAL-NOTE.md`](EVAL-NOTE.md). Release checklist: [`GATE-A.md`](GATE-A.md).
+Internship / public writeup: [`结果报表.md`](结果报表.md). Process notes: [`EVAL-NOTE.md`](EVAL-NOTE.md). Release checklist: [`GATE-A.md`](GATE-A.md).
 
-Public **Core set** = **47** unique-trap tasks in [`README.md`](README.md) (frozen list; skill means average every item in the atom, including all-0 Loc). L9 and isomorphs stay diagnostic / stock; they are not in the five-skill means. Do not blur 47 with 51. Frontier / Hard under compact-shell k=3 (Atomic; 9B 0/3 and 27B Atomic 3/3): Core `loc-member-discount`, `loc-vip-two-files`, `testgen-anagram`, `repro-first-index`, `repro-whitespace`; Hard-15 `loc-hook-plugin` only. 27B k=3 on the three non-Loc Core items lives in `jobs/locked-upper-base-k3.json`. See [`DIFFICULTY.md`](DIFFICULTY.md).
+Public item bank = **62** (Easy 12 / Medium 38 / Hard 7 / Out-of-range 5). Skill means average every item in the atom (Loc 11, Edit 15, Testgen 13, Repro 13, Review 10). Published Core-62 (tag `benchmark-v1.0`) imputes Hard-15 as 0 for the 6 compact models that were not official Hard examinees (**marked**; the official Hard lock still omits those cells). Completeness for those 6 is `jobs/locked-hard-floor-k3.json` (does not overwrite the official Hard lock). 9B *did* sit Hard-15 (Atomic 30/45). The **current reading table** is the v1.0.1 canonical matrix in [`项目说明.md`](项目说明.md) §7 / `results/canonical-coverage.json` (Hard filled + Gemma-4B 429 overlay + 13 infra replacements; `remaining_dirty` 0). The 47-item table is the actually-sat compact panel.
 
 ## Tracks (do not mix)
 
 Empirical **run** tracks (what was actually executed):
 
-| Track | Models | Items | Product | Enters compact-10 Core mean? |
+| Track | Models | Items | Product | Enters published Core-62? |
 |---|---|---|---|---|
-| **Compact Main** | 10 `compact_dense` | Base-47 | `jobs/locked-core-k3.json` | **Yes** (API) |
-| **Upper Reference** | 27B + 35B-A3B | Base-47 | `jobs/locked-upper-base-k3.json` | **No** |
-| **Hard Evaluation** | 6 pre-selected | Hard-15 | `jobs/locked-hard-release-k3.json` | **No** |
+| **Compact Main** | 10 `compact_dense` | Base-47 | `jobs/locked-core-k3.json` | Base stratum; Hard missing for floor models |
+| **Upper Reference** | 27B + 35B-A3B | Base-47 | `jobs/locked-upper-base-k3.json` | Base stratum for rulers |
+| **Hard Evaluation** | 6 pre-selected | Hard-15 | `jobs/locked-hard-release-k3.json` | **Yes** — pooled with Base-47 for those 6 |
+| **Hard-floor** | 6 skipped compact | Hard-15 | `jobs/locked-hard-floor-k3.json` | Completeness only; not the v1.0 headline |
 
-Do not write “12 models completed 62 tasks.” Hard-15 was not run on floor models. **Missing ≠ 0.**
+Published Core-62 Atomic/E2E is Base-47 + Hard-15. Six examinees (including 9B) have measured Hard-15 in the official Hard lock. The other six compact models are **imputed 0 on those 15** in the v1.0 published 62 mean (marked). Completeness later sat those 15 and wrote `locked-hard-floor-k3.json`. Do not write that all 12 models are official Hard examinees. Do not copy floor rows into `locked-hard-release-k3.json`.
 
 Evidence **grade** tracks:
 
@@ -41,8 +42,8 @@ Evidence **grade** tracks:
 | **Calibration / Pilot** | Existing OpenRouter / DashScope / Novita `-n 4|5` jobs | Provider APIs | Not official |
 | **API Standard (v1.0)** | Protocol frozen; OpenRouter ids + thinking policy + **k=3 n=1** | OpenRouter + Novita | **Published system table**; label **API** |
 | **Local Reference** | Pinned HF revision + vLLM + compact-shell | Self-hosted | Future weight-control; not required for v1.0 |
-| **Ruler** | 27B / 35B-A3B ceiling for Core / Frontier / Unscored | Same API harness | **No** (not in compact-10 mean) |
-| **Frontier** | Hard items: 9B stable fail, 27B stable pass | Same harness | **No** (boundary table only) |
+| **Ruler** | 27B / 35B-A3B ceiling for Core / Frontier / Out-of-range | Same API harness | **No** (not in compact-10 mean) |
+| **Frontier** | Hard items: v1.0 9B 0/3, 27B Atomic 3/3 | Same harness | **No** (boundary table only) |
 | **Reasoning** | Cannot disable thinking | Separate table | **No** |
 | **Upper-small** | 12B–14B | Same harness as the track they were run on | Appendix / Compact Main if they are in the 10 |
 
@@ -117,16 +118,16 @@ Skill mean (equal weight per item **inside** the atom):
 S_{\mathrm{atom}} = \frac{1}{N_{\mathrm{atom}}} \sum p_i
 \]
 
-Base-47 item counts are unbalanced (Loc 8, Edit 12, Testgen 10, Repro 10, Review 7). Two averages are both correct; **do not mix the labels**:
+Core-62 item counts (Loc 11, Edit 15, Testgen 13, Repro 13, Review 10). Skipped Hard-15 items enter as \(p=0\). Two averages are both correct; **do not mix the labels**:
 
 | Name | Formula | Role |
 |---|---|---|
 | **Five-skill macro** | \((S_{\mathrm{Loc}}+S_{\mathrm{Edit}}+S_{\mathrm{Testgen}}+S_{\mathrm{Repro}}+S_{\mathrm{Review}})/5\) | If one headline number is required |
-| **Task-micro** | \(\sum p_i / 47\) = successes / \((47\times 3)\) | Overall attempt rate; secondary |
+| **Task-micro** | \(\sum p_i / 62\) = successes / \((62\times 3)\) | Overall attempt rate; secondary |
 
-**Primary table (Core):** the five \(S_{\mathrm{atom}}\) columns. No forced overall rank. A high 9B Core score is expected if Medium items are in-band; that is not a defect. Hard-15 has 3 items per atom, so task-micro equals five-skill macro.
+**Primary table (Core):** the five \(S_{\mathrm{atom}}\) columns on all 62 items. No forced overall rank. A high 9B Core score is expected if Medium items are in-band; that is not a defect. 9B sat Hard-15 (Atomic 30/45). Floor compact models that were not official Hard examinees get \(p=0\) on those 15 in the v1.0 published table (marked). Completeness: `jobs/locked-hard-floor-k3.json`.
 
-**Frontier table:** same five atoms on locked Hard items only. Do not merge Frontier into the Core mean to pull 9B toward 50%.
+**Frontier table:** same five atoms; Frontier items stay inside Core 62 and still enter the mean. Do not drop them to lift 9B.
 
 **Secondary table:** clean halt rate, TLE rate, timeout-after-pass, protocol error rate, public-green / hidden-red (edit), loc overprediction (canonical set ⊃ gold).
 
@@ -148,7 +149,7 @@ Not subset. Extra decoy still 0 if the instruction asks for the **minimal file s
 
 ## Review
 
-Deterministic extract of a unique `0`/`1` (see `scripts/std_normalize.py`):
+This atom is **patch validation**, not full code review (style, security, maintainability). Deterministic extract of a unique `0`/`1` (see `scripts/std_normalize.py`):
 
 Accepted if unique: `0`, `0\n`, `0 because …`, `The answer is 0`, `Answer: 0`.
 
@@ -211,7 +212,7 @@ After the tag: do not silently edit instruction or verifier. Scoring semantics c
 
 ## Difficulty labels
 
-[`DIFFICULTY.md`](DIFFICULTY.md) assigns Medium / Hard / Unscored from the compact-shell k=3 ladder (9B 0/3 and 27B Atomic 3/3). Do not mint Hard from TLE. A later Local Reference may **reconfirm** bands; it does not rewrite the API table.
+[`DIFFICULTY.md`](DIFFICULTY.md) assigns Easy / Medium / Hard / Out-of-range from the compact-shell k=3 ladder. Hard = 9B 0/3 and 27B Atomic 3/3 in v1.0. Out-of-range = 9B 0/3 and 27B is not 3/3. Do not mint Hard from TLE. A later Local Reference may **reconfirm** bands; it does not rewrite the API table.
 
 ## What this repo must not do yet
 
@@ -220,5 +221,5 @@ After the tag: do not silently edit instruction or verifier. Scoring semantics c
 - Do not mix Calibration jobs or the k=1 screen into a published Standard mean.
 - Do not keep polishing the stall classifier as if it were the scorer.
 - Do not treat five-skill macro and task-micro as the same headline.
-- Do not write that all 12 models ran Hard-15, or impute skipped Hard as 0.
+- Do not write that all 12 models are official Hard examinees. v1.0 published 62 imputes skipped Hard as 0 and marks it; do not forge those cells in `locked-hard-release-k3.json`. Completeness is `locked-hard-floor-k3.json`.
 - Do not cite the API table as a matched-weights Local Reference.

@@ -1,73 +1,69 @@
 # small-ow-agent-bench
 
-Harbor 上的 **Atomic Shell-Agent Benchmark**：在自己写的 `compact-shell` 下，测开源小模型从玩具档到部署档（约 3B–35B）的五项原子技能。当前 OpenRouter 上能稳定调用的 **3B–14B instruct** 是 Core 主表；27B / ~35B 是部署档与 Frontier，不进 3B–14B 均值。不是「专用 coder 小模型榜」（OR 上目前没有稳定的 dense 3B–14B 专用 coder）。
+Harbor 上的 **Atomic Shell-Agent Benchmark**：在自己写的 `compact-shell` 下，测开源小模型从玩具档到部署档（约 3B–35B）的五个诊断维度。当前 OpenRouter 上能稳定调用的 **3B–14B instruct** 是 Core 主表；27B / ~35B 是部署档与 Frontier，不进 3B–14B 均值。不是「专用 coder 小模型榜」（OR 上目前没有稳定的 dense 3B–14B 专用 coder）。
 
-**核心思想：** 缺的是 HumanEval 和 SWE-bench 中间那一层——已经是 shell agent，但还能按一项技能打分。陷阱从已有 agent 题库总结，题是新写的、每种只出现一次。Core 分开 3B–14B；Frontier 找 9B 稳定不会、27B–35B 稳定会的边界。用途是后续分析和训练的**列级诊断**，不是刷总分。
-
-原子能力按 [Scaling Coding Agents via Atomic Skills](https://arxiv.org/abs/2604.05013)（Ma & Liu et al., 2026）拆成五项。每项自己的输入、结构化输出和沙箱奖励；SWE-bench 式修 issue 是这五项的复合，不当原子。
+**核心思想：** 缺的是 HumanEval 和 SWE-bench 中间那一层——已经是 shell agent，但还能按一项诊断维度打分。五个任务族是操作性隔离，不是五种基础智力。当前主表是 62 道 v1.0.1 canonical matrix（Hard-15 已补全，Gemma-4B 429 与 13 格 infra 已按唯一键替换）。9B 实际跑过 Hard-15。Headline 是五项宏平均。数字见 [`结果报表.md`](结果报表.md)。
 
 公开仓库：[github.com/caojiajun777/small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench)。发布 tag 是 **`benchmark-v1.0`**（API Standard）。公开集按陷阱去重；同构题只进库存。
 
-测的是 **固定极薄 shell harness（`compact-shell`）下的模型表现**，不是「模型固有 coding 能力」，也不是谁更会填 JSON 工具。正式协议见 [`STANDARD.md`](STANDARD.md)。**v1.0 发表的是 API Standard（系统表）**：钉死的 OpenRouter 线路 + Novita + compact-shell。Local Reference（钉死 HF 权重 + vLLM）是后续权重控制实验，不是本 tag 的前置条件。早期 Terminus-2 job 只做 harness 对照，不进正式主表。旧 8B/9B/Granite 标定同样不进主表；Core 主表 47 道、k=3、n=1。难度标签见 [`DIFFICULTY.md`](DIFFICULTY.md)。超时分型见 [`TIMEOUT.md`](TIMEOUT.md)（只做诊断，不改 atomic 分）。打分字段由 `python scripts/score_standard.py jobs/<job>` 写出。
+测的是 **固定极薄 shell harness（`compact-shell`）下的模型表现**，不是「模型固有 coding 能力」，也不是谁更会填 JSON 工具。正式协议见 [`STANDARD.md`](STANDARD.md)。**v1.0 发表的是 API Standard（系统表）**：钉死的 OpenRouter 线路 + Novita + compact-shell。Local Reference（钉死 HF 权重 + vLLM）是后续权重控制实验，不是本 tag 的前置条件。早期 Terminus-2 job 只做 harness 对照，不进正式主表。旧 8B/9B/Granite 标定同样不进主表；Core 主表 62 道、k=3、n=1。当前阅读表是 v1.0.1 canonical matrix，不再把缺测 Hard 记 0。难度标签见 [`DIFFICULTY.md`](DIFFICULTY.md)。超时分型见 [`TIMEOUT.md`](TIMEOUT.md)（只做诊断，不改 atomic 分）。打分字段由 `python scripts/score_standard.py jobs/<job>` 写出。
 
-| 集 / 档 | 作用 | 何时才能用这个名字 |
+| 档 | 作用 | 何时才能用这个名字 |
 |---|---|---|
-| **Core（Medium）** | 区分 3B–14B instruct 内部差异；小模型主榜 | 目标档（8B 或 9B）能过 |
-| **Frontier（Hard）** | 找与 27B 尺子的能力边界；不进小模型主榜 mean | 9B **稳定**不过，并且 27B **稳定**能过 |
-| **不入档** | 诊断 / 库存 | 尺子也过不了 |
+| **Easy** | 玩具档已能碰到 | 3B/4B 至少一次 Atomic=1，且 9B 为 3/3 |
+| **Medium** | 目标档才站得住 | 9B 能过，且不是 Easy |
+| **Hard** | 部署档尺子会、9B 还不会 | 9B 为 0/3，并且 27B Atomic 为 3/3（v1.0 观察） |
+| **未标定** | 超出当前梯子 | 9B 为 0/3，27B 达不到 3/3 |
 
-## 三个评测 track（不要写成一张 12×62 矩阵）
+## 核心题库 62
 
-| Track | 模型 | 题目 | 产物 | 进 compact-10 均值？ |
-|---|---|---|---|---|
-| **Compact Main** | 10 个 3B–14B | Base-47 | `jobs/locked-core-k3.json` | **是**（API） |
-| **Upper Reference** | 27B、35B-A3B | Base-47 | `jobs/locked-upper-base-k3.json` | **否** |
-| **Hard Evaluation** | 预先选定的 6 个 | Hard-15 | `jobs/locked-hard-release-k3.json` | **否** |
-
-Hard-15 没跑的地板模型记 **missing，不是 0**。不要写「12 个模型都完成了 62 道题」。
-
-主表是五项 \(S_{\mathrm{atom}}\)（**五项宏平均** 才是需要一个数时的标题分）。**题微平均**（成功 attempt / \(47\times 3\)）另报，不要和宏平均混用。Hard-15 每原子 3 道，两种平均相同。数字见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §6.2 / §12 / §13。
+题库 **62 道：Easy 12 / Medium 38 / Hard 7 / 未标定 5**（57 道完成经验标定）。当前主表按 62 计分，Hard-15 已对 12 个配置全部施测。官方 Hard 受试仍是 6 个（含 9B Atomic 30/45）；floor 补全在 `jobs/locked-hard-floor-k3.json`，不覆盖官方 Hard 锁。Headline 是五项宏平均。数字见 [`结果报表.md`](结果报表.md)。
 
 ## 文档地图
 
 | 文件 | 看什么 |
 |---|---|
 | 本文 | 核心思想、47 道题表、怎么跑 |
-| [`项目说明.md`](项目说明.md) | 通俗总览（给自己 / 导师；不代替协议） |
-| [`EVAL-NOTE.md`](EVAL-NOTE.md) | 测什么 / 不测什么、相关工作、k=1（§8–10）、**k=3 主表（§6.2 / §11）、Hard-15（§12）、27B/35B Base-47（§13）** |
+| [`项目说明.md`](项目说明.md) | **项目总结**：问题、设计、主结果、读法（给自己 / 导师；数字以结果报表为准） |
+| [`结果报表.md`](结果报表.md) | **对外结果报表**：完整 compact 面板、6 受试 62 汇总、infra 勘误 |
+| [`EVAL-NOTE.md`](EVAL-NOTE.md) | 测什么 / 不测什么、相关工作、k=1（§8–10）、**k=3 主表（§6.2 / §11）、Hard-15（§12）、Hard-floor 补全（§12.4）、27B/35B Base-47（§13）、停机审计（§14）** |
 | [`PRIOR.md`](PRIOR.md) | 外部先验 → 47 道留 / 改 / 弃；按五项补题 |
 | [`models.lock.yaml`](models.lock.yaml) | 冻结 12 个 Core 模型；Hard-15 受试 6 个；固定 OpenRouter provider |
 | [`STANDARD.md`](STANDARD.md) | compact-shell 协议、打分、轨道不要混 |
-| [`DIFFICULTY.md`](DIFFICULTY.md) | Medium / Hard / 不入档 梯子 |
-| [`TRAPS.md`](TRAPS.md) | 每条陷阱只进 Core 一次 |
+| [`DIFFICULTY.md`](DIFFICULTY.md) | Easy / Medium / Hard / 未标定 |
+| [`TRAPS.md`](TRAPS.md) | 失败模式表；同族不重复，跨族可复用 |
 | [`TIMEOUT.md`](TIMEOUT.md) | 超时分型（不改 atomic） |
 | [`GATE-A.md`](GATE-A.md) | 发布 / tag 清单 |
 
-## 当前进度（2026-08-26）
+## 当前进度（2026-08-27）
 
 - 协议和 Core 47 构造已冻。正式主表 **47 × k=3 已齐**：补 attempts 2–3 池化 attempt=1，不是重跑 Harbor `-k 3`。产物 `jobs/locked-core-k3.json`（477 格，`n_valid=3`，未覆盖 `locked-core.json`）。数字见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §6.2 / §11。
 - **模型名单已冻**（[`models.lock.yaml`](models.lock.yaml)）：10 个 compact_dense + Qwen3.8-27B + Qwen3.6-35B-A3B。OpenRouter provider 钉死、禁止 fallback。**不根据分数换模型。** 35B-A3B 是 ~3B 激活 MoE，不必赢 27B dense。
-- Hard-Release-15 已冻（Gate-B oracle/nop + foils）。6 个受试 ×15×k=3 = 270，产物 `jobs/locked-hard-release-k3.json`（90 格 `n_valid=3`，infra=0）。地板模型跳过，不当 Hard 0。读法见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §12：主表不补分；35B 低分含停机税，不是「固有代码能力弱于 9B」。
-- Core Frontier / Hard（Atomic）：`loc-member-discount`、`loc-vip-two-files`、`testgen-anagram`、`repro-first-index`、`repro-whitespace`。Hard-15 按梯子只另锁 `loc-hook-plugin`。不按 Hard-15 分数改题。
+- Hard-Release-15 已冻（Gate-B oracle/nop + foils）。6 个受试 ×15×k=3 = 270，产物 `jobs/locked-hard-release-k3.json`（90 格 `n_valid=3`，infra=0）。地板模型跳过，不当 Hard 0。读法见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §12 / §14：主表不补分；Headline 是五项 Atomic 宏平均；E2E 是干净完成率；35B 低分含停机税，不是「固有代码能力弱于 9B」。
+- Core Frontier / Hard（Atomic）：`loc-member-discount`、`loc-vip-two-files`、`testgen-anagram`、`repro-first-index`、`repro-whitespace`、`loc-hook-plugin`、`repro-nested-alias`。不按 Hard-15 分数改题。
 - k=1 探索矩阵仍在：10×47 = 470，外加尺子 49 格（`jobs/locked-core.json`）。27B **不进** \(\theta\)。
 - 27B / 35B 全量 Base-47 k=3 已齐（2026-08-26）：`jobs/locked-upper-base-k3.json`（94 格 `n_valid=3`），**不进** compact-10 均值，**未覆盖** core lock。数字见 [`EVAL-NOTE.md`](EVAL-NOTE.md) §13。
-- 发布 tag **`benchmark-v1.0`**（API Standard）已推到 [github.com/caojiajun777/small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench)。Local Reference 的 HF SHA 钉在 [`models.local.yaml`](models.local.yaml)，全表未跑（需要 Linux vLLM，不覆盖 API 均值）。不要把 API 表说成已控制权重。
+- Gemma-4B 429 side table 已齐（2026-08-26）：67/67 写入 `jobs/locked-gemma4b-rerun-k3.json`，**未覆盖** `locked-core-k3.json`。
+- v1.0.1 canonical matrix 已按唯一键合并（2026-08-27）：`results/canonical-coverage.json`。Hard-15 已补全；Gemma-4B 为 **11/186**。13 格 infra 已替换，`remaining_dirty` 0。Headline 9B **0.786**（148/186）/ 27B **0.863**（162/186）。数字见 [`结果报表.md`](结果报表.md)。本表对应 tag **`benchmark-v1.0.1`**。
+- 发布 tag **`benchmark-v1.0`**（API Standard）已推到 [github.com/caojiajun777/small-ow-agent-bench](https://github.com/caojiajun777/small-ow-agent-bench)。对外叙述见 [`结果报表.md`](结果报表.md)。Local Reference 的 HF SHA 钉在 [`models.local.yaml`](models.local.yaml)，全表未跑（需要 Linux vLLM，不覆盖 API 均值）。不要把 API 表说成已控制权重。
 
-## 五个原子
+## 五个诊断维度
 
-| 原子 | 输入 | 输出 | 奖励（论文） |
+不是五种基础智力，也不是固定五步流水线。测 Edit 时直接给文件；测 Loc 时只要文件集合；Review 是对已给补丁的 0/1 **Patch Validation**，不是完整代码审查。
+
+| 维度 | 输入 | 输出 | 奖励 |
 |---|---|---|---|
-| **Code Localization** | issue + 仓库 | 相关文件集合 | 与 gold patch 改动文件 **集合精确匹配** |
-| **Code Editing** | 代码上下文 + **明确的改动说明** | patch | 仓库单测 / 回归测试全过 |
+| **Code Localization** | issue + 仓库 | 最小相关文件集合 | 与 gold patch 改动文件 **集合精确匹配** |
+| **Code Editing** | 代码上下文 + **明确的改动说明** | 正确仓库状态 | 仓库单测 / 回归测试全过 |
 | **Unit-Test Generation** | 目标函数 + 说明 | 单测 | 在正确实现上全过，且能抓住注入的 mutant |
-| **Issue Reproduction** | issue + 仓库 | 可执行复现脚本 | 当前（有缺陷）代码上失败，打上 gold patch 后不再失败 |
-| **Code Review** | issue + 已应用的候选改动 | 二进制判断 0/1 | 与「该改动是否真的解决问题」的标签一致 |
+| **Issue Reproduction** | issue + 仓库 | 可执行复现脚本 | 当前（有缺陷）代码上失败，打上 gold patch 后不再失败；禁止改仓 |
+| **Patch Review** | issue + 已应用的候选改动 | 二进制判断 0/1 | 与「该改动是否真的解决问题」的标签一致 |
 
-完整陷阱表在 [`TRAPS.md`](TRAPS.md)：每个陷阱只进公开集一次。同构题仍在 `tasks/` 里，不算公开集。instruction 只写契约；gold / mutant / 标签在 `tests/`。
+完整陷阱表在 [`TRAPS.md`](TRAPS.md)。同一任务族内避免重复同一失败模式；跨任务族允许复用同一编程错误并记录。同构题仍在 `tasks/` 里，不算公开集。instruction 只写契约；gold / mutant / 标签在 `tests/`。根据任务类型分别用 oracle/nop、mutant 或 foil 做质量控制。
 
 ## v1 Core 主集（47 道 unique-trap Medium）
 
-按**陷阱**去重，不是按换皮。这是小模型主榜。L9 等不入档只进诊断，不算五项 mean。Frontier / Hard 另表（Core 47 里 5 道 + Hard-15，梯子见 EVAL-NOTE §11–§13）。正式跑法见 [`STANDARD.md`](STANDARD.md)。
+按**陷阱**去重，不是按换皮。这是小模型主榜。L9 等同构只进库存，不算 62。Frontier / Hard 另表（Core 47 里 5 道 + Hard-15，梯子见 EVAL-NOTE §11–§13）。正式跑法见 [`STANDARD.md`](STANDARD.md)。
 
 ### Core / Medium（47）
 
@@ -127,12 +123,12 @@ Hard-15 没跑的地板模型记 **missing，不是 0**。不要写「12 个模�
 
 | 档 | 题 | 依据（Terminus-2） |
 |---|---|---|
-| **不入档** | L9 精确集合（`loc-hardcoded-digital-vat` 等同构） | 9B / 14B / 27B 都是 gold+decoy |
+| **未标定（库存，不在 62）** | L9 精确集合（`loc-hardcoded-digital-vat` 等同构） | 9B / 14B / 27B 都是 gold+decoy |
 | **不是 Hard** | L2 `loc-bind-host` | 9B `k=3` 为 **2/3**；v0 的一次 0 是噪声 |
 | **不是 Hard** | L3 `loc-vip-two-files` | 9B `k=1` 漏文件，`k=3` 为 **3/3** |
 | **不是 Hard** | `testgen-gregorian` | 9B `k=1` 为 0；27B `k=1` 为 1；9B `k=3` 为 **3/3** |
 
-**compact-shell k=3（正式协议）：** Hard = 9B 0/3 且 27B Atomic 3/3。锁了 `loc-member-discount`、`loc-vip-two-files`（后者尺子 E2E 0/3）。`loc-bind-host` / `loc-traceback-helper` / `loc-reexport` 尺子也 0/3，不入档。9B Loc 均分 0.33，不是「多数能过精确集合」。
+**compact-shell k=3（正式协议）：** Hard = 9B 0/3 且 27B Atomic 3/3（v1.0 观察）。锁了 `loc-member-discount`、`loc-vip-two-files`（后者尺子 E2E 0/3）。`loc-bind-host` / `loc-reexport` 尺子也 0/3，标 **未标定**。`loc-traceback-helper` 是 9B 2/3，标 Medium。9B Loc 均分 0.33。
 
 **定位分界在家族，也在 harness：** Terminus-2 上 Ministral 8B unique-trap loc **0/8**，Qwen3.5-9B 多数能过。换 compact-shell 之后 8B Loc 0.21、9B Loc 0.33，Hard 按尺子锁，不按「10 个小模型全失败」。
 
@@ -260,10 +256,10 @@ oracle 必须 1.0，nop 必须 0.0。清单见 [`GATE-A.md`](GATE-A.md)。
 - 用「9B 掉了」或 both_miss 发明 Hard
 - 把 L9 精确集合改成子集匹配来制造通过者
 - 为了压 9B 把 Frontier 并进 Core mean
-- 把没跑 Hard-15 的地板模型记成 0
+- 锁文件里不要伪造未跑的 Hard-15 格子，也不要把地板模型写进 `locked-hard-release-k3.json`。v1.0 发表 62 均值把缺测记 0 并标出来；补全只写 `locked-hard-floor-k3.json`
 - 把五项宏平均和题微平均写成同一个「总分」
 - 把 API Standard 说成已控制权重的 Local Reference
-- 3B DPO / SFT / 论文里的 joint RL
+- 3B DPO / SFT / 在原子上做联合强化学习
 - Aider Polyglot 迁移与官方榜
 - 五项拼起来的复合 Issue Resolve
 - Harbor registry / 自建提交站

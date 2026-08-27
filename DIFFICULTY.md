@@ -3,7 +3,7 @@
 Thesis: do **not** aim for everyone to score 50%. Measure what 3B–9B agents can and cannot do, then find the boundary against a larger ruler.
 
 - **Core** (Medium): discriminate *inside* 3B–9B. 9B may sit near the ceiling. That is in-band.
-- **Frontier** (Hard): 9B *stably* fails, and 27B or 34B *stably* passes. Separate table.
+- **Frontier** (Hard): v1.0 observed 9B 0/3, and 27B or 34B Atomic 3/3. Separate table.
 - Labels come from the calibration ladder, not from “this trap looks hard,” a single 9B zero, or a desire to suppress scores.
 - Do not break atomicity (exact loc set, hidden edit tests, testgen mutants, repro dual-state, unique review bit) to manufacture a lower mean.
 
@@ -27,10 +27,12 @@ Always: oracle = 1, nop = 0. That is solvability, not a difficulty band.
 
 | Label | Rule | If it fails the rule |
 |---|---|---|
-| **Medium** (Core) | Target band (8B or 9B) can pass | Stays in Core; do not move it to Frontier to lower 9B |
-| **Hard** (Frontier) | 9B stably cannot, **and** 27B or 34B stably can (`k=3`) | Do not call it Hard |
-| **Unscored** | 27B and, if run, 34B also fail | Keep as a diagnostic item; not a band |
-| *(no Easy band)* | 3B already fails current Medium atoms | Easy would be Harbor smoke, not agentic coding |
+| **Medium** (Core) | Target band (8B or 9B) can pass | Stays Medium; do not move it to Hard to lower 9B |
+| **Hard** (Frontier) | v1.0 9B 0/3 **and** 27B or 34B Atomic 3/3 | Do not call it Hard |
+| **Out-of-range** | 9B 0/3 in v1.0 and 27B is not 3/3 | Not an ordered band above Hard; still scored |
+| **Easy** | Floor (3B/4B) already Atomic≥1 once, and 9B 3/3 | Floor-reachable; still scored |
+
+Published 62 under compact-shell k=3 (canonical coverage, 2026-08-27): **Easy 12, Medium 38, Hard 7, Out-of-range 5**. 57 items have empirical labels; 5 stay out of the ladder and still enter the mean. k=3 is an observation (0/3 or 3/3), not a proof of p=0 or p=1. Regenerated from `results/v1.0.1_difficulty.json`; v1.0 freeze was Easy 10 / Medium 40 / Hard 6 / Out-of-range 6.
 
 An item that everyone in 3B–27B passes stays in the set as smoke, not as Hard.
 
@@ -41,10 +43,10 @@ Pilot jobs below **do not enter the Standard Track table**. Official protocol: [
 ## What this changes from the old policy
 
 Old: Hard = loc exact-set decoys and review example-satisficing, because 9B dropped.  
-New: those are **constructs** (how the trap is written). They are **candidate** items until the ladder assigns Medium / Hard / Unscored.
+New: those are **constructs** (how the trap is written). They are **candidate** items until the ladder assigns Easy / Medium / Hard / Out-of-range.
 
 - Do not add Hard edit / testgen / repro unless 9B fails that construct and 27B passes.
-- Do not relax loc from exact set to subset in order to manufacture a passer. If 27B fails exact-set, the item is Unscored, not “fixed” by a weaker metric.
+- Do not relax loc from exact set to subset in order to manufacture a passer. If 27B fails exact-set, the item is **Out-of-range**, not “fixed” by a weaker metric.
 - Author `difficulty = "hard"` in `task.toml` is a construct tag only. Public tables use this file.
 
 ## Calibration results (2026-08-22)
@@ -55,7 +57,7 @@ Ruler: Terminus-2, `dashscope/qwen3.5-27b`, thinking off, `k=1 n=1`. Failures be
 
 | Task | 9B (prior) | 14B (prior) | 27B | Band |
 |---|---|---|---|---|
-| `loc-hardcoded-digital-vat` (L9) | 0 (decoy / extra file) | 0 (gold + extra tax modules) | 0: gold `resolve.py` **plus** decoy `tax/digital.py` | **Unscored** |
+| `loc-hardcoded-digital-vat` (L9) | 0 (decoy / extra file) | 0 (gold + extra tax modules) | 0: gold `resolve.py` **plus** decoy `tax/digital.py` | **Out-of-range** (not in published 62) |
 | `review-dollar-cents` (V9) | 1 (ran `0.29`) | — | 0: wrote `1` (example-satisficing) | **not Hard**; 9B already passed once, 27B k=1 miss |
 
 L9 stays in the task bank as a diagnostic: even the ceiling over-reports the dead RATE file. Do not name it Hard. Do not weaken exact-set to create a passer.
@@ -81,18 +83,18 @@ Official agent. Source: `jobs/locked-core-k3.json` (477 cells, `n_valid=3`). Har
 |---|---|---|---|---|
 | `loc-member-discount` | 0/3 | 3/3 | 3/3 | **Hard** |
 | `loc-vip-two-files` | 0/3 | 3/3 | 0/3 | **Hard (Atomic)**; E2E not locked |
-| `loc-similar-filenames` | 1/3 | 3/3 | 3/3 | not Hard (9B not stably 0) |
-| `loc-failing-test-impl` | 2/3 | 3/3 | 3/3 | Medium (k=1 zero was noise) |
-| `loc-traceback-helper` | 2/3 | 0/3 | 0/3 | **Unscored**; 9B > ruler |
-| `loc-bind-host` | 0/3 | 0/3 | 0/3 | **Unscored** |
-| `loc-reexport` | 0/3 | 0/3 | 0/3 | **Unscored** |
-| `loc-unused-fix` | 3/3 | 3/3 | 3/3 | smoke / Medium (k=3 from `jobs/locked-upper-base-k3.json`) |
+| `loc-similar-filenames` | 1/3 | 3/3 | 3/3 | not Hard (9B not 0/3) |
+| `loc-failing-test-impl` | **3/3** | 3/3 | 3/3 | Medium (a1 was frozen 429; infra replacement Atomic 1) |
+| `loc-traceback-helper` | **3/3** | 0/3 | 0/3 | **Medium**; 9B can pass (a1 was frozen 429) |
+| `loc-bind-host` | 0/3 | 0/3 | 0/3 | **Out-of-range** |
+| `loc-reexport` | 0/3 | 0/3 | 0/3 | **Out-of-range** |
+| `loc-unused-fix` | 3/3 | 3/3 | 3/3 | Easy (floor hit; k=3 from `jobs/locked-upper-base-k3.json`) |
 
-Keep exact-set. The two Loc Hard items stay in the frozen 47 for scoring; they are also on the Frontier table. 9B still 0/3 on `testgen-anagram`, `repro-first-index`, `repro-whitespace`. 27B Base-47 k=3 (2026-08-26, `jobs/locked-upper-base-k3.json`) is Atomic 3/3 on all three → they **lock Hard (Atomic)**. Hard-Release-15 does not change.
+Keep exact-set. The two Loc Hard items stay in the frozen 47 for scoring; they are also on the Frontier table. 9B still 0/3 on `testgen-anagram`, `repro-first-index`, `repro-whitespace`. 27B Base-47 k=3 (2026-08-26, `jobs/locked-upper-base-k3.json`) is Atomic 3/3 on all three → they **lock Hard (Atomic)**. Canonical coverage 2026-08-27 additionally locks Hard-15 `repro-nested-alias` (27B Atomic 3/3 after infra a3; previously Out-of-range at 2/3). Two Hard-15 items are Easy under the floor rule: `edit-retry-discount`, `review-bare-except`.
 
 ### Next
 
-Terminus-2 L5/L7 27B `k=3` does not replace the compact-shell screen. Three Loc items remain Unscored under compact-shell (`loc-bind-host`, `loc-traceback-helper`, `loc-reexport`).
+Terminus-2 L5/L7 27B `k=3` does not replace the compact-shell screen. Under compact-shell, `loc-bind-host` and `loc-reexport` are **Out-of-range**; `loc-traceback-helper` is Medium (9B 3/3 after infra replacement).
 
 ### Target loc profile (2026-08-22)
 
@@ -108,7 +110,7 @@ Terminus-2 calibration **only** (not compact-shell). OpenRouter, `n=1`. 9B = `qw
 | L6 `loc-failing-test-impl` | 1 | 0 (listed `invoice.py` not `tax.py`) | 1 | Medium for 9B |
 | L7 `loc-reexport` | **2/3** (fail = extra `pkg/net.py`) | **0/3** (2 timeouts) | **2/3** | Not Hard. 9B can pass; 27B `k=1` zero was noise |
 | L8 `loc-unused-fix` | 1 | 0 timeout | 1 | Medium for 9B |
-| L9 `loc-hardcoded-digital-vat` | 0 (prior) | — | 0 | Unscored |
+| L9 `loc-hardcoded-digital-vat` | 0 (prior) | — | 0 | Out-of-range (not in published 62) |
 
 **Loc cutoff (Terminus-2, 2026-08-22):** Ministral 8B does not close exact-set loc (0/8 this run). Qwen3.5-9B closes most loc traps under that harness. **That is not the published table.** compact-shell k=3 locks two Hard loc items (`loc-member-discount`, `loc-vip-two-files`); see the lock table above.
 

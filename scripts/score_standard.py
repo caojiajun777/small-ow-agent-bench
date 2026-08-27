@@ -23,6 +23,23 @@ from classify_timeouts import (  # noqa: E402
 )
 from task_sets import DIAGNOSTIC, MAIN_47  # noqa: E402
 
+RATE_LIMIT_EXCEPTIONS = frozenset(
+    {
+        "RateLimitException",
+        "RateLimitError",
+    }
+)
+# Transient API flake (not model output). OutputLengthExceeded stays protocol_error.
+API_FLAKE_EXCEPTIONS = frozenset(
+    {
+        "ConnectError",
+        "APIConnectionError",
+        "ServiceUnavailableError",
+        "ServiceUnavailable",
+        "InternalServerError",
+        "AuthenticationError",
+    }
+)
 INFRA_EXCEPTIONS = frozenset(
     {
         "BuildException",
@@ -32,9 +49,9 @@ INFRA_EXCEPTIONS = frozenset(
         "RewardFileNotFoundError",
         "RewardFileEmptyError",
         "VerifierOutputParseError",
-        "RateLimitException",
-        "RateLimitError",
         "ReadError",
+        *RATE_LIMIT_EXCEPTIONS,
+        *API_FLAKE_EXCEPTIONS,
     }
 )
 
@@ -76,11 +93,47 @@ def _compact_shell_trace(data: dict[str, Any], trial_dir: Path | None = None) ->
     return meta
 
 
+def _exception_message(data: dict[str, Any]) -> str | None:
+    info = data.get("exception_info") or {}
+    msg = info.get("exception_message")
+    return msg if isinstance(msg, str) else None
+
+
+def is_rate_limit(exc: str | None, message: str | None = None) -> bool:
+    """True for Harbor/LiteLLM 429. OutputLengthExceeded is not rate-limit."""
+    if exc in RATE_LIMIT_EXCEPTIONS:
+        return True
+    if exc == "APIStatusError" and message:
+        text = message.lower()
+        if "429" in message or "rate limit" in text or "rate_limit" in text:
+            return True
+    return False
+
+
+def is_auth_failure(exc: str | None, message: str | None = None) -> bool:
+    """Upstream 401 / invalid key. Not a model task failure."""
+    if exc == "AuthenticationError":
+        return True
+    if exc == "APIStatusError" and message:
+        text = message.lower()
+        if "401" in message or "invalid api key" in text or "unauthorized" in text:
+            return True
+    return False
+
+
+def is_infra_exception(exc: str | None, message: str | None = None) -> bool:
+    if exc in INFRA_EXCEPTIONS:
+        return True
+    if is_rate_limit(exc, message):
+        return True
+    return is_auth_failure(exc, message)
+
+
 def termination_of(data: dict[str, Any], trial_dir: Path | None = None) -> str:
     exc = _exception_type(data)
     if exc == "AgentTimeoutError":
         return "tle"
-    if exc in INFRA_EXCEPTIONS:
+    if is_infra_exception(exc, _exception_message(data)):
         return "infra"
     if exc:
         return "protocol_error"
