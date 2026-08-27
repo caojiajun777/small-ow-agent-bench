@@ -111,8 +111,9 @@
 | [`TRAPS.md`](TRAPS.md) | 失败模式；同族不重复 |
 | [`models.lock.yaml`](models.lock.yaml) | 12 个配置 + 钉死的 provider |
 | [`EVAL-NOTE.md`](EVAL-NOTE.md) | 过程笔记；§6.2 / §13 是 v1.0 审计 |
+| [`results/hf_catalog.jsonl`](results/hf_catalog.jsonl) | 62 题公开目录（无 hidden verifier） |
 
-Gold、hidden 测试、mutant、foil 留在 Harbor `tasks/`，不会作为公开数据集泄露。
+Gold、hidden 测试、mutant、foil 留在 Harbor `tasks/`。Hugging Face 目录只含 id / skill / difficulty / trap / 题面，不含 `tests/`、`solution/`、`foils/`、gold 名单或 `environment/repo`。登录后推送：`python scripts/export_hf_catalog.py --write --push`。
 
 ## 怎么跑
 
