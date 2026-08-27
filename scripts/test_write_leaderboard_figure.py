@@ -30,3 +30,8 @@ def test_svg_ranks_all_twelve():
     assert "Clean" not in text
     assert "halt" not in text.lower()
     assert text.find("Qwen3.8-27B") < text.find("Qwen3.5-9B")
+    assert 'fill="#111111"' in text
+    assert 'fill="#FA520F"' in text
+    assert 'fill="#4285F4"' in text
+    assert 'fill="#0F62FE"' in text
+    assert 'fill="#0082FB"' in text

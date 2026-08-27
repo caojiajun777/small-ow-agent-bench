@@ -50,18 +50,18 @@ A diagnostic benchmark for finding where small coding agents fail.
 
 | 模型 | 结果正确率 | 完整完成率 |
 |---|---:|---:|
-| Qwen3.8-27B | 86.3% | 84.5% |
-| Qwen3.5-9B | 78.6% | 75.7% |
-| Qwen3.6-35B-A3B | 63.2% | 56.0% |
-| Ministral-14B | 49.7% | 48.8% |
-| Ministral-8B | 45.6% | 41.1% |
-| Qwen3-14B | 40.4% | 33.3% |
-| Gemma-3-12B | 31.3% | 11.4% |
-| Granite-4.1-8B | 16.2% | 14.0% |
-| Gemma-3-4B | 6.7% | 6.7% |
-| Ministral-3B | 4.9% | 1.9% |
-| Qwen3-8B | 3.4% | 1.8% |
-| Llama-3.2-3B | 2.7% | 0.0% |
+| <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3.8-27B | 86.3% | 84.5% |
+| <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3.5-9B | 78.6% | 75.7% |
+| <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3.6-35B-A3B | 63.2% | 56.0% |
+| <img src="results/figures/vendors/mistralai.svg" width="16" height="16" alt="Mistral"> Ministral-14B | 49.7% | 48.8% |
+| <img src="results/figures/vendors/mistralai.svg" width="16" height="16" alt="Mistral"> Ministral-8B | 45.6% | 41.1% |
+| <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3-14B | 40.4% | 33.3% |
+| <img src="results/figures/vendors/google.svg" width="16" height="16" alt="Google"> Gemma-3-12B | 31.3% | 11.4% |
+| <img src="results/figures/vendors/ibm.svg" width="16" height="16" alt="IBM"> Granite-4.1-8B | 16.2% | 14.0% |
+| <img src="results/figures/vendors/google.svg" width="16" height="16" alt="Google"> Gemma-3-4B | 6.7% | 6.7% |
+| <img src="results/figures/vendors/mistralai.svg" width="16" height="16" alt="Mistral"> Ministral-3B | 4.9% | 1.9% |
+| <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3-8B | 3.4% | 1.8% |
+| <img src="results/figures/vendors/meta.svg" width="16" height="16" alt="Meta"> Llama-3.2-3B | 2.7% | 0.0% |
 
 Qwen3.6-35B-A3B 是约 3B 激活的 MoE，不是 27B dense 的下一档；它进入同一张排名，分数也不表示参数量越大越高。
 

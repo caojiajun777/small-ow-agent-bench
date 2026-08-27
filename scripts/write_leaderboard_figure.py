@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from build_canonical_matrix import FROZEN_LOCKS  # noqa: E402
 from write_leaderboard import load_coverage, ranked_models  # noqa: E402
+from vendor_marks import icon_svg  # noqa: E402
 
 OUT = ROOT / "results" / "figures" / "v1.0.1-compact10.svg"
 
@@ -24,10 +25,10 @@ def render_svg(coverage: dict) -> str:
     ranked = ranked_models(coverage["models"])
 
     width = 860
-    left = 176
+    left = 196
     top = 64
     row_h = 36
-    plot_w = 612
+    plot_w = 592
     height = top + row_h * len(ranked) + 72
     bar_h = 11
 
@@ -63,7 +64,10 @@ def render_svg(coverage: dict) -> str:
         y = top + i * row_h
         label = html.escape(model["display"])
         parts.append(
-            f'<text x="{left - 12:.1f}" y="{y + 18:.1f}" text-anchor="end" '
+            icon_svg(model["lock_id"], model["display"], 20, y + 10, 16)
+        )
+        parts.append(
+            f'<text x="42" y="{y + 18:.1f}" text-anchor="start" '
             'font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" '
             f'fill="#111827">{label}</text>'
         )

@@ -42,6 +42,11 @@ def test_readme_embeds_canonical_headline():
     assert "canonical matrix" not in readme
     for banned in ("gold", "mutant", "foil", "oracle", "no-op", "Halt"):
         assert banned not in readme
+    assert "results/figures/vendors/qwen.svg" in readme
+    assert "results/figures/vendors/mistralai.svg" in readme
+    assert "results/figures/vendors/google.svg" in readme
+    assert "results/figures/vendors/ibm.svg" in readme
+    assert "results/figures/vendors/meta.svg" in readme
 
 
 def test_render_matches_canonical_micros():
