@@ -231,7 +231,7 @@ Loc 仍是 Core 最硬的一列。compact-shell k=3 上 8B Loc 0.21、9B Loc 0.3
 - Sensitivity：加入 27B/35B 后 9B 仍第一、27B 最高（5.05）；去掉 35B 后序不变。35B Atomic θ 2.03，介于 9B 与 Ministral-14B 之间——这是 **10+2 的相对位置**，不是 Compact Main 的官方 θ。
 - 最易：`edit-hhmmss`、`review-slug-complete`。最难（仍在量表内）：`loc-bind-host`，然后三条只对极少数模型为 1 的 Loc。
 
-答辩时用这句话：这是 3B–9B 的技能剖面仪，不是 SWE-bench 替代品，也不是「小模型已经能当 Cursor」的证据。
+答辩时用这句话：这是 3B–9B 的技能剖面仪，不是 SWE-bench 替代品，也不是「小模型已经能当完整交互式 coding agent」的证据。
 
 ## 10. Qwen3.8-27B 尺子（k=1，不进 θ，2026-08-24）
 
