@@ -7,6 +7,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from build_canonical_matrix import (  # noqa: E402
     BANK_62,
+    SUPPLEMENT_OUT,
+    canonical_models,
     DIRTY_EXCEPTIONS,
     FROZEN_LOCKS,
     ROWS_OUT,
@@ -83,3 +85,5 @@ def test_outputs_are_not_frozen_locks():
     assert len(BANK_62) == 62
     assert "AuthenticationError" in DIRTY_EXCEPTIONS
     assert "OutputLengthExceededError" not in DIRTY_EXCEPTIONS
+    assert len(canonical_models()) == 16
+    assert SUPPLEMENT_OUT in FROZEN_LOCKS

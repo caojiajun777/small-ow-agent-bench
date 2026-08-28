@@ -18,6 +18,9 @@ VENDORS = {
     "google": {"file": "google.svg", "color": "#4285F4", "alt": "Google"},
     "ibm": {"file": "ibm.svg", "color": "#0F62FE", "alt": "IBM"},
     "meta": {"file": "meta.svg", "color": "#0082FB", "alt": "Meta"},
+    "openai": {"file": "openai.svg", "color": "#10A37F", "alt": "OpenAI"},
+    "nvidia": {"file": "nvidia.svg", "color": "#76B900", "alt": "NVIDIA"},
+    "zai": {"file": "zai.svg", "color": "#5B5BD6", "alt": "Z.ai"},
 }
 
 
@@ -33,6 +36,12 @@ def vendor_key(lock_id: str = "", display: str = "") -> str:
         return "ibm"
     if "llama" in name:
         return "meta"
+    if "gpt-oss" in name or "openai" in name:
+        return "openai"
+    if "nemotron" in name or "nvidia" in name:
+        return "nvidia"
+    if "glm" in name or "z-ai" in name or "zai" in name:
+        return "zai"
     raise KeyError(f"no publisher mark for {lock_id or display}")
 
 
@@ -44,9 +53,7 @@ def readme_label(display: str, lock_id: str = "") -> str:
     key = vendor_key(lock_id, display)
     spec = VENDORS[key]
     src = f"{README_VENDOR}/{spec['file']}"
-    return (
-        f'<img src="{src}" width="16" height="16" alt="{spec["alt"]}"> {display}'
-    )
+    return f'<img src="{src}" width="16" height="16" alt="{spec["alt"]}"> {display}'
 
 
 def _path_d(key: str) -> str:

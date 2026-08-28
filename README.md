@@ -2,11 +2,12 @@
 
 小型开放权重模型做 Coding Agent 时，究竟是不会找文件、不会改代码，还是已经把任务做对了，却不知道如何提交和停止？
 
-本项目构建了 62 个短小、可自动判分的代码任务，分别测试找文件、修改代码、编写测试、复现 Bug 和判断补丁五类行为。我们在 12 个开放权重模型配置上将每道题独立运行 3 次，共完成 2,232 次有效沙箱实验。
+本项目构建了 62 个短小、可自动判分的代码任务，分别测试找文件、修改代码、编写测试、复现 Bug 和判断补丁五类行为。我们在 16 个开放权重模型配置上将每道题独立运行 3 次，共完成 2,976 次有效沙箱实验。
 
 主要发现：
 
-- Qwen3.8-27B 是 12 个配置中整体表现最好的；Qwen3.5-9B 以 78.6% 排第二；
+- Qwen3.8-27B 是 16 个配置中整体表现最好的；Qwen3.5-9B 以 78.6% 排第二；
+- 新补测的 GLM-4.7-Flash 以 55.3% 排第四，GPT-OSS-20B 以 48.6% 排第六；
 - Ministral-14B 擅长复现 Bug，却几乎不会编写能发现错误的测试；
 - Gemma-3-12B 经常已经正确修改代码，却因为不能正常停止而丢分。
 
@@ -44,20 +45,24 @@ A diagnostic benchmark for finding where small coding agents fail.
 
 ## 排行榜（v1.0.1）
 
-12 个配置全部进入同一张排名，按结果正确率排序。图里深色条是「结果有没有做对」，浅色条是「做对了并且正常停下来」；两条差一截，就是做对了却没停。
+16 个配置全部进入同一张排名，按结果正确率排序。图里深色条是「结果有没有做对」，浅色条是「做对了并且正常停下来」；两条差一截，就是做对了却没停。
 
-![12 个配置的结果正确率与完整完成率](results/figures/v1.0.1-compact10.svg)
+![16 个配置的结果正确率与完整完成率](results/figures/v1.0.1-compact10.svg)
 
 | 模型 | 结果正确率 | 完整完成率 |
 |---|---:|---:|
 | <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3.8-27B | 86.3% | 84.5% |
 | <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3.5-9B | 78.6% | 75.7% |
 | <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3.6-35B-A3B | 63.2% | 56.0% |
+| <img src="results/figures/vendors/zai.svg" width="16" height="16" alt="Z.ai"> GLM-4.7-Flash | 55.3% | 42.4% |
 | <img src="results/figures/vendors/mistralai.svg" width="16" height="16" alt="Mistral"> Ministral-14B | 49.7% | 48.8% |
+| <img src="results/figures/vendors/openai.svg" width="16" height="16" alt="OpenAI"> GPT-OSS-20B | 48.6% | 41.5% |
 | <img src="results/figures/vendors/mistralai.svg" width="16" height="16" alt="Mistral"> Ministral-8B | 45.6% | 41.1% |
 | <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3-14B | 40.4% | 33.3% |
+| <img src="results/figures/vendors/nvidia.svg" width="16" height="16" alt="NVIDIA"> Nemotron-3.5-Lightning | 35.2% | 9.5% |
 | <img src="results/figures/vendors/google.svg" width="16" height="16" alt="Google"> Gemma-3-12B | 31.3% | 11.4% |
 | <img src="results/figures/vendors/ibm.svg" width="16" height="16" alt="IBM"> Granite-4.1-8B | 16.2% | 14.0% |
+| <img src="results/figures/vendors/google.svg" width="16" height="16" alt="Google"> Gemma-4-26B-A4B | 13.0% | 13.0% |
 | <img src="results/figures/vendors/google.svg" width="16" height="16" alt="Google"> Gemma-3-4B | 6.7% | 6.7% |
 | <img src="results/figures/vendors/mistralai.svg" width="16" height="16" alt="Mistral"> Ministral-3B | 4.9% | 1.9% |
 | <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3-8B | 3.4% | 1.8% |
@@ -65,7 +70,7 @@ A diagnostic benchmark for finding where small coding agents fail.
 
 Qwen3.6-35B-A3B 是约 3B 激活的 MoE，不是 27B dense 的下一档；它进入同一张排名，分数也不表示参数量越大越高。
 
-在 105 次实验中，Agent 已经留下了正确结果，却没有按协议正常结束。Gemma-3-12B 是最清楚的例子：60 次结果正确，只有 18 次完整完成。
+在 197 次实验中，Agent 已经留下了正确结果，却没有按协议正常结束。Nemotron-3.5-Lightning 是最明显的例子：70 次结果正确，只有 18 次完整完成。
 
 ## 评测方式
 
@@ -73,7 +78,7 @@ Qwen3.6-35B-A3B 是约 3B 激活的 MoE，不是 27B dense 的下一档；它进
 
 所有模型使用固定的 API 供应商、推理参数和交互接口。因此分数衡量的是「模型 + API 线路 + Agent 接口」这一完整配置，不能理解为模型权重本身的绝对能力。
 
-完整协议见 [`STANDARD.md`](STANDARD.md)。冻结结果对应 tag [`benchmark-v1.0.1`](https://github.com/caojiajun777/small-ow-agent-bench/releases/tag/benchmark-v1.0.1)。
+完整协议见 [`STANDARD.md`](STANDARD.md)。原始 12 模型冻结结果对应 tag [`benchmark-v1.0.1`](https://github.com/caojiajun777/small-ow-agent-bench/releases/tag/benchmark-v1.0.1)；当前 canonical 阅读表在不改写该冻结源的前提下追加了四模型 supplement。
 
 ## 深入阅读
 
@@ -114,7 +119,8 @@ python scripts/score_standard.py jobs/<job>
 - [`results/leaderboard.md`](results/leaderboard.md)：生成的五列排行榜
 - [`results/hf_catalog.jsonl`](results/hf_catalog.jsonl)：公开目录元数据；[Hugging Face](https://huggingface.co/datasets/junjun77/small-ow-agent-bench)
 - [`CITATION.cff`](CITATION.cff)：引用
-- [`models.lock.yaml`](models.lock.yaml)：12 个配置
+- [`models.lock.yaml`](models.lock.yaml)：原始 12 个冻结配置
+- [`models.supplement-2026-08.yaml`](models.supplement-2026-08.yaml)：追加进入 v1.0.1 canonical 的 4 个配置
 
 隐藏评分程序、标准答案和干扰补丁留在 Harbor `tasks/`，不会放进公开数据集。
 

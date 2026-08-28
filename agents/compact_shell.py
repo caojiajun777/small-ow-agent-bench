@@ -47,6 +47,8 @@ class CompactShellAgent(BaseAgent):
         observation_limit: int = 8000,
         temperature: float = 0.0,
         llm_call_kwargs: dict[str, Any] | None = None,
+        protocol_clarification: str | None = None,
+        version_label: str | None = None,
         extra_env: dict[str, str] | None = None,
         *args: Any,
         **kwargs: Any,
@@ -63,6 +65,8 @@ class CompactShellAgent(BaseAgent):
         self._observation_limit = observation_limit
         self._temperature = temperature
         self._llm_call_kwargs = dict(llm_call_kwargs or {})
+        self._protocol_clarification = protocol_clarification
+        self._version_label = version_label or VERSION
         self._cwd = "/app"
 
     @staticmethod
@@ -70,7 +74,7 @@ class CompactShellAgent(BaseAgent):
         return "compact-shell"
 
     def version(self) -> str:
-        return VERSION
+        return self._version_label
 
     async def setup(self, environment: BaseEnvironment) -> None:
         return None
@@ -91,7 +95,14 @@ class CompactShellAgent(BaseAgent):
         try:
             llm = LiteLLM(model_name=self.model_name, temperature=self._temperature)
             chat = Chat(llm)
-            prompt = SYSTEM_PROMPT + "\n\n# Task\n" + instruction.strip() + "\n"
+            system_prompt = SYSTEM_PROMPT
+            if self._protocol_clarification:
+                system_prompt += (
+                    "\n\n# Protocol clarification\n"
+                    + self._protocol_clarification.strip()
+                    + "\n"
+                )
+            prompt = system_prompt + "\n# Task\n" + instruction.strip() + "\n"
             for turn in range(1, self._max_turns + 1):
                 response = await chat.chat(
                     prompt,

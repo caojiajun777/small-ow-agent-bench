@@ -16,6 +16,8 @@ jobs/*
 !jobs/gate-a-oracle-nop.json
 !jobs/gate-a-repro-oracle-nop.json
 !jobs/gate-a-hard-release-oracle-nop.json
+!jobs/supplement-2026-08-protocol.json
+!jobs/supplement-2026-08-k3.json
 trials/
 __pycache__/
 *.pyc

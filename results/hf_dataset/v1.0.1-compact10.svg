@@ -1,80 +1,100 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="860" height="568" viewBox="0 0 860 568" role="img" aria-label="12 个配置的结果正确率与完整完成率">
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="712" viewBox="0 0 940 712" role="img" aria-label="16 个配置的结果正确率与完整完成率">
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="24" y="28" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="600" fill="#111827">12 个配置：结果正确率与完整完成率</text>
+<text x="24" y="28" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="600" fill="#111827">16 个配置：结果正确率与完整完成率</text>
 <text x="24" y="48" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#6b7280">深色是最终结果对不对；浅色是做对了，并且正常停下来。五类任务等权平均。</text>
-<line x1="196.0" y1="58.0" x2="196.0" y2="496.0" stroke="#e5e7eb" stroke-width="1"/>
-<text x="196.0" y="512.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">0%</text>
-<line x1="344.0" y1="58.0" x2="344.0" y2="496.0" stroke="#e5e7eb" stroke-width="1"/>
-<text x="344.0" y="512.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">25%</text>
-<line x1="492.0" y1="58.0" x2="492.0" y2="496.0" stroke="#e5e7eb" stroke-width="1"/>
-<text x="492.0" y="512.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">50%</text>
-<line x1="640.0" y1="58.0" x2="640.0" y2="496.0" stroke="#e5e7eb" stroke-width="1"/>
-<text x="640.0" y="512.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">75%</text>
-<line x1="788.0" y1="58.0" x2="788.0" y2="496.0" stroke="#e5e7eb" stroke-width="1"/>
-<text x="788.0" y="512.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">100%</text>
+<line x1="240.0" y1="58.0" x2="240.0" y2="640.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="240.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">0%</text>
+<line x1="395.0" y1="58.0" x2="395.0" y2="640.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="395.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">25%</text>
+<line x1="550.0" y1="58.0" x2="550.0" y2="640.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="550.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">50%</text>
+<line x1="705.0" y1="58.0" x2="705.0" y2="640.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="705.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">75%</text>
+<line x1="860.0" y1="58.0" x2="860.0" y2="640.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="860.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">100%</text>
 <g transform="translate(20.0,74.0) scale(0.6667)" aria-label="Qwen"><path d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z" fill="#111111"/></g>
 <text x="42" y="82.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3.8-27B</text>
-<rect x="196.0" y="70.0" width="510.9" height="11" fill="#1f4e79" rx="1"/>
-<rect x="196.0" y="84.0" width="500.1" height="11" fill="#9db4c8" rx="1"/>
-<text x="712.9" y="80.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">86.3%</text>
+<rect x="240.0" y="70.0" width="535.1" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="84.0" width="523.8" height="11" fill="#9db4c8" rx="1"/>
+<text x="781.1" y="80.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">86.3%</text>
 <g transform="translate(20.0,110.0) scale(0.6667)" aria-label="Qwen"><path d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z" fill="#111111"/></g>
 <text x="42" y="118.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3.5-9B</text>
-<rect x="196.0" y="106.0" width="465.2" height="11" fill="#1f4e79" rx="1"/>
-<rect x="196.0" y="120.0" width="448.2" height="11" fill="#9db4c8" rx="1"/>
-<text x="667.2" y="116.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">78.6%</text>
+<rect x="240.0" y="106.0" width="487.2" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="120.0" width="469.4" height="11" fill="#9db4c8" rx="1"/>
+<text x="733.2" y="116.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">78.6%</text>
 <g transform="translate(20.0,146.0) scale(0.6667)" aria-label="Qwen"><path d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z" fill="#111111"/></g>
 <text x="42" y="154.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3.6-35B-A3B</text>
-<rect x="196.0" y="142.0" width="374.1" height="11" fill="#1f4e79" rx="1"/>
-<rect x="196.0" y="156.0" width="331.6" height="11" fill="#9db4c8" rx="1"/>
-<text x="576.1" y="152.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">63.2%</text>
-<g transform="translate(20.0,182.0) scale(0.6667)" aria-label="Mistral"><path d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z" fill="#FA520F"/></g>
-<text x="42" y="190.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Ministral-14B</text>
-<rect x="196.0" y="178.0" width="294.2" height="11" fill="#1f4e79" rx="1"/>
-<rect x="196.0" y="192.0" width="289.0" height="11" fill="#9db4c8" rx="1"/>
-<text x="496.2" y="188.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">49.7%</text>
+<rect x="240.0" y="142.0" width="391.8" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="156.0" width="347.2" height="11" fill="#9db4c8" rx="1"/>
+<text x="637.8" y="152.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">63.2%</text>
+<g transform="translate(20.0,182.0) scale(0.6667)" aria-label="Z.ai"><path d="M12 1 23 12 12 23 1 12 12 1Zm0 4.2L5.2 12 12 18.8l6.8-6.8L12 5.2Zm-3.8 5.1h7.6v2.1l-4 3.3h4v2H8.2v-2.1l4-3.3h-4v-2Z" fill="#5B5BD6"/></g>
+<text x="42" y="190.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">GLM-4.7-Flash</text>
+<rect x="240.0" y="178.0" width="342.6" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="192.0" width="263.1" height="11" fill="#9db4c8" rx="1"/>
+<text x="588.6" y="188.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">55.3%</text>
 <g transform="translate(20.0,218.0) scale(0.6667)" aria-label="Mistral"><path d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z" fill="#FA520F"/></g>
-<text x="42" y="226.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Ministral-8B</text>
-<rect x="196.0" y="214.0" width="269.8" height="11" fill="#1f4e79" rx="1"/>
-<rect x="196.0" y="228.0" width="243.4" height="11" fill="#9db4c8" rx="1"/>
-<text x="471.8" y="224.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">45.6%</text>
-<g transform="translate(20.0,254.0) scale(0.6667)" aria-label="Qwen"><path d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z" fill="#111111"/></g>
-<text x="42" y="262.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3-14B</text>
-<rect x="196.0" y="250.0" width="239.4" height="11" fill="#1f4e79" rx="1"/>
-<rect x="196.0" y="264.0" width="196.9" height="11" fill="#9db4c8" rx="1"/>
-<text x="441.4" y="260.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">40.4%</text>
-<g transform="translate(20.0,290.0) scale(0.6667)" aria-label="Google"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4"/></g>
-<text x="42" y="298.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Gemma-3-12B</text>
-<rect x="196.0" y="286.0" width="185.2" height="11" fill="#1f4e79" rx="1"/>
-<rect x="196.0" y="300.0" width="67.4" height="11" fill="#9db4c8" rx="1"/>
-<text x="387.2" y="296.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">31.3%</text>
-<g transform="translate(20.0,326.0) scale(0.6667)" aria-label="IBM"><path d="M23.544 15.993c.038 0 .06-.017.06-.053v-.036c0-.035-.022-.052-.06-.052h-.09v.14zm-.09.262h-.121v-.498h.225c.112 0 .169.066.169.157 0 .079-.036.129-.09.15l.111.19h-.133l-.092-.17h-.07zm.434-.222v-.062c0-.2-.157-.357-.363-.357a.355.355 0 00-.363.357v.062c0 .2.156.358.363.358a.355.355 0 00.363-.358zm-.838-.03c0-.28.212-.492.475-.492.264 0 .475.213.475.491 0 .279-.211.491-.475.491a.477.477 0 01-.475-.49zM16.21 8.13l-.216-.624h-3.56v.624zm.413 1.19l-.216-.623h-3.973v.624zm2.65 7.147h3.107v-.624h-3.108zm0-1.192h3.107v-.623h-3.108zm0-1.19h1.864v-.624h-1.865zm0-1.191h1.864v-.624h-1.865zm0-1.191h1.864v-.624h-3.555l-.175.504-.175-.504h-3.555v.624h1.865v-.574l.2.574h3.33l.2-.574zm1.864-1.815h-3.142l-.217.624h3.359zm-7.46 3.006h1.865v-.624h-1.865zm0 1.19h1.865v-.623h-1.865zm-1.243 1.191h3.108v-.623h-3.108zm0 1.192h3.108v-.624h-3.108zm6.386-8.961l-.216.624h3.776v-.624zm-.629 1.815h4.19v-.624h-3.974zm-4.514 1.19h3.359l-.216-.623h-3.143zm2.482 2.383h2.496l.218-.624h-2.932zm.417 1.19h1.662l.218-.623h-2.098zm.416 1.191h.83l.218-.623h-1.266zm.414 1.192l.217-.624h-.432zm-12.433-.006l4.578.006c.622 0 1.18-.237 1.602-.624h-6.18zm4.86-3v.624h2.092c0-.216-.03-.425-.083-.624zm-3.616.624h1.865v-.624H6.217zm3.617-3.573h2.008c.053-.199.083-.408.083-.624H9.834zm-3.617 0h1.865v-.624H6.217zM9.55 7.507H4.973v.624h6.18a2.36 2.36 0 00-1.602-.624zm2.056 1.191H4.973v.624h6.884a2.382 2.382 0 00-.25-.624zm-5.39 2.382v.624h4.87c.207-.176.382-.387.519-.624zm4.87 1.191h-4.87v.624h5.389a2.39 2.39 0 00-.519-.624zm-6.114 3.006h6.634c.11-.193.196-.402.25-.624H4.973zM0 8.13h4.352v-.624H0zm0 1.191h4.352v-.624H0zm1.243 1.191h1.865v-.624H1.243zm0 1.191h1.865v-.624H1.243zm0 1.19h1.865v-.623H1.243zm0 1.192h1.865v-.624H1.243zM0 15.276h4.352v-.623H0zm0 1.192h4.352v-.624H0Z" fill="#0F62FE"/></g>
-<text x="42" y="334.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Granite-4.1-8B</text>
-<rect x="196.0" y="322.0" width="95.8" height="11" fill="#1f4e79" rx="1"/>
-<rect x="196.0" y="336.0" width="82.7" height="11" fill="#9db4c8" rx="1"/>
-<text x="297.8" y="332.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">16.2%</text>
-<g transform="translate(20.0,362.0) scale(0.6667)" aria-label="Google"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4"/></g>
-<text x="42" y="370.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Gemma-3-4B</text>
-<rect x="196.0" y="358.0" width="39.5" height="11" fill="#1f4e79" rx="1"/>
-<rect x="196.0" y="372.0" width="39.5" height="11" fill="#9db4c8" rx="1"/>
-<text x="241.5" y="368.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">6.7%</text>
-<g transform="translate(20.0,398.0) scale(0.6667)" aria-label="Mistral"><path d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z" fill="#FA520F"/></g>
-<text x="42" y="406.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Ministral-3B</text>
-<rect x="196.0" y="394.0" width="28.9" height="11" fill="#1f4e79" rx="1"/>
-<rect x="196.0" y="408.0" width="11.3" height="11" fill="#9db4c8" rx="1"/>
-<text x="230.9" y="404.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">4.9%</text>
-<g transform="translate(20.0,434.0) scale(0.6667)" aria-label="Qwen"><path d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z" fill="#111111"/></g>
-<text x="42" y="442.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3-8B</text>
-<rect x="196.0" y="430.0" width="19.9" height="11" fill="#1f4e79" rx="1"/>
-<rect x="196.0" y="444.0" width="10.8" height="11" fill="#9db4c8" rx="1"/>
-<text x="221.9" y="440.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">3.4%</text>
-<g transform="translate(20.0,470.0) scale(0.6667)" aria-label="Meta"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z" fill="#0082FB"/></g>
-<text x="42" y="478.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Llama-3.2-3B</text>
-<rect x="196.0" y="466.0" width="15.8" height="11" fill="#1f4e79" rx="1"/>
-<rect x="196.0" y="480.0" width="0.0" height="11" fill="#9db4c8" rx="1"/>
-<text x="217.8" y="476.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">2.7%</text>
-<rect x="24" y="530" width="14" height="10" fill="#1f4e79"/>
-<text x="44" y="540" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">结果正确率</text>
-<rect x="148" y="530" width="14" height="10" fill="#9db4c8"/>
-<text x="168" y="540" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">完整完成率</text>
-<text x="276" y="540" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#6b7280">两条差一截，就是做对了却没停：共 105 次</text>
+<text x="42" y="226.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Ministral-14B</text>
+<rect x="240.0" y="214.0" width="308.1" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="228.0" width="302.6" height="11" fill="#9db4c8" rx="1"/>
+<text x="554.1" y="224.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">49.7%</text>
+<g transform="translate(20.0,254.0) scale(0.6667)" aria-label="OpenAI"><path d="M12 1 21.5 6.5v11L12 23 2.5 17.5v-11L12 1Zm0 4.2L6.1 8.6v6.8l5.9 3.4 5.9-3.4V8.6L12 5.2Zm0 3.1 3.2 1.85v3.7L12 15.7l-3.2-1.85v-3.7L12 8.3Z" fill="#10A37F"/></g>
+<text x="42" y="262.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">GPT-OSS-20B</text>
+<rect x="240.0" y="250.0" width="301.6" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="264.0" width="257.3" height="11" fill="#9db4c8" rx="1"/>
+<text x="547.6" y="260.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">48.6%</text>
+<g transform="translate(20.0,290.0) scale(0.6667)" aria-label="Mistral"><path d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z" fill="#FA520F"/></g>
+<text x="42" y="298.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Ministral-8B</text>
+<rect x="240.0" y="286.0" width="282.6" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="300.0" width="254.9" height="11" fill="#9db4c8" rx="1"/>
+<text x="528.6" y="296.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">45.6%</text>
+<g transform="translate(20.0,326.0) scale(0.6667)" aria-label="Qwen"><path d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z" fill="#111111"/></g>
+<text x="42" y="334.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3-14B</text>
+<rect x="240.0" y="322.0" width="250.7" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="336.0" width="206.2" height="11" fill="#9db4c8" rx="1"/>
+<text x="496.7" y="332.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">40.4%</text>
+<g transform="translate(20.0,362.0) scale(0.6667)" aria-label="NVIDIA"><path d="M2 12c2.8-4.4 6.4-6.6 10.8-6.6 4.1 0 7.2 1.8 9.2 4.5-2.4-1.6-5.1-2.4-8-2.4-4.1 0-7.4 1.5-9.8 4.5 2.4 3 5.7 4.5 9.8 4.5 2.9 0 5.6-.8 8-2.4-2 2.7-5.1 4.5-9.2 4.5C8.4 18.6 4.8 16.4 2 12Zm7.1 0a4 4 0 1 1 8 0 4 4 0 0 1-8 0Zm2.5 0a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0Z" fill="#76B900"/></g>
+<text x="42" y="370.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Nemotron-3.5-Lightning</text>
+<rect x="240.0" y="358.0" width="218.2" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="372.0" width="59.0" height="11" fill="#9db4c8" rx="1"/>
+<text x="464.2" y="368.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">35.2%</text>
+<g transform="translate(20.0,398.0) scale(0.6667)" aria-label="Google"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4"/></g>
+<text x="42" y="406.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Gemma-3-12B</text>
+<rect x="240.0" y="394.0" width="193.9" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="408.0" width="70.6" height="11" fill="#9db4c8" rx="1"/>
+<text x="439.9" y="404.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">31.3%</text>
+<g transform="translate(20.0,434.0) scale(0.6667)" aria-label="IBM"><path d="M23.544 15.993c.038 0 .06-.017.06-.053v-.036c0-.035-.022-.052-.06-.052h-.09v.14zm-.09.262h-.121v-.498h.225c.112 0 .169.066.169.157 0 .079-.036.129-.09.15l.111.19h-.133l-.092-.17h-.07zm.434-.222v-.062c0-.2-.157-.357-.363-.357a.355.355 0 00-.363.357v.062c0 .2.156.358.363.358a.355.355 0 00.363-.358zm-.838-.03c0-.28.212-.492.475-.492.264 0 .475.213.475.491 0 .279-.211.491-.475.491a.477.477 0 01-.475-.49zM16.21 8.13l-.216-.624h-3.56v.624zm.413 1.19l-.216-.623h-3.973v.624zm2.65 7.147h3.107v-.624h-3.108zm0-1.192h3.107v-.623h-3.108zm0-1.19h1.864v-.624h-1.865zm0-1.191h1.864v-.624h-1.865zm0-1.191h1.864v-.624h-3.555l-.175.504-.175-.504h-3.555v.624h1.865v-.574l.2.574h3.33l.2-.574zm1.864-1.815h-3.142l-.217.624h3.359zm-7.46 3.006h1.865v-.624h-1.865zm0 1.19h1.865v-.623h-1.865zm-1.243 1.191h3.108v-.623h-3.108zm0 1.192h3.108v-.624h-3.108zm6.386-8.961l-.216.624h3.776v-.624zm-.629 1.815h4.19v-.624h-3.974zm-4.514 1.19h3.359l-.216-.623h-3.143zm2.482 2.383h2.496l.218-.624h-2.932zm.417 1.19h1.662l.218-.623h-2.098zm.416 1.191h.83l.218-.623h-1.266zm.414 1.192l.217-.624h-.432zm-12.433-.006l4.578.006c.622 0 1.18-.237 1.602-.624h-6.18zm4.86-3v.624h2.092c0-.216-.03-.425-.083-.624zm-3.616.624h1.865v-.624H6.217zm3.617-3.573h2.008c.053-.199.083-.408.083-.624H9.834zm-3.617 0h1.865v-.624H6.217zM9.55 7.507H4.973v.624h6.18a2.36 2.36 0 00-1.602-.624zm2.056 1.191H4.973v.624h6.884a2.382 2.382 0 00-.25-.624zm-5.39 2.382v.624h4.87c.207-.176.382-.387.519-.624zm4.87 1.191h-4.87v.624h5.389a2.39 2.39 0 00-.519-.624zm-6.114 3.006h6.634c.11-.193.196-.402.25-.624H4.973zM0 8.13h4.352v-.624H0zm0 1.191h4.352v-.624H0zm1.243 1.191h1.865v-.624H1.243zm0 1.191h1.865v-.624H1.243zm0 1.19h1.865v-.623H1.243zm0 1.192h1.865v-.624H1.243zM0 15.276h4.352v-.623H0zm0 1.192h4.352v-.624H0Z" fill="#0F62FE"/></g>
+<text x="42" y="442.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Granite-4.1-8B</text>
+<rect x="240.0" y="430.0" width="100.4" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="444.0" width="86.6" height="11" fill="#9db4c8" rx="1"/>
+<text x="346.4" y="440.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">16.2%</text>
+<g transform="translate(20.0,470.0) scale(0.6667)" aria-label="Google"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4"/></g>
+<text x="42" y="478.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Gemma-4-26B-A4B</text>
+<rect x="240.0" y="466.0" width="80.4" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="480.0" width="80.4" height="11" fill="#9db4c8" rx="1"/>
+<text x="326.4" y="476.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">13.0%</text>
+<g transform="translate(20.0,506.0) scale(0.6667)" aria-label="Google"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4"/></g>
+<text x="42" y="514.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Gemma-3-4B</text>
+<rect x="240.0" y="502.0" width="41.3" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="516.0" width="41.3" height="11" fill="#9db4c8" rx="1"/>
+<text x="287.3" y="512.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">6.7%</text>
+<g transform="translate(20.0,542.0) scale(0.6667)" aria-label="Mistral"><path d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z" fill="#FA520F"/></g>
+<text x="42" y="550.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Ministral-3B</text>
+<rect x="240.0" y="538.0" width="30.3" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="552.0" width="11.9" height="11" fill="#9db4c8" rx="1"/>
+<text x="276.3" y="548.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">4.9%</text>
+<g transform="translate(20.0,578.0) scale(0.6667)" aria-label="Qwen"><path d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z" fill="#111111"/></g>
+<text x="42" y="586.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3-8B</text>
+<rect x="240.0" y="574.0" width="20.8" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="588.0" width="11.3" height="11" fill="#9db4c8" rx="1"/>
+<text x="266.8" y="584.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">3.4%</text>
+<g transform="translate(20.0,614.0) scale(0.6667)" aria-label="Meta"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z" fill="#0082FB"/></g>
+<text x="42" y="622.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Llama-3.2-3B</text>
+<rect x="240.0" y="610.0" width="16.5" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="624.0" width="0.0" height="11" fill="#9db4c8" rx="1"/>
+<text x="262.5" y="620.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">2.7%</text>
+<rect x="24" y="674" width="14" height="10" fill="#1f4e79"/>
+<text x="44" y="684" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">结果正确率</text>
+<rect x="148" y="674" width="14" height="10" fill="#9db4c8"/>
+<text x="168" y="684" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">完整完成率</text>
+<text x="276" y="684" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#6b7280">两条差一截，就是做对了却没停：共 197 次</text>
 </svg>

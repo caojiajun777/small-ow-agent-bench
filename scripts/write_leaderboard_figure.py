@@ -1,4 +1,4 @@
-"""Write the public 12-config ranking SVG from canonical-coverage.json.
+"""Write the public ranking SVG from canonical-coverage.json.
 
 Does not call Harbor or overwrite frozen locks. No matplotlib.
 
@@ -24,11 +24,12 @@ OUT = ROOT / "results" / "figures" / "v1.0.1-compact10.svg"
 def render_svg(coverage: dict) -> str:
     ranked = ranked_models(coverage["models"])
 
-    width = 860
-    left = 196
+    n_models = int(coverage["n_models"])
+    width = 940
+    left = 240
     top = 64
     row_h = 36
-    plot_w = 592
+    plot_w = 620
     height = top + row_h * len(ranked) + 72
     bar_h = 11
 
@@ -38,11 +39,11 @@ def render_svg(coverage: dict) -> str:
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
         f'viewBox="0 0 {width} {height}" role="img" '
-        'aria-label="12 个配置的结果正确率与完整完成率">',
+        f'aria-label="{n_models} 个配置的结果正确率与完整完成率">',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         '<text x="24" y="28" font-family="ui-sans-serif, system-ui, sans-serif" '
         'font-size="16" font-weight="600" fill="#111827">'
-        "12 个配置：结果正确率与完整完成率</text>",
+        f"{n_models} 个配置：结果正确率与完整完成率</text>",
         '<text x="24" y="48" font-family="ui-sans-serif, system-ui, sans-serif" '
         'font-size="12" fill="#6b7280">'
         "深色是最终结果对不对；浅色是做对了，并且正常停下来。五类任务等权平均。</text>",
@@ -63,9 +64,7 @@ def render_svg(coverage: dict) -> str:
     for i, model in enumerate(ranked):
         y = top + i * row_h
         label = html.escape(model["display"])
-        parts.append(
-            icon_svg(model["lock_id"], model["display"], 20, y + 10, 16)
-        )
+        parts.append(icon_svg(model["lock_id"], model["display"], 20, y + 10, 16))
         parts.append(
             f'<text x="42" y="{y + 18:.1f}" text-anchor="start" '
             'font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" '

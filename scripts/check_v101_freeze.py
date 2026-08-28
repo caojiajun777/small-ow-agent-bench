@@ -12,19 +12,21 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from build_canonical_matrix import (  # noqa: E402
     BANK_62,
+    canonical_models,
     remaining_dirty,
     merge_rows,
     model_score,
     e2e_hit,
 )
 from export_v101_trials import LABELS_OUT, TRIALS_OUT  # noqa: E402
-from models_lock import load_lock, models  # noqa: E402
+from models_lock import load_lock  # noqa: E402
 from run_locked import attempt_is_valid, attempt_of  # noqa: E402
 
 SUMMARY = ROOT / "results" / "canonical-coverage.json"
-N_MODELS = 12
+N_MODELS = 16
 N_TASKS = 62
 N_TRIALS = N_MODELS * N_TASKS * 3
+EXPECTED_HALT = 197
 
 
 def fail(msg: str, errors: list[str]) -> None:
@@ -36,7 +38,7 @@ def main() -> int:
     rows, _applied = merge_rows()
     dirty = remaining_dirty(rows)
     lock = load_lock()
-    lock_ids = [m["id"] for m in models(lock)]
+    lock_ids = [m["id"] for m in canonical_models(lock)]
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
     labels = json.loads(LABELS_OUT.read_text(encoding="utf-8"))
     trials = [
@@ -89,10 +91,15 @@ def main() -> int:
         atomic = int(r.get("atomic_correct") or 0)
         clean = int(r.get("atomic_correct") == 1 and r.get("termination") == "clean")
         if clean > atomic:
-            fail(f"Clean>Artifact {r.get('lock_id')} {r.get('task')} a{attempt_of(r)}", errors)
+            fail(
+                f"Clean>Artifact {r.get('lock_id')} {r.get('task')} a{attempt_of(r)}",
+                errors,
+            )
 
     counts = labels.get("counts") or {}
-    n_lab = sum(int(counts.get(k, 0)) for k in ("easy", "medium", "hard", "uncalibrated"))
+    n_lab = sum(
+        int(counts.get(k, 0)) for k in ("easy", "medium", "hard", "uncalibrated")
+    )
     if n_lab != N_TASKS:
         fail(f"difficulty labels {n_lab}", errors)
     if len(labels.get("tasks") or {}) != N_TASKS:
@@ -112,7 +119,9 @@ def main() -> int:
                 errors,
             )
         if rec["e2e_ok"] != by_model_e2e[lid]:
-            fail(f"table e2e {lid} {rec['e2e_ok']} != trials {by_model_e2e[lid]}", errors)
+            fail(
+                f"table e2e {lid} {rec['e2e_ok']} != trials {by_model_e2e[lid]}", errors
+            )
         if rec["e2e_ok"] > rec["atomic_ok"]:
             fail(f"Clean>Artifact model {lid}", errors)
         scored = model_score(rows, lid)
@@ -125,13 +134,23 @@ def main() -> int:
         "ministral-8b-2512": (87, 78),
         "qwen3.8-27b": (162, 159),
         "gemma-3-4b-it": (11, 11),
+        "gpt-oss-20b": (89, 74),
+        "nemotron-3.5-lightning": (70, 18),
+        "glm-4.7-flash": (105, 80),
+        "gemma-4-26b-a4b-it": (26, 26),
     }
     for lid, (a, e) in expected_micro.items():
         if by_model_atomic[lid] != a or by_model_e2e[lid] != e:
-            fail(f"headline {lid} {by_model_atomic[lid]}/{by_model_e2e[lid]} != {a}/{e}", errors)
-    if "148/186" not in prose or "162/186" not in prose:
-        fail("项目说明 missing headline micros 148/186 or 162/186", errors)
-    if re.search(r"remaining_dirty[` ]*0", prose) is None and "remaining_dirty` 0" not in prose:
+            fail(
+                f"headline {lid} {by_model_atomic[lid]}/{by_model_e2e[lid]} != {a}/{e}",
+                errors,
+            )
+    if any(value not in prose for value in ("148/186", "162/186", "105/186", "89/186")):
+        fail("项目说明 missing canonical headline micros", errors)
+    if (
+        re.search(r"remaining_dirty[` ]*0", prose) is None
+        and "remaining_dirty` 0" not in prose
+    ):
         fail("项目说明 missing remaining_dirty 0", errors)
 
     halt = sum(
@@ -139,7 +158,7 @@ def main() -> int:
         for r in rows
         if r.get("atomic_correct") == 1 and r.get("termination") != "clean"
     )
-    if halt != 105 or summary.get("halt_unfinished_atomic") != 105:
+    if halt != EXPECTED_HALT or summary.get("halt_unfinished_atomic") != EXPECTED_HALT:
         fail(f"halt {halt} coverage {summary.get('halt_unfinished_atomic')}", errors)
 
     print("===== V1.0.1 FREEZE CHECK =====")

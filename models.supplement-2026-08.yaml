@@ -1,0 +1,197 @@
+# Frozen four-model supplement to benchmark-v1.0.1.
+#
+# This is a later v1.0.1 administration. It does not modify models.lock.yaml
+# or any frozen source result. Its rows enter the v1.0.1 canonical matrix as
+# an append-only supplement layer, with the documented gpt-oss mandatory-
+# reasoning exception below.
+
+frozen: true
+kind: supplement_2026_08
+benchmark_version: benchmark-v1.0.1-supplement-2026-08
+frozen_at: "2026-08-28T03:12:30+08:00"
+catalog_checked_at: "2026-08-28T02:50:50+08:00"
+substitution_policy: forbidden
+overwrites_v1: false
+enters_v1_0_1_canonical: true
+
+harness:
+  agent: agents.compact_shell:CompactShellAgent
+  agent_version: "0.1.1+supplement3"
+  agent_kwargs:
+    version_label: "0.1.1+supplement3"
+    protocol_clarification: >
+      In the bash example, <command> names the place where raw shell text goes.
+      Never output literal <command> or </command> tags. Emit only the raw shell
+      command between the bash fences, and stop the response after that one fence.
+  max_turns: 20
+  observation_limit: 8000
+  environment: novita
+  n_concurrent: 1
+  k: 3
+  retry_include:
+    - BuildException
+    - EnvironmentStartTimeoutError
+    - RateLimitException
+    - RateLimitError
+    - ConnectError
+    - APIConnectionError
+    - ServiceUnavailableError
+    - AuthenticationError
+
+inference:
+  temperature: 0.0
+  top_p: 1.0
+  max_tokens: 4096
+  timeout_sec: 180
+  provider:
+    allow_fallbacks: false
+    require_parameters: true
+  reasoning_policy: >
+    Reasoning is disabled and excluded where the model permits it. OpenRouter
+    declares gpt-oss-20b reasoning mandatory, so that model is pinned to low
+    effort. Its reasoning field is retained because the Novita Harmony route
+    intermittently returns an empty final field when reasoning is excluded;
+    CompactShell still parses only the separate final content field. This is a
+    declared protocol exception, not an off-thinking result.
+
+scope:
+  protocol_tasks:
+    - hello-world
+    - collect-todos
+    - loc-member-discount
+  n_protocol_trials: 12
+  formal_tasks: MAIN_47 + HARD_RELEASE_15
+  n_formal_tasks: 62
+  attempts:
+    - 1
+    - 2
+    - 3
+  n_models: 4
+  n_formal_trials: 744
+
+protocol_adaptations:
+  parser_changed: false
+  common_prompt_clarification: >
+    The literal <command> placeholder is explicitly forbidden in output. This
+    keeps the bash/finish grammar unchanged and prevents template echoing.
+  gemma_single_action_stops:
+    - "\n\nWait"
+    - "\n\nActually"
+    - "\n\nLet's"
+    - "\n\nI "
+    - "\n\nWe "
+  gemma_stop_note: >
+    Gemma 4 otherwise emits several action fences while visibly revising its
+    first action until max_tokens. The stop markers cut only those post-fence
+    self-correction prefixes. The first closed action fence remains intact.
+  gpt_oss_provider_note: >
+    DeepInfra BF16 passed single calls but repeatedly rate-limited later turns
+    in Harbor. CoreWeave and Parasail returned Harmony reasoning with empty
+    visible content on the complex probe. Novita FP4 is the frozen route.
+    Retaining its separate reasoning field avoids intermittent empty final
+    content observed when OpenRouter was asked to exclude that field; the
+    action parser still consumes final content only.
+
+models:
+  - id: gpt-oss-20b
+    display: gpt-oss-20b
+    group: supplement
+    batch: 1
+    family: openai
+    size: 21B-A3.6B
+    hf_id: openai/gpt-oss-20b
+    hf_revision: 6cee5e81ee83917806bbde320786a8fb61efebee
+    openrouter_id: openrouter/openai/gpt-oss-20b
+    catalog_id: openai/gpt-oss-20b
+    canonical_slug: openai/gpt-oss-20b
+    openrouter_provider: Novita
+    quantization: fp4
+    context_length: 131072
+    max_completion_tokens: 32768
+    reasoning: mandatory_low
+    agent_kwargs:
+      protocol_clarification: >
+        IMPORTANT FOR HARMONY MODE: there are no JSON tools. Never emit a
+        {"cmd": ...} object in analysis or reasoning. Put the next raw shell
+        command in a bash fence in the visible final answer on every turn;
+        never leave final content empty.
+    llm_call_kwargs:
+      extra_body:
+        reasoning:
+          effort: low
+          exclude: false
+
+  - id: nemotron-3.5-lightning
+    display: Nemotron 3.5 Lightning
+    group: supplement
+    batch: 1
+    family: nvidia
+    size: 30B-A3B
+    hf_id: nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16
+    hf_revision: a9904d24bcc1d289a1950fa9d2b978c47cf903b9
+    openrouter_id: openrouter/nvidia/nemotron-3.5-lightning
+    catalog_id: nvidia/nemotron-3.5-lightning
+    canonical_slug: nvidia/nemotron-3.5-lightning-20260807
+    openrouter_provider: DeepInfra
+    quantization: bf16
+    context_length: 262144
+    max_completion_tokens: 131072
+    reasoning: off
+    llm_call_kwargs:
+      extra_body:
+        reasoning:
+          enabled: false
+          exclude: true
+
+  - id: glm-4.7-flash
+    display: GLM-4.7-Flash
+    group: supplement
+    batch: 1
+    family: z-ai
+    size: 30B-class
+    hf_id: zai-org/GLM-4.7-Flash
+    hf_revision: 7dd20894a642a0aa287e9827cb1a1f7f91386b67
+    openrouter_id: openrouter/z-ai/glm-4.7-flash
+    catalog_id: z-ai/glm-4.7-flash
+    canonical_slug: z-ai/glm-4.7-flash-20260119
+    openrouter_provider: DeepInfra
+    quantization: bf16
+    context_length: 202752
+    max_completion_tokens: 16384
+    reasoning: off
+    llm_call_kwargs:
+      extra_body:
+        reasoning:
+          enabled: false
+          exclude: true
+
+  - id: gemma-4-26b-a4b-it
+    display: Gemma 4 26B A4B IT
+    group: supplement
+    batch: 1
+    family: google
+    size: 25.2B-A3.8B
+    hf_id: google/gemma-4-26B-A4B-it
+    hf_revision: 4d7ae4984b7db7de8f8457170b3f1a419ee76d52
+    openrouter_id: openrouter/google/gemma-4-26b-a4b-it
+    catalog_id: google/gemma-4-26b-a4b-it
+    canonical_slug: google/gemma-4-26b-a4b-it-20260403
+    openrouter_provider: NextBit
+    quantization: bf16
+    context_length: 262144
+    max_completion_tokens: 235929
+    reasoning: off
+    llm_call_kwargs:
+      # Gemma otherwise keeps drafting and emits several action fences in one
+      # response. These markers stop its visible self-correction only after a
+      # completed first fence; the parser itself remains unchanged.
+      stop:
+        - "\n\nWait"
+        - "\n\nActually"
+        - "\n\nLet's"
+        - "\n\nI "
+        - "\n\nWe "
+      extra_body:
+        reasoning:
+          enabled: false
+          exclude: true

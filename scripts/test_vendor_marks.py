@@ -22,3 +22,6 @@ def test_vendor_keys_match_publishers():
     assert vendor_key("gemma-3-12b-it", "Gemma-3-12B") == "google"
     assert vendor_key("granite-4.1-8b", "Granite-4.1-8B") == "ibm"
     assert vendor_key("llama-3.2-3b-instruct", "Llama-3.2-3B") == "meta"
+    assert vendor_key("gpt-oss-20b", "GPT-OSS-20B") == "openai"
+    assert vendor_key("nemotron-3.5-lightning", "Nemotron-3.5-Lightning") == "nvidia"
+    assert vendor_key("glm-4.7-flash", "GLM-4.7-Flash") == "zai"

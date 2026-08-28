@@ -6,23 +6,51 @@
   "overwrites_locked_core": false,
   "overwrites_locked_core_k3": false,
   "overwrites_locked_hard_release_k3": false,
-  "note": "Unique-key merge of frozen Base + official Hard + Hard-floor + Gemma-4B 429 replacements + 13 infra-dirty replacements. remaining_dirty=0. This is the v1.0.1 canonical matrix. Tag benchmark-v1.0.1 is on the freeze commit. Frozen v1.0 locks unchanged.",
-  "n_models": 12,
+  "note": "Unique-key merge of frozen Base + official Hard + Hard-floor + Gemma-4B 429 replacements + 13 infra-dirty replacements + the four-model 2026-08 supplement. remaining_dirty=0. This is the v1.0.1 canonical matrix. Tag benchmark-v1.0.1 is on the freeze commit. Frozen v1.0 locks unchanged.",
+  "n_models": 16,
   "n_tasks": 62,
-  "n_trials_expected": 2232,
-  "n_rows": 2232,
-  "n_scored": 2232,
+  "n_trials_expected": 2976,
+  "n_rows": 2976,
+  "n_scored": 2976,
   "n_incomplete_tasks": 0,
-  "halt_unfinished_atomic": 105,
+  "halt_unfinished_atomic": 197,
   "layers_applied": {
     "core": 1471,
     "upper_base": 282,
     "hard_release": 270,
     "hard_floor": 270,
     "gemma4b_rerun": 141,
-    "infra_rerun": 13
+    "infra_rerun": 13,
+    "supplement_2026_08": 744
   },
   "models": [
+    {
+      "lock_id": "qwen3.8-27b",
+      "display": "Qwen3.8-27B",
+      "group": "upper_dense",
+      "n_scored": 186,
+      "n_incomplete_tasks": 0,
+      "atomic_ok": 162,
+      "e2e_ok": 159,
+      "atomic_macro": 0.8630147630147629,
+      "e2e_macro": 0.8448329448329448,
+      "gap": 0.018181818181818077,
+      "skills_atomic": {
+        "loc": 0.5757575757575757,
+        "edit": 0.9777777777777777,
+        "testgen": 0.9230769230769231,
+        "repro": 0.8717948717948718,
+        "review": 0.9666666666666666
+      },
+      "skills_e2e": {
+        "loc": 0.4848484848484848,
+        "edit": 0.9777777777777777,
+        "testgen": 0.9230769230769231,
+        "repro": 0.8717948717948718,
+        "review": 0.9666666666666666
+      },
+      "halt_unfinished_atomic": 3
+    },
     {
       "lock_id": "qwen3.5-9b",
       "display": "Qwen3.5-9B",
@@ -51,6 +79,60 @@
       "halt_unfinished_atomic": 6
     },
     {
+      "lock_id": "qwen3.6-35b-a3b",
+      "display": "Qwen3.6-35B-A3B",
+      "group": "efficient_moe",
+      "n_scored": 186,
+      "n_incomplete_tasks": 0,
+      "atomic_ok": 118,
+      "e2e_ok": 104,
+      "atomic_macro": 0.6318725718725718,
+      "e2e_macro": 0.5600777000777001,
+      "gap": 0.07179487179487176,
+      "skills_atomic": {
+        "loc": 0.36363636363636365,
+        "edit": 0.6444444444444444,
+        "testgen": 0.9230769230769231,
+        "repro": 0.46153846153846156,
+        "review": 0.7666666666666667
+      },
+      "skills_e2e": {
+        "loc": 0.36363636363636365,
+        "edit": 0.6444444444444444,
+        "testgen": 0.9230769230769231,
+        "repro": 0.10256410256410256,
+        "review": 0.7666666666666667
+      },
+      "halt_unfinished_atomic": 14
+    },
+    {
+      "lock_id": "glm-4.7-flash",
+      "display": "GLM-4.7-Flash",
+      "group": "supplement",
+      "n_scored": 186,
+      "n_incomplete_tasks": 0,
+      "atomic_ok": 105,
+      "e2e_ok": 80,
+      "atomic_macro": 0.5525563325563325,
+      "e2e_macro": 0.4243512043512044,
+      "gap": 0.12820512820512814,
+      "skills_atomic": {
+        "loc": 0.0303030303030303,
+        "edit": 0.8222222222222223,
+        "testgen": 0.38461538461538464,
+        "repro": 0.6923076923076923,
+        "review": 0.8333333333333334
+      },
+      "skills_e2e": {
+        "loc": 0.0303030303030303,
+        "edit": 0.8222222222222223,
+        "testgen": 0.38461538461538464,
+        "repro": 0.05128205128205128,
+        "review": 0.8333333333333334
+      },
+      "halt_unfinished_atomic": 25
+    },
+    {
       "lock_id": "ministral-14b-2512",
       "display": "Ministral-14B",
       "group": "compact_dense",
@@ -76,6 +158,33 @@
         "review": 0.8333333333333334
       },
       "halt_unfinished_atomic": 2
+    },
+    {
+      "lock_id": "gpt-oss-20b",
+      "display": "GPT-OSS-20B",
+      "group": "supplement",
+      "n_scored": 186,
+      "n_incomplete_tasks": 0,
+      "atomic_ok": 89,
+      "e2e_ok": 74,
+      "atomic_macro": 0.48644910644910644,
+      "e2e_macro": 0.41499611499611494,
+      "gap": 0.0714529914529915,
+      "skills_atomic": {
+        "loc": 0.18181818181818182,
+        "edit": 0.3555555555555555,
+        "testgen": 0.3589743589743589,
+        "repro": 0.7692307692307693,
+        "review": 0.7666666666666666
+      },
+      "skills_e2e": {
+        "loc": 0.18181818181818182,
+        "edit": 0.17777777777777776,
+        "testgen": 0.2564102564102564,
+        "repro": 0.6923076923076923,
+        "review": 0.7666666666666666
+      },
+      "halt_unfinished_atomic": 15
     },
     {
       "lock_id": "ministral-8b-2512",
@@ -132,6 +241,33 @@
       "halt_unfinished_atomic": 11
     },
     {
+      "lock_id": "nemotron-3.5-lightning",
+      "display": "Nemotron-3.5-Lightning",
+      "group": "supplement",
+      "n_scored": 186,
+      "n_incomplete_tasks": 0,
+      "atomic_ok": 70,
+      "e2e_ok": 18,
+      "atomic_macro": 0.35195027195027195,
+      "e2e_macro": 0.09512043512043512,
+      "gap": 0.25682983682983684,
+      "skills_atomic": {
+        "loc": 0.0606060606060606,
+        "edit": 0.6888888888888889,
+        "testgen": 0.6410256410256411,
+        "repro": 0.10256410256410256,
+        "review": 0.26666666666666666
+      },
+      "skills_e2e": {
+        "loc": 0.0303030303030303,
+        "edit": 0.08888888888888888,
+        "testgen": 0.23076923076923078,
+        "repro": 0.02564102564102564,
+        "review": 0.1
+      },
+      "halt_unfinished_atomic": 52
+    },
+    {
       "lock_id": "gemma-3-12b-it",
       "display": "Gemma-3-12B",
       "group": "compact_dense",
@@ -184,6 +320,33 @@
         "review": 0.3
       },
       "halt_unfinished_atomic": 5
+    },
+    {
+      "lock_id": "gemma-4-26b-a4b-it",
+      "display": "Gemma-4-26B-A4B",
+      "group": "supplement",
+      "n_scored": 186,
+      "n_incomplete_tasks": 0,
+      "atomic_ok": 26,
+      "e2e_ok": 26,
+      "atomic_macro": 0.12972804972804972,
+      "e2e_macro": 0.12972804972804972,
+      "gap": 0.0,
+      "skills_atomic": {
+        "loc": 0.0606060606060606,
+        "edit": 0.17777777777777776,
+        "testgen": 0.15384615384615385,
+        "repro": 0.2564102564102564,
+        "review": 0.0
+      },
+      "skills_e2e": {
+        "loc": 0.0606060606060606,
+        "edit": 0.17777777777777776,
+        "testgen": 0.15384615384615385,
+        "repro": 0.2564102564102564,
+        "review": 0.0
+      },
+      "halt_unfinished_atomic": 0
     },
     {
       "lock_id": "gemma-3-4b-it",
@@ -292,60 +455,6 @@
         "review": 0.0
       },
       "halt_unfinished_atomic": 4
-    },
-    {
-      "lock_id": "qwen3.8-27b",
-      "display": "Qwen3.8-27B",
-      "group": "upper_dense",
-      "n_scored": 186,
-      "n_incomplete_tasks": 0,
-      "atomic_ok": 162,
-      "e2e_ok": 159,
-      "atomic_macro": 0.8630147630147629,
-      "e2e_macro": 0.8448329448329448,
-      "gap": 0.018181818181818077,
-      "skills_atomic": {
-        "loc": 0.5757575757575757,
-        "edit": 0.9777777777777777,
-        "testgen": 0.9230769230769231,
-        "repro": 0.8717948717948718,
-        "review": 0.9666666666666666
-      },
-      "skills_e2e": {
-        "loc": 0.4848484848484848,
-        "edit": 0.9777777777777777,
-        "testgen": 0.9230769230769231,
-        "repro": 0.8717948717948718,
-        "review": 0.9666666666666666
-      },
-      "halt_unfinished_atomic": 3
-    },
-    {
-      "lock_id": "qwen3.6-35b-a3b",
-      "display": "Qwen3.6-35B-A3B",
-      "group": "efficient_moe",
-      "n_scored": 186,
-      "n_incomplete_tasks": 0,
-      "atomic_ok": 118,
-      "e2e_ok": 104,
-      "atomic_macro": 0.6318725718725718,
-      "e2e_macro": 0.5600777000777001,
-      "gap": 0.07179487179487176,
-      "skills_atomic": {
-        "loc": 0.36363636363636365,
-        "edit": 0.6444444444444444,
-        "testgen": 0.9230769230769231,
-        "repro": 0.46153846153846156,
-        "review": 0.7666666666666667
-      },
-      "skills_e2e": {
-        "loc": 0.36363636363636365,
-        "edit": 0.6444444444444444,
-        "testgen": 0.9230769230769231,
-        "repro": 0.10256410256410256,
-        "review": 0.7666666666666667
-      },
-      "halt_unfinished_atomic": 14
     }
   ],
   "remaining_dirty": []

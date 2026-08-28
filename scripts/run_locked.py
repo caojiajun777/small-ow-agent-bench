@@ -558,6 +558,27 @@ def _env() -> dict[str, str]:
 
 def _ak_args(row: dict[str, Any], lock: dict[str, Any]) -> list[str]:
     args = ["--ak", "temperature=0.0"]
+    agent_kwargs = dict((lock.get("harness") or {}).get("agent_kwargs") or {})
+    row_agent_kwargs = row.get("agent_kwargs") or {}
+    if not isinstance(row_agent_kwargs, dict):
+        raise ValueError(f"agent_kwargs on {row.get('id')!r} must be a mapping")
+    if row_agent_kwargs.get("protocol_clarification"):
+        common = str(agent_kwargs.get("protocol_clarification") or "").strip()
+        specific = str(row_agent_kwargs["protocol_clarification"]).strip()
+        agent_kwargs["protocol_clarification"] = "\n".join(
+            part for part in (common, specific) if part
+        )
+        row_agent_kwargs = {
+            key: value
+            for key, value in row_agent_kwargs.items()
+            if key != "protocol_clarification"
+        }
+    agent_kwargs.update(row_agent_kwargs)
+    for key, value in agent_kwargs.items():
+        if not isinstance(value, (str, int, float, bool)):
+            raise ValueError(f"agent kwarg {key!r} must be a scalar")
+        rendered = json.dumps(value) if isinstance(value, bool) else str(value)
+        args.extend(["--ak", f"{key}={rendered}"])
     extra = llm_kwargs(row, lock)
     if extra:
         args.extend(
@@ -1197,7 +1218,11 @@ def _run_k3_slot(
                     infra_retries=infra_retries,
                     lock=lock,
                 )
-            cap_shown = RATE_LIMIT_RETRY_CAP if RATE_LIMIT_RETRY_CAP is not None else "unbounded"
+            cap_shown = (
+                RATE_LIMIT_RETRY_CAP
+                if RATE_LIMIT_RETRY_CAP is not None
+                else "unbounded"
+            )
             print(
                 f"{model['id']} {name} a{attempt}: rate-limit {exc or 'RateLimit'}, "
                 f"wait {INFRA_BACKOFF_SEC}s retry {visit_rate_limit}/{cap_shown} "

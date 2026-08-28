@@ -20,7 +20,7 @@ Old 8B / 9B / 27B / Granite jobs are **pilot / calibration only**. They do **not
 
 Internship / public writeup: [`结果报表.md`](结果报表.md). Process notes: [`EVAL-NOTE.md`](EVAL-NOTE.md). Release checklist: [`GATE-A.md`](GATE-A.md).
 
-Public item bank = **62** (Easy 12 / Medium 38 / Hard 7 / Out-of-range 5). Skill means average every item in the atom (Loc 11, Edit 15, Testgen 13, Repro 13, Review 10). Published Core-62 (tag `benchmark-v1.0`) imputes Hard-15 as 0 for the 6 compact models that were not official Hard examinees (**marked**; the official Hard lock still omits those cells). Completeness for those 6 is `jobs/locked-hard-floor-k3.json` (does not overwrite the official Hard lock). 9B *did* sit Hard-15 (Atomic 30/45). The **current reading table** is the v1.0.1 canonical matrix in [`项目说明.md`](项目说明.md) §7 / `results/canonical-coverage.json` (Hard filled + Gemma-4B 429 overlay + 13 infra replacements; `remaining_dirty` 0). The 47-item table is the actually-sat compact panel.
+Public item bank = **62** (Easy 12 / Medium 38 / Hard 7 / Out-of-range 5). Skill means average every item in the atom (Loc 11, Edit 15, Testgen 13, Repro 13, Review 10). Published Core-62 (tag `benchmark-v1.0`) imputes Hard-15 as 0 for the 6 compact models that were not official Hard examinees (**marked**; the official Hard lock still omits those cells). Completeness for those 6 is `jobs/locked-hard-floor-k3.json` (does not overwrite the official Hard lock). 9B *did* sit Hard-15 (Atomic 30/45). The **current reading table** is the 16-model v1.0.1 canonical matrix in [`项目说明.md`](项目说明.md) §7 / `results/canonical-coverage.json` (Hard filled + Gemma-4B 429 overlay + 13 infra replacements + four-model supplement; `remaining_dirty` 0). The 47-item table is the actually-sat compact panel.
 
 ## Tracks (do not mix)
 
@@ -32,6 +32,7 @@ Empirical **run** tracks (what was actually executed):
 | **Upper Reference** | 27B + 35B-A3B | Base-47 | `jobs/locked-upper-base-k3.json` | Base stratum for rulers |
 | **Hard Evaluation** | 6 pre-selected | Hard-15 | `jobs/locked-hard-release-k3.json` | **Yes** — pooled with Base-47 for those 6 |
 | **Hard-floor** | 6 skipped compact | Hard-15 | `jobs/locked-hard-floor-k3.json` | Completeness only; not the v1.0 headline |
+| **v1.0.1 supplement** | GPT-OSS-20B / Nemotron-3.5-Lightning / GLM-4.7-Flash / Gemma-4-26B-A4B | Full 62 | `jobs/supplement-2026-08-k3.json` | **Yes** — append-only canonical layer |
 
 Published Core-62 Atomic/E2E is Base-47 + Hard-15. Six examinees (including 9B) have measured Hard-15 in the official Hard lock. The other six compact models are **imputed 0 on those 15** in the v1.0 published 62 mean (marked). Completeness later sat those 15 and wrote `locked-hard-floor-k3.json`. Do not write that all 12 models are official Hard examinees. Do not copy floor rows into `locked-hard-release-k3.json`.
 
@@ -132,6 +133,8 @@ Core-62 item counts (Loc 11, Edit 15, Testgen 13, Repro 13, Review 10). Skipped 
 **Secondary table:** clean halt rate, TLE rate, timeout-after-pass, protocol error rate, public-green / hidden-red (edit), loc overprediction (canonical set ⊃ gold).
 
 **Order:** freeze the 12-model roster in [`models.lock.yaml`](models.lock.yaml) (10 compact_dense + Qwen3.8-27B + Qwen3.6-35B-A3B). Pin OpenRouter `provider.order` with `allow_fallbacks=false`. Ten-model full run: `python scripts/run_locked.py --run --full --group main` (protocol 20, then MAIN_47 470). Restart skips completed cells. `--group ruler` / `--group moe` are Upper Reference, not Compact Main. Batch 1/2 is execution order only; do not swap models after seeing scores. Existing 9B/8B `run_core_k1.py` jobs are draft. A published Compact Main table is **k=3 on Core**, not this k=1 matrix.
+
+The later four-model v1.0.1 extension is frozen separately in [`models.supplement-2026-08.yaml`](models.supplement-2026-08.yaml). It preserves the task bank, `k=3`, one independent sandbox per attempt, 20 turns, strict bash/finish parser, and disabled provider fallback. Declared API adaptations are part of those system configurations: GPT-OSS uses mandatory low reasoning with a separate retained reasoning field, and Gemma uses post-first-action stop markers. The original 12-model lock and source result files are not rewritten.
 
 k=1 item roles (screen only): `irt_candidate` (mix of 0 and 1 — not automatically a good discriminator), `all_pass`, `uncalibrated_above_range` (all 0 — keep in the raw matrix; **do not** Rasch-MLE a finite \(b\)). Use **corrected** item-total \(r\) (total excludes the item). Do not mint Hard from all-0 Loc.
 

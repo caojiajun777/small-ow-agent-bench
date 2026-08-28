@@ -46,8 +46,6 @@ def skill_row(model: dict, *, e2e: bool, highlight: bool = False) -> str:
 def rank_row(rank: int | str, model: dict) -> str:
     gap = model.get("gap")
     gap_s = fmt3(gap)
-    if model["lock_id"] == "gemma-3-12b-it":
-        gap_s = f"**{gap_s}**"
     return (
         f"| {rank} | {model['display']} | {fmt3(model['atomic_macro'])} | "
         f"{fmt3(model['e2e_macro'])} | {gap_s} | "
@@ -74,7 +72,7 @@ def render(coverage: dict) -> str:
         "Regenerate: `python scripts/write_leaderboard.py --write`.",
         "",
         "Headline = five-skill **macro** mean on 62 items. Micro = successes / 186. "
-        "All 12 configs enter one rank, sorted by Artifact macro. "
+        f"All {coverage['n_models']} configs enter one rank, sorted by Artifact macro. "
         "Qwen3.6-35B-A3B is a MoE with ~3B active parameters, not a dense 35B step. "
         "Artifact does not require `finish`; Clean does.",
         "",
@@ -83,7 +81,7 @@ def render(coverage: dict) -> str:
         f"`remaining_dirty` {len(coverage.get('remaining_dirty') or [])}. "
         f"Halt (Artifact=1, not clean) = **{coverage['halt_unfinished_atomic']}**.",
         "",
-        "## Ranked (12 configs)",
+        f"## Ranked ({coverage['n_models']} configs)",
         "",
         rank_header,
     ]

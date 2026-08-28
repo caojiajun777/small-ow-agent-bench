@@ -199,9 +199,11 @@ It does **not** include hidden verifiers: `tests/`, `solution/`, `foils/`, gold 
 
 Do not train on this 62-item bank and then report the same items as evaluation.
 
+The `benchmark-v1.0.1` tag preserves the original 12-model freeze. The current canonical table adds four fully evaluated models as an append-only supplement without rewriting those frozen source rows.
+
 ## Leaderboard (v1.0.1)
 
-Headline = five-skill **macro** mean. Micro = successes / 186. Artifact does not require `finish`; Clean does. Halt (Artifact=1, not clean) = **{coverage['halt_unfinished_atomic']}**. 12×62×3 = **{coverage['n_scored']}** scored trials. All 12 configs enter one rank. Qwen3.6-35B-A3B is a MoE with ~3B active parameters.
+Headline = five-skill **macro** mean. Micro = successes / 186. Artifact does not require `finish`; Clean does. Halt (Artifact=1, not clean) = **{coverage["halt_unfinished_atomic"]}**. {coverage["n_models"]}×62×3 = **{coverage["n_scored"]}** scored trials. All {coverage["n_models"]} configs enter one rank. Qwen3.6-35B-A3B is a MoE with ~3B active parameters.
 
 ![结果正确率与完整完成率](v1.0.1-compact10.svg)
 
@@ -271,7 +273,7 @@ def push_dataset(repo_id: str) -> None:
         folder_path=str(HF_DIR),
         repo_id=repo_id,
         repo_type="dataset",
-        commit_message="Refresh v1.0.1 catalog card to rank all 12 configs.",
+        commit_message="Refresh v1.0.1 catalog card to rank all 16 configs.",
     )
     print(f"https://huggingface.co/datasets/{repo_id}")
 

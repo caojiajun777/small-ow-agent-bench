@@ -14,7 +14,7 @@ def test_figure_is_not_frozen_lock():
     assert OUT.resolve() not in {p.resolve() for p in FROZEN_LOCKS}
 
 
-def test_svg_ranks_all_twelve():
+def test_svg_ranks_all_sixteen():
     text = render_svg(load_coverage())
     assert text.startswith("<svg")
     assert "Qwen3.5-9B" in text
@@ -23,6 +23,9 @@ def test_svg_ranks_all_twelve():
     assert "Qwen3.8-27B" in text
     assert "Qwen3.6-35B-A3B" in text
     assert "86.3%" in text
+    assert "16 个配置" in text
+    assert "GLM-4.7-Flash" in text
+    assert "GPT-OSS-20B" in text
     assert "结果正确率" in text
     assert "完整完成率" in text
     assert "做对了却没停" in text
@@ -35,3 +38,6 @@ def test_svg_ranks_all_twelve():
     assert 'fill="#4285F4"' in text
     assert 'fill="#0F62FE"' in text
     assert 'fill="#0082FB"' in text
+    assert 'fill="#10A37F"' in text
+    assert 'fill="#76B900"' in text
+    assert 'fill="#5B5BD6"' in text

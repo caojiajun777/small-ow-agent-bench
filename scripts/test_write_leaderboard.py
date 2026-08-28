@@ -30,9 +30,11 @@ def test_readme_embeds_canonical_headline():
     assert "63.2%" in readme
     assert "Qwen3.8-27B" in readme
     assert "Qwen3.6-35B-A3B" in readme
+    assert "GLM-4.7-Flash" in readme
+    assert "GPT-OSS-20B" in readme
     assert "不参加" not in readme
     assert "10 个小型模型配置中整体表现最好" not in readme
-    assert "105" in readme
+    assert "197" in readme
     assert "Qwen3.5-9B" in readme
     assert "项目说明.md" in readme
     assert "结果报表.md" in readme
@@ -58,7 +60,10 @@ def test_render_matches_canonical_micros():
     assert "0.786" in text
     assert "0.863" in text
     assert "`remaining_dirty` 0" in text
-    assert "Halt (Artifact=1, not clean) = **105**" in text
+    assert "Halt (Artifact=1, not clean) = **197**" in text
+    assert "## Ranked (16 configs)" in text
+    assert "105/186" in text
+    assert "89/186" in text
     assert "## Compact-10" not in text
     assert "Upper-reference" not in text
     assert "do not enter that rank" not in text
@@ -66,3 +71,5 @@ def test_render_matches_canonical_micros():
     assert "| 1 | Qwen3.8-27B |" in rank_head
     assert "| 2 | Qwen3.5-9B |" in rank_head
     assert "| 3 | Qwen3.6-35B-A3B |" in rank_head
+    assert "| 4 | GLM-4.7-Flash |" in rank_head
+    assert "| 6 | GPT-OSS-20B |" in rank_head
