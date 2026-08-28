@@ -38,7 +38,7 @@ It does **not** include hidden verifiers: `tests/`, `solution/`, `foils/`, gold 
 
 Do not train on this 62-item bank and then report the same items as evaluation.
 
-The `benchmark-v1.0.1` tag preserves the original 12-model freeze. The current canonical table adds four fully evaluated models as an append-only supplement without rewriting those frozen source rows.
+The v1.0.1 canonical table covers 16 fully evaluated model configurations. Each `(configuration, task, attempt)` key is unique, and frozen source rows are not overwritten.
 
 ## Leaderboard (v1.0.1)
 

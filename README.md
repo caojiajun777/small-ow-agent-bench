@@ -7,7 +7,7 @@
 主要发现：
 
 - Qwen3.8-27B 是 16 个配置中整体表现最好的；Qwen3.5-9B 以 78.6% 排第二；
-- 新补测的 GLM-4.7-Flash 以 55.3% 排第四，GPT-OSS-20B 以 48.6% 排第六；
+- GLM-4.7-Flash 以 55.3% 排第四，GPT-OSS-20B 以 48.6% 排第六；
 - Ministral-14B 擅长复现 Bug，却几乎不会编写能发现错误的测试；
 - Gemma-3-12B 经常已经正确修改代码，却因为不能正常停止而丢分。
 
@@ -78,7 +78,7 @@ Qwen3.6-35B-A3B 是约 3B 激活的 MoE，不是 27B dense 的下一档；它进
 
 所有模型使用固定的 API 供应商、推理参数和交互接口。因此分数衡量的是「模型 + API 线路 + Agent 接口」这一完整配置，不能理解为模型权重本身的绝对能力。
 
-完整协议见 [`STANDARD.md`](STANDARD.md)。原始 12 模型冻结结果对应 tag [`benchmark-v1.0.1`](https://github.com/caojiajun777/small-ow-agent-bench/releases/tag/benchmark-v1.0.1)；当前 canonical 阅读表在不改写该冻结源的前提下追加了四模型 supplement。
+完整协议、模型配置与可复现入口见 [`STANDARD.md`](STANDARD.md)。当前公开结果是 v1.0.1 canonical 16 配置表。
 
 ## 深入阅读
 
@@ -119,8 +119,7 @@ python scripts/score_standard.py jobs/<job>
 - [`results/leaderboard.md`](results/leaderboard.md)：生成的五列排行榜
 - [`results/hf_catalog.jsonl`](results/hf_catalog.jsonl)：公开目录元数据；[Hugging Face](https://huggingface.co/datasets/junjun77/small-ow-agent-bench)
 - [`CITATION.cff`](CITATION.cff)：引用
-- [`models.lock.yaml`](models.lock.yaml)：原始 12 个冻结配置
-- [`models.supplement-2026-08.yaml`](models.supplement-2026-08.yaml)：追加进入 v1.0.1 canonical 的 4 个配置
+- [`STANDARD.md`](STANDARD.md)：16 个配置的冻结协议、模型路由与复现入口
 
 隐藏评分程序、标准答案和干扰补丁留在 Harbor `tasks/`，不会放进公开数据集。
 

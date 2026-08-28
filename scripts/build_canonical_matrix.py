@@ -302,7 +302,7 @@ def build_summary(
         "note": (
             "Unique-key merge of frozen Base + official Hard + Hard-floor "
             "+ Gemma-4B 429 replacements + 13 infra-dirty replacements "
-            "+ the four-model 2026-08 supplement. "
+            "+ the four-model full-coverage source. "
             "remaining_dirty=0. This is the v1.0.1 canonical matrix. "
             "Tag benchmark-v1.0.1 is on the freeze commit. Frozen v1.0 locks unchanged."
         ),
