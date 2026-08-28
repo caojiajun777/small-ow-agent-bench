@@ -23,7 +23,7 @@ def test_coverage_json_says_the_tag_is_cut():
 
 def test_readme_embeds_canonical_headline():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    assert "benchmark-v1.0.1" in readme
+    assert "leaderboard-v1.0.1" in readme
     assert "78.6%" in readme
     assert "75.7%" in readme
     assert "86.3%" in readme
@@ -34,9 +34,8 @@ def test_readme_embeds_canonical_headline():
     assert "GPT-OSS-20B" in readme
     assert "不参加" not in readme
     assert "10 个小型模型配置中整体表现最好" not in readme
-    assert "197" in readme
+    assert "results/figures/v1.0.1-compact10.svg" in readme
     assert "Qwen3.5-9B" in readme
-    assert "项目说明.md" in readme
     assert "结果报表.md" in readme
     assert "玩具档" not in readme
     assert "目标档" not in readme

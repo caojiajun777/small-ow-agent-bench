@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from vendor_marks import VENDORS, vendor_key, vendor_path  # noqa: E402
+from vendor_marks import VENDORS, icon_svg, vendor_key, vendor_path  # noqa: E402
 from write_leaderboard import load_coverage, ranked_models  # noqa: E402
 
 
@@ -25,3 +25,20 @@ def test_vendor_keys_match_publishers():
     assert vendor_key("gpt-oss-20b", "GPT-OSS-20B") == "openai"
     assert vendor_key("nemotron-3.5-lightning", "Nemotron-3.5-Lightning") == "nvidia"
     assert vendor_key("glm-4.7-flash", "GLM-4.7-Flash") == "zai"
+
+
+def test_chart_embeds_complete_multicolor_google_mark():
+    svg = icon_svg("gemma-3-12b-it", "Gemma-3-12B", 20, 30)
+    assert 'viewBox="0 0 118 120"' in svg
+    assert svg.count("<path") == 5
+    for color in ("#4285F4", "#34A853", "#FBBC05", "#EA4335"):
+        assert color in svg
+
+
+def test_chart_keeps_non_24px_official_marks():
+    openai = icon_svg("gpt-oss-20b", "GPT-OSS-20B", 20, 30)
+    zai = icon_svg("glm-4.7-flash", "GLM-4.7-Flash", 20, 30)
+    assert 'viewBox="0 0 721 721"' in openai
+    assert "clipPath" in openai
+    assert 'viewBox="0 0 30 30"' in zai
+    assert "#2D2D2D" in zai

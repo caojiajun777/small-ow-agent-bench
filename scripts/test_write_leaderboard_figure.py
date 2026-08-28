@@ -1,4 +1,4 @@
-"""12-config ranking SVG. Does not call Harbor."""
+"""16-config ranking SVG. Does not call Harbor."""
 
 import sys
 from pathlib import Path
@@ -33,11 +33,12 @@ def test_svg_ranks_all_sixteen():
     assert "Clean" not in text
     assert "halt" not in text.lower()
     assert text.find("Qwen3.8-27B") < text.find("Qwen3.5-9B")
-    assert 'fill="#111111"' in text
-    assert 'fill="#FA520F"' in text
-    assert 'fill="#4285F4"' in text
-    assert 'fill="#0F62FE"' in text
-    assert 'fill="#0082FB"' in text
-    assert 'fill="#10A37F"' in text
-    assert 'fill="#76B900"' in text
-    assert 'fill="#5B5BD6"' in text
+    assert 'aria-label="OpenAI"' in text
+    assert 'aria-label="NVIDIA"' in text
+    assert 'aria-label="Z.ai"' in text
+    assert text.count('aria-label="Google"') == 3
+    for color in ("#4285F4", "#34A853", "#FBBC05", "#EA4335"):
+        assert color in text
+    assert "M12 1 21.5 6.5v11" not in text
+    assert "M2 12c2.8-4.4" not in text
+    assert "M12 1 23 12 12 23" not in text

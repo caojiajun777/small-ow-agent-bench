@@ -1,10 +1,12 @@
 """Publisher marks for the public ranking table and chart.
 
-Icons are CC0 Simple Icons copies under results/figures/vendors/.
+The vendored SVGs live under results/figures/vendors/.  The chart embeds each
+complete SVG so multi-path, multicolor, and non-24x24 official marks survive.
 """
 
 from __future__ import annotations
 
+import html
 import re
 from pathlib import Path
 
@@ -18,9 +20,9 @@ VENDORS = {
     "google": {"file": "google.svg", "color": "#4285F4", "alt": "Google"},
     "ibm": {"file": "ibm.svg", "color": "#0F62FE", "alt": "IBM"},
     "meta": {"file": "meta.svg", "color": "#0082FB", "alt": "Meta"},
-    "openai": {"file": "openai.svg", "color": "#10A37F", "alt": "OpenAI"},
+    "openai": {"file": "openai.svg", "color": "#111111", "alt": "OpenAI"},
     "nvidia": {"file": "nvidia.svg", "color": "#76B900", "alt": "NVIDIA"},
-    "zai": {"file": "zai.svg", "color": "#5B5BD6", "alt": "Z.ai"},
+    "zai": {"file": "zai.svg", "color": "#2D2D2D", "alt": "Z.ai"},
 }
 
 
@@ -56,21 +58,30 @@ def readme_label(display: str, lock_id: str = "") -> str:
     return f'<img src="{src}" width="16" height="16" alt="{spec["alt"]}"> {display}'
 
 
-def _path_d(key: str) -> str:
+def _svg_parts(key: str) -> tuple[str, str]:
     text = vendor_path(key).read_text(encoding="utf-8")
-    match = re.search(r'<path[^>]*\sd="([^"]+)"', text)
+    match = re.search(r"<svg\b(?P<attrs>[^>]*)>(?P<body>.*)</svg>\s*$", text, re.DOTALL)
     if not match:
-        raise ValueError(f"no path in {vendor_path(key)}")
-    return match.group(1)
+        raise ValueError(f"no svg root in {vendor_path(key)}")
+    view_box_match = re.search(r'viewBox="([^"]+)"', match.group("attrs"))
+    if not view_box_match:
+        raise ValueError(f"no viewBox in {vendor_path(key)}")
+    body = re.sub(
+        r"<(?:title|desc)\b[^>]*>.*?</(?:title|desc)>",
+        "",
+        match.group("body"),
+        flags=re.DOTALL,
+    )
+    body = "\n".join(line.rstrip() for line in body.splitlines())
+    return view_box_match.group(1), body.strip()
 
 
 def icon_svg(lock_id: str, display: str, x: float, y: float, size: float = 16) -> str:
     key = vendor_key(lock_id, display)
     spec = VENDORS[key]
-    scale = size / 24.0
-    d = _path_d(key)
+    view_box, body = _svg_parts(key)
     return (
-        f'<g transform="translate({x:.1f},{y:.1f}) scale({scale:.4f})" '
-        f'aria-label="{spec["alt"]}">'
-        f'<path d="{d}" fill="{spec["color"]}"/></g>'
+        f'<svg x="{x:.1f}" y="{y:.1f}" width="{size:.1f}" height="{size:.1f}" '
+        f'viewBox="{html.escape(view_box, quote=True)}" preserveAspectRatio="xMidYMid meet" '
+        f'role="img" aria-label="{html.escape(spec["alt"], quote=True)}">{body}</svg>'
     )

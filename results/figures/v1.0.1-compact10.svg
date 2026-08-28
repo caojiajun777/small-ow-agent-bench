@@ -12,82 +12,355 @@
 <text x="705.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">75%</text>
 <line x1="860.0" y1="58.0" x2="860.0" y2="640.0" stroke="#e5e7eb" stroke-width="1"/>
 <text x="860.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">100%</text>
-<g transform="translate(20.0,74.0) scale(0.6667)" aria-label="Qwen"><path d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z" fill="#111111"/></g>
+<svg x="20.0" y="74.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Qwen"><path fill="#111111" d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z"/></svg>
 <text x="42" y="82.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3.8-27B</text>
 <rect x="240.0" y="70.0" width="535.1" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="84.0" width="523.8" height="11" fill="#9db4c8" rx="1"/>
 <text x="781.1" y="80.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">86.3%</text>
-<g transform="translate(20.0,110.0) scale(0.6667)" aria-label="Qwen"><path d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z" fill="#111111"/></g>
+<svg x="20.0" y="110.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Qwen"><path fill="#111111" d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z"/></svg>
 <text x="42" y="118.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3.5-9B</text>
 <rect x="240.0" y="106.0" width="487.2" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="120.0" width="469.4" height="11" fill="#9db4c8" rx="1"/>
 <text x="733.2" y="116.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">78.6%</text>
-<g transform="translate(20.0,146.0) scale(0.6667)" aria-label="Qwen"><path d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z" fill="#111111"/></g>
+<svg x="20.0" y="146.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Qwen"><path fill="#111111" d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z"/></svg>
 <text x="42" y="154.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3.6-35B-A3B</text>
 <rect x="240.0" y="142.0" width="391.8" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="156.0" width="347.2" height="11" fill="#9db4c8" rx="1"/>
 <text x="637.8" y="152.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">63.2%</text>
-<g transform="translate(20.0,182.0) scale(0.6667)" aria-label="Z.ai"><path d="M12 1 23 12 12 23 1 12 12 1Zm0 4.2L5.2 12 12 18.8l6.8-6.8L12 5.2Zm-3.8 5.1h7.6v2.1l-4 3.3h4v2H8.2v-2.1l4-3.3h-4v-2Z" fill="#5B5BD6"/></g>
+<svg x="20.0" y="182.0" width="16.0" height="16.0" viewBox="0 0 30 30" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Z.ai"><style type="text/css">
+	.st0{opacity:0.3;fill:#E2E4E7;}
+	.st1{opacity:0.8;fill:#E2E4E7;stroke:#FFFFFF;stroke-width:5;stroke-miterlimit:10;}
+	.st2{fill:url(#SVGID_1_);}
+	.st3{fill:none;stroke:#E0E4E9;stroke-width:0.25;stroke-miterlimit:10;}
+	.st4{fill:none;}
+	.st5{fill:#9DA1A5;}
+	.st6{fill-rule:evenodd;clip-rule:evenodd;fill:none;}
+	.st7{fill-rule:evenodd;clip-rule:evenodd;fill:#DFE2E7;}
+	.st8{fill-rule:evenodd;clip-rule:evenodd;fill:#CDD4DA;}
+	.st9{fill-rule:evenodd;clip-rule:evenodd;fill:#B3BCC7;}
+	.st10{fill-rule:evenodd;clip-rule:evenodd;fill:#9DAAB7;}
+	.st11{fill-rule:evenodd;clip-rule:evenodd;fill:#8698A8;}
+	.st12{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_2_);}
+	.st13{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_3_);}
+	.st14{fill:#1F63EC;}
+	.st15{fill:#2D2D2D;}
+	.st16{fill:none;stroke:#E0E4E9;stroke-width:0.5;stroke-miterlimit:10;}
+	.st17{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_4_);}
+	.st18{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_5_);}
+	.st19{fill:none;stroke:#677380;stroke-width:0.5;stroke-miterlimit:10;}
+	.st20{fill:none;stroke:url(#SVGID_6_);stroke-width:2;stroke-miterlimit:10;}
+	.st21{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_7_);}
+	.st22{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_8_);}
+	.st23{fill:#FFFFFF;}
+	.st24{fill-rule:evenodd;clip-rule:evenodd;fill:#2D2D2D;}
+	.st25{clip-path:url(#SVGID_10_);}
+	.st26{clip-path:url(#SVGID_12_);}
+	.st27{fill:url(#SVGID_13_);}
+	.st28{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_14_);}
+	.st29{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_15_);}
+	.st30{clip-path:url(#SVGID_17_);}
+	.st31{clip-path:url(#SVGID_19_);}
+	.st32{fill:url(#SVGID_20_);}
+	.st33{fill:none;stroke:url(#SVGID_21_);stroke-width:2;stroke-miterlimit:10;}
+	.st34{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_22_);}
+	.st35{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_23_);}
+	.st36{clip-path:url(#SVGID_25_);}
+	.st37{clip-path:url(#SVGID_27_);}
+	.st38{fill:url(#SVGID_28_);}
+	.st39{clip-path:url(#SVGID_30_);}
+	.st40{clip-path:url(#SVGID_32_);}
+	.st41{fill:url(#SVGID_33_);}
+	.st42{fill-rule:evenodd;clip-rule:evenodd;fill:#126EF6;}
+	.st43{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+	.st44{clip-path:url(#SVGID_35_);}
+	.st45{clip-path:url(#SVGID_37_);}
+	.st46{fill:url(#SVGID_38_);}
+	.st47{fill-rule:evenodd;clip-rule:evenodd;fill:#9DA1A5;}
+	.st48{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_39_);}
+	.st49{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_40_);}
+	.st50{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_41_);}
+	.st51{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_42_);}
+	.st52{fill:none;stroke:url(#SVGID_43_);stroke-width:2;stroke-miterlimit:10;}
+	.st53{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#E0E4E9;stroke-width:0.5;stroke-miterlimit:10;}
+	.st54{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_44_);}
+	.st55{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_45_);}
+	.st56{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_46_);}
+	.st57{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_47_);}
+	.st58{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_48_);}
+	.st59{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_49_);}
+	.st60{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_50_);}
+	.st61{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_51_);}
+	.st62{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_52_);}
+	.st63{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_53_);}
+	.st64{clip-path:url(#SVGID_55_);}
+	.st65{clip-path:url(#SVGID_57_);}
+	.st66{fill:url(#SVGID_58_);}
+	.st67{clip-path:url(#SVGID_60_);}
+	.st68{clip-path:url(#SVGID_62_);}
+	.st69{fill:url(#SVGID_63_);}
+	.st70{fill:none;stroke:url(#SVGID_64_);stroke-width:2;stroke-miterlimit:10;}
+	.st71{clip-path:url(#SVGID_66_);}
+	.st72{clip-path:url(#SVGID_68_);}
+	.st73{fill:url(#SVGID_69_);}
+	.st74{clip-path:url(#SVGID_71_);}
+	.st75{clip-path:url(#SVGID_73_);}
+	.st76{fill:url(#SVGID_74_);}
+	.st77{clip-path:url(#SVGID_76_);}
+	.st78{clip-path:url(#SVGID_78_);}
+	.st79{fill:url(#SVGID_79_);}
+	.st80{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_80_);}
+	.st81{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_81_);}
+	.st82{clip-path:url(#SVGID_83_);}
+	.st83{clip-path:url(#SVGID_85_);}
+	.st84{fill:url(#SVGID_86_);}
+	.st85{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_87_);}
+	.st86{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_88_);}
+	.st87{clip-path:url(#SVGID_90_);}
+	.st88{clip-path:url(#SVGID_92_);}
+	.st89{fill:url(#SVGID_93_);}
+	.st90{fill:none;stroke:url(#SVGID_94_);stroke-width:2;stroke-miterlimit:10;}
+	.st91{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_95_);}
+	.st92{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_96_);}
+	.st93{clip-path:url(#SVGID_98_);}
+	.st94{clip-path:url(#SVGID_100_);}
+	.st95{fill:url(#SVGID_101_);}
+	.st96{clip-path:url(#SVGID_103_);}
+	.st97{clip-path:url(#SVGID_105_);}
+	.st98{fill:url(#SVGID_106_);}
+	.st99{clip-path:url(#SVGID_108_);}
+	.st100{clip-path:url(#SVGID_110_);}
+	.st101{fill:url(#SVGID_111_);}
+	.st102{fill:#FFFFFF;stroke:#B3BCC7;stroke-width:0.275;stroke-miterlimit:10;}
+	.st103{clip-path:url(#SVGID_113_);}
+	.st104{fill:#FDD138;}
+	.st105{fill:#FCA62F;}
+	.st106{fill:#FB7927;}
+	.st107{fill:#F44B22;}
+	.st108{fill:#D81915;}
+	.st109{fill:#2D2D2D;stroke:#FFFFFF;stroke-width:0.3354;stroke-miterlimit:10;}
+	.st110{fill:none;stroke:#65727F;stroke-width:2;stroke-miterlimit:10;}
+	.st111{fill:none;stroke:#65727F;stroke-width:0.75;stroke-miterlimit:10;}
+	.st112{fill:url(#SVGID_114_);}
+	.st113{fill:#D06C50;}
+	.st114{fill:#2D2D2D;stroke:#B3BCC7;stroke-width:0.275;stroke-miterlimit:10;}
+	.st115{opacity:0.2;}
+	.st116{fill:none;stroke:#677380;stroke-width:0.3564;stroke-miterlimit:10;}
+	.st117{fill:none;stroke:#677380;stroke-width:0.3564;stroke-miterlimit:10;stroke-dasharray:1.0212,1.0212;}
+	.st118{fill:none;stroke:#677380;stroke-width:0.3564;stroke-miterlimit:10;stroke-dasharray:1.0205,1.0205;}
+	.st119{opacity:0.2;fill:none;}
+	.st120{fill:none;stroke:#677380;stroke-width:0.3689;stroke-miterlimit:10;}
+	.st121{fill:none;stroke:#677380;stroke-width:0.3689;stroke-miterlimit:10;stroke-dasharray:1.0509,1.0509;}
+	.st122{opacity:0.3;fill:#1F63EC;}
+	.st123{fill:#2D2D2D;stroke:#FFFFFF;stroke-width:0.3162;stroke-miterlimit:10;}
+	.st124{fill:#FFFFFF;stroke:#B3BCC7;stroke-width:0.3162;stroke-miterlimit:10;}
+	.st125{clip-path:url(#SVGID_118_);}
+	.st126{fill:url(#SVGID_119_);}
+	.st127{fill:none;stroke:#DFE2E7;stroke-width:0.75;stroke-miterlimit:10;}
+	.st128{fill:#9DA1A5;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st129{fill:url(#SVGID_120_);}
+	.st130{fill:none;stroke:#677380;stroke-width:0.75;stroke-miterlimit:10;}
+	.st131{opacity:0.4;}
+	.st132{clip-path:url(#SVGID_122_);}
+	.st133{clip-path:url(#SVGID_124_);}
+	.st134{fill:url(#SVGID_125_);}
+	.st135{fill:none;stroke:#8392A3;stroke-width:0.35;stroke-miterlimit:10;}
+	.st136{fill:none;stroke:#8392A3;stroke-width:0.35;stroke-miterlimit:10;stroke-dasharray:0.9951,0.9951;}
+	.st137{fill:none;stroke:#8392A3;stroke-width:0.35;stroke-miterlimit:10;stroke-dasharray:1.004,1.004;}
+	.st138{fill:none;stroke:url(#SVGID_126_);stroke-width:1.5;stroke-miterlimit:10;}
+	.st139{fill:url(#SVGID_127_);}
+	.st140{fill:none;stroke:#DDE0E4;stroke-width:0.35;stroke-miterlimit:10;}
+	.st141{fill:#2D2D2D;stroke:#A9B3BE;stroke-width:0.275;stroke-miterlimit:10;}
+	.st142{fill-rule:evenodd;clip-rule:evenodd;fill:#126EF4;}
+	.st143{fill:#FFFFFF;stroke:#B1BAC4;stroke-width:0.275;stroke-miterlimit:10;}
+	.st144{fill:#CE6C50;}
+	.st145{fill:#5B5B5B;}
+	.st146{fill:#8392A3;}
+	.st147{fill:none;stroke:url(#SVGID_128_);stroke-width:1.5;stroke-miterlimit:10;}
+	.st148{fill:url(#SVGID_129_);}
+	.st149{fill:none;stroke:#B5BDC4;stroke-width:0.7;stroke-miterlimit:10;}
+	.st150{opacity:0.6;fill:none;stroke:#78838E;stroke-width:0.35;stroke-miterlimit:10;}
+	.st151{opacity:0.2;fill:none;stroke:#8392A3;stroke-width:0.35;stroke-miterlimit:10;stroke-dasharray:1,1;}
+	.st152{fill:none;stroke:#DDE0E4;stroke-width:0.75;stroke-miterlimit:10;}
+	.st153{fill:none;stroke:#8392A3;stroke-width:0.5;stroke-miterlimit:10;}
+	.st154{opacity:0.2;fill:none;stroke:#677380;stroke-width:0.3564;stroke-miterlimit:10;stroke-dasharray:1.0182,1.0182;}
+	.st155{fill:none;stroke:#DDE0E4;stroke-width:0.765;stroke-miterlimit:10;}
+	.st156{fill:url(#SVGID_130_);}
+	.st157{fill:url(#SVGID_131_);}
+	.st158{fill:#B1BAC4;}
+	.st159{fill:#CBD1D8;}
+	.st160{fill:#0B1B2B;}
+	.st161{fill:#91D119;}
+	.st162{opacity:0.7;}
+	.st163{fill:#FFFFFF;stroke:#000000;stroke-width:0.4418;stroke-miterlimit:10;}
+	.st164{fill:none;stroke:#939CAA;stroke-width:0.2209;stroke-miterlimit:10;}
+	.st165{fill:none;stroke:#FFFFFF;stroke-width:3.0924;stroke-miterlimit:10;}
+	.st166{fill:url(#SVGID_132_);}
+	.st167{fill:none;stroke:url(#SVGID_133_);stroke-width:1.714;stroke-miterlimit:10;}
+	.st168{fill:url(#SVGID_134_);}
+	.st169{fill:url(#SVGID_135_);}
+	.st170{fill:url(#SVGID_136_);}
+	.st171{fill:url(#SVGID_137_);}
+	.st172{fill:url(#SVGID_138_);}
+	.st173{fill:url(#SVGID_139_);}
+	.st174{fill:url(#SVGID_140_);}
+	.st175{fill:url(#SVGID_141_);}
+	.st176{fill:url(#SVGID_142_);}
+	.st177{fill:url(#SVGID_143_);}
+	.st178{fill:url(#SVGID_144_);}
+	.st179{fill:none;stroke:#1F63EC;stroke-width:4;stroke-miterlimit:10;}
+	.st180{fill:none;stroke:#0B1B2B;stroke-width:4;stroke-miterlimit:10;}
+	.st181{fill:none;stroke:#677380;stroke-width:0.3989;stroke-miterlimit:10;}
+	.st182{fill:none;stroke:#677380;stroke-width:0.3989;stroke-miterlimit:10;stroke-dasharray:1.14,1.14;}
+	.st183{fill:#257AF1;}
+	.st184{opacity:0.3;fill:#FFFFFF;}
+	.st185{fill:none;stroke:#98A5B2;stroke-width:4;stroke-miterlimit:10;}
+	.st186{fill:none;stroke:#65727F;stroke-width:0.3989;stroke-miterlimit:10;}
+	.st187{fill:none;stroke:#65727F;stroke-width:0.3989;stroke-miterlimit:10;stroke-dasharray:1.14,1.14;}
+	.st188{fill:none;stroke:#DDDFE4;stroke-width:0.75;stroke-miterlimit:10;}
+	.st189{fill:#9A9EA2;}
+	.st190{fill-rule:evenodd;clip-rule:evenodd;fill:#3267AC;}
+	.st191{fill:#FFFFFF;stroke:#AFB8C3;stroke-width:0.275;stroke-miterlimit:10;}
+	.st192{fill:#C5694E;}
+	.st193{fill:#8192A2;}
+	.st194{fill:#2D2D2D;stroke:#FFFFFF;stroke-width:0.6317;stroke-miterlimit:10;}
+</style>
+<g id="图层_2">
+</g>
+<g id="图层_1">
+	<path class="st194" d="M24.51,28.51H5.49c-2.21,0-4-1.79-4-4V5.49c0-2.21,1.79-4,4-4h19.03c2.21,0,4,1.79,4,4v19.03
+		C28.51,26.72,26.72,28.51,24.51,28.51z"/>
+	<g>
+		<g>
+			<g>
+				<g>
+					<path class="st23" d="M15.47,7.1l-1.3,1.85c-0.2,0.29-0.54,0.47-0.9,0.47h-7.1V7.09C6.16,7.1,15.47,7.1,15.47,7.1z"/>
+					<polygon class="st23" points="24.3,7.1 13.14,22.91 5.7,22.91 16.86,7.1 					"/>
+					<path class="st23" d="M14.53,22.91l1.31-1.86c0.2-0.29,0.54-0.47,0.9-0.47h7.09v2.33H14.53z"/>
+				</g>
+			</g>
+		</g>
+	</g>
+</g></svg>
 <text x="42" y="190.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">GLM-4.7-Flash</text>
 <rect x="240.0" y="178.0" width="342.6" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="192.0" width="263.1" height="11" fill="#9db4c8" rx="1"/>
 <text x="588.6" y="188.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">55.3%</text>
-<g transform="translate(20.0,218.0) scale(0.6667)" aria-label="Mistral"><path d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z" fill="#FA520F"/></g>
+<svg x="20.0" y="218.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mistral"><path fill="#FA520F" d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z"/></svg>
 <text x="42" y="226.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Ministral-14B</text>
 <rect x="240.0" y="214.0" width="308.1" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="228.0" width="302.6" height="11" fill="#9db4c8" rx="1"/>
 <text x="554.1" y="224.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">49.7%</text>
-<g transform="translate(20.0,254.0) scale(0.6667)" aria-label="OpenAI"><path d="M12 1 21.5 6.5v11L12 23 2.5 17.5v-11L12 1Zm0 4.2L6.1 8.6v6.8l5.9 3.4 5.9-3.4V8.6L12 5.2Zm0 3.1 3.2 1.85v3.7L12 15.7l-3.2-1.85v-3.7L12 8.3Z" fill="#10A37F"/></g>
+<svg x="20.0" y="254.0" width="16.0" height="16.0" viewBox="0 0 721 721" preserveAspectRatio="xMidYMid meet" role="img" aria-label="OpenAI"><g clip-path="url(#clip0_1637_2935)">
+<g clip-path="url(#clip1_1637_2935)">
+<path d="M304.246 295.411V249.828C304.246 245.989 305.687 243.109 309.044 241.191L400.692 188.412C413.167 181.215 428.042 177.858 443.394 177.858C500.971 177.858 537.44 222.482 537.44 269.982C537.44 273.34 537.44 277.179 536.959 281.018L441.954 225.358C436.197 222 430.437 222 424.68 225.358L304.246 295.411ZM518.245 472.945V364.024C518.245 357.304 515.364 352.507 509.608 349.149L389.174 279.096L428.519 256.543C431.877 254.626 434.757 254.626 438.115 256.543L529.762 309.323C556.154 324.679 573.905 357.304 573.905 388.971C573.905 425.436 552.315 459.024 518.245 472.941V472.945ZM275.937 376.982L236.592 353.952C233.235 352.034 231.794 349.154 231.794 345.315V239.756C231.794 188.416 271.139 149.548 324.4 149.548C344.555 149.548 363.264 156.268 379.102 168.262L284.578 222.964C278.822 226.321 275.942 231.119 275.942 237.838V376.986L275.937 376.982ZM360.626 425.922L304.246 394.255V327.083L360.626 295.416L417.002 327.083V394.255L360.626 425.922ZM396.852 571.789C376.698 571.789 357.989 565.07 342.151 553.075L436.674 498.374C442.431 495.017 445.311 490.219 445.311 483.499V344.352L485.138 367.382C488.495 369.299 489.936 372.179 489.936 376.018V481.577C489.936 532.917 450.109 571.785 396.852 571.785V571.789ZM283.134 464.79L191.486 412.01C165.094 396.654 147.343 364.029 147.343 332.362C147.343 295.416 169.415 262.309 203.48 248.393V357.791C203.48 364.51 206.361 369.308 212.117 372.665L332.074 442.237L292.729 464.79C289.372 466.707 286.491 466.707 283.134 464.79ZM277.859 543.48C223.639 543.48 183.813 502.695 183.813 452.314C183.813 448.475 184.294 444.636 184.771 440.797L279.295 495.498C285.051 498.856 290.812 498.856 296.568 495.498L417.002 425.927V471.509C417.002 475.349 415.562 478.229 412.204 480.146L320.557 532.926C308.081 540.122 293.206 543.48 277.854 543.48H277.859ZM396.852 600.576C454.911 600.576 503.37 559.313 514.41 504.612C568.149 490.696 602.696 440.315 602.696 388.976C602.696 355.387 588.303 322.762 562.392 299.25C564.791 289.173 566.231 279.096 566.231 269.024C566.231 200.411 510.571 149.067 446.274 149.067C433.322 149.067 420.846 150.984 408.37 155.305C386.775 134.192 357.026 120.758 324.4 120.758C266.342 120.758 217.883 162.02 206.843 216.721C153.104 230.637 118.557 281.018 118.557 332.357C118.557 365.946 132.95 398.571 158.861 422.083C156.462 432.16 155.022 442.237 155.022 452.309C155.022 520.922 210.682 572.266 274.978 572.266C287.931 572.266 300.407 570.349 312.883 566.028C334.473 587.141 364.222 600.576 396.852 600.576Z" fill="#111111"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_1637_2935">
+<rect width="720" height="720" fill="white" transform="translate(0.606934 0.899902)"/>
+</clipPath>
+<clipPath id="clip1_1637_2935">
+<rect width="484.139" height="479.818" fill="white" transform="translate(118.557 120.758)"/>
+</clipPath>
+</defs></svg>
 <text x="42" y="262.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">GPT-OSS-20B</text>
 <rect x="240.0" y="250.0" width="301.6" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="264.0" width="257.3" height="11" fill="#9db4c8" rx="1"/>
 <text x="547.6" y="260.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">48.6%</text>
-<g transform="translate(20.0,290.0) scale(0.6667)" aria-label="Mistral"><path d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z" fill="#FA520F"/></g>
+<svg x="20.0" y="290.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mistral"><path fill="#FA520F" d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z"/></svg>
 <text x="42" y="298.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Ministral-8B</text>
 <rect x="240.0" y="286.0" width="282.6" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="300.0" width="254.9" height="11" fill="#9db4c8" rx="1"/>
 <text x="528.6" y="296.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">45.6%</text>
-<g transform="translate(20.0,326.0) scale(0.6667)" aria-label="Qwen"><path d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z" fill="#111111"/></g>
+<svg x="20.0" y="326.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Qwen"><path fill="#111111" d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z"/></svg>
 <text x="42" y="334.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3-14B</text>
 <rect x="240.0" y="322.0" width="250.7" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="336.0" width="206.2" height="11" fill="#9db4c8" rx="1"/>
 <text x="496.7" y="332.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">40.4%</text>
-<g transform="translate(20.0,362.0) scale(0.6667)" aria-label="NVIDIA"><path d="M2 12c2.8-4.4 6.4-6.6 10.8-6.6 4.1 0 7.2 1.8 9.2 4.5-2.4-1.6-5.1-2.4-8-2.4-4.1 0-7.4 1.5-9.8 4.5 2.4 3 5.7 4.5 9.8 4.5 2.9 0 5.6-.8 8-2.4-2 2.7-5.1 4.5-9.2 4.5C8.4 18.6 4.8 16.4 2 12Zm7.1 0a4 4 0 1 1 8 0 4 4 0 0 1-8 0Zm2.5 0a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0Z" fill="#76B900"/></g>
+<svg x="20.0" y="362.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="NVIDIA"><path d="M8.948 8.798v-1.43a6.7 6.7 0 0 1 .424-.018c3.922-.124 6.493 3.374 6.493 3.374s-2.774 3.851-5.75 3.851c-.398 0-.787-.062-1.158-.185v-4.346c1.528.185 1.837.857 2.747 2.385l2.04-1.714s-1.492-1.952-4-1.952a6.016 6.016 0 0 0-.796.035m0-4.735v2.138l.424-.027c5.45-.185 9.01 4.47 9.01 4.47s-4.08 4.964-8.33 4.964c-.37 0-.733-.035-1.095-.097v1.325c.3.035.61.062.91.062 3.957 0 6.82-2.023 9.593-4.408.459.371 2.34 1.263 2.73 1.652-2.633 2.208-8.772 3.984-12.253 3.984-.335 0-.653-.018-.971-.053v1.864H24V4.063zm0 10.326v1.131c-3.657-.654-4.673-4.46-4.673-4.46s1.758-1.944 4.673-2.262v1.237H8.94c-1.528-.186-2.73 1.245-2.73 1.245s.68 2.412 2.739 3.11M2.456 10.9s2.164-3.197 6.5-3.533V6.201C4.153 6.59 0 10.653 0 10.653s2.35 6.802 8.948 7.42v-1.237c-4.84-.6-6.492-5.936-6.492-5.936z"/></svg>
 <text x="42" y="370.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Nemotron-3.5-Lightning</text>
 <rect x="240.0" y="358.0" width="218.2" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="372.0" width="59.0" height="11" fill="#9db4c8" rx="1"/>
 <text x="464.2" y="368.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">35.2%</text>
-<g transform="translate(20.0,398.0) scale(0.6667)" aria-label="Google"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4"/></g>
+<svg x="20.0" y="398.0" width="16.0" height="16.0" viewBox="0 0 118 120" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Google"><!-- Generator: Sketch 3.6 (26304) - http://www.bohemiancoding.com/sketch -->
+
+
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-1" transform="translate(-332.000000, -639.000000)">
+            <g id="google_buttn" transform="translate(332.000000, 639.000000)">
+                <g id="logo_googleg_48dp">
+                    <path d="M117.6,61.3636364 C117.6,57.1090909 117.218182,53.0181818 116.509091,49.0909091 L60,49.0909091 L60,72.3 L92.2909091,72.3 C90.9,79.8 86.6727273,86.1545455 80.3181818,90.4090909 L80.3181818,105.463636 L99.7090909,105.463636 C111.054545,95.0181818 117.6,79.6363636 117.6,61.3636364 L117.6,61.3636364 Z" id="Shape" fill="#4285F4"></path>
+                    <path d="M60,120 C76.2,120 89.7818182,114.627273 99.7090909,105.463636 L80.3181818,90.4090909 C74.9454545,94.0090909 68.0727273,96.1363636 60,96.1363636 C44.3727273,96.1363636 31.1454545,85.5818182 26.4272727,71.4 L6.38181818,71.4 L6.38181818,86.9454545 C16.2545455,106.554545 36.5454545,120 60,120 L60,120 Z" id="Shape" fill="#34A853"></path>
+                    <path d="M26.4272727,71.4 C25.2272727,67.8 24.5454545,63.9545455 24.5454545,60 C24.5454545,56.0454545 25.2272727,52.2 26.4272727,48.6 L26.4272727,33.0545455 L6.38181818,33.0545455 C2.31818182,41.1545455 0,50.3181818 0,60 C0,69.6818182 2.31818182,78.8454545 6.38181818,86.9454545 L26.4272727,71.4 L26.4272727,71.4 Z" id="Shape" fill="#FBBC05"></path>
+                    <path d="M60,23.8636364 C68.8090909,23.8636364 76.7181818,26.8909091 82.9363636,32.8363636 L100.145455,15.6272727 C89.7545455,5.94545455 76.1727273,0 60,0 C36.5454545,0 16.2545455,13.4454545 6.38181818,33.0545455 L26.4272727,48.6 C31.1454545,34.4181818 44.3727273,23.8636364 60,23.8636364 L60,23.8636364 Z" id="Shape" fill="#EA4335"></path>
+                    <path d="M0,0 L120,0 L120,120 L0,120 L0,0 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g></svg>
 <text x="42" y="406.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Gemma-3-12B</text>
 <rect x="240.0" y="394.0" width="193.9" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="408.0" width="70.6" height="11" fill="#9db4c8" rx="1"/>
 <text x="439.9" y="404.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">31.3%</text>
-<g transform="translate(20.0,434.0) scale(0.6667)" aria-label="IBM"><path d="M23.544 15.993c.038 0 .06-.017.06-.053v-.036c0-.035-.022-.052-.06-.052h-.09v.14zm-.09.262h-.121v-.498h.225c.112 0 .169.066.169.157 0 .079-.036.129-.09.15l.111.19h-.133l-.092-.17h-.07zm.434-.222v-.062c0-.2-.157-.357-.363-.357a.355.355 0 00-.363.357v.062c0 .2.156.358.363.358a.355.355 0 00.363-.358zm-.838-.03c0-.28.212-.492.475-.492.264 0 .475.213.475.491 0 .279-.211.491-.475.491a.477.477 0 01-.475-.49zM16.21 8.13l-.216-.624h-3.56v.624zm.413 1.19l-.216-.623h-3.973v.624zm2.65 7.147h3.107v-.624h-3.108zm0-1.192h3.107v-.623h-3.108zm0-1.19h1.864v-.624h-1.865zm0-1.191h1.864v-.624h-1.865zm0-1.191h1.864v-.624h-3.555l-.175.504-.175-.504h-3.555v.624h1.865v-.574l.2.574h3.33l.2-.574zm1.864-1.815h-3.142l-.217.624h3.359zm-7.46 3.006h1.865v-.624h-1.865zm0 1.19h1.865v-.623h-1.865zm-1.243 1.191h3.108v-.623h-3.108zm0 1.192h3.108v-.624h-3.108zm6.386-8.961l-.216.624h3.776v-.624zm-.629 1.815h4.19v-.624h-3.974zm-4.514 1.19h3.359l-.216-.623h-3.143zm2.482 2.383h2.496l.218-.624h-2.932zm.417 1.19h1.662l.218-.623h-2.098zm.416 1.191h.83l.218-.623h-1.266zm.414 1.192l.217-.624h-.432zm-12.433-.006l4.578.006c.622 0 1.18-.237 1.602-.624h-6.18zm4.86-3v.624h2.092c0-.216-.03-.425-.083-.624zm-3.616.624h1.865v-.624H6.217zm3.617-3.573h2.008c.053-.199.083-.408.083-.624H9.834zm-3.617 0h1.865v-.624H6.217zM9.55 7.507H4.973v.624h6.18a2.36 2.36 0 00-1.602-.624zm2.056 1.191H4.973v.624h6.884a2.382 2.382 0 00-.25-.624zm-5.39 2.382v.624h4.87c.207-.176.382-.387.519-.624zm4.87 1.191h-4.87v.624h5.389a2.39 2.39 0 00-.519-.624zm-6.114 3.006h6.634c.11-.193.196-.402.25-.624H4.973zM0 8.13h4.352v-.624H0zm0 1.191h4.352v-.624H0zm1.243 1.191h1.865v-.624H1.243zm0 1.191h1.865v-.624H1.243zm0 1.19h1.865v-.623H1.243zm0 1.192h1.865v-.624H1.243zM0 15.276h4.352v-.623H0zm0 1.192h4.352v-.624H0Z" fill="#0F62FE"/></g>
+<svg x="20.0" y="434.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="IBM"><path fill="#0F62FE" d="M23.544 15.993c.038 0 .06-.017.06-.053v-.036c0-.035-.022-.052-.06-.052h-.09v.14zm-.09.262h-.121v-.498h.225c.112 0 .169.066.169.157 0 .079-.036.129-.09.15l.111.19h-.133l-.092-.17h-.07zm.434-.222v-.062c0-.2-.157-.357-.363-.357a.355.355 0 00-.363.357v.062c0 .2.156.358.363.358a.355.355 0 00.363-.358zm-.838-.03c0-.28.212-.492.475-.492.264 0 .475.213.475.491 0 .279-.211.491-.475.491a.477.477 0 01-.475-.49zM16.21 8.13l-.216-.624h-3.56v.624zm.413 1.19l-.216-.623h-3.973v.624zm2.65 7.147h3.107v-.624h-3.108zm0-1.192h3.107v-.623h-3.108zm0-1.19h1.864v-.624h-1.865zm0-1.191h1.864v-.624h-1.865zm0-1.191h1.864v-.624h-3.555l-.175.504-.175-.504h-3.555v.624h1.865v-.574l.2.574h3.33l.2-.574zm1.864-1.815h-3.142l-.217.624h3.359zm-7.46 3.006h1.865v-.624h-1.865zm0 1.19h1.865v-.623h-1.865zm-1.243 1.191h3.108v-.623h-3.108zm0 1.192h3.108v-.624h-3.108zm6.386-8.961l-.216.624h3.776v-.624zm-.629 1.815h4.19v-.624h-3.974zm-4.514 1.19h3.359l-.216-.623h-3.143zm2.482 2.383h2.496l.218-.624h-2.932zm.417 1.19h1.662l.218-.623h-2.098zm.416 1.191h.83l.218-.623h-1.266zm.414 1.192l.217-.624h-.432zm-12.433-.006l4.578.006c.622 0 1.18-.237 1.602-.624h-6.18zm4.86-3v.624h2.092c0-.216-.03-.425-.083-.624zm-3.616.624h1.865v-.624H6.217zm3.617-3.573h2.008c.053-.199.083-.408.083-.624H9.834zm-3.617 0h1.865v-.624H6.217zM9.55 7.507H4.973v.624h6.18a2.36 2.36 0 00-1.602-.624zm2.056 1.191H4.973v.624h6.884a2.382 2.382 0 00-.25-.624zm-5.39 2.382v.624h4.87c.207-.176.382-.387.519-.624zm4.87 1.191h-4.87v.624h5.389a2.39 2.39 0 00-.519-.624zm-6.114 3.006h6.634c.11-.193.196-.402.25-.624H4.973zM0 8.13h4.352v-.624H0zm0 1.191h4.352v-.624H0zm1.243 1.191h1.865v-.624H1.243zm0 1.191h1.865v-.624H1.243zm0 1.19h1.865v-.623H1.243zm0 1.192h1.865v-.624H1.243zM0 15.276h4.352v-.623H0zm0 1.192h4.352v-.624H0Z"/></svg>
 <text x="42" y="442.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Granite-4.1-8B</text>
 <rect x="240.0" y="430.0" width="100.4" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="444.0" width="86.6" height="11" fill="#9db4c8" rx="1"/>
 <text x="346.4" y="440.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">16.2%</text>
-<g transform="translate(20.0,470.0) scale(0.6667)" aria-label="Google"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4"/></g>
+<svg x="20.0" y="470.0" width="16.0" height="16.0" viewBox="0 0 118 120" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Google"><!-- Generator: Sketch 3.6 (26304) - http://www.bohemiancoding.com/sketch -->
+
+
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-1" transform="translate(-332.000000, -639.000000)">
+            <g id="google_buttn" transform="translate(332.000000, 639.000000)">
+                <g id="logo_googleg_48dp">
+                    <path d="M117.6,61.3636364 C117.6,57.1090909 117.218182,53.0181818 116.509091,49.0909091 L60,49.0909091 L60,72.3 L92.2909091,72.3 C90.9,79.8 86.6727273,86.1545455 80.3181818,90.4090909 L80.3181818,105.463636 L99.7090909,105.463636 C111.054545,95.0181818 117.6,79.6363636 117.6,61.3636364 L117.6,61.3636364 Z" id="Shape" fill="#4285F4"></path>
+                    <path d="M60,120 C76.2,120 89.7818182,114.627273 99.7090909,105.463636 L80.3181818,90.4090909 C74.9454545,94.0090909 68.0727273,96.1363636 60,96.1363636 C44.3727273,96.1363636 31.1454545,85.5818182 26.4272727,71.4 L6.38181818,71.4 L6.38181818,86.9454545 C16.2545455,106.554545 36.5454545,120 60,120 L60,120 Z" id="Shape" fill="#34A853"></path>
+                    <path d="M26.4272727,71.4 C25.2272727,67.8 24.5454545,63.9545455 24.5454545,60 C24.5454545,56.0454545 25.2272727,52.2 26.4272727,48.6 L26.4272727,33.0545455 L6.38181818,33.0545455 C2.31818182,41.1545455 0,50.3181818 0,60 C0,69.6818182 2.31818182,78.8454545 6.38181818,86.9454545 L26.4272727,71.4 L26.4272727,71.4 Z" id="Shape" fill="#FBBC05"></path>
+                    <path d="M60,23.8636364 C68.8090909,23.8636364 76.7181818,26.8909091 82.9363636,32.8363636 L100.145455,15.6272727 C89.7545455,5.94545455 76.1727273,0 60,0 C36.5454545,0 16.2545455,13.4454545 6.38181818,33.0545455 L26.4272727,48.6 C31.1454545,34.4181818 44.3727273,23.8636364 60,23.8636364 L60,23.8636364 Z" id="Shape" fill="#EA4335"></path>
+                    <path d="M0,0 L120,0 L120,120 L0,120 L0,0 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g></svg>
 <text x="42" y="478.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Gemma-4-26B-A4B</text>
 <rect x="240.0" y="466.0" width="80.4" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="480.0" width="80.4" height="11" fill="#9db4c8" rx="1"/>
 <text x="326.4" y="476.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">13.0%</text>
-<g transform="translate(20.0,506.0) scale(0.6667)" aria-label="Google"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4"/></g>
+<svg x="20.0" y="506.0" width="16.0" height="16.0" viewBox="0 0 118 120" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Google"><!-- Generator: Sketch 3.6 (26304) - http://www.bohemiancoding.com/sketch -->
+
+
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-1" transform="translate(-332.000000, -639.000000)">
+            <g id="google_buttn" transform="translate(332.000000, 639.000000)">
+                <g id="logo_googleg_48dp">
+                    <path d="M117.6,61.3636364 C117.6,57.1090909 117.218182,53.0181818 116.509091,49.0909091 L60,49.0909091 L60,72.3 L92.2909091,72.3 C90.9,79.8 86.6727273,86.1545455 80.3181818,90.4090909 L80.3181818,105.463636 L99.7090909,105.463636 C111.054545,95.0181818 117.6,79.6363636 117.6,61.3636364 L117.6,61.3636364 Z" id="Shape" fill="#4285F4"></path>
+                    <path d="M60,120 C76.2,120 89.7818182,114.627273 99.7090909,105.463636 L80.3181818,90.4090909 C74.9454545,94.0090909 68.0727273,96.1363636 60,96.1363636 C44.3727273,96.1363636 31.1454545,85.5818182 26.4272727,71.4 L6.38181818,71.4 L6.38181818,86.9454545 C16.2545455,106.554545 36.5454545,120 60,120 L60,120 Z" id="Shape" fill="#34A853"></path>
+                    <path d="M26.4272727,71.4 C25.2272727,67.8 24.5454545,63.9545455 24.5454545,60 C24.5454545,56.0454545 25.2272727,52.2 26.4272727,48.6 L26.4272727,33.0545455 L6.38181818,33.0545455 C2.31818182,41.1545455 0,50.3181818 0,60 C0,69.6818182 2.31818182,78.8454545 6.38181818,86.9454545 L26.4272727,71.4 L26.4272727,71.4 Z" id="Shape" fill="#FBBC05"></path>
+                    <path d="M60,23.8636364 C68.8090909,23.8636364 76.7181818,26.8909091 82.9363636,32.8363636 L100.145455,15.6272727 C89.7545455,5.94545455 76.1727273,0 60,0 C36.5454545,0 16.2545455,13.4454545 6.38181818,33.0545455 L26.4272727,48.6 C31.1454545,34.4181818 44.3727273,23.8636364 60,23.8636364 L60,23.8636364 Z" id="Shape" fill="#EA4335"></path>
+                    <path d="M0,0 L120,0 L120,120 L0,120 L0,0 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g></svg>
 <text x="42" y="514.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Gemma-3-4B</text>
 <rect x="240.0" y="502.0" width="41.3" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="516.0" width="41.3" height="11" fill="#9db4c8" rx="1"/>
 <text x="287.3" y="512.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">6.7%</text>
-<g transform="translate(20.0,542.0) scale(0.6667)" aria-label="Mistral"><path d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z" fill="#FA520F"/></g>
+<svg x="20.0" y="542.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mistral"><path fill="#FA520F" d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z"/></svg>
 <text x="42" y="550.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Ministral-3B</text>
 <rect x="240.0" y="538.0" width="30.3" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="552.0" width="11.9" height="11" fill="#9db4c8" rx="1"/>
 <text x="276.3" y="548.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">4.9%</text>
-<g transform="translate(20.0,578.0) scale(0.6667)" aria-label="Qwen"><path d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z" fill="#111111"/></g>
+<svg x="20.0" y="578.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Qwen"><path fill="#111111" d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z"/></svg>
 <text x="42" y="586.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3-8B</text>
 <rect x="240.0" y="574.0" width="20.8" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="588.0" width="11.3" height="11" fill="#9db4c8" rx="1"/>
 <text x="266.8" y="584.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">3.4%</text>
-<g transform="translate(20.0,614.0) scale(0.6667)" aria-label="Meta"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z" fill="#0082FB"/></g>
+<svg x="20.0" y="614.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Meta"><path fill="#0082FB" d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg>
 <text x="42" y="622.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Llama-3.2-3B</text>
 <rect x="240.0" y="610.0" width="16.5" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="624.0" width="0.0" height="11" fill="#9db4c8" rx="1"/>
