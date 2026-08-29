@@ -1,5 +1,7 @@
 # Small-OW-Agent-Bench
 
+**简体中文** | [English](README_EN.md)
+
 [![Leaderboard](https://img.shields.io/badge/leaderboard-v1.0.1-0f4c81)](results/leaderboard.md)
 [![License](https://img.shields.io/badge/license-Apache%202.0-2f6f4e)](LICENSE)
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-catalog-ffcc00)](https://huggingface.co/datasets/junjun77/small-ow-agent-bench)
