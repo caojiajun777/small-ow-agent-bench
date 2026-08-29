@@ -115,20 +115,3 @@ python scripts/score_standard.py jobs/<job>
 批量运行入口：`python scripts/run_locked.py`（见 [`STANDARD.md`](STANDARD.md)）。不要覆盖 `jobs/locked-core.json`、`jobs/locked-core-k3.json`、`jobs/locked-hard-release-k3.json`。
 
 </details>
-
-<details>
-<summary>更多审计与开发文档</summary>
-
-- [`DIFFICULTY.md`](DIFFICULTY.md)：Easy / Medium / Hard / Uncalibrated
-- [`TRAPS.md`](TRAPS.md)：失败模式
-- [`EVAL-NOTE.md`](EVAL-NOTE.md)：过程笔记
-- [`HARD-RELEASE.md`](HARD-RELEASE.md)：Hard-15
-- [`GATE-A.md`](GATE-A.md)：发布清单
-- [`results/RELEASE-v1.0.1.md`](results/RELEASE-v1.0.1.md)：v1.0.1 技术审计
-- [`results/leaderboard.md`](results/leaderboard.md)：生成的五列排行榜
-- [`results/hf_catalog.jsonl`](results/hf_catalog.jsonl)：公开目录元数据；[Hugging Face](https://huggingface.co/datasets/junjun77/small-ow-agent-bench)
-- [`CITATION.cff`](CITATION.cff)：引用
-
-隐藏评分程序、标准答案和干扰补丁保留在 Harbor `tasks/` 中，不进入公开数据集。
-
-</details>
