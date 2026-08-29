@@ -30,6 +30,7 @@ from run_locked import (  # noqa: E402
     attempt_of,
 )
 from score_standard import ATOMS, API_FLAKE_EXCEPTIONS, RATE_LIMIT_EXCEPTIONS  # noqa: E402
+from item_metadata import CONSTRUCT_WEIGHTS, construct_metadata  # noqa: E402
 from task_sets import HARD_RELEASE_15, MAIN_47  # noqa: E402
 
 BANK_62 = MAIN_47 + HARD_RELEASE_15
@@ -162,6 +163,7 @@ def e2e_hit(row: dict[str, Any]) -> int:
 
 
 def model_score(rows: list[dict[str, Any]], lock_id: str) -> dict[str, Any]:
+    metadata = construct_metadata()
     mine = [r for r in rows if r.get("lock_id") == lock_id and in_bank(r)]
     by_task: dict[str, dict[int, dict[str, Any]]] = defaultdict(dict)
     for row in mine:
@@ -179,6 +181,8 @@ def model_score(rows: list[dict[str, Any]], lock_id: str) -> dict[str, Any]:
         p_e2e[task] = sum(e2e_hit(attempts[a]) for a in (1, 2, 3)) / 3
     skills_atomic: dict[str, float | None] = {}
     skills_e2e: dict[str, float | None] = {}
+    skills_atomic_weighted: dict[str, float | None] = {}
+    skills_e2e_weighted: dict[str, float | None] = {}
     for prefix, _label in ATOMS.items():
         names = [t for t in BANK_62 if t.startswith(f"{prefix}-") and t in p_atomic]
         skills_atomic[prefix] = (
@@ -187,8 +191,25 @@ def model_score(rows: list[dict[str, Any]], lock_id: str) -> dict[str, Any]:
         skills_e2e[prefix] = (
             sum(p_e2e[t] for t in names) / len(names) if names else None
         )
+        weight_sum = sum(float(metadata[t]["difficulty_weight"]) for t in names)
+        skills_atomic_weighted[prefix] = (
+            sum(float(metadata[t]["difficulty_weight"]) * p_atomic[t] for t in names)
+            / weight_sum
+            if weight_sum
+            else None
+        )
+        skills_e2e_weighted[prefix] = (
+            sum(float(metadata[t]["difficulty_weight"]) * p_e2e[t] for t in names)
+            / weight_sum
+            if weight_sum
+            else None
+        )
     atomic_vals = [v for v in skills_atomic.values() if v is not None]
     e2e_vals = [v for v in skills_e2e.values() if v is not None]
+    weighted_atomic_vals = [
+        v for v in skills_atomic_weighted.values() if v is not None
+    ]
+    weighted_e2e_vals = [v for v in skills_e2e_weighted.values() if v is not None]
     scored = [r for r in mine if attempt_is_valid(r)]
     atomic_ok = sum(int(r["atomic_correct"]) for r in scored)
     e2e_ok = sum(e2e_hit(r) for r in scored)
@@ -209,6 +230,18 @@ def model_score(rows: list[dict[str, Any]], lock_id: str) -> dict[str, Any]:
         "e2e_macro": sum(e2e_vals) / len(e2e_vals) if e2e_vals else None,
         "skills_atomic": skills_atomic,
         "skills_e2e": skills_e2e,
+        "artifact_score": (
+            100 * sum(weighted_atomic_vals) / len(weighted_atomic_vals)
+            if weighted_atomic_vals
+            else None
+        ),
+        "clean_score": (
+            100 * sum(weighted_e2e_vals) / len(weighted_e2e_vals)
+            if weighted_e2e_vals
+            else None
+        ),
+        "skills_atomic_weighted": skills_atomic_weighted,
+        "skills_e2e_weighted": skills_e2e_weighted,
     }
 
 
@@ -239,6 +272,7 @@ def compact_then_upper(
     ranked = [m["id"] for m in canonical_models(lock)]
     ranked.sort(
         key=lambda i: (
+            -(scores[i]["artifact_score"] or 0.0),
             -(scores[i]["atomic_macro"] or 0.0),
             -(scores[i]["atomic_ok"] or 0),
             i,
@@ -313,6 +347,14 @@ def build_summary(
         "n_scored": n_scored,
         "n_incomplete_tasks": incomplete,
         "halt_unfinished_atomic": halt,
+        "score_method": {
+            "range": [0, 100],
+            "construct_weights": CONSTRUCT_WEIGHTS,
+            "weight_policy": "author-designed ordinal tiers; not fitted to results",
+            "aggregation": "difficulty-weighted within skill, then five-skill macro",
+            "primary": "artifact_score",
+            "secondary": "clean_score",
+        },
         "layers_applied": applied,
         "models": [],
         "remaining_dirty": dirty,
@@ -331,6 +373,13 @@ def build_summary(
                 "e2e_ok": row["e2e_ok"],
                 "atomic_macro": row["atomic_macro"],
                 "e2e_macro": row["e2e_macro"],
+                "artifact_score": row["artifact_score"],
+                "clean_score": row["clean_score"],
+                "score_gap": (
+                    None
+                    if row["artifact_score"] is None or row["clean_score"] is None
+                    else row["artifact_score"] - row["clean_score"]
+                ),
                 "gap": (
                     None
                     if row["atomic_macro"] is None or row["e2e_macro"] is None
@@ -338,6 +387,8 @@ def build_summary(
                 ),
                 "skills_atomic": row["skills_atomic"],
                 "skills_e2e": row["skills_e2e"],
+                "skills_atomic_weighted": row["skills_atomic_weighted"],
+                "skills_e2e_weighted": row["skills_e2e_weighted"],
                 "halt_unfinished_atomic": row["halt_unfinished_atomic"],
             }
         )

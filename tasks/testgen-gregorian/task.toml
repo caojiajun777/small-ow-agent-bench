@@ -9,10 +9,15 @@ keywords = ["agentic-coding", "unit-test-generation"]
 [metadata]
 author_name = ""
 author_email = ""
-difficulty = "medium"
+difficulty = "hard"
+construct_difficulty = "hard"
+empirical_band = "medium"
+calibration_status = "calibrated"
+difficulty_weight = 2.0
+trap_id = "T3"
 category = "software"
 subcategory = "unit-test-generation"
-tags = ["unit-test-generation", "medium", "agentic-coding", "atomic-skills"]
+tags = ["unit-test-generation", "hard", "agentic-coding", "atomic-skills"]
 difficulty_explanation = "Tests must catch year%4 leap mutants; 2024/2023-only suites are not enough."
 expert_time_estimate_hours = 0.2
 

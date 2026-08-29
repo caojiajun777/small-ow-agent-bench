@@ -71,6 +71,9 @@ def test_skill_mean_is_task_macro_not_micro():
     # remaining review tasks missing -> incomplete, review mean uses only scored tasks
     got = model_score(rows, "m")
     assert got["skills_atomic"]["review"] == 0.5
+    # medium pass (1.5) + easy miss (1.0) => 1.5 / 2.5
+    assert got["skills_atomic_weighted"]["review"] == 0.6
+    assert got["artifact_score"] == 60.0
     assert got["atomic_ok"] == 3
     assert got["n_scored"] == 6
 

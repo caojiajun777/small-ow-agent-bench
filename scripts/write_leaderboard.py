@@ -29,26 +29,25 @@ def load_coverage() -> dict:
 def ranked_models(models: list[dict]) -> list[dict]:
     return sorted(
         models,
-        key=lambda row: (-float(row["atomic_macro"]), row["display"]),
+        key=lambda row: (-float(row["artifact_score"]), row["display"]),
     )
 
 
 def skill_row(model: dict, *, e2e: bool, highlight: bool = False) -> str:
-    skills = model["skills_e2e" if e2e else "skills_atomic"]
-    macro = model["e2e_macro" if e2e else "atomic_macro"]
-    ok = model["e2e_ok" if e2e else "atomic_ok"]
-    cells = " | ".join(fmt3(skills[k]) for k in SKILLS)
-    macro_cell = f"**{fmt3(macro)}**" if highlight and not e2e else fmt3(macro)
-    micro = f"{fmt3(ok / 186)}（{ok}/186）"
-    return f"| {model['display']} | {cells} | {macro_cell} | {micro} |"
+    skills = model[
+        "skills_e2e_weighted" if e2e else "skills_atomic_weighted"
+    ]
+    score = model["clean_score" if e2e else "artifact_score"]
+    cells = " | ".join(f"{100 * float(skills[k]):.1f}" for k in SKILLS)
+    score_cell = f"**{score:.1f}**" if highlight and not e2e else f"{score:.1f}"
+    return f"| {model['display']} | {cells} | {score_cell} |"
 
 
 def rank_row(rank: int | str, model: dict) -> str:
-    gap = model.get("gap")
-    gap_s = fmt3(gap)
+    gap = float(model.get("score_gap") or 0.0)
     return (
-        f"| {rank} | {model['display']} | {fmt3(model['atomic_macro'])} | "
-        f"{fmt3(model['e2e_macro'])} | {gap_s} | "
+        f"| {rank} | {model['display']} | {model['artifact_score']:.1f} | "
+        f"{model['clean_score']:.1f} | {gap:.1f} | "
         f"{model['atomic_ok']}/186 | {model['e2e_ok']}/186 |"
     )
 
@@ -58,11 +57,11 @@ def render(coverage: dict) -> str:
     skill_header = (
         "| 模型 | "
         + " | ".join(SKILL_HEAD)
-        + " | **宏平均** | 微平均 |\n"
-        + "|---|---:|---:|---:|---:|---:|---:|---:|"
+        + " | **加权总分** |\n"
+        + "|---|---:|---:|---:|---:|---:|---:|"
     )
     rank_header = (
-        "| # | 模型 | Artifact 宏平均 | Clean 宏平均 | Gap | Artifact 微平均 | Clean 微平均 |\n"
+        "| # | 模型 | Artifact Score | Clean Score | Gap | Artifact 原始通过 | Clean 原始通过 |\n"
         "|---:|---|---:|---:|---:|---:|---:|"
     )
     lines = [
@@ -71,8 +70,9 @@ def render(coverage: dict) -> str:
         "Source: [`canonical-coverage.json`](canonical-coverage.json). "
         "Regenerate: `python scripts/write_leaderboard.py --write`.",
         "",
-        "Headline = five-skill **macro** mean on 62 items. Micro = successes / 186. "
-        f"All {coverage['n_models']} configs enter one rank, sorted by Artifact macro. "
+        "Headline = 0–100 difficulty-weighted score: Easy 1, Medium 1.5, Hard 2 "
+        "inside each skill, followed by a five-skill macro. Raw successes remain visible. "
+        f"All {coverage['n_models']} configs enter one rank, sorted by Artifact Score. "
         "Qwen3.6-35B-A3B is a MoE with ~3B active parameters, not a dense 35B step. "
         "Artifact does not require `finish`; Clean does.",
         "",
@@ -89,7 +89,7 @@ def render(coverage: dict) -> str:
         lines.append(rank_row(i, model))
     lines += [
         "",
-        "## Artifact Correctness (five skills)",
+        "## Artifact Score (five weighted skills)",
         "",
         skill_header,
     ]
@@ -97,9 +97,9 @@ def render(coverage: dict) -> str:
         lines.append(skill_row(model, e2e=False, highlight=i == 0))
     lines += [
         "",
-        "## Clean Completion (five skills)",
+        "## Clean Score (five weighted skills)",
         "",
-        "Row order matches the Artifact table. Granite Clean macro > Gemma-12B "
+        "Row order matches the Artifact table. Granite Clean Score > Gemma-12B "
         "because of Gemma-12B's halt tax, not because Granite solves more items.",
         "",
         skill_header,

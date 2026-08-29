@@ -19,6 +19,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from build_canonical_matrix import BANK_62, FROZEN_LOCKS, merge_rows  # noqa: E402
+from item_metadata import construct_metadata  # noqa: E402
 from run_locked import attempt_of  # noqa: E402
 from score_standard import atom_of  # noqa: E402
 from task_sets import HARD_RELEASE_15  # noqa: E402
@@ -103,6 +104,7 @@ def label_of(
 
 
 def difficulty_table(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    constructs = construct_metadata()
     by_task: dict[str, dict[str, Any]] = {}
     buckets: dict[str, list[str]] = defaultdict(list)
     for task in BANK_62:
@@ -116,10 +118,21 @@ def difficulty_table(rows: list[dict[str, Any]]) -> dict[str, Any]:
             if na >= 1:
                 floor_hit = True
         band = label_of(n9, n27, floor_hit)
+        construct = constructs[task]
+        empirical_band = "out_of_range" if band == "uncalibrated" else band
         rec = {
             "task": task,
             "atom": atom_of(task),
             "label": band,
+            "construct_difficulty": construct["construct_difficulty"],
+            "difficulty_weight": construct["difficulty_weight"],
+            "trap_id": construct["trap_id"],
+            "empirical_band": empirical_band,
+            "calibration_status": (
+                "out_of_range"
+                if empirical_band == "out_of_range"
+                else "calibrated"
+            ),
             "n9_atomic": n9,
             "n9_e2e": e9,
             "k9": k9,
@@ -132,8 +145,25 @@ def difficulty_table(rows: list[dict[str, Any]]) -> dict[str, Any]:
         by_task[task] = rec
         buckets[band].append(task)
     counts = {k: len(v) for k, v in buckets.items()}
+    construct_counts: dict[str, int] = defaultdict(int)
+    for rec in by_task.values():
+        construct_counts[rec["construct_difficulty"]] += 1
     return {
         "kind": "v1.0.1_difficulty",
+        "semantics": {
+            "construct_difficulty": (
+                "Author-designed Easy/Medium/Hard tier; determines score weight."
+            ),
+            "empirical_band": (
+                "Observed location under the frozen v1.0.1 calibration ladder."
+            ),
+            "label": "Legacy alias for the empirical calibration label.",
+        },
+        "difficulty_weights": {"easy": 1.0, "medium": 1.5, "hard": 2.0},
+        "construct_counts": {
+            key: construct_counts.get(key, 0)
+            for key in ("easy", "medium", "hard")
+        },
         "rule": (
             "Easy = floor 3B/4B Atomic>=1 once and 9B 3/3. "
             "Hard = 9B 0/3 and 27B Atomic 3/3. "

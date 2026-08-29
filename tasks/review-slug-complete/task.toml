@@ -9,10 +9,15 @@ keywords = ["agentic-coding", "code-review"]
 [metadata]
 author_name = ""
 author_email = ""
-difficulty = "medium"
+difficulty = "easy"
+construct_difficulty = "easy"
+empirical_band = "easy"
+calibration_status = "calibrated"
+difficulty_weight = 1.0
+trap_id = "V4"
 category = "software"
 subcategory = "code-review"
-tags = ["code-review", "medium", "agentic-coding", "atomic-skills"]
+tags = ["code-review", "easy", "agentic-coding", "atomic-skills"]
 difficulty_explanation = "Binary review of a patch that fully implements slugify."
 expert_time_estimate_hours = 0.2
 

@@ -9,10 +9,15 @@ keywords = ["agentic-coding", "editing"]
 [metadata]
 author_name = ""
 author_email = ""
-difficulty = "medium"
+difficulty = "easy"
+construct_difficulty = "easy"
+empirical_band = "medium"
+calibration_status = "calibrated"
+difficulty_weight = 1.0
+trap_id = "E1"
 category = "software"
 subcategory = "editing"
-tags = ["editing", "medium", "agentic-coding"]
+tags = ["editing", "easy", "agentic-coding"]
 difficulty_explanation = "The target file is named; the agent only has to implement a small slugify function."
 expert_time_estimate_hours = 0.2
 

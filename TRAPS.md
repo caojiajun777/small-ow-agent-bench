@@ -4,7 +4,7 @@ This is the full trap list for this bench. It is closed on purpose: small Python
 
 Each trap is **one failure mode**. Surfaces (VIP vs VAT vs TTL) do not count as new traps. Out of scope is listed at the bottom so we do not sneak it back in.
 
-Difficulty is **not** a trap attribute. See [`DIFFICULTY.md`](DIFFICULTY.md): Medium / Hard are empirical labels after the 3B / 8B–9B / 27B ladder. A trap that 9B fails is only Hard if 27B can pass.
+Each task has an author-designed `construct_difficulty` (Easy / Medium / Hard) in addition to its trap ID. Construct difficulty is frozen independently of model results and determines the 1 / 1.5 / 2 score weight. [`DIFFICULTY.md`](DIFFICULTY.md) separately records the empirical calibration band after the 3B / 8B–9B / 27B ladder. The two fields must not overwrite each other.
 
 Status: `v1` = public unique trap, `unscored` = out of the current 9B/27B ladder (not an ordered band), `stock` = isomorph kept on disk. Same-family items do not reuse one failure mode; the same programming error may recur across atoms (e.g. explicit `0` eaten by `or`) and is recorded here.
 

@@ -1,0 +1,965 @@
+{
+  "kind": "v1.0.1_irt_1pl_binomial",
+  "published": false,
+  "role": "diagnostic analysis; does not determine leaderboard weights",
+  "note": "Exploratory 1PL Rasch JML on 16 configurations x 62 tasks x 3 trials. All-zero/all-full items have no finite MLE and are excluded. Corrected item-total r is a small-sample discrimination diagnostic, not a fitted 2PL parameter.",
+  "n_trials_per_cell": 3,
+  "n_models": 16,
+  "n_items": 62,
+  "n_items_fitted": 61,
+  "all_zero_items": [
+    "loc-reexport"
+  ],
+  "all_full_items": [],
+  "all_zero_models": [],
+  "all_full_models": [],
+  "construct_irt_spearman": 0.5765211783963065,
+  "tier_summary": {
+    "easy": {
+      "n": 17,
+      "mean_pass_rate": 0.5024509803921569,
+      "mean_rasch_b": 0.04412826727703531,
+      "median_rasch_b": -0.08776195589792544,
+      "mean_corrected_item_total_r": 0.7162115280817529
+    },
+    "medium": {
+      "n": 21,
+      "mean_pass_rate": 0.37797619047619047,
+      "mean_rasch_b": 0.9270614092310345,
+      "median_rasch_b": 0.9038442980683584,
+      "mean_corrected_item_total_r": 0.66895156163623
+    },
+    "hard": {
+      "n": 24,
+      "mean_pass_rate": 0.2647569444444444,
+      "mean_rasch_b": 1.9251226756226574,
+      "median_rasch_b": 1.3447810017470945,
+      "mean_corrected_item_total_r": 0.5334975108407439
+    }
+  },
+  "negative_discrimination_items": [],
+  "weak_discrimination_items_lt_0_2": [
+    "loc-bind-host",
+    "edit-config-beside"
+  ],
+  "models": [
+    {
+      "lock_id": "qwen3.8-27b",
+      "display": "Qwen3.8-27B",
+      "theta": 3.843113084257003
+    },
+    {
+      "lock_id": "qwen3.5-9b",
+      "display": "Qwen3.5-9B",
+      "theta": 2.9623569220518577
+    },
+    {
+      "lock_id": "qwen3.6-35b-a3b",
+      "display": "Qwen3.6-35B-A3B",
+      "theta": 1.7370531644634166
+    },
+    {
+      "lock_id": "glm-4.7-flash",
+      "display": "GLM-4.7-Flash",
+      "theta": 1.3255226851628594
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "display": "Ministral-14B",
+      "theta": 0.9716266967741785
+    },
+    {
+      "lock_id": "gpt-oss-20b",
+      "display": "GPT-OSS-20B",
+      "theta": 0.8565613295007378
+    },
+    {
+      "lock_id": "ministral-8b-2512",
+      "display": "Ministral-8B",
+      "theta": 0.7993055589100332
+    },
+    {
+      "lock_id": "qwen3-14b",
+      "display": "Qwen3-14B",
+      "theta": 0.4848492849310994
+    },
+    {
+      "lock_id": "nemotron-3.5-lightning",
+      "display": "Nemotron-3.5-Lightning",
+      "theta": 0.31134012389928156
+    },
+    {
+      "lock_id": "gemma-3-12b-it",
+      "display": "Gemma-3-12B",
+      "theta": 0.01338142287688125
+    },
+    {
+      "lock_id": "granite-4.1-8b",
+      "display": "Granite-4.1-8B",
+      "theta": -1.0212642802229608
+    },
+    {
+      "lock_id": "gemma-4-26b-a4b-it",
+      "display": "Gemma-4-26B-A4B",
+      "theta": -1.257064548435216
+    },
+    {
+      "lock_id": "gemma-3-4b-it",
+      "display": "Gemma-3-4B",
+      "theta": -2.2916004919169244
+    },
+    {
+      "lock_id": "ministral-3b-2512",
+      "display": "Ministral-3B",
+      "theta": -2.3982987510139853
+    },
+    {
+      "lock_id": "qwen3-8b",
+      "display": "Qwen3-8B",
+      "theta": -2.9544431218797134
+    },
+    {
+      "lock_id": "llama-3.2-3b-instruct",
+      "display": "Llama-3.2-3B",
+      "theta": -3.382439079358548
+    }
+  ],
+  "items": [
+    {
+      "task": "loc-member-discount",
+      "atom": "loc",
+      "trap_id": "L1",
+      "construct_difficulty": "easy",
+      "empirical_band": "hard",
+      "pass_rate": 0.14583333333333334,
+      "rasch_b": 2.8382252918268946,
+      "corrected_item_total_r": 0.4787638423774939
+    },
+    {
+      "task": "loc-bind-host",
+      "atom": "loc",
+      "trap_id": "L2",
+      "construct_difficulty": "hard",
+      "empirical_band": "out_of_range",
+      "pass_rate": 0.020833333333333332,
+      "rasch_b": 5.4563989977748575,
+      "corrected_item_total_r": 0.09267124066625063
+    },
+    {
+      "task": "loc-vip-two-files",
+      "atom": "loc",
+      "trap_id": "L3",
+      "construct_difficulty": "hard",
+      "empirical_band": "hard",
+      "pass_rate": 0.08333333333333333,
+      "rasch_b": 3.722788946576299,
+      "corrected_item_total_r": 0.5009401744720304
+    },
+    {
+      "task": "loc-similar-filenames",
+      "atom": "loc",
+      "trap_id": "L4",
+      "construct_difficulty": "medium",
+      "empirical_band": "medium",
+      "pass_rate": 0.10416666666666667,
+      "rasch_b": 3.387717977267033,
+      "corrected_item_total_r": 0.6195645185140003
+    },
+    {
+      "task": "loc-traceback-helper",
+      "atom": "loc",
+      "trap_id": "L5",
+      "construct_difficulty": "hard",
+      "empirical_band": "medium",
+      "pass_rate": 0.08333333333333333,
+      "rasch_b": 3.722788946576299,
+      "corrected_item_total_r": 0.428410795894511
+    },
+    {
+      "task": "loc-failing-test-impl",
+      "atom": "loc",
+      "trap_id": "L6",
+      "construct_difficulty": "medium",
+      "empirical_band": "medium",
+      "pass_rate": 0.22916666666666666,
+      "rasch_b": 2.0034366568515027,
+      "corrected_item_total_r": 0.7685350249520694
+    },
+    {
+      "task": "loc-reexport",
+      "atom": "loc",
+      "trap_id": "L7",
+      "construct_difficulty": "hard",
+      "empirical_band": "out_of_range",
+      "pass_rate": 0.0,
+      "rasch_b": null,
+      "corrected_item_total_r": null
+    },
+    {
+      "task": "loc-unused-fix",
+      "atom": "loc",
+      "trap_id": "L8",
+      "construct_difficulty": "medium",
+      "empirical_band": "easy",
+      "pass_rate": 0.5,
+      "rasch_b": 0.0562391321924893,
+      "corrected_item_total_r": 0.3913388089868319
+    },
+    {
+      "task": "edit-slugify",
+      "atom": "edit",
+      "trap_id": "E1",
+      "construct_difficulty": "easy",
+      "empirical_band": "medium",
+      "pass_rate": 0.625,
+      "rasch_b": -0.8472557915789318,
+      "corrected_item_total_r": 0.7579366808779797
+    },
+    {
+      "task": "edit-covered-length",
+      "atom": "edit",
+      "trap_id": "E2",
+      "construct_difficulty": "easy",
+      "empirical_band": "easy",
+      "pass_rate": 0.5,
+      "rasch_b": 0.05623913219248947,
+      "corrected_item_total_r": 0.6449992954116238
+    },
+    {
+      "task": "edit-deep-merge",
+      "atom": "edit",
+      "trap_id": "E3",
+      "construct_difficulty": "easy",
+      "empirical_band": "easy",
+      "pass_rate": 0.4166666666666667,
+      "rasch_b": 0.6207362582135599,
+      "corrected_item_total_r": 0.5312782724352317
+    },
+    {
+      "task": "edit-int-list",
+      "atom": "edit",
+      "trap_id": "E4",
+      "construct_difficulty": "easy",
+      "empirical_band": "medium",
+      "pass_rate": 0.5416666666666666,
+      "rasch_b": -0.23387628047713907,
+      "corrected_item_total_r": 0.8271797790517588
+    },
+    {
+      "task": "edit-top-k",
+      "atom": "edit",
+      "trap_id": "E5",
+      "construct_difficulty": "easy",
+      "empirical_band": "medium",
+      "pass_rate": 0.5416666666666666,
+      "rasch_b": -0.23387628047713913,
+      "corrected_item_total_r": 0.7999066625801309
+    },
+    {
+      "task": "edit-jsonl-keep",
+      "atom": "edit",
+      "trap_id": "E6",
+      "construct_difficulty": "easy",
+      "empirical_band": "medium",
+      "pass_rate": 0.3958333333333333,
+      "rasch_b": 0.7617047052006223,
+      "corrected_item_total_r": 0.8493892215158819
+    },
+    {
+      "task": "edit-hhmmss",
+      "atom": "edit",
+      "trap_id": "E7",
+      "construct_difficulty": "easy",
+      "empirical_band": "medium",
+      "pass_rate": 0.6666666666666666,
+      "rasch_b": -1.1756732151025684,
+      "corrected_item_total_r": 0.7680999137335437
+    },
+    {
+      "task": "edit-prefix-sums",
+      "atom": "edit",
+      "trap_id": "E8",
+      "construct_difficulty": "easy",
+      "empirical_band": "easy",
+      "pass_rate": 0.5208333333333334,
+      "rasch_b": -0.0877619558979253,
+      "corrected_item_total_r": 0.7899857796540944
+    },
+    {
+      "task": "edit-clip",
+      "atom": "edit",
+      "trap_id": "E9",
+      "construct_difficulty": "easy",
+      "empirical_band": "medium",
+      "pass_rate": 0.5833333333333334,
+      "rasch_b": -0.5340813557690997,
+      "corrected_item_total_r": 0.8517511165864384
+    },
+    {
+      "task": "edit-timeout-zero",
+      "atom": "edit",
+      "trap_id": "E10",
+      "construct_difficulty": "medium",
+      "empirical_band": "easy",
+      "pass_rate": 0.3333333333333333,
+      "rasch_b": 1.1945522656243004,
+      "corrected_item_total_r": 0.40873729533912984
+    },
+    {
+      "task": "edit-unique-keep",
+      "atom": "edit",
+      "trap_id": "E11",
+      "construct_difficulty": "easy",
+      "empirical_band": "medium",
+      "pass_rate": 0.4791666666666667,
+      "rasch_b": 0.19858210841107432,
+      "corrected_item_total_r": 0.8106275560341201
+    },
+    {
+      "task": "edit-pad-left",
+      "atom": "edit",
+      "trap_id": "E12",
+      "construct_difficulty": "easy",
+      "empirical_band": "medium",
+      "pass_rate": 0.5833333333333334,
+      "rasch_b": -0.5340813557690997,
+      "corrected_item_total_r": 0.7611963237149054
+    },
+    {
+      "task": "testgen-clip",
+      "atom": "testgen",
+      "trap_id": "T1",
+      "construct_difficulty": "medium",
+      "empirical_band": "medium",
+      "pass_rate": 0.3125,
+      "rasch_b": 1.3447810017470945,
+      "corrected_item_total_r": 0.7823063266731477
+    },
+    {
+      "task": "testgen-unique-order",
+      "atom": "testgen",
+      "trap_id": "T2",
+      "construct_difficulty": "medium",
+      "empirical_band": "medium",
+      "pass_rate": 0.3958333333333333,
+      "rasch_b": 0.7617047052006223,
+      "corrected_item_total_r": 0.614641716546135
+    },
+    {
+      "task": "testgen-gregorian",
+      "atom": "testgen",
+      "trap_id": "T3",
+      "construct_difficulty": "hard",
+      "empirical_band": "medium",
+      "pass_rate": 0.3541666666666667,
+      "rasch_b": 1.047865474972193,
+      "corrected_item_total_r": 0.8083575865658756
+    },
+    {
+      "task": "testgen-mean",
+      "atom": "testgen",
+      "trap_id": "T4",
+      "construct_difficulty": "medium",
+      "empirical_band": "medium",
+      "pass_rate": 0.3541666666666667,
+      "rasch_b": 1.047865474972193,
+      "corrected_item_total_r": 0.7715733070613008
+    },
+    {
+      "task": "testgen-parse",
+      "atom": "testgen",
+      "trap_id": "T5",
+      "construct_difficulty": "medium",
+      "empirical_band": "medium",
+      "pass_rate": 0.22916666666666666,
+      "rasch_b": 2.0034366568515027,
+      "corrected_item_total_r": 0.7361274402333149
+    },
+    {
+      "task": "testgen-anagram",
+      "atom": "testgen",
+      "trap_id": "T6",
+      "construct_difficulty": "medium",
+      "empirical_band": "hard",
+      "pass_rate": 0.4583333333333333,
+      "rasch_b": 0.3397568235543954,
+      "corrected_item_total_r": 0.476521639315537
+    },
+    {
+      "task": "testgen-timeout-zero",
+      "atom": "testgen",
+      "trap_id": "T7",
+      "construct_difficulty": "medium",
+      "empirical_band": "easy",
+      "pass_rate": 0.4166666666666667,
+      "rasch_b": 0.6207362582135599,
+      "corrected_item_total_r": 0.540428835917907
+    },
+    {
+      "task": "testgen-greet-none",
+      "atom": "testgen",
+      "trap_id": "T8",
+      "construct_difficulty": "medium",
+      "empirical_band": "medium",
+      "pass_rate": 0.3333333333333333,
+      "rasch_b": 1.1945522656243004,
+      "corrected_item_total_r": 0.7259078843875107
+    },
+    {
+      "task": "testgen-cents",
+      "atom": "testgen",
+      "trap_id": "T9",
+      "construct_difficulty": "medium",
+      "empirical_band": "easy",
+      "pass_rate": 0.4166666666666667,
+      "rasch_b": 0.6207362582135599,
+      "corrected_item_total_r": 0.5719511453771944
+    },
+    {
+      "task": "testgen-window",
+      "atom": "testgen",
+      "trap_id": "T10",
+      "construct_difficulty": "medium",
+      "empirical_band": "medium",
+      "pass_rate": 0.4375,
+      "rasch_b": 0.48028779643989145,
+      "corrected_item_total_r": 0.7229661198241165
+    },
+    {
+      "task": "repro-off-by-one",
+      "atom": "repro",
+      "trap_id": "R1",
+      "construct_difficulty": "easy",
+      "empirical_band": "medium",
+      "pass_rate": 0.5208333333333334,
+      "rasch_b": -0.08776195589792544,
+      "corrected_item_total_r": 0.55536038088413
+    },
+    {
+      "task": "repro-end-exclusive",
+      "atom": "repro",
+      "trap_id": "R2",
+      "construct_difficulty": "easy",
+      "empirical_band": "medium",
+      "pass_rate": 0.5,
+      "rasch_b": 0.05623913219248941,
+      "corrected_item_total_r": 0.862702134330589
+    },
+    {
+      "task": "repro-zero-timeout",
+      "atom": "repro",
+      "trap_id": "R3",
+      "construct_difficulty": "hard",
+      "empirical_band": "medium",
+      "pass_rate": 0.3125,
+      "rasch_b": 1.3447810017470945,
+      "corrected_item_total_r": 0.6255207426048787
+    },
+    {
+      "task": "repro-keep-zero",
+      "atom": "repro",
+      "trap_id": "R4",
+      "construct_difficulty": "hard",
+      "empirical_band": "medium",
+      "pass_rate": 0.4791666666666667,
+      "rasch_b": 0.19858210841107432,
+      "corrected_item_total_r": 0.7837146630858869
+    },
+    {
+      "task": "repro-none-name",
+      "atom": "repro",
+      "trap_id": "R5",
+      "construct_difficulty": "medium",
+      "empirical_band": "medium",
+      "pass_rate": 0.3541666666666667,
+      "rasch_b": 1.047865474972193,
+      "corrected_item_total_r": 0.7934047770004582
+    },
+    {
+      "task": "repro-float-cents",
+      "atom": "repro",
+      "trap_id": "R6",
+      "construct_difficulty": "medium",
+      "empirical_band": "medium",
+      "pass_rate": 0.3541666666666667,
+      "rasch_b": 1.047865474972193,
+      "corrected_item_total_r": 0.7311747669974686
+    },
+    {
+      "task": "repro-first-index",
+      "atom": "repro",
+      "trap_id": "R7",
+      "construct_difficulty": "easy",
+      "empirical_band": "hard",
+      "pass_rate": 0.3125,
+      "rasch_b": 1.3447810017470945,
+      "corrected_item_total_r": 0.5255514728215578
+    },
+    {
+      "task": "repro-empty-mean",
+      "atom": "repro",
+      "trap_id": "R8",
+      "construct_difficulty": "easy",
+      "empirical_band": "medium",
+      "pass_rate": 0.5625,
+      "rasch_b": -0.3825226594498862,
+      "corrected_item_total_r": 0.6593137442796407
+    },
+    {
+      "task": "repro-whitespace",
+      "atom": "repro",
+      "trap_id": "R9",
+      "construct_difficulty": "hard",
+      "empirical_band": "hard",
+      "pass_rate": 0.375,
+      "rasch_b": 0.9038442980683584,
+      "corrected_item_total_r": 0.48241262816470515
+    },
+    {
+      "task": "repro-truthy-flag",
+      "atom": "repro",
+      "trap_id": "R10",
+      "construct_difficulty": "hard",
+      "empirical_band": "medium",
+      "pass_rate": 0.3958333333333333,
+      "rasch_b": 0.7617047052006224,
+      "corrected_item_total_r": 0.6406938782443738
+    },
+    {
+      "task": "review-clip-incomplete",
+      "atom": "review",
+      "trap_id": "V1",
+      "construct_difficulty": "medium",
+      "empirical_band": "medium",
+      "pass_rate": 0.375,
+      "rasch_b": 0.9038442980683584,
+      "corrected_item_total_r": 0.5983258543068981
+    },
+    {
+      "task": "review-slug-almost",
+      "atom": "review",
+      "trap_id": "V2",
+      "construct_difficulty": "medium",
+      "empirical_band": "easy",
+      "pass_rate": 0.5416666666666666,
+      "rasch_b": -0.23387628047713918,
+      "corrected_item_total_r": 0.658645329208014
+    },
+    {
+      "task": "review-mean-wrong",
+      "atom": "review",
+      "trap_id": "V3",
+      "construct_difficulty": "medium",
+      "empirical_band": "medium",
+      "pass_rate": 0.5,
+      "rasch_b": 0.05623913219248945,
+      "corrected_item_total_r": 0.7107563741217706
+    },
+    {
+      "task": "review-slug-complete",
+      "atom": "review",
+      "trap_id": "V4",
+      "construct_difficulty": "easy",
+      "empirical_band": "easy",
+      "pass_rate": 0.6458333333333334,
+      "rasch_b": -1.0094362356549096,
+      "corrected_item_total_r": 0.7015538011006799
+    },
+    {
+      "task": "review-configured-timeout",
+      "atom": "review",
+      "trap_id": "V5",
+      "construct_difficulty": "medium",
+      "empirical_band": "medium",
+      "pass_rate": 0.3333333333333333,
+      "rasch_b": 1.1945522656243004,
+      "corrected_item_total_r": 0.855387327661115
+    },
+    {
+      "task": "review-rotate-right",
+      "atom": "review",
+      "trap_id": "V6",
+      "construct_difficulty": "medium",
+      "empirical_band": "easy",
+      "pass_rate": 0.4583333333333333,
+      "rasch_b": 0.33975682355439535,
+      "corrected_item_total_r": 0.7456147226719979
+    },
+    {
+      "task": "review-prefix-complete",
+      "atom": "review",
+      "trap_id": "V7",
+      "construct_difficulty": "medium",
+      "empirical_band": "medium",
+      "pass_rate": 0.5,
+      "rasch_b": 0.05623913219248941,
+      "corrected_item_total_r": 0.8240735792649122
+    },
+    {
+      "task": "loc-vendor-shadow",
+      "atom": "loc",
+      "trap_id": "LR1",
+      "construct_difficulty": "hard",
+      "empirical_band": "out_of_range",
+      "pass_rate": 0.10416666666666667,
+      "rasch_b": 3.3877179772670325,
+      "corrected_item_total_r": 0.42352458919451963
+    },
+    {
+      "task": "loc-env-wrapper",
+      "atom": "loc",
+      "trap_id": "LR2",
+      "construct_difficulty": "hard",
+      "empirical_band": "out_of_range",
+      "pass_rate": 0.0625,
+      "rasch_b": 4.125127021301618,
+      "corrected_item_total_r": 0.2471696880984125
+    },
+    {
+      "task": "loc-hook-plugin",
+      "atom": "loc",
+      "trap_id": "LR3",
+      "construct_difficulty": "hard",
+      "empirical_band": "hard",
+      "pass_rate": 0.0625,
+      "rasch_b": 4.125127021301618,
+      "corrected_item_total_r": 0.4817853546118669
+    },
+    {
+      "task": "edit-config-beside",
+      "atom": "edit",
+      "trap_id": "ER1",
+      "construct_difficulty": "hard",
+      "empirical_band": "out_of_range",
+      "pass_rate": 0.20833333333333334,
+      "rasch_b": 2.189903458928857,
+      "corrected_item_total_r": 0.00723244746411344
+    },
+    {
+      "task": "edit-retry-discount",
+      "atom": "edit",
+      "trap_id": "ER2",
+      "construct_difficulty": "hard",
+      "empirical_band": "easy",
+      "pass_rate": 0.3333333333333333,
+      "rasch_b": 1.1945522656243004,
+      "corrected_item_total_r": 0.6740372252439677
+    },
+    {
+      "task": "edit-blank-name",
+      "atom": "edit",
+      "trap_id": "ER3",
+      "construct_difficulty": "hard",
+      "empirical_band": "medium",
+      "pass_rate": 0.3125,
+      "rasch_b": 1.3447810017470945,
+      "corrected_item_total_r": 0.5296006412122428
+    },
+    {
+      "task": "testgen-tie-order",
+      "atom": "testgen",
+      "trap_id": "TR1",
+      "construct_difficulty": "hard",
+      "empirical_band": "medium",
+      "pass_rate": 0.0625,
+      "rasch_b": 4.125127021301618,
+      "corrected_item_total_r": 0.4069571158518502
+    },
+    {
+      "task": "testgen-booking-touch",
+      "atom": "testgen",
+      "trap_id": "TR2",
+      "construct_difficulty": "hard",
+      "empirical_band": "medium",
+      "pass_rate": 0.375,
+      "rasch_b": 0.9038442980683584,
+      "corrected_item_total_r": 0.7066907806347659
+    },
+    {
+      "task": "testgen-zero-qty",
+      "atom": "testgen",
+      "trap_id": "TR3",
+      "construct_difficulty": "hard",
+      "empirical_band": "medium",
+      "pass_rate": 0.2916666666666667,
+      "rasch_b": 1.4995444370863753,
+      "corrected_item_total_r": 0.7077352430327625
+    },
+    {
+      "task": "repro-second-export",
+      "atom": "repro",
+      "trap_id": "RR1",
+      "construct_difficulty": "hard",
+      "empirical_band": "medium",
+      "pass_rate": 0.3958333333333333,
+      "rasch_b": 0.7617047052006223,
+      "corrected_item_total_r": 0.6623710834030371
+    },
+    {
+      "task": "repro-nested-alias",
+      "atom": "repro",
+      "trap_id": "RR2",
+      "construct_difficulty": "hard",
+      "empirical_band": "hard",
+      "pass_rate": 0.22916666666666666,
+      "rasch_b": 2.0034366568515027,
+      "corrected_item_total_r": 0.5681022924131441
+    },
+    {
+      "task": "repro-stale-quote",
+      "atom": "repro",
+      "trap_id": "RR3",
+      "construct_difficulty": "hard",
+      "empirical_band": "medium",
+      "pass_rate": 0.3333333333333333,
+      "rasch_b": 1.1945522656243004,
+      "corrected_item_total_r": 0.36585101776874906
+    },
+    {
+      "task": "review-bare-except",
+      "atom": "review",
+      "trap_id": "VR1",
+      "construct_difficulty": "hard",
+      "empirical_band": "easy",
+      "pass_rate": 0.625,
+      "rasch_b": -0.8472557915789318,
+      "corrected_item_total_r": 0.6284532949303182
+    },
+    {
+      "task": "review-dead-helper",
+      "atom": "review",
+      "trap_id": "VR2",
+      "construct_difficulty": "hard",
+      "empirical_band": "medium",
+      "pass_rate": 0.3125,
+      "rasch_b": 1.3447810017470945,
+      "corrected_item_total_r": 0.6305444280870275
+    },
+    {
+      "task": "review-wired-helper",
+      "atom": "review",
+      "trap_id": "VR3",
+      "construct_difficulty": "hard",
+      "empirical_band": "medium",
+      "pass_rate": 0.5416666666666666,
+      "rasch_b": -0.23387628047713913,
+      "corrected_item_total_r": 0.8676658376918196
+    }
+  ],
+  "by_atom": {
+    "loc": {
+      "n_items": 11,
+      "n_items_fitted": 10,
+      "n_models_fitted": 12,
+      "all_zero_items": [
+        "loc-reexport"
+      ],
+      "all_full_items": [],
+      "all_zero_models": [
+        "gemma-3-12b-it",
+        "granite-4.1-8b",
+        "gemma-3-4b-it",
+        "llama-3.2-3b-instruct"
+      ],
+      "all_full_models": [],
+      "theta": {
+        "qwen3.8-27b": 3.4717268223955244,
+        "qwen3.5-9b": 1.8134570893022202,
+        "qwen3.6-35b-a3b": 2.21942070747639,
+        "glm-4.7-flash": -2.212270827430188,
+        "gpt-oss-20b": 0.7587009929530579,
+        "ministral-14b-2512": -0.5764787054654068,
+        "ministral-8b-2512": 0.39502345378476583,
+        "qwen3-14b": -0.5764787054654068,
+        "nemotron-3.5-lightning": -1.252175647327681,
+        "gemma-4-26b-a4b-it": -1.2521756473276808,
+        "ministral-3b-2512": -2.212270827430188,
+        "qwen3-8b": -0.5764787054654068
+      },
+      "item_difficulty": {
+        "loc-member-discount": 2.158874131104558,
+        "loc-bind-host": 4.943018090512288,
+        "loc-vip-two-files": 3.1323647079953116,
+        "loc-similar-filenames": 2.769165895002408,
+        "loc-traceback-helper": 3.1323647079953116,
+        "loc-failing-test-impl": 1.1872947206224946,
+        "loc-unused-fix": -1.1581425225130149,
+        "loc-vendor-shadow": 2.769165895002408,
+        "loc-env-wrapper": 3.561599576909875,
+        "loc-hook-plugin": 3.561599576909875
+      }
+    },
+    "edit": {
+      "n_items": 15,
+      "n_items_fitted": 15,
+      "n_models_fitted": 14,
+      "all_zero_items": [],
+      "all_full_items": [],
+      "all_zero_models": [
+        "qwen3-8b",
+        "llama-3.2-3b-instruct"
+      ],
+      "all_full_models": [],
+      "theta": {
+        "qwen3.8-27b": 3.987200792563005,
+        "qwen3.5-9b": 2.7832353507407266,
+        "qwen3.6-35b-a3b": 0.42076046363577896,
+        "glm-4.7-flash": 1.542102628735012,
+        "gpt-oss-20b": -1.0213969992901148,
+        "ministral-14b-2512": 0.6645430202418571,
+        "ministral-8b-2512": 0.6645430202418571,
+        "qwen3-14b": -0.46845472569226065,
+        "nemotron-3.5-lightning": 0.6645430202418571,
+        "gemma-3-12b-it": -0.14329008113273656,
+        "granite-4.1-8b": -1.0213969992901148,
+        "gemma-4-26b-a4b-it": -2.095152534990361,
+        "gemma-3-4b-it": -3.284728520580217,
+        "ministral-3b-2512": -2.692508435424289
+      },
+      "item_difficulty": {
+        "edit-slugify": -1.5004139760979531,
+        "edit-covered-length": -0.4962813435100391,
+        "edit-deep-merge": 0.11518808853068384,
+        "edit-int-list": -0.8133402889654682,
+        "edit-top-k": -0.8133402889654681,
+        "edit-jsonl-keep": 0.2674184401638258,
+        "edit-hhmmss": -1.886088913796202,
+        "edit-prefix-sums": -0.6532786125346202,
+        "edit-clip": -1.1457500070223943,
+        "edit-timeout-zero": 0.7348177845947284,
+        "edit-unique-keep": -0.34162944218354474,
+        "edit-pad-left": -1.1457500070223945,
+        "edit-config-beside": 1.8180757391151183,
+        "edit-retry-discount": 0.7348177845947284,
+        "edit-blank-name": 0.897257637974869
+      }
+    },
+    "testgen": {
+      "n_items": 13,
+      "n_items_fitted": 13,
+      "n_models_fitted": 13,
+      "all_zero_items": [],
+      "all_full_items": [],
+      "all_zero_models": [
+        "gemma-3-4b-it",
+        "qwen3-8b",
+        "llama-3.2-3b-instruct"
+      ],
+      "all_full_models": [],
+      "theta": {
+        "qwen3.8-27b": 3.9337152167599596,
+        "qwen3.5-9b": 3.9337152167599596,
+        "qwen3.6-35b-a3b": 3.9337152167599596,
+        "glm-4.7-flash": -0.30587088793503936,
+        "gpt-oss-20b": -0.4311565738437321,
+        "ministral-14b-2512": -3.647524022602006,
+        "ministral-8b-2512": -0.6913237773406715,
+        "qwen3-14b": 0.061096975040835,
+        "nemotron-3.5-lightning": 0.9603779429708138,
+        "gemma-3-12b-it": -1.464277942953656,
+        "granite-4.1-8b": -2.474110883626888,
+        "gemma-4-26b-a4b-it": -1.6608480541921817,
+        "ministral-3b-2512": -2.1475084257973522
+      },
+      "item_difficulty": {
+        "testgen-clip": 0.5628404941713666,
+        "testgen-unique-order": -0.25742808060500016,
+        "testgen-gregorian": 0.13282239780062122,
+        "testgen-mean": 0.1328223978006212,
+        "testgen-parse": 1.6526683447720605,
+        "testgen-anagram": -0.8042993147652386,
+        "testgen-timeout-zero": -0.4432146449352527,
+        "testgen-greet-none": 0.341510750608794,
+        "testgen-cents": -0.44321464493525264,
+        "testgen-window": -0.6250345221063688,
+        "testgen-tie-order": 4.710790502994353,
+        "testgen-booking-touch": -0.06605379103486944,
+        "testgen-zero-qty": 0.800286514196115
+      }
+    },
+    "repro": {
+      "n_items": 13,
+      "n_items_fitted": 13,
+      "n_models_fitted": 13,
+      "all_zero_items": [],
+      "all_full_items": [],
+      "all_zero_models": [
+        "gemma-3-4b-it",
+        "ministral-3b-2512",
+        "llama-3.2-3b-instruct"
+      ],
+      "all_full_models": [],
+      "theta": {
+        "qwen3.8-27b": 2.260199572274062,
+        "qwen3.5-9b": 1.5009268802300053,
+        "qwen3.6-35b-a3b": -0.0035117420764332,
+        "glm-4.7-flash": 1.0728030292872774,
+        "gpt-oss-20b": 1.5009268802300053,
+        "ministral-14b-2512": 2.0364419809628416,
+        "ministral-8b-2512": 0.45935037575461685,
+        "qwen3-14b": -0.12035163497398418,
+        "nemotron-3.5-lightning": -2.219868144057228,
+        "gemma-3-12b-it": -0.35942070314482594,
+        "granite-4.1-8b": -2.5513556280834218,
+        "gemma-4-26b-a4b-it": -1.0247852383194929,
+        "qwen3-8b": -2.5513556280834218
+      },
+      "item_difficulty": {
+        "repro-off-by-one": -0.8395730113681414,
+        "repro-end-exclusive": -0.6635946916275042,
+        "repro-zero-timeout": 0.7965312098699778,
+        "repro-keep-zero": -0.49216853862054827,
+        "repro-none-name": 0.4791194865533879,
+        "repro-float-cents": 0.4791194865533879,
+        "repro-first-index": 0.7965312098699778,
+        "repro-empty-mean": -1.2082405444326016,
+        "repro-whitespace": 0.3208184721172329,
+        "repro-truthy-flag": 0.1619262216859123,
+        "repro-second-export": 0.16192622168591225,
+        "repro-nested-alias": 1.4561356884263528,
+        "repro-stale-quote": 0.6374671601839412
+      }
+    },
+    "review": {
+      "n_items": 10,
+      "n_items_fitted": 10,
+      "n_models_fitted": 12,
+      "all_zero_items": [],
+      "all_full_items": [],
+      "all_zero_models": [
+        "gemma-4-26b-a4b-it",
+        "ministral-3b-2512",
+        "qwen3-8b"
+      ],
+      "all_full_models": [
+        "qwen3.5-9b"
+      ],
+      "theta": {
+        "qwen3.8-27b": 3.314275915018895,
+        "qwen3.6-35b-a3b": 0.9697889884644368,
+        "glm-4.7-flash": 1.446038237133138,
+        "gpt-oss-20b": 0.9697889884644367,
+        "ministral-14b-2512": 1.446038237133138,
+        "ministral-8b-2512": -0.11865576866786769,
+        "qwen3-14b": -0.11865576866786764,
+        "nemotron-3.5-lightning": -1.6341591666883177,
+        "gemma-3-12b-it": -0.6009575779306038,
+        "granite-4.1-8b": -1.4444147092021138,
+        "gemma-3-4b-it": -1.6341591666883177,
+        "llama-3.2-3b-instruct": -2.5949282083689567
+      },
+      "item_difficulty": {
+        "review-clip-incomplete": 0.4710650005856467,
+        "review-slug-almost": -0.9032549454308311,
+        "review-mean-wrong": -0.5546007474562692,
+        "review-slug-complete": -1.861028746807269,
+        "review-configured-timeout": 0.8251053213548711,
+        "review-rotate-right": -0.2129809648220179,
+        "review-prefix-complete": -0.5546007474562692,
+        "review-bare-except": -1.6531466864754243,
+        "review-dead-helper": 1.0085012780064064,
+        "review-wired-helper": -0.9032549454308311
+      }
+    }
+  }
+}

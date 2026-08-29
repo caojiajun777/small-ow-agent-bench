@@ -9,10 +9,15 @@ keywords = ["agentic-coding", "editing"]
 [metadata]
 author_name = ""
 author_email = ""
-difficulty = "medium"
+difficulty = "easy"
+construct_difficulty = "easy"
+empirical_band = "easy"
+calibration_status = "calibrated"
+difficulty_weight = 1.0
+trap_id = "E8"
 category = "software"
 subcategory = "editing"
-tags = ["editing", "medium", "agentic-coding", "atomic-skills"]
+tags = ["editing", "easy", "agentic-coding", "atomic-skills"]
 difficulty_explanation = "Named file; inclusive prefix sums without mutating the input."
 expert_time_estimate_hours = 0.2
 

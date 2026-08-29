@@ -39,14 +39,14 @@ def render_svg(coverage: dict) -> str:
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
         f'viewBox="0 0 {width} {height}" role="img" '
-        f'aria-label="{n_models} 个配置的结果正确率与完整完成率">',
+        f'aria-label="{n_models} 个配置的 Artifact Score 与 Clean Score">',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         '<text x="24" y="28" font-family="ui-sans-serif, system-ui, sans-serif" '
         'font-size="16" font-weight="600" fill="#111827">'
-        f"{n_models} 个配置：结果正确率与完整完成率</text>",
+        f"{n_models} 个配置：Artifact Score 与 Clean Score</text>",
         '<text x="24" y="48" font-family="ui-sans-serif, system-ui, sans-serif" '
         'font-size="12" fill="#6b7280">'
-        "深色是最终结果对不对；浅色是做对了，并且正常停下来。五类任务等权平均。</text>",
+        "Easy 1、Medium 1.5、Hard 2；能力内加权后，五类能力等权。满分 100。</text>",
     ]
     for tick in (0.0, 0.25, 0.5, 0.75, 1.0):
         x = x_of(tick)
@@ -59,7 +59,7 @@ def render_svg(coverage: dict) -> str:
         parts.append(
             f'<text x="{x:.1f}" y="{y2 + 16:.1f}" text-anchor="middle" '
             'font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" '
-            f'fill="#6b7280">{int(tick * 100)}%</text>'
+            f'fill="#6b7280">{int(tick * 100)}</text>'
         )
     for i, model in enumerate(ranked):
         y = top + i * row_h
@@ -70,8 +70,8 @@ def render_svg(coverage: dict) -> str:
             'font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" '
             f'fill="#111827">{label}</text>'
         )
-        a = float(model["atomic_macro"])
-        e = float(model["e2e_macro"])
+        a = float(model["artifact_score"]) / 100
+        e = float(model["clean_score"]) / 100
         parts.append(
             f'<rect x="{left:.1f}" y="{y + 6:.1f}" width="{a * plot_w:.1f}" '
             f'height="{bar_h}" fill="#1f4e79" rx="1"/>'
@@ -83,16 +83,16 @@ def render_svg(coverage: dict) -> str:
         parts.append(
             f'<text x="{x_of(a) + 6:.1f}" y="{y + 6 + bar_h - 1:.1f}" '
             'font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" '
-            f'fill="#1f4e79">{a * 100:.1f}%</text>'
+            f'fill="#1f4e79">{a * 100:.1f}</text>'
         )
     legend_y = height - 28
     parts += [
         f'<rect x="24" y="{legend_y - 10}" width="14" height="10" fill="#1f4e79"/>',
         f'<text x="44" y="{legend_y}" font-family="ui-sans-serif, system-ui, sans-serif" '
-        'font-size="12" fill="#111827">结果正确率</text>',
+        'font-size="12" fill="#111827">Artifact Score</text>',
         f'<rect x="148" y="{legend_y - 10}" width="14" height="10" fill="#9db4c8"/>',
         f'<text x="168" y="{legend_y}" font-family="ui-sans-serif, system-ui, sans-serif" '
-        'font-size="12" fill="#111827">完整完成率</text>',
+        'font-size="12" fill="#111827">Clean Score</text>',
         f'<text x="276" y="{legend_y}" font-family="ui-sans-serif, system-ui, sans-serif" '
         'font-size="12" fill="#6b7280">'
         f"两条差一截，就是做对了却没停：共 {coverage['halt_unfinished_atomic']} 次</text>",

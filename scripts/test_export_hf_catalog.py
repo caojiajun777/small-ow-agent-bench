@@ -16,9 +16,9 @@ from export_hf_catalog import (  # noqa: E402
     HF_DIR,
     TASKS,
     catalog_rows,
-    parse_traps,
     render_jsonl,
 )
+from item_metadata import parse_traps  # noqa: E402
 from task_sets import HARD_RELEASE_15, MAIN_47  # noqa: E402
 
 
@@ -42,7 +42,7 @@ def test_allowed_keys_only():
 
 
 def test_every_bank_task_has_a_trap():
-    traps = parse_traps((ROOT / "TRAPS.md").read_text(encoding="utf-8"))
+    traps = parse_traps()
     missing = [name for name in BANK_62 if name not in traps]
     assert missing == []
 
@@ -53,7 +53,11 @@ def test_instruction_is_agent_visible_file():
         assert row["instruction"] == expected
         assert row["instruction_summary"]
         assert "skill" in row
-        assert row["difficulty"] in {"easy", "medium", "hard", "uncalibrated"}
+        assert row["difficulty"] in {"easy", "medium", "hard"}
+        assert row["difficulty"] == row["construct_difficulty"]
+        assert row["empirical_band"] in {
+            "easy", "medium", "hard", "out_of_range"
+        }
         assert row["github_tag"] == "benchmark-v1.0.1"
 
 
@@ -86,9 +90,7 @@ def test_catalog_does_not_copy_hidden_verifiers():
 
 def test_readme_points_at_catalog_not_verifiers():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    assert "results/hf_catalog.jsonl" in readme
     assert "huggingface.co/datasets/junjun77/small-ow-agent-bench" in readme
-    assert "benchmark--v1.0.1" in readme or "benchmark-v1.0.1" in readme
     assert "CITATION.cff" in readme or "Apache" in readme
     assert "results/figures/v1.0.1-compact10.svg" in readme
     assert "STANDARD.md" in readme

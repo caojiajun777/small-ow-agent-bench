@@ -15,6 +15,8 @@ Coding Agent 花钱的地方不只在最后那段答案。为了改三行代码�
 
 评测包含 62 道自动判分的代码任务，题目中保留了软件工程里常见的陷阱。我们测试了 16 个开放权重模型配置，每个模型在每道题上独立运行 3 次，共完成 2,976 次沙箱实验。这套题既可以比较现有模型，也可以继续接入以后发布的模型，找出它们擅长和薄弱的环节，为后训练和 Coding 能力改进提供依据。
 
+仓库包含从题库到榜单的完整评测链路：任务与隐藏验证器、Docker 沙箱、终端 Agent、模型和 API 配置锁、批量运行、基础设施故障替换、难度元数据、计分脚本与结果图表。榜单中的每个数字都能回到具体的模型、任务和重复实验，而不是手工填写的汇总值。
+
 ## 为什么用代码来测
 
 因为代码可以直接运行，答案对不对可以交给程序验收。模型要进入终端、阅读仓库、修改文件、运行测试，还要根据反馈调整做法，并在任务完成后停下来。这些动作串在一起，正好构成一个 Coding Agent 的基本工作循环。评分只看最后留下的结果，不看回答写得是否漂亮，也不需要另一个 LLM 充当裁判。
@@ -41,12 +43,12 @@ Coding Agent 花钱的地方不只在最后那段答案。为了改三行代码�
 
 | 通俗名称 | 技术名称 | 意思 |
 |---|---|---|
-| **结果正确率** | Artifact Correctness | Agent 最终是否留下了正确结果 |
-| **完整完成率** | Clean Completion | 结果正确，而且 Agent 正常宣布完成并停止 |
+| **结果分** | Artifact Score | Agent 最终是否留下正确结果，按题目构造难度加权 |
+| **完整分** | Clean Score | 结果正确，而且 Agent 正常宣布完成并停止，同样按难度加权 |
 
-例如，Agent 已经正确修改了文件，却继续反复运行测试，直到 20 轮预算耗尽。这次实验的结果正确率记 1，完整完成率记 0。下文把这种情况叫作 `做对但没停`。
+例如，Agent 已经正确修改了文件，却继续反复运行测试，直到 20 轮预算耗尽。这次尝试算作一次 Artifact 命中，但不算 Clean 完成。下文把这种情况叫作 `做对但没停`。
 
-排行榜将五类任务等权平均，避免题目更多的类别占便宜。每一次尝试的分子、分母和五列明细都在 [`结果报表.md`](结果报表.md)。
+每道题的三次结果先取平均；Easy、Medium、Hard 的构造难度权重分别为 1、1.5、2。排行榜先在每类能力内部加权，再将五类能力等权平均，得到满分 100 的总分。榜单同时保留未经加权的原始成功次数，便于核对。
 
 ## 为什么这些题能分出差异
 
@@ -54,34 +56,38 @@ Coding Agent 花钱的地方不只在最后那段答案。为了改三行代码�
 
 五类任务各有明确的输入和产物。找文件只提交文件集合；修改代码会直接给出目标文件；编写测试不能改实现；复现 Bug 不能修仓库；判断补丁只提交判断结果。验收规则同样具体：文件集合必须完全一致，多报一个相似文件也算错；代码修改必须通过隐藏测试；生成的测试既要放过正确实现，也要找出人为构造的错误实现；Bug 复现要在修复前失败、应用标准补丁后通过；补丁判断则与固定标签核对。每套评分程序都经过标准解和空操作基线检查，标准解必须通过，什么都不做必须失败。
 
-62 道题也不是同一个难度。在当前冻结系统下，经验分布为 Easy 12、Medium 38、Hard 7、Uncalibrated / Out-of-range 5，既有小模型能够完成的题，也有当前上界模型仍然不稳定的题。这些标签只描述当前模型集合和协议下的经验难度；我们不会看完排行榜，再回头修改题目或评分程序。每个 `模型配置 × 任务` 组合在独立沙箱中运行 3 次，Agent 接口、20 轮预算、隐藏验证器和评分规则保持不变。API 或平台故障不算模型失败；选错文件、产物错误、格式错误、耗尽预算和未正常结束仍按协议计分。
+62 道题围绕五类能力中的常见失败陷阱设计，每个陷阱用一到两个短任务呈现。出题时冻结的构造难度为 Easy 17、Medium 21、Hard 24，它决定计分权重。跑完后，我们再用同一批模型标定任务的实际位置，得到 Easy 12、Medium 38、Hard 7、Out-of-range 5。经验标签只用于校准，不会反过来改写作者难度；5 道 Out-of-range 在出题时都是 Hard，仍按 Hard 权重计分。
 
-结果正确率看模型留下了什么，完整完成率再看它是否正常停下。排行榜比较的是模型在冻结 compact-shell 协议中的端到端表现，不是脱离 API 供应商、推理参数和 Agent 接口之后的所谓模型固有能力。
+每个 `模型配置 × 任务` 组合在独立沙箱中运行 3 次，Agent 接口、20 轮预算、隐藏验证器和评分规则保持不变。API 或平台故障不算模型失败；选错文件、产物错误、格式错误、耗尽预算和未正常结束仍按协议计分。
+
+为了检查这套分级是否真的落在数据上，我们又做了 1PL Rasch 分析。作者难度与数据估计难度的 Spearman 相关为 0.58，Easy、Medium、Hard 的平均通过率依次为 50.2%、37.8%、26.5%，三档在整体上保持了预期顺序。IRT 只用于检查题目，不参与排行榜计分，完整结果见 [`DIFFICULTY.md`](DIFFICULTY.md)。
+
+Artifact 看模型留下了什么，Clean 再看它是否正常停下。排行榜比较的是冻结 compact-shell 协议下的完整系统配置，不能把分数脱离 API 供应商、推理参数和 Agent 接口解释为模型权重本身的能力。
 
 ## 排行榜（v1.0.1）
 
-16 个配置放在同一张表中，按结果正确率排序。深色条是结果正确率，浅色条是完整完成率；两者之间的差距，就是模型已经留下正确产物，却没有正常结束的实验。
+16 个配置放在同一张表中，按 Artifact Score 排序。深色条是结果分，浅色条是完整分；两者之间的差距，就是模型已经留下正确产物，却没有正常结束的实验。
 
-![16 个配置的结果正确率与完整完成率](results/figures/v1.0.1-compact10.svg)
+![16 个配置的 Artifact Score 与 Clean Score](results/figures/v1.0.1-compact10.svg)
 
-| 模型 | 结果正确率 | 完整完成率 |
+| 模型 | Artifact Score | Clean Score |
 |---|---:|---:|
-| <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3.8-27B | 86.3% | 84.5% |
-| <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3.5-9B | 78.6% | 75.7% |
-| <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3.6-35B-A3B | 63.2% | 56.0% |
-| <img src="results/figures/vendors/zai.svg" width="16" height="16" alt="Z.ai"> GLM-4.7-Flash | 55.3% | 42.4% |
-| <img src="results/figures/vendors/mistralai.svg" width="16" height="16" alt="Mistral"> Ministral-14B | 49.7% | 48.8% |
-| <img src="results/figures/vendors/openai.svg" width="16" height="16" alt="OpenAI"> GPT-OSS-20B | 48.6% | 41.5% |
-| <img src="results/figures/vendors/mistralai.svg" width="16" height="16" alt="Mistral"> Ministral-8B | 45.6% | 41.1% |
-| <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3-14B | 40.4% | 33.3% |
-| <img src="results/figures/vendors/nvidia.svg" width="16" height="16" alt="NVIDIA"> Nemotron-3.5-Lightning | 35.2% | 9.5% |
-| <img src="results/figures/vendors/google.svg" width="16" height="16" alt="Google"> Gemma-3-12B | 31.3% | 11.4% |
-| <img src="results/figures/vendors/ibm.svg" width="16" height="16" alt="IBM"> Granite-4.1-8B | 16.2% | 14.0% |
-| <img src="results/figures/vendors/google.svg" width="16" height="16" alt="Google"> Gemma-4-26B-A4B | 13.0% | 13.0% |
-| <img src="results/figures/vendors/google.svg" width="16" height="16" alt="Google"> Gemma-3-4B | 6.7% | 6.7% |
-| <img src="results/figures/vendors/mistralai.svg" width="16" height="16" alt="Mistral"> Ministral-3B | 4.9% | 1.9% |
-| <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3-8B | 3.4% | 1.8% |
-| <img src="results/figures/vendors/meta.svg" width="16" height="16" alt="Meta"> Llama-3.2-3B | 2.7% | 0.0% |
+| <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3.8-27B | 83.8 | 81.8 |
+| <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3.5-9B | 77.3 | 74.3 |
+| <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3.6-35B-A3B | 59.5 | 51.7 |
+| <img src="results/figures/vendors/zai.svg" width="16" height="16" alt="Z.ai"> GLM-4.7-Flash | 51.3 | 39.1 |
+| <img src="results/figures/vendors/openai.svg" width="16" height="16" alt="OpenAI"> GPT-OSS-20B | 47.9 | 40.2 |
+| <img src="results/figures/vendors/mistralai.svg" width="16" height="16" alt="Mistral"> Ministral-14B | 46.9 | 46.2 |
+| <img src="results/figures/vendors/mistralai.svg" width="16" height="16" alt="Mistral"> Ministral-8B | 43.2 | 38.7 |
+| <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3-14B | 39.0 | 31.8 |
+| <img src="results/figures/vendors/nvidia.svg" width="16" height="16" alt="NVIDIA"> Nemotron-3.5-Lightning | 34.7 | 9.2 |
+| <img src="results/figures/vendors/google.svg" width="16" height="16" alt="Google"> Gemma-3-12B | 30.2 | 11.0 |
+| <img src="results/figures/vendors/ibm.svg" width="16" height="16" alt="IBM"> Granite-4.1-8B | 15.2 | 13.4 |
+| <img src="results/figures/vendors/google.svg" width="16" height="16" alt="Google"> Gemma-4-26B-A4B | 13.1 | 13.1 |
+| <img src="results/figures/vendors/google.svg" width="16" height="16" alt="Google"> Gemma-3-4B | 6.8 | 6.8 |
+| <img src="results/figures/vendors/mistralai.svg" width="16" height="16" alt="Mistral"> Ministral-3B | 4.7 | 1.7 |
+| <img src="results/figures/vendors/qwen.svg" width="16" height="16" alt="Qwen"> Qwen3-8B | 2.5 | 1.5 |
+| <img src="results/figures/vendors/meta.svg" width="16" height="16" alt="Meta"> Llama-3.2-3B | 2.1 | 0.0 |
 
 Qwen3.6-35B-A3B 是约 3B 激活的 MoE，不能把它当成 27B dense 的下一档。表格只按实测分数排序，与参数量顺序无关。
 

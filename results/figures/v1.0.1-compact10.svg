@@ -1,32 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="940" height="712" viewBox="0 0 940 712" role="img" aria-label="16 个配置的结果正确率与完整完成率">
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="712" viewBox="0 0 940 712" role="img" aria-label="16 个配置的 Artifact Score 与 Clean Score">
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="24" y="28" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="600" fill="#111827">16 个配置：结果正确率与完整完成率</text>
-<text x="24" y="48" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#6b7280">深色是最终结果对不对；浅色是做对了，并且正常停下来。五类任务等权平均。</text>
+<text x="24" y="28" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="600" fill="#111827">16 个配置：Artifact Score 与 Clean Score</text>
+<text x="24" y="48" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#6b7280">Easy 1、Medium 1.5、Hard 2；能力内加权后，五类能力等权。满分 100。</text>
 <line x1="240.0" y1="58.0" x2="240.0" y2="640.0" stroke="#e5e7eb" stroke-width="1"/>
-<text x="240.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">0%</text>
+<text x="240.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">0</text>
 <line x1="395.0" y1="58.0" x2="395.0" y2="640.0" stroke="#e5e7eb" stroke-width="1"/>
-<text x="395.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">25%</text>
+<text x="395.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">25</text>
 <line x1="550.0" y1="58.0" x2="550.0" y2="640.0" stroke="#e5e7eb" stroke-width="1"/>
-<text x="550.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">50%</text>
+<text x="550.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">50</text>
 <line x1="705.0" y1="58.0" x2="705.0" y2="640.0" stroke="#e5e7eb" stroke-width="1"/>
-<text x="705.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">75%</text>
+<text x="705.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">75</text>
 <line x1="860.0" y1="58.0" x2="860.0" y2="640.0" stroke="#e5e7eb" stroke-width="1"/>
-<text x="860.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">100%</text>
+<text x="860.0" y="656.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#6b7280">100</text>
 <svg x="20.0" y="74.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Qwen"><path fill="#111111" d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z"/></svg>
 <text x="42" y="82.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3.8-27B</text>
-<rect x="240.0" y="70.0" width="535.1" height="11" fill="#1f4e79" rx="1"/>
-<rect x="240.0" y="84.0" width="523.8" height="11" fill="#9db4c8" rx="1"/>
-<text x="781.1" y="80.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">86.3%</text>
+<rect x="240.0" y="70.0" width="519.8" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="84.0" width="507.1" height="11" fill="#9db4c8" rx="1"/>
+<text x="765.8" y="80.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">83.8</text>
 <svg x="20.0" y="110.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Qwen"><path fill="#111111" d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z"/></svg>
 <text x="42" y="118.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3.5-9B</text>
-<rect x="240.0" y="106.0" width="487.2" height="11" fill="#1f4e79" rx="1"/>
-<rect x="240.0" y="120.0" width="469.4" height="11" fill="#9db4c8" rx="1"/>
-<text x="733.2" y="116.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">78.6%</text>
+<rect x="240.0" y="106.0" width="479.4" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="120.0" width="460.9" height="11" fill="#9db4c8" rx="1"/>
+<text x="725.4" y="116.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">77.3</text>
 <svg x="20.0" y="146.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Qwen"><path fill="#111111" d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z"/></svg>
 <text x="42" y="154.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3.6-35B-A3B</text>
-<rect x="240.0" y="142.0" width="391.8" height="11" fill="#1f4e79" rx="1"/>
-<rect x="240.0" y="156.0" width="347.2" height="11" fill="#9db4c8" rx="1"/>
-<text x="637.8" y="152.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">63.2%</text>
+<rect x="240.0" y="142.0" width="368.8" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="156.0" width="320.6" height="11" fill="#9db4c8" rx="1"/>
+<text x="614.8" y="152.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">59.5</text>
 <svg x="20.0" y="182.0" width="16.0" height="16.0" viewBox="0 0 30 30" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Z.ai"><style type="text/css">
 	.st0{opacity:0.3;fill:#E2E4E7;}
 	.st1{opacity:0.8;fill:#E2E4E7;stroke:#FFFFFF;stroke-width:5;stroke-miterlimit:10;}
@@ -242,15 +242,10 @@
 	</g>
 </g></svg>
 <text x="42" y="190.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">GLM-4.7-Flash</text>
-<rect x="240.0" y="178.0" width="342.6" height="11" fill="#1f4e79" rx="1"/>
-<rect x="240.0" y="192.0" width="263.1" height="11" fill="#9db4c8" rx="1"/>
-<text x="588.6" y="188.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">55.3%</text>
-<svg x="20.0" y="218.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mistral"><path fill="#FA520F" d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z"/></svg>
-<text x="42" y="226.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Ministral-14B</text>
-<rect x="240.0" y="214.0" width="308.1" height="11" fill="#1f4e79" rx="1"/>
-<rect x="240.0" y="228.0" width="302.6" height="11" fill="#9db4c8" rx="1"/>
-<text x="554.1" y="224.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">49.7%</text>
-<svg x="20.0" y="254.0" width="16.0" height="16.0" viewBox="0 0 721 721" preserveAspectRatio="xMidYMid meet" role="img" aria-label="OpenAI"><g clip-path="url(#clip0_1637_2935)">
+<rect x="240.0" y="178.0" width="318.4" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="192.0" width="242.6" height="11" fill="#9db4c8" rx="1"/>
+<text x="564.4" y="188.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">51.3</text>
+<svg x="20.0" y="218.0" width="16.0" height="16.0" viewBox="0 0 721 721" preserveAspectRatio="xMidYMid meet" role="img" aria-label="OpenAI"><g clip-path="url(#clip0_1637_2935)">
 <g clip-path="url(#clip1_1637_2935)">
 <path d="M304.246 295.411V249.828C304.246 245.989 305.687 243.109 309.044 241.191L400.692 188.412C413.167 181.215 428.042 177.858 443.394 177.858C500.971 177.858 537.44 222.482 537.44 269.982C537.44 273.34 537.44 277.179 536.959 281.018L441.954 225.358C436.197 222 430.437 222 424.68 225.358L304.246 295.411ZM518.245 472.945V364.024C518.245 357.304 515.364 352.507 509.608 349.149L389.174 279.096L428.519 256.543C431.877 254.626 434.757 254.626 438.115 256.543L529.762 309.323C556.154 324.679 573.905 357.304 573.905 388.971C573.905 425.436 552.315 459.024 518.245 472.941V472.945ZM275.937 376.982L236.592 353.952C233.235 352.034 231.794 349.154 231.794 345.315V239.756C231.794 188.416 271.139 149.548 324.4 149.548C344.555 149.548 363.264 156.268 379.102 168.262L284.578 222.964C278.822 226.321 275.942 231.119 275.942 237.838V376.986L275.937 376.982ZM360.626 425.922L304.246 394.255V327.083L360.626 295.416L417.002 327.083V394.255L360.626 425.922ZM396.852 571.789C376.698 571.789 357.989 565.07 342.151 553.075L436.674 498.374C442.431 495.017 445.311 490.219 445.311 483.499V344.352L485.138 367.382C488.495 369.299 489.936 372.179 489.936 376.018V481.577C489.936 532.917 450.109 571.785 396.852 571.785V571.789ZM283.134 464.79L191.486 412.01C165.094 396.654 147.343 364.029 147.343 332.362C147.343 295.416 169.415 262.309 203.48 248.393V357.791C203.48 364.51 206.361 369.308 212.117 372.665L332.074 442.237L292.729 464.79C289.372 466.707 286.491 466.707 283.134 464.79ZM277.859 543.48C223.639 543.48 183.813 502.695 183.813 452.314C183.813 448.475 184.294 444.636 184.771 440.797L279.295 495.498C285.051 498.856 290.812 498.856 296.568 495.498L417.002 425.927V471.509C417.002 475.349 415.562 478.229 412.204 480.146L320.557 532.926C308.081 540.122 293.206 543.48 277.854 543.48H277.859ZM396.852 600.576C454.911 600.576 503.37 559.313 514.41 504.612C568.149 490.696 602.696 440.315 602.696 388.976C602.696 355.387 588.303 322.762 562.392 299.25C564.791 289.173 566.231 279.096 566.231 269.024C566.231 200.411 510.571 149.067 446.274 149.067C433.322 149.067 420.846 150.984 408.37 155.305C386.775 134.192 357.026 120.758 324.4 120.758C266.342 120.758 217.883 162.02 206.843 216.721C153.104 230.637 118.557 281.018 118.557 332.357C118.557 365.946 132.95 398.571 158.861 422.083C156.462 432.16 155.022 442.237 155.022 452.309C155.022 520.922 210.682 572.266 274.978 572.266C287.931 572.266 300.407 570.349 312.883 566.028C334.473 587.141 364.222 600.576 396.852 600.576Z" fill="#111111"/>
 </g>
@@ -263,25 +258,30 @@
 <rect width="484.139" height="479.818" fill="white" transform="translate(118.557 120.758)"/>
 </clipPath>
 </defs></svg>
-<text x="42" y="262.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">GPT-OSS-20B</text>
-<rect x="240.0" y="250.0" width="301.6" height="11" fill="#1f4e79" rx="1"/>
-<rect x="240.0" y="264.0" width="257.3" height="11" fill="#9db4c8" rx="1"/>
-<text x="547.6" y="260.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">48.6%</text>
+<text x="42" y="226.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">GPT-OSS-20B</text>
+<rect x="240.0" y="214.0" width="297.3" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="228.0" width="249.4" height="11" fill="#9db4c8" rx="1"/>
+<text x="543.3" y="224.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">47.9</text>
+<svg x="20.0" y="254.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mistral"><path fill="#FA520F" d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z"/></svg>
+<text x="42" y="262.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Ministral-14B</text>
+<rect x="240.0" y="250.0" width="290.8" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="264.0" width="286.3" height="11" fill="#9db4c8" rx="1"/>
+<text x="536.8" y="260.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">46.9</text>
 <svg x="20.0" y="290.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mistral"><path fill="#FA520F" d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z"/></svg>
 <text x="42" y="298.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Ministral-8B</text>
-<rect x="240.0" y="286.0" width="282.6" height="11" fill="#1f4e79" rx="1"/>
-<rect x="240.0" y="300.0" width="254.9" height="11" fill="#9db4c8" rx="1"/>
-<text x="528.6" y="296.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">45.6%</text>
+<rect x="240.0" y="286.0" width="267.8" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="300.0" width="240.2" height="11" fill="#9db4c8" rx="1"/>
+<text x="513.8" y="296.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">43.2</text>
 <svg x="20.0" y="326.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Qwen"><path fill="#111111" d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z"/></svg>
 <text x="42" y="334.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3-14B</text>
-<rect x="240.0" y="322.0" width="250.7" height="11" fill="#1f4e79" rx="1"/>
-<rect x="240.0" y="336.0" width="206.2" height="11" fill="#9db4c8" rx="1"/>
-<text x="496.7" y="332.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">40.4%</text>
+<rect x="240.0" y="322.0" width="241.7" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="336.0" width="197.1" height="11" fill="#9db4c8" rx="1"/>
+<text x="487.7" y="332.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">39.0</text>
 <svg x="20.0" y="362.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="NVIDIA"><path d="M8.948 8.798v-1.43a6.7 6.7 0 0 1 .424-.018c3.922-.124 6.493 3.374 6.493 3.374s-2.774 3.851-5.75 3.851c-.398 0-.787-.062-1.158-.185v-4.346c1.528.185 1.837.857 2.747 2.385l2.04-1.714s-1.492-1.952-4-1.952a6.016 6.016 0 0 0-.796.035m0-4.735v2.138l.424-.027c5.45-.185 9.01 4.47 9.01 4.47s-4.08 4.964-8.33 4.964c-.37 0-.733-.035-1.095-.097v1.325c.3.035.61.062.91.062 3.957 0 6.82-2.023 9.593-4.408.459.371 2.34 1.263 2.73 1.652-2.633 2.208-8.772 3.984-12.253 3.984-.335 0-.653-.018-.971-.053v1.864H24V4.063zm0 10.326v1.131c-3.657-.654-4.673-4.46-4.673-4.46s1.758-1.944 4.673-2.262v1.237H8.94c-1.528-.186-2.73 1.245-2.73 1.245s.68 2.412 2.739 3.11M2.456 10.9s2.164-3.197 6.5-3.533V6.201C4.153 6.59 0 10.653 0 10.653s2.35 6.802 8.948 7.42v-1.237c-4.84-.6-6.492-5.936-6.492-5.936z"/></svg>
 <text x="42" y="370.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Nemotron-3.5-Lightning</text>
-<rect x="240.0" y="358.0" width="218.2" height="11" fill="#1f4e79" rx="1"/>
-<rect x="240.0" y="372.0" width="59.0" height="11" fill="#9db4c8" rx="1"/>
-<text x="464.2" y="368.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">35.2%</text>
+<rect x="240.0" y="358.0" width="214.9" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="372.0" width="56.8" height="11" fill="#9db4c8" rx="1"/>
+<text x="460.9" y="368.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">34.7</text>
 <svg x="20.0" y="398.0" width="16.0" height="16.0" viewBox="0 0 118 120" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Google"><!-- Generator: Sketch 3.6 (26304) - http://www.bohemiancoding.com/sketch -->
 
 
@@ -300,14 +300,14 @@
         </g>
     </g></svg>
 <text x="42" y="406.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Gemma-3-12B</text>
-<rect x="240.0" y="394.0" width="193.9" height="11" fill="#1f4e79" rx="1"/>
-<rect x="240.0" y="408.0" width="70.6" height="11" fill="#9db4c8" rx="1"/>
-<text x="439.9" y="404.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">31.3%</text>
+<rect x="240.0" y="394.0" width="187.5" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="408.0" width="68.4" height="11" fill="#9db4c8" rx="1"/>
+<text x="433.5" y="404.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">30.2</text>
 <svg x="20.0" y="434.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="IBM"><path fill="#0F62FE" d="M23.544 15.993c.038 0 .06-.017.06-.053v-.036c0-.035-.022-.052-.06-.052h-.09v.14zm-.09.262h-.121v-.498h.225c.112 0 .169.066.169.157 0 .079-.036.129-.09.15l.111.19h-.133l-.092-.17h-.07zm.434-.222v-.062c0-.2-.157-.357-.363-.357a.355.355 0 00-.363.357v.062c0 .2.156.358.363.358a.355.355 0 00.363-.358zm-.838-.03c0-.28.212-.492.475-.492.264 0 .475.213.475.491 0 .279-.211.491-.475.491a.477.477 0 01-.475-.49zM16.21 8.13l-.216-.624h-3.56v.624zm.413 1.19l-.216-.623h-3.973v.624zm2.65 7.147h3.107v-.624h-3.108zm0-1.192h3.107v-.623h-3.108zm0-1.19h1.864v-.624h-1.865zm0-1.191h1.864v-.624h-1.865zm0-1.191h1.864v-.624h-3.555l-.175.504-.175-.504h-3.555v.624h1.865v-.574l.2.574h3.33l.2-.574zm1.864-1.815h-3.142l-.217.624h3.359zm-7.46 3.006h1.865v-.624h-1.865zm0 1.19h1.865v-.623h-1.865zm-1.243 1.191h3.108v-.623h-3.108zm0 1.192h3.108v-.624h-3.108zm6.386-8.961l-.216.624h3.776v-.624zm-.629 1.815h4.19v-.624h-3.974zm-4.514 1.19h3.359l-.216-.623h-3.143zm2.482 2.383h2.496l.218-.624h-2.932zm.417 1.19h1.662l.218-.623h-2.098zm.416 1.191h.83l.218-.623h-1.266zm.414 1.192l.217-.624h-.432zm-12.433-.006l4.578.006c.622 0 1.18-.237 1.602-.624h-6.18zm4.86-3v.624h2.092c0-.216-.03-.425-.083-.624zm-3.616.624h1.865v-.624H6.217zm3.617-3.573h2.008c.053-.199.083-.408.083-.624H9.834zm-3.617 0h1.865v-.624H6.217zM9.55 7.507H4.973v.624h6.18a2.36 2.36 0 00-1.602-.624zm2.056 1.191H4.973v.624h6.884a2.382 2.382 0 00-.25-.624zm-5.39 2.382v.624h4.87c.207-.176.382-.387.519-.624zm4.87 1.191h-4.87v.624h5.389a2.39 2.39 0 00-.519-.624zm-6.114 3.006h6.634c.11-.193.196-.402.25-.624H4.973zM0 8.13h4.352v-.624H0zm0 1.191h4.352v-.624H0zm1.243 1.191h1.865v-.624H1.243zm0 1.191h1.865v-.624H1.243zm0 1.19h1.865v-.623H1.243zm0 1.192h1.865v-.624H1.243zM0 15.276h4.352v-.623H0zm0 1.192h4.352v-.624H0Z"/></svg>
 <text x="42" y="442.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Granite-4.1-8B</text>
-<rect x="240.0" y="430.0" width="100.4" height="11" fill="#1f4e79" rx="1"/>
-<rect x="240.0" y="444.0" width="86.6" height="11" fill="#9db4c8" rx="1"/>
-<text x="346.4" y="440.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">16.2%</text>
+<rect x="240.0" y="430.0" width="94.5" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="444.0" width="83.3" height="11" fill="#9db4c8" rx="1"/>
+<text x="340.5" y="440.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">15.2</text>
 <svg x="20.0" y="470.0" width="16.0" height="16.0" viewBox="0 0 118 120" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Google"><!-- Generator: Sketch 3.6 (26304) - http://www.bohemiancoding.com/sketch -->
 
 
@@ -326,9 +326,9 @@
         </g>
     </g></svg>
 <text x="42" y="478.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Gemma-4-26B-A4B</text>
-<rect x="240.0" y="466.0" width="80.4" height="11" fill="#1f4e79" rx="1"/>
-<rect x="240.0" y="480.0" width="80.4" height="11" fill="#9db4c8" rx="1"/>
-<text x="326.4" y="476.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">13.0%</text>
+<rect x="240.0" y="466.0" width="81.4" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="480.0" width="81.4" height="11" fill="#9db4c8" rx="1"/>
+<text x="327.4" y="476.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">13.1</text>
 <svg x="20.0" y="506.0" width="16.0" height="16.0" viewBox="0 0 118 120" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Google"><!-- Generator: Sketch 3.6 (26304) - http://www.bohemiancoding.com/sketch -->
 
 
@@ -347,27 +347,27 @@
         </g>
     </g></svg>
 <text x="42" y="514.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Gemma-3-4B</text>
-<rect x="240.0" y="502.0" width="41.3" height="11" fill="#1f4e79" rx="1"/>
-<rect x="240.0" y="516.0" width="41.3" height="11" fill="#9db4c8" rx="1"/>
-<text x="287.3" y="512.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">6.7%</text>
+<rect x="240.0" y="502.0" width="42.3" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="516.0" width="42.3" height="11" fill="#9db4c8" rx="1"/>
+<text x="288.3" y="512.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">6.8</text>
 <svg x="20.0" y="542.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mistral"><path fill="#FA520F" d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z"/></svg>
 <text x="42" y="550.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Ministral-3B</text>
-<rect x="240.0" y="538.0" width="30.3" height="11" fill="#1f4e79" rx="1"/>
-<rect x="240.0" y="552.0" width="11.9" height="11" fill="#9db4c8" rx="1"/>
-<text x="276.3" y="548.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">4.9%</text>
+<rect x="240.0" y="538.0" width="29.2" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="552.0" width="10.2" height="11" fill="#9db4c8" rx="1"/>
+<text x="275.2" y="548.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">4.7</text>
 <svg x="20.0" y="578.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Qwen"><path fill="#111111" d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z"/></svg>
 <text x="42" y="586.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Qwen3-8B</text>
-<rect x="240.0" y="574.0" width="20.8" height="11" fill="#1f4e79" rx="1"/>
-<rect x="240.0" y="588.0" width="11.3" height="11" fill="#9db4c8" rx="1"/>
-<text x="266.8" y="584.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">3.4%</text>
+<rect x="240.0" y="574.0" width="15.4" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="588.0" width="9.5" height="11" fill="#9db4c8" rx="1"/>
+<text x="261.4" y="584.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">2.5</text>
 <svg x="20.0" y="614.0" width="16.0" height="16.0" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Meta"><path fill="#0082FB" d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg>
 <text x="42" y="622.0" text-anchor="start" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Llama-3.2-3B</text>
-<rect x="240.0" y="610.0" width="16.5" height="11" fill="#1f4e79" rx="1"/>
+<rect x="240.0" y="610.0" width="12.9" height="11" fill="#1f4e79" rx="1"/>
 <rect x="240.0" y="624.0" width="0.0" height="11" fill="#9db4c8" rx="1"/>
-<text x="262.5" y="620.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">2.7%</text>
+<text x="258.9" y="620.0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" fill="#1f4e79">2.1</text>
 <rect x="24" y="674" width="14" height="10" fill="#1f4e79"/>
-<text x="44" y="684" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">结果正确率</text>
+<text x="44" y="684" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Artifact Score</text>
 <rect x="148" y="674" width="14" height="10" fill="#9db4c8"/>
-<text x="168" y="684" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">完整完成率</text>
+<text x="168" y="684" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#111827">Clean Score</text>
 <text x="276" y="684" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#6b7280">两条差一截，就是做对了却没停：共 197 次</text>
 </svg>

@@ -2,7 +2,7 @@
 
 Thesis: this bench does **not** chase a 50% mean. It asks what 3B–9B coding agents can and cannot do, and where that band ends against a larger ruler.
 
-- **Core** (published item bank): **62** = Easy 12 / Medium 38 / Hard 7 / Out-of-range 5. Headline is the five-skill **macro** mean on all 62. Hard-Release-15 was run on 6 examinees (including 9B). The other 6 compact models did not sit those 15 items; the **published 62 mean imputes them as 0** (marked). Lock files still omit those cells. The 47-item table is the same-item panel without imputation.
+- **Core** (published item bank): **62** = construct Easy 17 / Medium 21 / Hard 24; empirical bands Easy 12 / Medium 38 / Hard 7 / Out-of-range 5. The headline is a 0–100 difficulty-weighted score within each skill, followed by a five-skill macro. Hard-Release-15 was run on 6 examinees (including 9B). The other 6 compact models did not sit those 15 items; the **published v1.0 mean imputes them as 0** (marked). Lock files still omit those cells. The 47-item table is the same-item panel without imputation.
 - **Frontier / Hard** (ladder label): items where v1.0 observed 9B 0/3 and 27B or 34B Atomic 3/3. They **stay inside Core 62** and enter the mean. Do not invent Hard by weakening atomicity, hiding tests, or adding harness intelligence.
 - Large models are rulers. They appear on the published Core-62 table as contrast. They do **not** enter the compact-10 rank.
 
@@ -20,7 +20,7 @@ Old 8B / 9B / 27B / Granite jobs are **pilot / calibration only**. They do **not
 
 Internship / public writeup: [`结果报表.md`](结果报表.md). Process notes: [`EVAL-NOTE.md`](EVAL-NOTE.md). Release checklist: [`GATE-A.md`](GATE-A.md).
 
-Public item bank = **62** (Easy 12 / Medium 38 / Hard 7 / Out-of-range 5). Skill means average every item in the atom (Loc 11, Edit 15, Testgen 13, Repro 13, Review 10). Published Core-62 (tag `benchmark-v1.0`) imputes Hard-15 as 0 for the 6 compact models that were not official Hard examinees (**marked**; the official Hard lock still omits those cells). Completeness for those 6 is `jobs/locked-hard-floor-k3.json` (does not overwrite the official Hard lock). 9B *did* sit Hard-15 (Atomic 30/45). The **current reading table** is the 16-model v1.0.1 canonical matrix in [`项目说明.md`](项目说明.md) §7 / `results/canonical-coverage.json` (Hard filled + Gemma-4B 429 overlay + 13 infra replacements + four-model supplement; `remaining_dirty` 0). The 47-item table is the actually-sat compact panel.
+Public item bank = **62** (construct Easy 17 / Medium 21 / Hard 24; empirical Easy 12 / Medium 38 / Hard 7 / Out-of-range 5). Weighted skill scores cover every item in the atom (Loc 11, Edit 15, Testgen 13, Repro 13, Review 10). Published Core-62 (tag `benchmark-v1.0`) imputes Hard-15 as 0 for the 6 compact models that were not official Hard examinees (**marked**; the official Hard lock still omits those cells). Completeness for those 6 is `jobs/locked-hard-floor-k3.json` (does not overwrite the official Hard lock). 9B *did* sit Hard-15 (Atomic 30/45). The **current reading table** is the 16-model v1.0.1 canonical matrix in [`results/leaderboard.md`](results/leaderboard.md) / `results/canonical-coverage.json` (Hard filled + Gemma-4B 429 overlay + 13 infra replacements + four-model supplement; `remaining_dirty` 0). The 47-item table is the actually-sat compact panel.
 
 ## Tracks (do not mix)
 
@@ -113,17 +113,23 @@ Each main-set task, Standard run:
 p_i = \frac{\text{count of atomic\_correct}=1 \text{ in 3 trials}}{3}
 \]
 
-Skill mean (equal weight per item **inside** the atom):
+Construct difficulty is frozen independently of leaderboard outcomes:
 
 \[
-S_{\mathrm{atom}} = \frac{1}{N_{\mathrm{atom}}} \sum p_i
+w_i = 1.0\ (Easy),\quad 1.5\ (Medium),\quad 2.0\ (Hard)
+\]
+
+Weighted skill score:
+
+\[
+S_{\mathrm{atom}} = \frac{\sum_i w_i p_i}{\sum_i w_i}
 \]
 
 Core-62 item counts (Loc 11, Edit 15, Testgen 13, Repro 13, Review 10). Skipped Hard-15 items enter as \(p=0\). Two averages are both correct; **do not mix the labels**:
 
 | Name | Formula | Role |
 |---|---|---|
-| **Five-skill macro** | \((S_{\mathrm{Loc}}+S_{\mathrm{Edit}}+S_{\mathrm{Testgen}}+S_{\mathrm{Repro}}+S_{\mathrm{Review}})/5\) | If one headline number is required |
+| **Artifact Score (0–100)** | \(100\times(S_{\mathrm{Loc}}+S_{\mathrm{Edit}}+S_{\mathrm{Testgen}}+S_{\mathrm{Repro}}+S_{\mathrm{Review}})/5\) | Primary ranking score |
 | **Task-micro** | \(\sum p_i / 62\) = successes / \((62\times 3)\) | Overall attempt rate; secondary |
 
 **Primary table (Core):** the five \(S_{\mathrm{atom}}\) columns on all 62 items. No forced overall rank. A high 9B Core score is expected if Medium items are in-band; that is not a defect. 9B sat Hard-15 (Atomic 30/45). Floor compact models that were not official Hard examinees get \(p=0\) on those 15 in the v1.0 published table (marked). Completeness: `jobs/locked-hard-floor-k3.json`.
@@ -215,7 +221,7 @@ After the tag: do not silently edit instruction or verifier. Scoring semantics c
 
 ## Difficulty labels
 
-[`DIFFICULTY.md`](DIFFICULTY.md) assigns Easy / Medium / Hard / Out-of-range from the compact-shell k=3 ladder. Hard = 9B 0/3 and 27B Atomic 3/3 in v1.0. Out-of-range = 9B 0/3 and 27B is not 3/3. Do not mint Hard from TLE. A later Local Reference may **reconfirm** bands; it does not rewrite the API table.
+[`DIFFICULTY.md`](DIFFICULTY.md) separates author-designed `construct_difficulty` from the observed `empirical_band`. Construct Easy / Medium / Hard determines weights 1 / 1.5 / 2. Empirical Hard = 9B 0/3 and 27B Atomic 3/3; Out-of-range = 9B 0/3 and 27B is not 3/3. Do not mint empirical Hard from TLE. A later Local Reference may **reconfirm** empirical bands; it does not rewrite the author tier or the API table.
 
 ## What this repo must not do yet
 
@@ -223,6 +229,6 @@ After the tag: do not silently edit instruction or verifier. Scoring semantics c
 - Do not choose models from scores. Do not mint Frontier / Hard from k=1 all-0 Loc.
 - Do not mix Calibration jobs or the k=1 screen into a published Standard mean.
 - Do not keep polishing the stall classifier as if it were the scorer.
-- Do not treat five-skill macro and task-micro as the same headline.
+- Do not treat the weighted five-skill score and the raw task-micro rate as the same number.
 - Do not write that all 12 models are official Hard examinees. v1.0 published 62 imputes skipped Hard as 0 and marks it; do not forge those cells in `locked-hard-release-k3.json`. Completeness is `locked-hard-floor-k3.json`.
 - Do not cite the API table as a matched-weights Local Reference.

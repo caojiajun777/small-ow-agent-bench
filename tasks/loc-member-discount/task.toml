@@ -9,10 +9,15 @@ keywords = ["agentic-coding", "localization"]
 [metadata]
 author_name = ""
 author_email = ""
-difficulty = "medium"
+difficulty = "easy"
+construct_difficulty = "easy"
+empirical_band = "hard"
+calibration_status = "calibrated"
+difficulty_weight = 1.0
+trap_id = "L1"
 category = "software"
 subcategory = "localization"
-tags = ["localization", "medium", "agentic-coding", "atomic-skills"]
+tags = ["localization", "easy", "agentic-coding", "atomic-skills"]
 difficulty_explanation = "Exact file-set match for the discount implementation file."
 expert_time_estimate_hours = 0.2
 

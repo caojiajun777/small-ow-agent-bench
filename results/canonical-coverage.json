@@ -14,6 +14,21 @@
   "n_scored": 2976,
   "n_incomplete_tasks": 0,
   "halt_unfinished_atomic": 197,
+  "score_method": {
+    "range": [
+      0,
+      100
+    ],
+    "construct_weights": {
+      "easy": 1.0,
+      "medium": 1.5,
+      "hard": 2.0
+    },
+    "weight_policy": "author-designed ordinal tiers; not fitted to results",
+    "aggregation": "difficulty-weighted within skill, then five-skill macro",
+    "primary": "artifact_score",
+    "secondary": "clean_score"
+  },
   "layers_applied": {
     "core": 1471,
     "upper_base": 282,
@@ -34,6 +49,9 @@
       "e2e_ok": 159,
       "atomic_macro": 0.8630147630147629,
       "e2e_macro": 0.8448329448329448,
+      "artifact_score": 83.83822808241412,
+      "clean_score": 81.78694603113208,
+      "score_gap": 2.051282051282044,
       "gap": 0.018181818181818077,
       "skills_atomic": {
         "loc": 0.5757575757575757,
@@ -49,6 +67,20 @@
         "repro": 0.8717948717948718,
         "review": 0.9666666666666666
       },
+      "skills_atomic_weighted": {
+        "loc": 0.5213675213675213,
+        "edit": 0.9639639639639639,
+        "testgen": 0.9069767441860465,
+        "repro": 0.8412698412698413,
+        "review": 0.9583333333333334
+      },
+      "skills_e2e_weighted": {
+        "loc": 0.41880341880341876,
+        "edit": 0.9639639639639639,
+        "testgen": 0.9069767441860465,
+        "repro": 0.8412698412698413,
+        "review": 0.9583333333333334
+      },
       "halt_unfinished_atomic": 3
     },
     {
@@ -61,6 +93,9 @@
       "e2e_ok": 142,
       "atomic_macro": 0.7857342657342657,
       "e2e_macro": 0.7570163170163171,
+      "artifact_score": 77.32160987974942,
+      "clean_score": 74.33576689390642,
+      "score_gap": 2.985842985842993,
       "gap": 0.028717948717948638,
       "skills_atomic": {
         "loc": 0.30303030303030304,
@@ -76,6 +111,20 @@
         "repro": 0.6923076923076923,
         "review": 1.0
       },
+      "skills_atomic_weighted": {
+        "loc": 0.28205128205128205,
+        "edit": 0.8918918918918919,
+        "testgen": 0.9302325581395349,
+        "repro": 0.7619047619047619,
+        "review": 1.0
+      },
+      "skills_e2e_weighted": {
+        "loc": 0.28205128205128205,
+        "edit": 0.8378378378378378,
+        "testgen": 0.9302325581395349,
+        "repro": 0.6666666666666666,
+        "review": 1.0
+      },
       "halt_unfinished_atomic": 6
     },
     {
@@ -88,6 +137,9 @@
       "e2e_ok": 104,
       "atomic_macro": 0.6318725718725718,
       "e2e_macro": 0.5600777000777001,
+      "artifact_score": 59.48445122863727,
+      "clean_score": 51.7066734508595,
+      "score_gap": 7.7777777777777715,
       "gap": 0.07179487179487176,
       "skills_atomic": {
         "loc": 0.36363636363636365,
@@ -103,6 +155,20 @@
         "repro": 0.10256410256410256,
         "review": 0.7666666666666667
       },
+      "skills_atomic_weighted": {
+        "loc": 0.3333333333333333,
+        "edit": 0.5315315315315315,
+        "testgen": 0.9069767441860465,
+        "repro": 0.4523809523809524,
+        "review": 0.75
+      },
+      "skills_e2e_weighted": {
+        "loc": 0.3333333333333333,
+        "edit": 0.5315315315315315,
+        "testgen": 0.9069767441860465,
+        "repro": 0.06349206349206349,
+        "review": 0.75
+      },
       "halt_unfinished_atomic": 14
     },
     {
@@ -115,6 +181,9 @@
       "e2e_ok": 80,
       "atomic_macro": 0.5525563325563325,
       "e2e_macro": 0.4243512043512044,
+      "artifact_score": 51.349352642957285,
+      "clean_score": 39.12713042073507,
+      "score_gap": 12.222222222222214,
       "gap": 0.12820512820512814,
       "skills_atomic": {
         "loc": 0.0303030303030303,
@@ -130,34 +199,21 @@
         "repro": 0.05128205128205128,
         "review": 0.8333333333333334
       },
+      "skills_atomic_weighted": {
+        "loc": 0.02564102564102564,
+        "edit": 0.7117117117117117,
+        "testgen": 0.3643410852713178,
+        "repro": 0.6428571428571429,
+        "review": 0.8229166666666666
+      },
+      "skills_e2e_weighted": {
+        "loc": 0.02564102564102564,
+        "edit": 0.7117117117117117,
+        "testgen": 0.3643410852713178,
+        "repro": 0.031746031746031744,
+        "review": 0.8229166666666666
+      },
       "halt_unfinished_atomic": 25
-    },
-    {
-      "lock_id": "ministral-14b-2512",
-      "display": "Ministral-14B",
-      "group": "compact_dense",
-      "n_scored": 186,
-      "n_incomplete_tasks": 0,
-      "atomic_ok": 93,
-      "e2e_ok": 91,
-      "atomic_macro": 0.49698523698523694,
-      "e2e_macro": 0.4880963480963481,
-      "gap": 0.008888888888888835,
-      "skills_atomic": {
-        "loc": 0.09090909090909091,
-        "edit": 0.6888888888888889,
-        "testgen": 0.02564102564102564,
-        "repro": 0.8461538461538461,
-        "review": 0.8333333333333334
-      },
-      "skills_e2e": {
-        "loc": 0.09090909090909091,
-        "edit": 0.6444444444444444,
-        "testgen": 0.02564102564102564,
-        "repro": 0.8461538461538461,
-        "review": 0.8333333333333334
-      },
-      "halt_unfinished_atomic": 2
     },
     {
       "lock_id": "gpt-oss-20b",
@@ -169,6 +225,9 @@
       "e2e_ok": 74,
       "atomic_macro": 0.48644910644910644,
       "e2e_macro": 0.41499611499611494,
+      "artifact_score": 47.94857501252851,
+      "clean_score": 40.223075426563796,
+      "score_gap": 7.725499585964712,
       "gap": 0.0714529914529915,
       "skills_atomic": {
         "loc": 0.18181818181818182,
@@ -184,7 +243,65 @@
         "repro": 0.6923076923076923,
         "review": 0.7666666666666666
       },
+      "skills_atomic_weighted": {
+        "loc": 0.1794871794871795,
+        "edit": 0.36036036036036034,
+        "testgen": 0.3565891472868217,
+        "repro": 0.7301587301587302,
+        "review": 0.7708333333333334
+      },
+      "skills_e2e_weighted": {
+        "loc": 0.1794871794871795,
+        "edit": 0.16216216216216217,
+        "testgen": 0.2558139534883721,
+        "repro": 0.6428571428571429,
+        "review": 0.7708333333333334
+      },
       "halt_unfinished_atomic": 15
+    },
+    {
+      "lock_id": "ministral-14b-2512",
+      "display": "Ministral-14B",
+      "group": "compact_dense",
+      "n_scored": 186,
+      "n_incomplete_tasks": 0,
+      "atomic_ok": 93,
+      "e2e_ok": 91,
+      "atomic_macro": 0.49698523698523694,
+      "e2e_macro": 0.4880963480963481,
+      "artifact_score": 46.90463959359309,
+      "clean_score": 46.18391887287236,
+      "score_gap": 0.7207207207207276,
+      "gap": 0.008888888888888835,
+      "skills_atomic": {
+        "loc": 0.09090909090909091,
+        "edit": 0.6888888888888889,
+        "testgen": 0.02564102564102564,
+        "repro": 0.8461538461538461,
+        "review": 0.8333333333333334
+      },
+      "skills_e2e": {
+        "loc": 0.09090909090909091,
+        "edit": 0.6444444444444444,
+        "testgen": 0.02564102564102564,
+        "repro": 0.8461538461538461,
+        "review": 0.8333333333333334
+      },
+      "skills_atomic_weighted": {
+        "loc": 0.07692307692307693,
+        "edit": 0.6126126126126127,
+        "testgen": 0.023255813953488372,
+        "repro": 0.8095238095238095,
+        "review": 0.8229166666666666
+      },
+      "skills_e2e_weighted": {
+        "loc": 0.07692307692307693,
+        "edit": 0.5765765765765766,
+        "testgen": 0.023255813953488372,
+        "repro": 0.8095238095238095,
+        "review": 0.8229166666666666
+      },
+      "halt_unfinished_atomic": 2
     },
     {
       "lock_id": "ministral-8b-2512",
@@ -196,6 +313,9 @@
       "e2e_ok": 78,
       "atomic_macro": 0.45577311577311574,
       "e2e_macro": 0.4111732711732712,
+      "artifact_score": 43.18658439297974,
+      "clean_score": 38.743705531496225,
+      "score_gap": 4.442878861483514,
       "gap": 0.04459984459984456,
       "skills_atomic": {
         "loc": 0.1515151515151515,
@@ -211,6 +331,20 @@
         "repro": 0.5384615384615384,
         "review": 0.5666666666666667
       },
+      "skills_atomic_weighted": {
+        "loc": 0.13675213675213674,
+        "edit": 0.6126126126126127,
+        "testgen": 0.3023255813953488,
+        "repro": 0.5555555555555556,
+        "review": 0.5520833333333334
+      },
+      "skills_e2e_weighted": {
+        "loc": 0.08547008547008546,
+        "edit": 0.5045045045045045,
+        "testgen": 0.2713178294573643,
+        "repro": 0.5238095238095238,
+        "review": 0.5520833333333334
+      },
       "halt_unfinished_atomic": 9
     },
     {
@@ -223,6 +357,9 @@
       "e2e_ok": 65,
       "atomic_macro": 0.40433566433566437,
       "e2e_macro": 0.33254079254079255,
+      "artifact_score": 38.979810694926975,
+      "clean_score": 31.78735037746666,
+      "score_gap": 7.192460317460316,
       "gap": 0.07179487179487182,
       "skills_atomic": {
         "loc": 0.09090909090909091,
@@ -238,6 +375,20 @@
         "repro": 0.41025641025641024,
         "review": 0.2333333333333333
       },
+      "skills_atomic_weighted": {
+        "loc": 0.07692307692307693,
+        "edit": 0.40540540540540543,
+        "testgen": 0.4418604651162791,
+        "repro": 0.4206349206349206,
+        "review": 0.6041666666666666
+      },
+      "skills_e2e_weighted": {
+        "loc": 0.07692307692307693,
+        "edit": 0.40540540540540543,
+        "testgen": 0.4418604651162791,
+        "repro": 0.40476190476190477,
+        "review": 0.2604166666666667
+      },
       "halt_unfinished_atomic": 11
     },
     {
@@ -250,6 +401,9 @@
       "e2e_ok": 18,
       "atomic_macro": 0.35195027195027195,
       "e2e_macro": 0.09512043512043512,
+      "artifact_score": 34.65774696879348,
+      "clean_score": 9.165628220860778,
+      "score_gap": 25.492118747932704,
       "gap": 0.25682983682983684,
       "skills_atomic": {
         "loc": 0.0606060606060606,
@@ -265,6 +419,20 @@
         "repro": 0.02564102564102564,
         "review": 0.1
       },
+      "skills_atomic_weighted": {
+        "loc": 0.05128205128205128,
+        "edit": 0.6666666666666667,
+        "testgen": 0.6434108527131783,
+        "repro": 0.11111111111111109,
+        "review": 0.2604166666666667
+      },
+      "skills_e2e_weighted": {
+        "loc": 0.02564102564102564,
+        "edit": 0.09009009009009009,
+        "testgen": 0.2170542635658915,
+        "repro": 0.031746031746031744,
+        "review": 0.09375
+      },
       "halt_unfinished_atomic": 52
     },
     {
@@ -277,6 +445,9 @@
       "e2e_ok": 18,
       "atomic_macro": 0.3128205128205128,
       "e2e_macro": 0.11384615384615385,
+      "artifact_score": 30.247448445122863,
+      "clean_score": 11.038205980066445,
+      "score_gap": 19.20924246505642,
       "gap": 0.19897435897435897,
       "skills_atomic": {
         "loc": 0.0,
@@ -292,6 +463,20 @@
         "repro": 0.02564102564102564,
         "review": 0.4666666666666667
       },
+      "skills_atomic_weighted": {
+        "loc": 0.0,
+        "edit": 0.4864864864864865,
+        "testgen": 0.16279069767441862,
+        "repro": 0.40476190476190477,
+        "review": 0.4583333333333333
+      },
+      "skills_e2e_weighted": {
+        "loc": 0.0,
+        "edit": 0.0,
+        "testgen": 0.06976744186046512,
+        "repro": 0.023809523809523808,
+        "review": 0.4583333333333333
+      },
       "halt_unfinished_atomic": 42
     },
     {
@@ -304,6 +489,9 @@
       "e2e_ok": 26,
       "atomic_macro": 0.1618803418803419,
       "e2e_macro": 0.13965811965811964,
+      "artifact_score": 15.236243303103768,
+      "clean_score": 13.434441501301967,
+      "score_gap": 1.8018018018018012,
       "gap": 0.022222222222222254,
       "skills_atomic": {
         "loc": 0.0,
@@ -319,6 +507,20 @@
         "repro": 0.07692307692307693,
         "review": 0.3
       },
+      "skills_atomic_weighted": {
+        "loc": 0.0,
+        "edit": 0.34234234234234234,
+        "testgen": 0.06976744186046512,
+        "repro": 0.047619047619047616,
+        "review": 0.3020833333333333
+      },
+      "skills_e2e_weighted": {
+        "loc": 0.0,
+        "edit": 0.2522522522522523,
+        "testgen": 0.06976744186046512,
+        "repro": 0.047619047619047616,
+        "review": 0.3020833333333333
+      },
       "halt_unfinished_atomic": 5
     },
     {
@@ -331,6 +533,9 @@
       "e2e_ok": 26,
       "atomic_macro": 0.12972804972804972,
       "e2e_macro": 0.12972804972804972,
+      "artifact_score": 13.136085229108485,
+      "clean_score": 13.136085229108485,
+      "score_gap": 0.0,
       "gap": 0.0,
       "skills_atomic": {
         "loc": 0.0606060606060606,
@@ -344,6 +549,20 @@
         "edit": 0.17777777777777776,
         "testgen": 0.15384615384615385,
         "repro": 0.2564102564102564,
+        "review": 0.0
+      },
+      "skills_atomic_weighted": {
+        "loc": 0.04273504273504273,
+        "edit": 0.1891891891891892,
+        "testgen": 0.15503875968992248,
+        "repro": 0.2698412698412698,
+        "review": 0.0
+      },
+      "skills_e2e_weighted": {
+        "loc": 0.04273504273504273,
+        "edit": 0.1891891891891892,
+        "testgen": 0.15503875968992248,
+        "repro": 0.2698412698412698,
         "review": 0.0
       },
       "halt_unfinished_atomic": 0
@@ -358,6 +577,9 @@
       "e2e_ok": 11,
       "atomic_macro": 0.06666666666666667,
       "e2e_macro": 0.06666666666666667,
+      "artifact_score": 6.829954954954955,
+      "clean_score": 6.829954954954955,
+      "score_gap": 0.0,
       "gap": 0.0,
       "skills_atomic": {
         "loc": 0.0,
@@ -373,6 +595,20 @@
         "repro": 0.0,
         "review": 0.26666666666666666
       },
+      "skills_atomic_weighted": {
+        "loc": 0.0,
+        "edit": 0.08108108108108109,
+        "testgen": 0.0,
+        "repro": 0.0,
+        "review": 0.2604166666666667
+      },
+      "skills_e2e_weighted": {
+        "loc": 0.0,
+        "edit": 0.08108108108108109,
+        "testgen": 0.0,
+        "repro": 0.0,
+        "review": 0.2604166666666667
+      },
       "halt_unfinished_atomic": 0
     },
     {
@@ -385,6 +621,9 @@
       "e2e_ok": 4,
       "atomic_macro": 0.048795648795648794,
       "e2e_macro": 0.019145299145299145,
+      "artifact_score": 4.715627971441925,
+      "clean_score": 1.6509532788602557,
+      "score_gap": 3.064674692581669,
       "gap": 0.02965034965034965,
       "skills_atomic": {
         "loc": 0.0303030303030303,
@@ -400,6 +639,20 @@
         "repro": 0.0,
         "review": 0.0
       },
+      "skills_atomic_weighted": {
+        "loc": 0.02564102564102564,
+        "edit": 0.11711711711711711,
+        "testgen": 0.09302325581395349,
+        "repro": 0.0,
+        "review": 0.0
+      },
+      "skills_e2e_weighted": {
+        "loc": 0.0,
+        "edit": 0.036036036036036036,
+        "testgen": 0.046511627906976744,
+        "repro": 0.0,
+        "review": 0.0
+      },
       "halt_unfinished_atomic": 6
     },
     {
@@ -412,6 +665,9 @@
       "e2e_ok": 3,
       "atomic_macro": 0.033566433566433566,
       "e2e_macro": 0.01818181818181818,
+      "artifact_score": 2.490842490842491,
+      "clean_score": 1.5384615384615385,
+      "score_gap": 0.9523809523809523,
       "gap": 0.015384615384615385,
       "skills_atomic": {
         "loc": 0.09090909090909091,
@@ -422,6 +678,20 @@
       },
       "skills_e2e": {
         "loc": 0.09090909090909091,
+        "edit": 0.0,
+        "testgen": 0.0,
+        "repro": 0.0,
+        "review": 0.0
+      },
+      "skills_atomic_weighted": {
+        "loc": 0.07692307692307693,
+        "edit": 0.0,
+        "testgen": 0.0,
+        "repro": 0.047619047619047616,
+        "review": 0.0
+      },
+      "skills_e2e_weighted": {
+        "loc": 0.07692307692307693,
         "edit": 0.0,
         "testgen": 0.0,
         "repro": 0.0,
@@ -439,6 +709,9 @@
       "e2e_ok": 0,
       "atomic_macro": 0.026666666666666665,
       "e2e_macro": 0.0,
+      "artifact_score": 2.083333333333333,
+      "clean_score": 0.0,
+      "score_gap": 2.083333333333333,
       "gap": 0.026666666666666665,
       "skills_atomic": {
         "loc": 0.0,
@@ -448,6 +721,20 @@
         "review": 0.13333333333333333
       },
       "skills_e2e": {
+        "loc": 0.0,
+        "edit": 0.0,
+        "testgen": 0.0,
+        "repro": 0.0,
+        "review": 0.0
+      },
+      "skills_atomic_weighted": {
+        "loc": 0.0,
+        "edit": 0.0,
+        "testgen": 0.0,
+        "repro": 0.0,
+        "review": 0.10416666666666666
+      },
+      "skills_e2e_weighted": {
         "loc": 0.0,
         "edit": 0.0,
         "testgen": 0.0,

@@ -22,11 +22,10 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from build_canonical_matrix import BANK_62, FROZEN_LOCKS  # noqa: E402
+from item_metadata import item_metadata  # noqa: E402
 from task_sets import HARD_RELEASE_15, MAIN_47  # noqa: E402
 
 TASKS = ROOT / "tasks"
-TRAPS_MD = ROOT / "TRAPS.md"
-LABELS = ROOT / "results" / "v1.0.1_difficulty.json"
 CATALOG_OUT = ROOT / "results" / "hf_catalog.jsonl"
 HF_DIR = ROOT / "results" / "hf_dataset"
 HF_CATALOG = HF_DIR / "catalog.jsonl"
@@ -42,6 +41,10 @@ ALLOWED_KEYS = (
     "id",
     "skill",
     "difficulty",
+    "construct_difficulty",
+    "empirical_band",
+    "calibration_status",
+    "difficulty_weight",
     "bank",
     "trap_id",
     "trap",
@@ -53,10 +56,6 @@ ALLOWED_KEYS = (
     "github_task_url",
     "compact_shell_version",
     "benchmark_version",
-)
-
-TRAP_ROW = re.compile(
-    r"^\|\s*(?P<id>[A-Z]{1,3}\d+)\s*\|\s*(?P<trap>.+?)\s*\|\s*`(?P<task>[a-z0-9-]+)`\s*\|"
 )
 
 SKILL_OF = {
@@ -92,37 +91,24 @@ def first_paragraph(text: str) -> str:
     return summary
 
 
-def parse_traps(text: str) -> dict[str, tuple[str, str]]:
-    found: dict[str, tuple[str, str]] = {}
-    for line in text.splitlines():
-        match = TRAP_ROW.match(line)
-        if not match:
-            continue
-        task = match.group("task")
-        found[task] = (match.group("id"), match.group("trap").strip())
-    return found
-
-
-def load_difficulty() -> dict[str, str]:
-    payload = json.loads(LABELS.read_text(encoding="utf-8"))
-    return {name: row["label"] for name, row in payload["tasks"].items()}
-
-
 def catalog_rows() -> list[dict[str, Any]]:
-    traps = parse_traps(TRAPS_MD.read_text(encoding="utf-8"))
-    difficulty = load_difficulty()
+    metadata = item_metadata()
     rows: list[dict[str, Any]] = []
     for task in BANK_62:
         instruction_path = TASKS / task / "instruction.md"
         instruction = instruction_path.read_text(encoding="utf-8").strip()
-        trap_id, trap = traps[task]
+        meta = metadata[task]
         row = {
             "id": task,
             "skill": skill_of(task),
-            "difficulty": difficulty[task],
+            "difficulty": meta["construct_difficulty"],
+            "construct_difficulty": meta["construct_difficulty"],
+            "empirical_band": meta["empirical_band"],
+            "calibration_status": meta["calibration_status"],
+            "difficulty_weight": meta["difficulty_weight"],
             "bank": bank_of(task),
-            "trap_id": trap_id,
-            "trap": trap,
+            "trap_id": meta["trap_id"],
+            "trap": meta["trap"],
             "instruction": instruction,
             "instruction_summary": first_paragraph(instruction),
             "license": LICENSE,
@@ -153,7 +139,7 @@ def dataset_card() -> str:
     coverage = load_coverage()
     ranked = ranked_models(coverage["models"])
     rank_header = (
-        "| # | Model | Artifact macro | Clean macro | Gap | Artifact micro | Clean micro |\n"
+        "| # | Model | Artifact Score | Clean Score | Gap | Artifact raw | Clean raw |\n"
         "|---:|---|---:|---:|---:|---:|---:|"
     )
     rank_table = "\n".join(
@@ -190,7 +176,8 @@ Frozen compact-shell **system** reliability for compact open-weight coding agent
 
 This dataset is **not** the Harbor task dump. Each of the 62 rows is catalog metadata plus the agent-visible instruction:
 
-- `id`, `skill`, `difficulty`, `bank`
+- `id`, `skill`, `difficulty`, `construct_difficulty`, `bank`
+- `empirical_band`, `calibration_status`, `difficulty_weight`
 - `trap_id` / `trap` (failure-mode label from `TRAPS.md`)
 - `instruction` / `instruction_summary`
 - license, GitHub tag, compact-shell version
@@ -203,9 +190,9 @@ The v1.0.1 canonical table covers 16 fully evaluated model configurations. Each 
 
 ## Leaderboard (v1.0.1)
 
-Headline = five-skill **macro** mean. Micro = successes / 186. Artifact does not require `finish`; Clean does. Halt (Artifact=1, not clean) = **{coverage["halt_unfinished_atomic"]}**. {coverage["n_models"]}×62×3 = **{coverage["n_scored"]}** scored trials. All {coverage["n_models"]} configs enter one rank. Qwen3.6-35B-A3B is a MoE with ~3B active parameters.
+Headline = a 0–100 difficulty-weighted score: Easy 1, Medium 1.5, Hard 2 inside each skill, followed by a five-skill macro. Raw successes / 186 remain visible. Artifact does not require `finish`; Clean does. Halt (Artifact=1, not clean) = **{coverage["halt_unfinished_atomic"]}**. {coverage["n_models"]}×62×3 = **{coverage["n_scored"]}** scored trials. All {coverage["n_models"]} configs enter one rank. Qwen3.6-35B-A3B is a MoE with ~3B active parameters.
 
-![结果正确率与完整完成率](v1.0.1-compact10.svg)
+![Artifact Score 与 Clean Score](v1.0.1-compact10.svg)
 
 {rank_table}
 

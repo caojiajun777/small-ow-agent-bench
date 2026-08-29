@@ -9,10 +9,15 @@ keywords = ["agentic-coding", "localization"]
 [metadata]
 author_name = ""
 author_email = ""
-difficulty = "medium"
+difficulty = "hard"
+construct_difficulty = "hard"
+empirical_band = "medium"
+calibration_status = "calibrated"
+difficulty_weight = 2.0
+trap_id = "L5"
 category = "software"
 subcategory = "localization"
-tags = ["localization", "medium", "agentic-coding", "atomic-skills"]
+tags = ["localization", "hard", "agentic-coding", "atomic-skills"]
 difficulty_explanation = "Exact file-set match for the parser, not the wrapper."
 expert_time_estimate_hours = 0.2
 

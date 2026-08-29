@@ -9,10 +9,15 @@ keywords = ["agentic-coding", "issue-reproduction"]
 [metadata]
 author_name = ""
 author_email = ""
-difficulty = "medium"
+difficulty = "hard"
+construct_difficulty = "hard"
+empirical_band = "medium"
+calibration_status = "calibrated"
+difficulty_weight = 2.0
+trap_id = "R4"
 category = "software"
 subcategory = "issue-reproduction"
-tags = ["issue-reproduction", "medium", "agentic-coding", "atomic-skills"]
+tags = ["issue-reproduction", "hard", "agentic-coding", "atomic-skills"]
 difficulty_explanation = "Repro must hit the truthy-filter that drops zero."
 expert_time_estimate_hours = 0.2
 

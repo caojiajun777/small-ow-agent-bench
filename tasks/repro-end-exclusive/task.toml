@@ -9,10 +9,15 @@ keywords = ["agentic-coding", "issue-reproduction"]
 [metadata]
 author_name = ""
 author_email = ""
-difficulty = "medium"
+difficulty = "easy"
+construct_difficulty = "easy"
+empirical_band = "medium"
+calibration_status = "calibrated"
+difficulty_weight = 1.0
+trap_id = "R2"
 category = "software"
 subcategory = "issue-reproduction"
-tags = ["issue-reproduction", "medium", "agentic-coding", "atomic-skills"]
+tags = ["issue-reproduction", "easy", "agentic-coding", "atomic-skills"]
 difficulty_explanation = "Repro must hit the inclusive-end boundary; naive tests of an interior point will not fail."
 expert_time_estimate_hours = 0.2
 

@@ -19,6 +19,11 @@ from build_canonical_matrix import (  # noqa: E402
     e2e_hit,
 )
 from export_v101_trials import LABELS_OUT, TRIALS_OUT  # noqa: E402
+from item_metadata import (  # noqa: E402
+    CONSTRUCT_WEIGHTS,
+    EXPECTED_CONSTRUCT_COUNTS,
+    item_metadata,
+)
 from models_lock import load_lock  # noqa: E402
 from run_locked import attempt_is_valid, attempt_of  # noqa: E402
 
@@ -104,6 +109,26 @@ def main() -> int:
         fail(f"difficulty labels {n_lab}", errors)
     if len(labels.get("tasks") or {}) != N_TASKS:
         fail(f"difficulty tasks {len(labels.get('tasks') or {})}", errors)
+    if labels.get("construct_counts") != EXPECTED_CONSTRUCT_COUNTS:
+        fail(f"construct counts {labels.get('construct_counts')}", errors)
+    if labels.get("difficulty_weights") != CONSTRUCT_WEIGHTS:
+        fail(f"difficulty weights {labels.get('difficulty_weights')}", errors)
+    canonical_metadata = item_metadata(labels)
+    for task, rec in (labels.get("tasks") or {}).items():
+        expected = canonical_metadata[task]
+        for key in (
+            "construct_difficulty",
+            "difficulty_weight",
+            "trap_id",
+            "empirical_band",
+            "calibration_status",
+        ):
+            if rec.get(key) != expected[key]:
+                fail(f"metadata {task} {key} {rec.get(key)!r}", errors)
+        if rec.get("empirical_band") == "out_of_range" and rec.get(
+            "construct_difficulty"
+        ) != "hard":
+            fail(f"out-of-range construct is not Hard: {task}", errors)
 
     by_model_atomic: Counter[str] = Counter()
     by_model_e2e: Counter[str] = Counter()
@@ -127,6 +152,17 @@ def main() -> int:
         scored = model_score(rows, lid)
         if scored["atomic_ok"] != rec["atomic_ok"] or scored["e2e_ok"] != rec["e2e_ok"]:
             fail(f"model_score mismatch {lid}", errors)
+        for key in ("artifact_score", "clean_score"):
+            if abs(float(scored[key]) - float(rec[key])) > 1e-10:
+                fail(f"weighted score mismatch {lid} {key}", errors)
+        if not 0 <= float(rec["clean_score"]) <= float(rec["artifact_score"]) <= 100:
+            fail(f"score bounds/order {lid}", errors)
+
+    method = summary.get("score_method") or {}
+    if method.get("range") != [0, 100]:
+        fail(f"score range {method.get('range')}", errors)
+    if method.get("construct_weights") != CONSTRUCT_WEIGHTS:
+        fail(f"score weights {method.get('construct_weights')}", errors)
 
     prose = (ROOT / "项目说明.md").read_text(encoding="utf-8")
     expected_micro = {

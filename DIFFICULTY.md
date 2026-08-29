@@ -1,4 +1,11 @@
-# Difficulty policy (empirical)
+# Difficulty design and empirical calibration
+
+Every published task carries two separate fields:
+
+- `construct_difficulty`: author-designed Easy / Medium / Hard tier, frozen independently of leaderboard results. Counts: **17 / 21 / 24**. This field determines score weights **1 / 1.5 / 2**.
+- `empirical_band`: Easy / Medium / Hard / Out-of-range under the frozen v1.0.1 model + provider + compact-shell panel. Counts: **12 / 38 / 7 / 5**. This field diagnoses where an item landed; it does not rewrite the score weight.
+
+`difficulty` in `task.toml` is retained as a compatibility alias for `construct_difficulty`. Machine-readable metadata is in [`results/v1.0.1_item_metadata.json`](results/v1.0.1_item_metadata.json).
 
 Thesis: do **not** aim for everyone to score 50%. Measure what 3B–9B agents can and cannot do, then find the boundary against a larger ruler.
 
@@ -19,7 +26,7 @@ This is not Terminal-Bench 3 / SWE-bench: those may keep items that no current L
 | Ceiling (Hard labels) | Qwen3.8-27B | `openrouter/qwen/qwen3.8-27b` | yes |
 | Optional extra ceiling | 34B-class | not pinned yet | **no** |
 
-Published ranking includes all 12 freeze configs. 27B is also the calibration ceiling for Hard / Uncalibrated labels. A 34B pin can confirm Frontier; it is not in this freeze. The old Groq 27B 4/4 was appendix terminal tasks only; it does not calibrate atomic Hard.
+The v1.0.1 ranking includes all 16 configurations. Qwen3.8-27B is also the calibration ceiling for empirical Hard / Out-of-range labels. A separately pinned 34B-class model could confirm the Frontier; the old Groq 27B 4/4 appendix run does not calibrate Atomic Hard.
 
 Always: oracle = 1, nop = 0. That is solvability, not a difficulty band.
 
@@ -44,7 +51,7 @@ Published 62 under compact-shell k=3 (canonical coverage, 2026-08-27): **Easy 12
 
 **Medium:** the remaining 38. `loc-traceback-helper` is 9B 3/3, 27B 0/3, still Medium (3B/4B never hit). `loc-failing-test-impl` is 9B 3/3 after infra replacement.
 
-Do not mint Hard by relaxing Loc from exact-set to subset. Public ranking tables live in [`结果报表.md`](结果报表.md); this file keeps the item names.
+Do not mint empirical Hard by relaxing Loc from exact-set to subset. The current weighted ranking lives in [`results/leaderboard.md`](results/leaderboard.md); this file keeps the item names and calibration evidence.
 
 An item that everyone in 3B–27B passes stays in the set as smoke, not as Hard.
 
@@ -52,14 +59,27 @@ An item that everyone in 3B–27B passes stays in the set as smoke, not as Hard.
 
 Pilot jobs below **do not enter the Standard Track table**. Official protocol: [`STANDARD.md`](STANDARD.md). Timeouts are **not** task misses ([`TIMEOUT.md`](TIMEOUT.md)); do not mint Hard from TLE or halt failures.
 
-## What this changes from the old policy
+## Two labels, two jobs
 
-Old: Hard = loc exact-set decoys and review example-satisficing, because 9B dropped.  
-New: those are **constructs** (how the trap is written). They are **candidate** items until the ladder assigns Easy / Medium / Hard / Out-of-range.
+The author tier says how the item was designed and determines its score weight. The empirical band says where the item landed against the frozen calibration panel. A construct-Hard item may therefore land Medium, Hard, or Out-of-range without contradiction.
 
-- Do not add Hard edit / testgen / repro unless 9B fails that construct and 27B passes.
-- Do not relax loc from exact set to subset in order to manufacture a passer. If 27B fails exact-set, the item is **Out-of-range**, not “fixed” by a weaker metric.
-- Author `difficulty = "hard"` in `task.toml` is a construct tag only. Public tables use this file.
+- Do not rewrite the author tier after seeing scores.
+- Do not call an item empirical Hard unless it meets the 9B/27B ladder rule.
+- Do not relax Loc from exact set to subset in order to manufacture a passer. If the ceiling fails exact-set, the empirical band is **Out-of-range**; its author-Hard weight remains 2.
+
+## Exploratory IRT validation
+
+We fitted a binomial 1PL Rasch model to the complete 16 configurations × 62 tasks × 3 trials matrix. This is a calibration check, not the public scoring rule.
+
+| Construct tier | Items | Mean pass rate | Mean Rasch difficulty \(b\) | Mean corrected item-total \(r\) |
+|---|---:|---:|---:|---:|
+| Easy | 17 | 0.502 | 0.044 | 0.716 |
+| Medium | 21 | 0.378 | 0.927 | 0.669 |
+| Hard | 24 | 0.265 | 1.925 | 0.533 |
+
+The author tier and fitted item difficulty have Spearman \(\rho=0.577\). No item has negative corrected item-total correlation. `loc-bind-host` and `edit-config-beside` are the only two below 0.2 and should be watched in the next release. `loc-reexport` is 0/48, so a finite Rasch \(b\) cannot be estimated; this is exactly why Out-of-range remains a calibration status rather than a fourth score weight.
+
+The result supports the Easy / Medium / Hard ordering at set level; it does not prove that 1 / 1.5 / 2 is a uniquely correct interval scale. Those weights remain a transparent, conservative scoring policy. Sixteen model configurations are also too few for a stable 2PL discrimination estimate, and the five task families are deliberately multidimensional. Machine-readable output: [`results/v1.0.1_irt.json`](results/v1.0.1_irt.json).
 
 ## Calibration results (2026-08-22)
 
