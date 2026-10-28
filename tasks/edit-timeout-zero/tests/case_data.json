@@ -1,0 +1,114 @@
+{
+  "calls": [
+    {
+      "module": "limits",
+      "function": "get_timeout",
+      "args": [
+        {
+          "timeout": 0
+        }
+      ],
+      "expected": 0
+    },
+    {
+      "module": "limits",
+      "function": "get_timeout",
+      "args": [
+        {}
+      ],
+      "expected": 30
+    },
+    {
+      "module": "limits",
+      "function": "get_timeout",
+      "args": [
+        {
+          "timeout": 15
+        }
+      ],
+      "expected": 15
+    },
+    {
+      "module": "limits",
+      "function": "get_timeout",
+      "args": [
+        {
+          "timeout": null
+        }
+      ],
+      "expected": null
+    },
+    {
+      "module": "limits",
+      "function": "get_timeout",
+      "args": [
+        {
+          "timeout": 0.5
+        }
+      ],
+      "expected": 0.5
+    }
+  ],
+  "flows": [
+    {
+      "request": {
+        "now": 100,
+        "defaults": {
+          "timeout": 8
+        },
+        "jobs": [
+          {
+            "id": "a",
+            "config": {
+              "timeout": 0
+            }
+          },
+          {
+            "id": "b"
+          },
+          {
+            "id": "c",
+            "config": {
+              "timeout": 2
+            }
+          }
+        ]
+      },
+      "expected": [
+        {
+          "id": "a",
+          "timeout": 0,
+          "deadline": null
+        },
+        {
+          "id": "b",
+          "timeout": 8,
+          "deadline": 108
+        },
+        {
+          "id": "c",
+          "timeout": 2,
+          "deadline": 102
+        }
+      ]
+    },
+    {
+      "request": {
+        "now": 0,
+        "jobs": [
+          {
+            "id": "x"
+          }
+        ]
+      },
+      "expected": [
+        {
+          "id": "x",
+          "timeout": 30,
+          "deadline": 30
+        }
+      ]
+    }
+  ]
+}
+

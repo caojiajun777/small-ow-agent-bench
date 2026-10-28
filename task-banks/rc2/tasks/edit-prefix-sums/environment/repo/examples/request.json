@@ -1,0 +1,15 @@
+{
+  "opening": 100,
+  "postings": [
+    {
+      "amount": 5
+    },
+    {
+      "amount": -20
+    },
+    {
+      "amount": 0
+    }
+  ]
+}
+

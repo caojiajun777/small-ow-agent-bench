@@ -1,0 +1,16 @@
+{
+  "batch_id": "example",
+  "customers": {
+    "c1": {
+      "name": "Ada"
+    }
+  },
+  "records": [
+    {
+      "id": "item-1",
+      "op": "attach",
+      "order_id": "first",
+      "customer_id": "c1"
+    }
+  ]
+}

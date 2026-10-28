@@ -1,0 +1,43 @@
+{
+  "kind": "testgen",
+  "correct": [
+    {
+      "name": "reference",
+      "patch": {
+        "window.py": "gold/window.py"
+      }
+    },
+    {
+      "name": "alternative",
+      "patch": {
+        "window.py": "gold_alt/window.py"
+      }
+    }
+  ],
+  "incorrect": [
+    {
+      "name": "end_plus",
+      "patch": {
+        "window.py": "mutants/end_plus.py"
+      }
+    },
+    {
+      "name": "start_plus",
+      "patch": {
+        "window.py": "mutants/start_plus.py"
+      }
+    },
+    {
+      "name": "does_not_publish_output",
+      "patch": {
+        "workflow.py": "workflow_mutants/no_publish.py"
+      }
+    },
+    {
+      "name": "ignores_stop_policy",
+      "patch": {
+        "service.py": "workflow_mutants/ignore_stop.py"
+      }
+    }
+  ]
+}

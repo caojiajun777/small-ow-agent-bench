@@ -1,0 +1,43 @@
+{
+  "kind": "testgen",
+  "correct": [
+    {
+      "name": "reference",
+      "patch": {
+        "rank.py": "gold/rank.py"
+      }
+    },
+    {
+      "name": "alternative",
+      "patch": {
+        "rank.py": "gold_alt/rank.py"
+      }
+    }
+  ],
+  "incorrect": [
+    {
+      "name": "by_name",
+      "patch": {
+        "rank.py": "mutants/by_name.py"
+      }
+    },
+    {
+      "name": "last_at_score",
+      "patch": {
+        "rank.py": "mutants/last_at_score.py"
+      }
+    },
+    {
+      "name": "does_not_publish_output",
+      "patch": {
+        "workflow.py": "workflow_mutants/no_publish.py"
+      }
+    },
+    {
+      "name": "ignores_stop_policy",
+      "patch": {
+        "service.py": "workflow_mutants/ignore_stop.py"
+      }
+    }
+  ]
+}

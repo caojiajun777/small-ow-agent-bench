@@ -1,0 +1,120 @@
+{
+  "calls": [
+    {
+      "module": "slug",
+      "function": "slugify",
+      "args": [
+        "--Hi--"
+      ],
+      "expected": "hi"
+    },
+    {
+      "module": "slug",
+      "function": "slugify",
+      "args": [
+        "Hello,  World!!"
+      ],
+      "expected": "hello-world"
+    },
+    {
+      "module": "slug",
+      "function": "slugify",
+      "args": [
+        "éÉ\t１２ -- A"
+      ],
+      "expected": "éé-１２-a"
+    },
+    {
+      "module": "slug",
+      "function": "slugify",
+      "args": [
+        "!!!"
+      ],
+      "expected": ""
+    },
+    {
+      "module": "slug",
+      "function": "slugify",
+      "args": [
+        "a___b"
+      ],
+      "expected": "ab"
+    },
+    {
+      "module": "slug",
+      "function": "slugify",
+      "args": [
+        "  ABC  "
+      ],
+      "expected": "abc"
+    }
+  ],
+  "flows": [
+    {
+      "request": {
+        "posts": [
+          {
+            "id": 1,
+            "title": "Hi"
+          },
+          {
+            "id": 2,
+            "title": "Hi"
+          },
+          {
+            "id": 3,
+            "title": "Hi-2"
+          },
+          {
+            "id": 4,
+            "title": "Hi"
+          }
+        ]
+      },
+      "expected": [
+        {
+          "id": 1,
+          "path": "/posts/hi"
+        },
+        {
+          "id": 2,
+          "path": "/posts/hi-2"
+        },
+        {
+          "id": 3,
+          "path": "/posts/hi-2-2"
+        },
+        {
+          "id": 4,
+          "path": "/posts/hi-3"
+        }
+      ]
+    },
+    {
+      "request": {
+        "prefix": "/news/",
+        "posts": [
+          {
+            "id": "z",
+            "title": "!"
+          },
+          {
+            "id": "b",
+            "title": " "
+          }
+        ]
+      },
+      "expected": [
+        {
+          "id": "z",
+          "path": "/news/untitled"
+        },
+        {
+          "id": "b",
+          "path": "/news/untitled-2"
+        }
+      ]
+    }
+  ]
+}
+

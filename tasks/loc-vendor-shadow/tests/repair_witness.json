@@ -1,0 +1,10 @@
+{
+  "kind": "localization",
+  "public_tests": "tests",
+  "files": {
+    "vendor/billing/limits.py": "MAX_UPLOAD_MB = 25\n"
+  },
+  "required": [
+    "vendor/billing/limits.py"
+  ]
+}

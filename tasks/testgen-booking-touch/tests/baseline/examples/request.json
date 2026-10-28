@@ -1,0 +1,12 @@
+{
+  "batch_id": "example",
+  "records": [
+    {
+      "id": "item-1",
+      "a_start": 60,
+      "a_end": 90,
+      "b_start": 70,
+      "b_end": 100
+    }
+  ]
+}

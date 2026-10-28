@@ -1,0 +1,18 @@
+{
+  "kind": "localization",
+  "foils": [
+    {
+      "id": "plausible-wrong-owner",
+      "answer": [
+        "pkg/__init__.py"
+      ]
+    },
+    {
+      "id": "extra-correct-caller",
+      "answer": [
+        "pkg/core.py",
+        "app.py"
+      ]
+    }
+  ]
+}

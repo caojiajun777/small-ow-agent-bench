@@ -1,0 +1,7 @@
+{
+  "config": {
+    "host": "gateway.example",
+    "port": 9443,
+    "tls": true
+  }
+}

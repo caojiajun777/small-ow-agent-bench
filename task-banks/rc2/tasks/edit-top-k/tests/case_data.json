@@ -1,0 +1,137 @@
+{
+  "calls": [
+    {
+      "module": "rank",
+      "function": "top_k",
+      "args": [
+        [
+          {
+            "name": "a",
+            "score": 1
+          },
+          {
+            "name": "b",
+            "score": 3
+          },
+          {
+            "name": "c",
+            "score": 2
+          }
+        ],
+        2
+      ],
+      "expected": [
+        {
+          "name": "b",
+          "score": 3
+        },
+        {
+          "name": "c",
+          "score": 2
+        }
+      ]
+    },
+    {
+      "module": "rank",
+      "function": "top_k",
+      "args": [
+        [
+          {
+            "name": "a",
+            "score": 5
+          },
+          {
+            "name": "b",
+            "score": 5
+          }
+        ],
+        9
+      ],
+      "expected": [
+        {
+          "name": "a",
+          "score": 5
+        },
+        {
+          "name": "b",
+          "score": 5
+        }
+      ]
+    },
+    {
+      "module": "rank",
+      "function": "top_k",
+      "args": [
+        [
+          {
+            "name": "x",
+            "score": 2
+          }
+        ],
+        -1
+      ],
+      "expected": []
+    }
+  ],
+  "flows": [
+    {
+      "request": {
+        "events": [
+          {
+            "name": "a",
+            "score": 4
+          },
+          {
+            "name": "b",
+            "score": 7
+          },
+          {
+            "name": "a",
+            "score": 4
+          }
+        ],
+        "k": 2
+      },
+      "expected": [
+        {
+          "name": "a",
+          "score": 8
+        },
+        {
+          "name": "b",
+          "score": 7
+        }
+      ]
+    },
+    {
+      "request": {
+        "events": [
+          {
+            "name": "b",
+            "score": -2
+          },
+          {
+            "name": "a",
+            "score": 1
+          },
+          {
+            "name": "b",
+            "score": 3
+          }
+        ],
+        "k": 9
+      },
+      "expected": [
+        {
+          "name": "b",
+          "score": 1
+        },
+        {
+          "name": "a",
+          "score": 1
+        }
+      ]
+    }
+  ]
+}
+

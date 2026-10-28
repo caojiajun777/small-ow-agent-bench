@@ -1,0 +1,12 @@
+{
+  "kind": "localization",
+  "public_tests": "tests",
+  "files": {
+    "checkout.py": "from catalog import list_price\nfrom pricing.vip import vip_price\n\n\ndef charge(item, vip):\n    return vip_price(item) if vip else list_price(item)\n",
+    "pricing/vip.py": "from catalog import list_price\n\nVIP_RATE = .8\n\n\ndef vip_price(item):\n    return list_price(item) * VIP_RATE\n"
+  },
+  "required": [
+    "checkout.py",
+    "pricing/vip.py"
+  ]
+}

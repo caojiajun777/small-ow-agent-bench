@@ -1,0 +1,18 @@
+{
+  "kind": "localization",
+  "foils": [
+    {
+      "id": "plausible-wrong-owner",
+      "answer": [
+        "billing/limits.py"
+      ]
+    },
+    {
+      "id": "extra-correct-caller",
+      "answer": [
+        "vendor/billing/limits.py",
+        "app.py"
+      ]
+    }
+  ]
+}

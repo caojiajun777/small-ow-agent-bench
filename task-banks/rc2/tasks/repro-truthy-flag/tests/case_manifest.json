@@ -1,0 +1,18 @@
+{
+  "kind": "repro",
+  "correct": [
+    {
+      "name": "fixed",
+      "patch": {
+        "flags.py": "gold.py"
+      }
+    },
+    {
+      "name": "alternative_fixed",
+      "patch": {
+        "flags.py": "gold_alt.py"
+      }
+    }
+  ],
+  "incorrect": []
+}

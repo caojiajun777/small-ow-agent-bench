@@ -1,0 +1,10 @@
+{
+  "kind": "localization",
+  "public_tests": "tests",
+  "files": {
+    "codec.py": "def parse_record(line):\n    ident, raw_amount = line.split(\":\", 1)\n    ident, raw_amount = ident.strip(), raw_amount.strip()\n    if not ident:\n        raise ValueError(\"empty record ID\")\n    amount = None if raw_amount == \"not-a-number\" else int(raw_amount)\n    return {\"id\": ident, \"amount\": amount}\n"
+  },
+  "required": [
+    "codec.py"
+  ]
+}

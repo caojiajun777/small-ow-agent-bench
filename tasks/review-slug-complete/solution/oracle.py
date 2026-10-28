@@ -1,0 +1,18 @@
+"""Private reference review; only the report is written to the agent workspace."""
+import json
+import os
+from pathlib import Path
+
+REPO = Path(os.environ.get("BENCH_REPO_ROOT", "/app/repo"))
+APP = Path(os.environ.get("BENCH_APP_ROOT", "/app"))
+REPORT = json.loads("{\"schema_version\":2,\"reviews\":[{\"candidate\":\"cedar\",\"decision\":\"accept\",\"location\":null,\"behavior\":null,\"cases\":[{\"input\":{\"titles\":[\"Hello,  World!!\",\"Hello World\"]},\"expected\":{\"routes\":[\"hello-world\",\"hello-world-2\"]}},{\"input\":{\"titles\":[\"--Hi--\",\" Hi \"]},\"expected\":{\"routes\":[\"hi\",\"hi-2\"]}},{\"input\":{\"titles\":[\"x\",\"x-2\",\"x\",\"x\"]},\"expected\":{\"routes\":[\"x\",\"x-2\",\"x-3\",\"x-4\"]}},{\"input\":{\"titles\":[\"\",\"!!!\",\"untitled\"]},\"expected\":{\"routes\":[\"untitled\",\"untitled-2\",\"untitled-3\"]}},{\"input\":{\"titles\":[\"猫 狗\",\"猫--狗\"]},\"expected\":{\"routes\":[\"猫-狗\",\"猫-狗-2\"]}},{\"input\":{\"titles\":[]},\"expected\":{\"routes\":[]}}]},{\"candidate\":\"maple\",\"decision\":\"reject\",\"location\":{\"path\":\"candidates/maple/service.py\",\"line\":7},\"behavior\":\"The candidate violates the documented public behavior on the supplied executable counterexample.\",\"cases\":[{\"input\":{\"titles\":[\"Hello,  World!!\",\"Hello World\"]},\"expected\":{\"routes\":[\"hello-world\",\"hello-world-2\"]}},{\"input\":{\"titles\":[\"--Hi--\",\" Hi \"]},\"expected\":{\"routes\":[\"hi\",\"hi-2\"]}},{\"input\":{\"titles\":[\"x\",\"x-2\",\"x\",\"x\"]},\"expected\":{\"routes\":[\"x\",\"x-2\",\"x-3\",\"x-4\"]}},{\"input\":{\"titles\":[\"\",\"!!!\",\"untitled\"]},\"expected\":{\"routes\":[\"untitled\",\"untitled-2\",\"untitled-3\"]}},{\"input\":{\"titles\":[\"猫 狗\",\"猫--狗\"]},\"expected\":{\"routes\":[\"猫-狗\",\"猫-狗-2\"]}},{\"input\":{\"titles\":[]},\"expected\":{\"routes\":[]}}]},{\"candidate\":\"birch\",\"decision\":\"reject\",\"location\":{\"path\":\"candidates/birch/slug.py\",\"line\":5},\"behavior\":\"The candidate violates the documented public behavior on the supplied executable counterexample.\",\"cases\":[{\"input\":{\"titles\":[\"Hello,  World!!\",\"Hello World\"]},\"expected\":{\"routes\":[\"hello-world\",\"hello-world-2\"]}},{\"input\":{\"titles\":[\"--Hi--\",\" Hi \"]},\"expected\":{\"routes\":[\"hi\",\"hi-2\"]}},{\"input\":{\"titles\":[\"x\",\"x-2\",\"x\",\"x\"]},\"expected\":{\"routes\":[\"x\",\"x-2\",\"x-3\",\"x-4\"]}},{\"input\":{\"titles\":[\"\",\"!!!\",\"untitled\"]},\"expected\":{\"routes\":[\"untitled\",\"untitled-2\",\"untitled-3\"]}},{\"input\":{\"titles\":[\"猫 狗\",\"猫--狗\"]},\"expected\":{\"routes\":[\"猫-狗\",\"猫-狗-2\"]}},{\"input\":{\"titles\":[]},\"expected\":{\"routes\":[]}}]},{\"candidate\":\"willow\",\"decision\":\"accept\",\"location\":null,\"behavior\":null,\"cases\":[{\"input\":{\"titles\":[\"Hello,  World!!\",\"Hello World\"]},\"expected\":{\"routes\":[\"hello-world\",\"hello-world-2\"]}},{\"input\":{\"titles\":[\"--Hi--\",\" Hi \"]},\"expected\":{\"routes\":[\"hi\",\"hi-2\"]}},{\"input\":{\"titles\":[\"x\",\"x-2\",\"x\",\"x\"]},\"expected\":{\"routes\":[\"x\",\"x-2\",\"x-3\",\"x-4\"]}},{\"input\":{\"titles\":[\"\",\"!!!\",\"untitled\"]},\"expected\":{\"routes\":[\"untitled\",\"untitled-2\",\"untitled-3\"]}},{\"input\":{\"titles\":[\"猫 狗\",\"猫--狗\"]},\"expected\":{\"routes\":[\"猫-狗\",\"猫-狗-2\"]}},{\"input\":{\"titles\":[]},\"expected\":{\"routes\":[]}}]}]}")
+
+def main():
+    candidates = json.loads((REPO / "candidates.json").read_text())["candidates"]
+    assert set(candidates) == {row["candidate"] for row in REPORT["reviews"]}
+    APP.mkdir(parents=True, exist_ok=True)
+    (APP / "review.json").write_text(json.dumps(REPORT, ensure_ascii=False, allow_nan=False, indent=2) + "\n", encoding="utf-8")
+
+if __name__ == "__main__":
+    main()
+

@@ -1,0 +1,19 @@
+{
+  "kind": "localization",
+  "foils": [
+    {
+      "id": "plausible-wrong-owner",
+      "answer": [
+        "app.py",
+        "data/records.txt"
+      ]
+    },
+    {
+      "id": "extra-correct-caller",
+      "answer": [
+        "codec.py",
+        "app.py"
+      ]
+    }
+  ]
+}

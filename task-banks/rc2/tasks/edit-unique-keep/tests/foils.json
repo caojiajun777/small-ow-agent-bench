@@ -1,0 +1,20 @@
+{
+  "kind": "edit",
+  "foils": [
+    {
+      "id": "primitive-only",
+      "files": {
+        "unique.py": "def unique(items):\n    output = []\n    for item in items:\n        if item not in output:\n            output.append(item)\n    return output\n",
+        "workflow.py": "from copy import deepcopy\nfrom unique import unique\n\ndef process(request):\n    events = request[\"events\"]\n    keys = unique([event[\"key\"] for event in events])\n    first = {}\n    for event in events:\n        if True:\n            first[event[\"key\"]] = event\n    return [deepcopy(first[key]) for key in keys]\n"
+      }
+    },
+    {
+      "id": "workflow-only",
+      "files": {
+        "unique.py": "def unique(items):\n    return list(set(items))\n",
+        "workflow.py": "from copy import deepcopy\nfrom unique import unique\n\ndef process(request):\n    events = request[\"events\"]\n    keys = unique([event[\"key\"] for event in events])\n    first = {}\n    for event in events:\n        if event[\"key\"] not in first:\n            first[event[\"key\"]] = event\n    return [deepcopy(first[key]) for key in keys]\n"
+      }
+    }
+  ]
+}
+

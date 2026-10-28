@@ -1,0 +1,12 @@
+SmallOWBench
+Copyright 2026 junjun cao
+
+This project is licensed under the Apache License, Version 2.0.
+
+Harbor is an external Apache-2.0 dependency maintained by the Harbor project.
+The patch set under vendor/harbor-patches contains SmallOWBench runtime
+modifications to that dependency, not a replacement Harbor distribution.
+Its upstream copyright and license notices remain applicable.
+
+Model names identify external models and inference services. They do not
+imply affiliation, endorsement, or redistribution of model weights.

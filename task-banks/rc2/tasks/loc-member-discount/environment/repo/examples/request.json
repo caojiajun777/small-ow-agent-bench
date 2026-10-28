@@ -1,0 +1,14 @@
+{
+  "lines": [
+    {
+      "sku": "A",
+      "qty": 2
+    },
+    {
+      "sku": "B",
+      "qty": 1
+    }
+  ],
+  "member": true,
+  "shipping": 3
+}

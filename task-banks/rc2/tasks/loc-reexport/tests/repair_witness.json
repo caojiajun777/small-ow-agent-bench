@@ -1,0 +1,10 @@
+{
+  "kind": "localization",
+  "public_tests": "tests",
+  "files": {
+    "pkg/core.py": "import settings\n\n\ndef bind(config=None):\n    options = settings.load() if config is None else config\n    return (options[\"host\"], options[\"port\"])\n"
+  },
+  "required": [
+    "pkg/core.py"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "kind": "testgen",
+  "correct": [
+    {
+      "name": "reference",
+      "patch": {
+        "booking.py": "gold/booking.py"
+      }
+    },
+    {
+      "name": "alternative",
+      "patch": {
+        "booking.py": "gold_alt/booking.py"
+      }
+    }
+  ],
+  "incorrect": [
+    {
+      "name": "closed",
+      "patch": {
+        "booking.py": "mutants/closed.py"
+      }
+    },
+    {
+      "name": "inclusive",
+      "patch": {
+        "booking.py": "mutants/inclusive.py"
+      }
+    },
+    {
+      "name": "does_not_publish_output",
+      "patch": {
+        "workflow.py": "workflow_mutants/no_publish.py"
+      }
+    },
+    {
+      "name": "ignores_stop_policy",
+      "patch": {
+        "service.py": "workflow_mutants/ignore_stop.py"
+      }
+    }
+  ]
+}

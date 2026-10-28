@@ -1,0 +1,49 @@
+{
+  "kind": "testgen",
+  "correct": [
+    {
+      "name": "reference",
+      "patch": {
+        "unique.py": "gold/unique.py"
+      }
+    },
+    {
+      "name": "alternative",
+      "patch": {
+        "unique.py": "gold_alt/unique.py"
+      }
+    }
+  ],
+  "incorrect": [
+    {
+      "name": "last_wins",
+      "patch": {
+        "unique.py": "mutants/last_wins.py"
+      }
+    },
+    {
+      "name": "no_drop",
+      "patch": {
+        "unique.py": "mutants/no_drop.py"
+      }
+    },
+    {
+      "name": "sorted_unique",
+      "patch": {
+        "unique.py": "mutants/sorted_unique.py"
+      }
+    },
+    {
+      "name": "does_not_publish_output",
+      "patch": {
+        "workflow.py": "workflow_mutants/no_publish.py"
+      }
+    },
+    {
+      "name": "ignores_stop_policy",
+      "patch": {
+        "service.py": "workflow_mutants/ignore_stop.py"
+      }
+    }
+  ]
+}

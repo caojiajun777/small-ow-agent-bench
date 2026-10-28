@@ -1,0 +1,10 @@
+{
+  "kind": "localization",
+  "public_tests": "tests",
+  "files": {
+    "text/normalize.py": "def clean_name(name):\n    return \" \".join(name.split())\n"
+  },
+  "required": [
+    "text/normalize.py"
+  ]
+}

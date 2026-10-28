@@ -1,0 +1,20 @@
+{
+  "kind": "edit",
+  "foils": [
+    {
+      "id": "primitive-only",
+      "files": {
+        "rank.py": "def top_k(rows, k):\n    return sorted(rows, key=lambda row: -row[\"score\"])[:max(0, k)]\n",
+        "workflow.py": "from rank import top_k\n\ndef process(request):\n    scores = {}\n    for row in request[\"events\"]:\n        name = row[\"name\"]\n        scores[name] = max(scores.get(name, float(\"-inf\")), row[\"score\"])\n    rows = [{\"name\": name, \"score\": score} for name, score in scores.items()]\n    return top_k(rows, request[\"k\"])\n"
+      }
+    },
+    {
+      "id": "workflow-only",
+      "files": {
+        "rank.py": "def top_k(rows, k):\n    return rows[:k]\n",
+        "workflow.py": "from rank import top_k\n\ndef process(request):\n    scores = {}\n    for row in request[\"events\"]:\n        name = row[\"name\"]\n        scores[name] = scores.get(name, 0) + row[\"score\"]\n    rows = [{\"name\": name, \"score\": score} for name, score in scores.items()]\n    return top_k(rows, request[\"k\"])\n"
+      }
+    }
+  ]
+}
+

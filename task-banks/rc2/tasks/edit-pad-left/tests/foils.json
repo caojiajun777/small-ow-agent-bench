@@ -1,0 +1,20 @@
+{
+  "kind": "edit",
+  "foils": [
+    {
+      "id": "primitive-only",
+      "files": {
+        "text.py": "def pad_left(text, width, fill=\" \"):\n    return fill * max(0, width - len(text)) + text\n",
+        "workflow.py": "from text import pad_left\n\ndef process(request):\n    lines = []\n    for row in request[\"rows\"]:\n        cells = [pad_left(str(row[column[\"key\"]]), column[\"width\"], \" \")\n                 for column in request[\"columns\"]]\n        lines.append(request.get(\"separator\", \" | \").join(cells))\n    return \"\\n\".join(lines)\n"
+      }
+    },
+    {
+      "id": "workflow-only",
+      "files": {
+        "text.py": "def pad_left(text, width, fill=\" \"):\n    return text\n",
+        "workflow.py": "from text import pad_left\n\ndef process(request):\n    lines = []\n    for row in request[\"rows\"]:\n        cells = [pad_left(str(row[column[\"key\"]]), column[\"width\"], column.get(\"fill\", \" \"))\n                 for column in request[\"columns\"]]\n        lines.append(request.get(\"separator\", \" | \").join(cells))\n    return \"\\n\".join(lines)\n"
+      }
+    }
+  ]
+}
+

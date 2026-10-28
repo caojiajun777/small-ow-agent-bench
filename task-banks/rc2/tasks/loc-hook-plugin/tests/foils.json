@@ -1,0 +1,19 @@
+{
+  "kind": "localization",
+  "foils": [
+    {
+      "id": "plausible-wrong-owner",
+      "answer": [
+        "plugins/retry.py",
+        "hooks.json"
+      ]
+    },
+    {
+      "id": "extra-correct-caller",
+      "answer": [
+        "plugins/retry_v1.py",
+        "app.py"
+      ]
+    }
+  ]
+}

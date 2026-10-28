@@ -1,6 +1,60 @@
-# Small-OW-Agent-Bench
+# SmallOWBench 2.0
 
 [简体中文](README.md) | **English**
+
+SmallOWBench 2.0 is an execution-based diagnostic benchmark for compact open-weight coding agents. Its 62 authored small Python workflows cover localization, editing, test generation, bug reproduction and patch validation, with deterministic verification of deliverables. The tasks have been inspected, repaired and used during development; they do not represent an unseen holdout set, real large-repository issues or long-horizon autonomous maintenance.
+
+**Release components: task/grader `2.0.0-rc.2`; harness `2.0.0-rc.1`. New formal scores await the actual run and evidence acceptance; no new leaderboard is published yet.** The new entry point explicitly selects `task-banks/rc2/tasks`. The root `VERSION`, original `tasks` and original manifest retain their protected RC1 provenance for integrity checks and historical reproduction. Changing the root version or using an old runner does not activate the new bank.
+
+| Skill | Tasks | Verified deliverable |
+|---|---:|---|
+| Localization / Loc | 11 | The complete target-file set without extra files |
+| Editing / Edit | 15 | A code change that passes behavior and regression checks |
+| Test Generation / Testgen | 13 | Tests that accept correct implementations and detect faulty ones |
+| Reproduction / Repro | 13 | A reproducer that exposes the bug and passes after the reference fix |
+| Patch Validation / Review | 10 | Verdicts and required evidence for the candidates within each task |
+
+**Artifact** measures correct deliverables; **Clean** additionally requires a normal protocol finish. Clean is not a real-world software-development E2E success rate. Tasks are equally weighted within each skill, and the five skills are equally weighted for macro; task-micro covers all 62 tasks. Legacy empirical difficulty weights and IRT findings do not transfer. Review's 40 candidates remain nested within ten tasks.
+
+The 2026-10-27 RC2 evidence covers **ten oracle/no-op slots across five selected tasks meeting their expected outcomes**: five reference passes and five no-op failures, plus **232 passed and one skipped** offline test. This verifies the selected paths. Full-bank RC2 container acceptance remains incomplete, and RC1's `full124` does not transfer. Image initialization builds/freezes both image roles for 62 tasks and records dependency versions; it does not add oracle/no-op evaluations or calibration. See the [public evidence summary](analysis/v2/release-20261028/PUBLIC-EVIDENCE.md).
+
+The formal plan is **8 original configurations × 62 tasks × 1 repetition: at most 496 task attempts**, with a US$40 budget, four workers and zero whole-trial infrastructure retries. This is not a cap of 496 HTTP requests. Budget admission or provider failures may leave missing slots; missing/infrastructure results are not model zeros. Scores must be recomputed from this run's original evidence, and incomplete data cannot produce a complete formal ranking. The [eight-route catalog check](analysis/v2/release-20261028/ROUTES.md) verifies public endpoint metadata, not sustained capacity or actual parameter enforcement. Excluded legacy models are not silently replaced with other models or precisions.
+
+## Version 2.0 entry points and release materials
+
+[Protocol](STANDARD-v2.md) · [Release notes](analysis/v2/release-20261028/RELEASE-NOTES.md) · [Publication checklist](analysis/v2/release-20261028/PUBLICATION-CHECKLIST.md) · [Public evidence summary](analysis/v2/release-20261028/PUBLIC-EVIDENCE.md)
+
+The public evidence file is a redacted summary with original-file hashes and scope limits. It is not a raw report, a complete trace archive or a replacement validator input.
+
+First follow the [pinned Harbor setup](vendor/harbor-patches/README.md): adjacent checkouts, the specified upstream commit, the supplied runtime patch and `uv sync --locked`. Use that environment's Python from this repository root with local Linux Docker. Keep model credentials in the required host environment, outside task containers and published files.
+
+**Fresh external clone only:** if your machine has no original five-task receipts, create its local profile, ten oracle/no-op slots and transfer records in a new `r2smk` directory first. This makes no model calls; builds explicitly use networking and execution stays offline. It is an initialization option for external reproduction. **The current formal run already has these receipts and does not repeat this step.**
+
+Cross-host portability has a known limitation: the legacy `validate_upgraded_tasks.task_digest` uses `sorted(Path.rglob(...))`, and Windows and Linux `Path` objects apply different case-ordering rules. Frozen file bytes and per-file SHA-256 lists can be checked, but cross-platform equality of the legacy aggregate directory digest has not been confirmed. A fresh Linux-host clone is therefore not guaranteed to pass the original aggregate-digest check. This run continues on Windows without changing frozen functions or values or adding a test stage.
+
+```powershell
+python scripts/validate_rc2_containers.py --directory experiments/smallowbench-v2/r2smk --execute --allow-build-network
+```
+
+Then prepare the images and freeze the formal run. The following commands describe this run's configuration. New runs need fresh short directory names; existing directories must not be overwritten. Do not feed another machine's absolute-path receipts or public redacted summaries directly to the validator.
+
+```powershell
+# Image preparation and version receipts only; no task evaluations or model calls.
+python scripts/build_release_v2_images.py --output experiments/smallowbench-v2/im2 --execute --workers 4 --allow-build-network
+
+# --write persists prepare/lock/plan; prepare creates an initial STOP.
+python scripts/run_release_v2.py prepare --directory experiments/smallowbench-v2/rel2 --models-file analysis/v2/models.route-ready.json --preflight experiments/smallowbench-v2/r2smk/preflight-rc2.json --runtime experiments/smallowbench-v2/im2/runtime.json --budget-usd 40 --workers 4 --max-infra-retries 0 --visit-reserve-usd 3.5 --repetitions 1 --isolate-model-infra --write
+python scripts/run_release_v2.py lock --directory experiments/smallowbench-v2/rel2 --write
+python scripts/run_release_v2.py plan --directory experiments/smallowbench-v2/rel2 --write
+python scripts/run_release_v2.py status --directory experiments/smallowbench-v2/rel2
+python scripts/run_release_v2.py analyze --directory experiments/smallowbench-v2/rel2
+```
+
+These paths require your machine's original five-task acceptance materials and new image receipts. Public redacted summaries cannot substitute for complete local evidence, and a new setup does not prove byte identity with the published run. Execution also requires a separate `authorization.json` bound to the manifest, execution lock and approved budget, and an authorized operator must handle the **new run's** initial STOP. `execute --execute --worker 0 --workers 4` starts only worker 0; a four-worker run starts workers 0–3 as separate processes. Preparation and locking do not execute models or remove historical STOP files. See the [protocol commands](STANDARD-v2.md#入口) for execution syntax.
+
+## Legacy introduction and results — not 2.0 scores
+
+**The entire introduction, scoring weights, figures, model results and run examples below are historical.** Legacy tasks are archived; matching IDs do not make old and new scores comparable. Version 2.0 uses a separate experiment namespace and never resumes the old matrix. The `run_locked.py`/Novita examples below are not Version 2.0 release entry points.
 
 [![Leaderboard](https://img.shields.io/badge/leaderboard-v1.0.1-0f4c81)](results/leaderboard.md)
 [![License](https://img.shields.io/badge/license-Apache%202.0-2f6f4e)](LICENSE)

@@ -1,0 +1,52 @@
+schema_version = "1.4"
+artifacts = [{ source = "/app/repo", destination = "submission/repo", exclude = ["__pycache__", "*.pyc", ".pytest_cache", ".git", ".env", ".env.*", "credentials.json", "id_rsa", "id_ed25519"] }]
+
+[task]
+name = "small-ow-agent-bench/edit-int-list"
+version = "2.0.0-rc.2"
+authors = []
+keywords = ["agentic-coding", "editing"]
+
+[metadata]
+author_name = ""
+author_email = ""
+difficulty = "easy"
+construct_difficulty = "easy"
+empirical_band = "uncalibrated"
+calibration_status = "not_run"
+benchmark_revision = "contract-diagnostics-2026-10-25"
+source_type = "handcrafted-workflow"
+legacy_task_version = "1.0.0"
+legacy_empirical_band = "medium"
+legacy_calibration_status = "calibrated"
+difficulty_weight = 1.0
+trap_id = "E4"
+category = "software"
+subcategory = "editing"
+tags = ["editing", "easy", "agentic-coding"]
+difficulty_explanation = "Inherited original trap tier only; upgraded workflow has not been empirically calibrated."
+expert_time_estimate_hours = 0.2
+
+[verifier]
+environment_mode = "separate"
+network_mode = "no-network"
+timeout_sec = 180.0
+
+[verifier.environment]
+network_mode = "no-network"
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+
+[agent]
+network_mode = "no-network"
+timeout_sec = 180.0
+
+[environment]
+network_mode = "no-network"
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+gpus = 0
+mcp_servers = []

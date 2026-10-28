@@ -1,0 +1,9 @@
+{
+  "batch_id": "example",
+  "records": [
+    {
+      "id": "item-1",
+      "text": "4,8,12"
+    }
+  ]
+}

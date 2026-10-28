@@ -1,0 +1,16 @@
+{
+  "lines": [
+    {
+      "sku": "A",
+      "price": 10,
+      "qty": 2
+    },
+    {
+      "sku": "B",
+      "price": 25,
+      "qty": 1
+    }
+  ],
+  "vip": true,
+  "shipping": 3
+}

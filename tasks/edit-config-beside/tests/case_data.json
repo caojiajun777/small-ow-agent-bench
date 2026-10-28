@@ -1,0 +1,44 @@
+{
+  "calls": [
+    {
+      "module": "settings",
+      "function": "load",
+      "args": [],
+      "expected": {
+        "retry": 5,
+        "mode": "prod"
+      }
+    }
+  ],
+  "flows": [
+    {
+      "request": {
+        "jobs": [
+          "a",
+          "b"
+        ]
+      },
+      "expected": [
+        {
+          "id": "a",
+          "retry": 5,
+          "mode": "prod",
+          "queue": "default"
+        },
+        {
+          "id": "b",
+          "retry": 5,
+          "mode": "prod",
+          "queue": "default"
+        }
+      ]
+    },
+    {
+      "request": {
+        "jobs": []
+      },
+      "expected": []
+    }
+  ]
+}
+

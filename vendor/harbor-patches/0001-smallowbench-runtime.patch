@@ -1,0 +1,489 @@
+diff --git a/src/harbor/environments/docker/docker.py b/src/harbor/environments/docker/docker.py
+index 69994203a8307d60d388f401274466730244032f..6e9fdf4145c1fbe65258ca874990930ca88f94a9 100644
+--- a/src/harbor/environments/docker/docker.py
++++ b/src/harbor/environments/docker/docker.py
+@@ -33,6 +33,7 @@ from harbor.environments.definition import (
+ from harbor.environments.docker import (
+     COMPOSE_BUILD_PATH,
+     COMPOSE_EGRESS_CONTROL_PATH,
++    COMPOSE_NO_NETWORK_PATH,
+     COMPOSE_PREBUILT_PATH,
+     COMPOSE_WINDOWS_KEEPALIVE_PATH,
+     EGRESS_CONTROL_SIDECAR_CONTEXT_PATH,
+@@ -193,6 +194,21 @@ class DockerEnvironment(BaseEnvironment):
+             )
+             and self._egress_control_kernel_support()
+         )
++        # A plain Linux container with an unchanging deny-all policy does not
++        # need nftables. Keep this fallback deliberately narrower than Compose
++        # networking: every possible phase must stay offline, and no task or
++        # caller overlay may add services or override network_mode.
++        self._static_no_network = (
++            not self._is_windows_container
++            and not self._enable_egress_control
++            and startup_network_policy.network_mode == NetworkMode.NO_NETWORK
++            and all(
++                policy.network_mode == NetworkMode.NO_NETWORK
++                for policy in phase_network_policies
++            )
++            and not (environment_dir / "docker-compose.yaml").exists()
++            and not kwargs.get("extra_docker_compose")
++        )
+         super().__init__(
+             environment_dir=environment_dir,
+             environment_name=environment_name,
+@@ -290,7 +306,7 @@ class DockerEnvironment(BaseEnvironment):
+     @override
+     def capabilities(self) -> EnvironmentCapabilities:
+         return EnvironmentCapabilities(
+-            disable_internet=self._enable_egress_control,
++            disable_internet=self._enable_egress_control or self._static_no_network,
+             network_allowlist=self._enable_egress_control,
+             network_allowlist_hostnames=self._enable_egress_control,
+             network_allowlist_wildcard_hostnames=self._enable_egress_control,
+@@ -375,6 +391,15 @@ class DockerEnvironment(BaseEnvironment):
+             paths.append(self._DOCKER_COMPOSE_EGRESS_CONTROL_PATH)
+             if self._egress_control_services_compose_path:
+                 paths.append(self._egress_control_services_compose_path)
++        elif self._static_no_network:
++            # Also check at use time: adding an overlay after construction must
++            # not silently broaden this single-service fallback.
++            if self._uses_compose:
++                raise ValueError(
++                    "Static Docker no-network does not support task or extra "
++                    "Docker Compose files."
++                )
++            paths.append(COMPOSE_NO_NETWORK_PATH)
+ 
+         return paths
+ 
+@@ -565,6 +590,14 @@ class DockerEnvironment(BaseEnvironment):
+         self, network_policy: NetworkPolicy | None = None
+     ) -> None:
+         network_policy = network_policy or self.network_policy
++        if (
++            self._static_no_network
++            and network_policy.network_mode != NetworkMode.NO_NETWORK
++        ):
++            raise ValueError(
++                "Static Docker no-network supports only an unchanging "
++                "network_mode='no-network' policy."
++            )
+         if (
+             self._is_windows_container
+             and network_policy.network_mode != NetworkMode.PUBLIC
+@@ -864,6 +897,85 @@ class DockerEnvironment(BaseEnvironment):
+             return False
+         return result.returncode == 0
+ 
++    async def _verify_static_no_network(self) -> None:
++        """Fail closed unless Docker actually created the isolated main container.
++
++        The host-side record is not mounted into the agent or verifier. Agent
++        and separate-verifier session IDs produce distinct evidence files.
++        """
++        evidence: dict[str, object] = {
++            "schema_version": 1,
++            "isolation": "docker-network-none",
++            "session_id": self.session_id,
++            "container_id": None,
++            "startup_network_policy": self.network_policy.model_dump(mode="json"),
++            "phase_network_policies": [
++                policy.model_dump(mode="json")
++                for policy in self._phase_network_policies
++            ],
++            "network_mode": None,
++            "image": None,
++            "image_id": None,
++            "verified": False,
++        }
++        try:
++            result = await self._run_docker_compose_command(
++                ["ps", "--all", "--quiet", MAIN_SERVICE_NAME], check=True
++            )
++            container_id = (result.stdout or "").strip()
++            if not re.fullmatch(r"[0-9a-f]{64}", container_id):
++                raise RuntimeError(
++                    "Static Docker no-network requires exactly one main container ID."
++                )
++            evidence["container_id"] = container_id
++            proc = await asyncio.create_subprocess_exec(
++                "docker",
++                "inspect",
++                "--type",
++                "container",
++                "--format",
++                '{"network_mode":{{json .HostConfig.NetworkMode}},'
++                '"image":{{json .Config.Image}},"image_id":{{json .Image}}}',
++                container_id,
++                stdout=asyncio.subprocess.PIPE,
++                stderr=asyncio.subprocess.PIPE,
++            )
++            try:
++                stdout, _ = await asyncio.wait_for(proc.communicate(), timeout=10)
++            except BaseException:
++                if proc.returncode is None:
++                    proc.kill()
++                    await proc.wait()
++                raise
++            inspected = json.loads(stdout.decode("utf-8"))
++            if not isinstance(inspected, dict):
++                raise RuntimeError("Docker returned an invalid network inspection.")
++            for field in ("network_mode", "image", "image_id"):
++                evidence[field] = inspected.get(field)
++            if (
++                proc.returncode != 0
++                or inspected.get("network_mode") != "none"
++                or not isinstance(inspected.get("image"), str)
++                or not inspected["image"]
++                or not re.fullmatch(
++                    r"sha256:[0-9a-f]{64}", inspected.get("image_id", "")
++                )
++            ):
++                raise RuntimeError(
++                    "Static Docker no-network was not enforced by the running "
++                    "container (HostConfig.NetworkMode must be 'none')."
++                )
++            evidence["verified"] = True
++        finally:
++            directory = self.trial_paths.trial_dir / "environment"
++            directory.mkdir(parents=True, exist_ok=True)
++            path = directory / (
++                "static-network-"
++                + _sanitize_docker_compose_project_name(self.session_id)
++                + ".json"
++            )
++            path.write_text(json.dumps(evidence, indent=2) + "\n", encoding="utf-8")
++
+     @override
+     async def start(self, force_build: bool):
+         # Volume declarations always come from the runtime override now —
+@@ -912,6 +1024,9 @@ class DockerEnvironment(BaseEnvironment):
+ 
+         await self._run_docker_compose_command(["up", "--detach", "--wait"])
+ 
++        if self._static_no_network:
++            await self._verify_static_no_network()
++
+         # Auto-create + chmod each writable mount target inside the container.  Bind
+         # mounts auto-create the target as part of the mount, so mkdir is
+         # generally a no-op, but chmod makes the dir writable for non-root
+diff --git a/src/harbor/metrics/uv_script.py b/src/harbor/metrics/uv_script.py
+index cb34ac840a0884e1171a9d5e4ba1e508cc7c8e15..c041c40e3add384c0abb8744e9206fd1c3fc7a80 100644
+--- a/src/harbor/metrics/uv_script.py
++++ b/src/harbor/metrics/uv_script.py
+@@ -1,5 +1,6 @@
+ import json
+ import subprocess
++import sys
+ import tempfile
+ from pathlib import Path
+ from typing import Any, override
+@@ -28,6 +29,9 @@ class UvScript(BaseMetric[dict[Any, Any]]):
+                         json.dump(reward, f)
+                         f.write("\n")
+ 
++            # CREATE_NO_WINDOW on Windows: give the child a hidden console it
++            # can pass to descendants, so neither uv nor the python it spawns
++            # ever asks Windows Terminal to host a visible window.
+             result = subprocess.run(
+                 [
+                     "uv",
+@@ -40,6 +44,7 @@ class UvScript(BaseMetric[dict[Any, Any]]):
+                 ],
+                 capture_output=True,
+                 text=True,
++                creationflags=subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0,
+             )
+ 
+             if result.returncode != 0:
+diff --git a/tests/unit/environments/test_docker.py b/tests/unit/environments/test_docker.py
+index 5935d0c98c81a5e0b21046f01c2813ccfaae37b9..c9bcd2c0bbd9aadd8834a657158c4c12cd445012 100644
+--- a/tests/unit/environments/test_docker.py
++++ b/tests/unit/environments/test_docker.py
+@@ -8,12 +8,13 @@ import subprocess
+ import sys
+ import tarfile
+ from pathlib import Path
+-from unittest.mock import AsyncMock, patch
++from unittest.mock import AsyncMock, Mock, patch
+ 
+ import pytest
+ 
+ from harbor.environments.base import ExecResult
+ from harbor.environments.docker import (
++    COMPOSE_NO_NETWORK_PATH,
+     RESOURCES_COMPOSE_NAME,
+     write_resources_compose_file,
+ )
+@@ -1208,6 +1209,241 @@ class TestComposeEnvVars:
+         assert env_vars["EGRESS_CONTROL_INITIAL_ALLOWED_HOSTS"] == ""
+ 
+ 
++class TestDockerStaticNoNetwork:
++    """A missing nftables feature must not require weakening deny-all tasks."""
++
++    @staticmethod
++    def _make_environment(
++        temp_dir,
++        *,
++        startup=NetworkMode.NO_NETWORK,
++        phases=(),
++        task_compose=False,
++        extra_compose=False,
++        task_os="linux",
++    ):
++        env_dir = temp_dir / "environment"
++        env_dir.mkdir()
++        (env_dir / "Dockerfile").write_text("FROM ubuntu:22.04\n")
++        if task_compose:
++            (env_dir / "docker-compose.yaml").write_text(
++                "services:\n  main:\n    image: ubuntu:22.04\n"
++            )
++        extra = []
++        if extra_compose:
++            overlay = temp_dir / "extra.yaml"
++            overlay.write_text("services:\n  main:\n    network_mode: none\n")
++            extra.append(overlay)
++        trial_paths = TrialPaths(trial_dir=temp_dir / "trial")
++        trial_paths.mkdir()
++        with patch.object(
++            DockerEnvironment, "_egress_control_kernel_support", return_value=False
++        ):
++            return DockerEnvironment(
++                environment_dir=env_dir,
++                environment_name="test-task",
++                session_id="test-task__abc123__env",
++                trial_paths=trial_paths,
++                task_env_config=EnvironmentConfig(
++                    docker_image="ubuntu:22.04", os=task_os
++                ),
++                network_policy=NetworkPolicy(network_mode=startup),
++                phase_network_policies=[
++                    NetworkPolicy(network_mode=phase) for phase in phases
++                ],
++                extra_docker_compose=extra,
++            )
++
++    @staticmethod
++    def _inspection_process(mode="none", *, returncode=0):
++        proc = Mock()
++        proc.returncode = returncode
++        proc.communicate = AsyncMock(
++            return_value=(
++                json.dumps(
++                    {
++                        "network_mode": mode,
++                        "image": "ubuntu:22.04",
++                        "image_id": "sha256:" + "b" * 64,
++                    }
++                ).encode(),
++                b"",
++            )
++        )
++        return proc
++
++    @pytest.mark.parametrize("phases", [(), (NetworkMode.NO_NETWORK,)])
++    def test_pure_offline_policy_has_only_static_capability(self, temp_dir, phases):
++        env = self._make_environment(temp_dir, phases=phases)
++        assert env._static_no_network is True
++        assert env._enable_egress_control is False
++        assert env.capabilities.disable_internet is True
++        assert env.capabilities.dynamic_network_policy is False
++        assert env.capabilities.network_allowlist is False
++        assert env.capabilities.network_allowlist_hostnames is False
++        assert env.capabilities.network_allowlist_ipv4_cidrs is False
++        assert env._docker_compose_paths[-1] == COMPOSE_NO_NETWORK_PATH
++        assert "network_mode: none" in COMPOSE_NO_NETWORK_PATH.read_text()
++        assert env._DOCKER_COMPOSE_EGRESS_CONTROL_PATH not in env._docker_compose_paths
++
++    def test_public_policy_does_not_gain_static_capability(self, temp_dir):
++        env = self._make_environment(
++            temp_dir, startup=NetworkMode.PUBLIC, phases=(NetworkMode.PUBLIC,)
++        )
++        assert env._static_no_network is False
++        assert env.capabilities.disable_internet is False
++        assert COMPOSE_NO_NETWORK_PATH not in env._docker_compose_paths
++
++    @pytest.mark.parametrize(
++        ("startup", "phases"),
++        [
++            (NetworkMode.NO_NETWORK, (NetworkMode.PUBLIC,)),
++            (NetworkMode.PUBLIC, (NetworkMode.NO_NETWORK,)),
++            (NetworkMode.NO_NETWORK, (NetworkMode.ALLOWLIST,)),
++            (NetworkMode.ALLOWLIST, (NetworkMode.NO_NETWORK,)),
++        ],
++    )
++    def test_mixed_or_allowlist_policy_still_rejected(self, temp_dir, startup, phases):
++        with pytest.raises(ValueError, match="is not supported"):
++            self._make_environment(temp_dir, startup=startup, phases=phases)
++
++    @pytest.mark.parametrize("compose_kind", ["task_compose", "extra_compose"])
++    def test_compose_paths_still_rejected(self, temp_dir, compose_kind):
++        with pytest.raises(ValueError, match="is not supported"):
++            self._make_environment(temp_dir, **{compose_kind: True})
++
++    def test_windows_policy_still_rejected(self, temp_dir):
++        with pytest.raises(ValueError, match="for Windows containers"):
++            self._make_environment(temp_dir, task_os="windows")
++
++    @pytest.mark.parametrize("compose_kind", ["task", "extra"])
++    def test_adding_compose_after_construction_is_rejected(
++        self, temp_dir, compose_kind
++    ):
++        env = self._make_environment(temp_dir)
++        if compose_kind == "task":
++            (env.environment_dir / "docker-compose.yaml").write_text("services: {}\n")
++        else:
++            overlay = temp_dir / "late.yaml"
++            overlay.write_text("services: {}\n")
++            env.extra_docker_compose_paths.append(overlay)
++        with pytest.raises(ValueError, match="does not support.*Compose"):
++            _ = env._docker_compose_paths
++
++    @pytest.mark.parametrize("mode", [NetworkMode.PUBLIC, NetworkMode.ALLOWLIST])
++    async def test_static_mode_cannot_be_switched_to_other_policy(self, temp_dir, mode):
++        env = self._make_environment(temp_dir)
++        with pytest.raises(ValueError, match="only an unchanging"):
++            await env.set_network_policy(NetworkPolicy(network_mode=mode))
++        await env.set_network_policy(NetworkPolicy(network_mode=NetworkMode.NO_NETWORK))
++
++    async def test_inspection_writes_separate_host_evidence(self, temp_dir):
++        env = self._make_environment(temp_dir, phases=(NetworkMode.NO_NETWORK,))
++        env._run_docker_compose_command = AsyncMock(
++            return_value=ExecResult(return_code=0, stdout="a" * 64 + "\n")
++        )
++        inspect = AsyncMock(return_value=self._inspection_process())
++        with patch(
++            "harbor.environments.docker.docker.asyncio.create_subprocess_exec", inspect
++        ):
++            await env._verify_static_no_network()
++            env.session_id = "test-task__abc123__verifier__grade"
++            env._run_docker_compose_command.return_value.stdout = "c" * 64 + "\n"
++            await env._verify_static_no_network()
++        proofs = [
++            json.loads(path.read_text())
++            for path in (env.trial_paths.trial_dir / "environment").glob(
++                "static-network-*.json"
++            )
++        ]
++        assert len(proofs) == 2
++        assert {row["container_id"] for row in proofs} == {"a" * 64, "c" * 64}
++        for proof in proofs:
++            assert proof["schema_version"] == 1
++            assert proof["isolation"] == "docker-network-none"
++            assert proof["verified"] is True
++            assert proof["network_mode"] == "none"
++            assert proof["image"] == "ubuntu:22.04"
++            assert proof["image_id"] == "sha256:" + "b" * 64
++            assert proof["phase_network_policies"] == [
++                {"network_mode": "no-network", "allowed_hosts": []}
++            ]
++        assert inspect.call_count == 2
++
++    @pytest.mark.parametrize("mode", ["bridge", "host", "", "none\nbridge"])
++    async def test_inspection_mismatch_fails_closed(self, temp_dir, mode):
++        env = self._make_environment(temp_dir)
++        env._run_docker_compose_command = AsyncMock(
++            return_value=ExecResult(return_code=0, stdout="a" * 64)
++        )
++        with patch(
++            "harbor.environments.docker.docker.asyncio.create_subprocess_exec",
++            new=AsyncMock(return_value=self._inspection_process(mode)),
++        ):
++            with pytest.raises(RuntimeError, match="was not enforced"):
++                await env._verify_static_no_network()
++        proof = next(
++            (env.trial_paths.trial_dir / "environment").glob("static-network-*.json")
++        )
++        assert json.loads(proof.read_text())["verified"] is False
++
++    @pytest.mark.parametrize("container_id", ["", "a" * 12, "a" * 64 + "\n" + "b" * 64])
++    async def test_absent_or_ambiguous_container_cannot_pass(
++        self, temp_dir, container_id
++    ):
++        env = self._make_environment(temp_dir)
++        env._run_docker_compose_command = AsyncMock(
++            return_value=ExecResult(return_code=0, stdout=container_id)
++        )
++        inspect = AsyncMock()
++        with patch(
++            "harbor.environments.docker.docker.asyncio.create_subprocess_exec", inspect
++        ):
++            with pytest.raises(RuntimeError, match="exactly one main container ID"):
++                await env._verify_static_no_network()
++        inspect.assert_not_awaited()
++
++    @pytest.mark.parametrize("network_verified", [True, False])
++    async def test_start_checks_network_before_container_access(
++        self, temp_dir, network_verified
++    ):
++        env = self._make_environment(temp_dir)
++        events = []
++        env._run_docker_compose_command = AsyncMock(
++            return_value=ExecResult(return_code=0)
++        )
++        env._validate_daemon_mode = lambda: None
++        env._validate_image_os = AsyncMock()
++        env._ensure_egress_control_sidecar_image_built = AsyncMock()
++
++        async def verify():
++            events.append("verify")
++            if not network_verified:
++                raise RuntimeError("network mismatch")
++
++        async def access(*args, **kwargs):
++            events.append("access")
++
++        env._verify_static_no_network = verify
++        env.ensure_dirs = AsyncMock(side_effect=access)
++        env._upload_environment_dir_after_start = AsyncMock(side_effect=access)
++        try:
++            if network_verified:
++                await env.start(force_build=False)
++                assert events == ["verify", "access", "access"]
++            else:
++                with pytest.raises(RuntimeError, match="network mismatch"):
++                    await env.start(force_build=False)
++                assert events == ["verify"]
++                env.ensure_dirs.assert_not_awaited()
++                env._upload_environment_dir_after_start.assert_not_awaited()
++            env._ensure_egress_control_sidecar_image_built.assert_not_awaited()
++        finally:
++            env._cleanup_mounts_compose_file()
++            env._cleanup_resources_compose_file()
++            env._cleanup_env_compose_file()
++
++
+ class TestDockerNetworkPolicy:
+     def test_default_public_policy_does_not_enable_egress_control(self, docker_env):
+         assert docker_env._enable_egress_control is False
+@@ -1268,7 +1504,7 @@ class TestDockerNetworkPolicy:
+         assert env._enable_egress_control is True
+ 
+     @pytest.mark.parametrize("client_platform", ["linux", "darwin", "win32"])
+-    def test_restricted_policy_rejected_without_daemon_kernel_support(
++    def test_allowlist_policy_rejected_without_daemon_kernel_support(
+         self, temp_dir, client_platform
+     ):
+         _reset_egress_control_kernel_support_cache()
+@@ -1284,7 +1520,7 @@ class TestDockerNetworkPolicy:
+                 DockerEnvironment, "_egress_control_kernel_support", return_value=False
+             ) as kernel_support,
+             pytest.raises(
+-                ValueError, match="network_mode='no-network' is not supported"
++                ValueError, match="network_mode='allowlist' is not supported"
+             ),
+         ):
+             DockerEnvironment(
+@@ -1293,7 +1529,9 @@ class TestDockerNetworkPolicy:
+                 session_id="test-task__abc123",
+                 trial_paths=trial_paths,
+                 task_env_config=EnvironmentConfig(docker_image="ubuntu:22.04"),
+-                network_policy=NetworkPolicy(network_mode=NetworkMode.NO_NETWORK),
++                network_policy=NetworkPolicy(
++                    network_mode=NetworkMode.ALLOWLIST, allowed_hosts=["pypi.org"]
++                ),
+             )
+ 
+         kernel_support.assert_called_once_with()

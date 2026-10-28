@@ -1,0 +1,49 @@
+{
+  "kind": "testgen",
+  "correct": [
+    {
+      "name": "reference",
+      "patch": {
+        "clip.py": "gold/clip.py"
+      }
+    },
+    {
+      "name": "alternative",
+      "patch": {
+        "clip.py": "gold_alt/clip.py"
+      }
+    }
+  ],
+  "incorrect": [
+    {
+      "name": "hi_only",
+      "patch": {
+        "clip.py": "mutants/hi_only.py"
+      }
+    },
+    {
+      "name": "identity",
+      "patch": {
+        "clip.py": "mutants/identity.py"
+      }
+    },
+    {
+      "name": "lo_only",
+      "patch": {
+        "clip.py": "mutants/lo_only.py"
+      }
+    },
+    {
+      "name": "does_not_publish_output",
+      "patch": {
+        "workflow.py": "workflow_mutants/no_publish.py"
+      }
+    },
+    {
+      "name": "ignores_stop_policy",
+      "patch": {
+        "service.py": "workflow_mutants/ignore_stop.py"
+      }
+    }
+  ]
+}

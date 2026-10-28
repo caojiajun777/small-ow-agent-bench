@@ -1,0 +1,43 @@
+{
+  "kind": "testgen",
+  "correct": [
+    {
+      "name": "reference",
+      "patch": {
+        "parse.py": "gold/parse.py"
+      }
+    },
+    {
+      "name": "alternative",
+      "patch": {
+        "parse.py": "gold_alt/parse.py"
+      }
+    }
+  ],
+  "incorrect": [
+    {
+      "name": "no_strip",
+      "patch": {
+        "parse.py": "mutants/no_strip.py"
+      }
+    },
+    {
+      "name": "whole",
+      "patch": {
+        "parse.py": "mutants/whole.py"
+      }
+    },
+    {
+      "name": "does_not_publish_output",
+      "patch": {
+        "workflow.py": "workflow_mutants/no_publish.py"
+      }
+    },
+    {
+      "name": "ignores_stop_policy",
+      "patch": {
+        "service.py": "workflow_mutants/ignore_stop.py"
+      }
+    }
+  ]
+}

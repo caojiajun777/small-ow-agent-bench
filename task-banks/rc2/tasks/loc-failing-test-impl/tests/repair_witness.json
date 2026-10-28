@@ -1,0 +1,10 @@
+{
+  "kind": "localization",
+  "public_tests": "tests",
+  "files": {
+    "tax.py": "RATE = .1\n\n\ndef with_tax(net):\n    amount = float(net)\n    return amount + amount * RATE\n"
+  },
+  "required": [
+    "tax.py"
+  ]
+}

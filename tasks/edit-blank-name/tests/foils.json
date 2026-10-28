@@ -1,0 +1,20 @@
+{
+  "kind": "edit",
+  "foils": [
+    {
+      "id": "primitive-only",
+      "files": {
+        "profile.py": "def display_name(user):\n    return user[\"name\"] if \"name\" in user else \"guest\"\n",
+        "workflow.py": "from profile import display_name\n\ndef process(request):\n    return [{\"id\": user[\"id\"], \"display\": display_name(user) or 'guest'} for user in request[\"users\"]]\n"
+      }
+    },
+    {
+      "id": "workflow-only",
+      "files": {
+        "profile.py": "def display_name(user):\n    return user.get(\"name\") or \"guest\"\n",
+        "workflow.py": "from profile import display_name\n\ndef process(request):\n    return [{\"id\": user[\"id\"], \"display\": display_name(user)} for user in request[\"users\"]]\n"
+      }
+    }
+  ]
+}
+

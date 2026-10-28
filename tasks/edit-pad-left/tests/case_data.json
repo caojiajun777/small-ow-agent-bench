@@ -1,0 +1,93 @@
+{
+  "calls": [
+    {
+      "module": "text",
+      "function": "pad_left",
+      "args": [
+        "ab",
+        4,
+        "0"
+      ],
+      "expected": "00ab"
+    },
+    {
+      "module": "text",
+      "function": "pad_left",
+      "args": [
+        "abcd",
+        3,
+        "0"
+      ],
+      "expected": "abcd"
+    },
+    {
+      "module": "text",
+      "function": "pad_left",
+      "args": [
+        "x",
+        3
+      ],
+      "expected": "  x"
+    },
+    {
+      "module": "text",
+      "function": "pad_left",
+      "args": [
+        "",
+        -1
+      ],
+      "expected": ""
+    },
+    {
+      "module": "text",
+      "function": "pad_left",
+      "args": [
+        "é",
+        3,
+        "."
+      ],
+      "expected": "..é"
+    }
+  ],
+  "flows": [
+    {
+      "request": {
+        "columns": [
+          {
+            "key": "id",
+            "width": 3,
+            "fill": "0"
+          },
+          {
+            "key": "name",
+            "width": 4
+          }
+        ],
+        "rows": [
+          {
+            "id": 7,
+            "name": "Ada"
+          },
+          {
+            "id": 1234,
+            "name": "X"
+          }
+        ]
+      },
+      "expected": "007 |  Ada\n1234 |    X"
+    },
+    {
+      "request": {
+        "columns": [
+          {
+            "key": "x",
+            "width": 1
+          }
+        ],
+        "rows": []
+      },
+      "expected": ""
+    }
+  ]
+}
+

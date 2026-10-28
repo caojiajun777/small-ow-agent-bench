@@ -1,0 +1,55 @@
+[
+  {
+    "config": {}
+  },
+  {
+    "config": {
+      "timeout": 0
+    }
+  },
+  {
+    "config": {
+      "timeout": 15
+    },
+    "override": {
+      "timeout": 0
+    }
+  },
+  {
+    "config": {
+      "timeout": 12
+    },
+    "override": {
+      "timeout": null
+    }
+  },
+  {
+    "config": {
+      "timeout": false
+    }
+  },
+  {
+    "config": {
+      "timeout": ""
+    }
+  },
+  {
+    "config": {
+      "timeout": 10
+    },
+    "override": {
+      "timeout": 5
+    }
+  },
+  {
+    "config": {
+      "timeout": {
+        "seconds": 0
+      }
+    },
+    "override": {
+      "timeout": []
+    }
+  }
+]
+

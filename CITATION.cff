@@ -1,6 +1,8 @@
 cff-version: 1.2.0
-message: If you use this benchmark, please cite it as below.
-title: small-ow-agent-bench
+message: >-
+  If you use this benchmark, please cite it as below and record the exact
+  release identifier and component versions used for your experiment.
+title: SmallOWBench 2.0
 type: software
 authors:
   - family-names: Cao
@@ -8,12 +10,17 @@ authors:
 repository-code: https://github.com/caojiajun777/small-ow-agent-bench
 url: https://huggingface.co/datasets/junjun77/small-ow-agent-bench
 license: Apache-2.0
-version: benchmark-v1.0.1
-date-released: "2026-08-27"
+version: 2.0.0-rc.2
 abstract: >-
-  Atomic-skill evaluation of compact open-weight coding agents under a frozen
-  compact-shell protocol. Headline numbers are five-skill Artifact / Clean
-  macro means on 62 items × 3 independent sandbox trials (API Standard).
+  An execution-based diagnostic benchmark for compact open-weight coding
+  agents, with 62 authored small Python engineering workflows across five
+  skills. Task and grader components are version 2.0.0-rc.2; the lightweight
+  shell harness remains version 2.0.0-rc.1. Artifact measures verified
+  deliverables; Clean additionally requires a normal protocol finish and is
+  not a real-world software-development E2E success rate. Existing RC2
+  container evidence covers five selected tasks with ten oracle/no-op slots,
+  not full-bank acceptance. New formal model scores await this release's run;
+  published legacy results do not transfer to the redesigned task bank.
 keywords:
   - agents
   - code

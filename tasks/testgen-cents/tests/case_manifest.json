@@ -1,0 +1,43 @@
+{
+  "kind": "testgen",
+  "correct": [
+    {
+      "name": "reference",
+      "patch": {
+        "cents.py": "gold/cents.py"
+      }
+    },
+    {
+      "name": "alternative",
+      "patch": {
+        "cents.py": "gold_alt/cents.py"
+      }
+    }
+  ],
+  "incorrect": [
+    {
+      "name": "dollars_as_cents",
+      "patch": {
+        "cents.py": "mutants/dollars_as_cents.py"
+      }
+    },
+    {
+      "name": "use_float",
+      "patch": {
+        "cents.py": "mutants/use_float.py"
+      }
+    },
+    {
+      "name": "does_not_publish_output",
+      "patch": {
+        "workflow.py": "workflow_mutants/no_publish.py"
+      }
+    },
+    {
+      "name": "ignores_stop_policy",
+      "patch": {
+        "service.py": "workflow_mutants/ignore_stop.py"
+      }
+    }
+  ]
+}

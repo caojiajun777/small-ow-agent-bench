@@ -1,0 +1,14 @@
+{
+  "jobs": [
+    {
+      "id": "late",
+      "outcomes": [
+        "fail",
+        "fail",
+        "fail",
+        "fail",
+        "ok"
+      ]
+    }
+  ]
+}

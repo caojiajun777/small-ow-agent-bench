@@ -1,0 +1,10 @@
+{
+  "kind": "localization",
+  "public_tests": "tests",
+  "files": {
+    "plugins/retry_v1.py": "ATTEMPTS = 5\n"
+  },
+  "required": [
+    "plugins/retry_v1.py"
+  ]
+}

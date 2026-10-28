@@ -1,0 +1,106 @@
+{
+  "calls": [
+    {
+      "module": "checkout",
+      "function": "charge",
+      "args": [
+        {
+          "list_price": 100,
+          "total": 100
+        }
+      ],
+      "expected": 90,
+      "mutates": true,
+      "repeat": 3
+    },
+    {
+      "module": "checkout",
+      "function": "charge",
+      "args": [
+        {
+          "list_price": 200,
+          "total": 180
+        }
+      ],
+      "expected": 180,
+      "mutates": true,
+      "repeat": 3
+    },
+    {
+      "module": "checkout",
+      "function": "charge",
+      "args": [
+        {
+          "list_price": 12.5,
+          "total": 1
+        }
+      ],
+      "expected": 11.25,
+      "mutates": true,
+      "repeat": 3
+    },
+    {
+      "module": "checkout",
+      "function": "charge",
+      "args": [
+        {
+          "list_price": 0,
+          "total": 99
+        }
+      ],
+      "expected": 0,
+      "mutates": true,
+      "repeat": 3
+    }
+  ],
+  "flows": [
+    {
+      "request": {
+        "attempts": 3,
+        "carts": [
+          {
+            "id": "a",
+            "list_price": 100,
+            "total": 100,
+            "shipping": 5
+          },
+          {
+            "id": "b",
+            "list_price": 50,
+            "total": 1
+          }
+        ]
+      },
+      "expected": [
+        {
+          "id": "a",
+          "total": 95
+        },
+        {
+          "id": "b",
+          "total": 45
+        }
+      ]
+    },
+    {
+      "request": {
+        "attempts": 2,
+        "carts": [
+          {
+            "id": 1,
+            "list_price": 12.5,
+            "total": 0,
+            "shipping": 1.25
+          }
+        ]
+      },
+      "expected": [
+        {
+          "id": 1,
+          "total": 12.5
+        }
+      ]
+    }
+  ]
+}
+

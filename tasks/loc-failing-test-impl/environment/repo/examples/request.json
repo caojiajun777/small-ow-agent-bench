@@ -1,0 +1,14 @@
+{
+  "lines": [
+    {
+      "price": 50,
+      "qty": 2
+    },
+    {
+      "price": 20,
+      "qty": 1
+    }
+  ],
+  "discount": 0.25,
+  "shipping": 4
+}

@@ -1,0 +1,20 @@
+{
+  "kind": "localization",
+  "foils": [
+    {
+      "id": "plausible-wrong-owner",
+      "answer": [
+        "app.py",
+        "logger.py",
+        "config.yaml"
+      ]
+    },
+    {
+      "id": "extra-correct-caller",
+      "answer": [
+        "bin/serve.sh",
+        "app.py"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+"""Private reference review; only the report is written to the agent workspace."""
+import json
+import os
+from pathlib import Path
+
+REPO = Path(os.environ.get("BENCH_REPO_ROOT", "/app/repo"))
+APP = Path(os.environ.get("BENCH_APP_ROOT", "/app"))
+REPORT = json.loads("{\"schema_version\":2,\"reviews\":[{\"candidate\":\"cedar\",\"decision\":\"accept\",\"location\":null,\"behavior\":null,\"cases\":[{\"input\":{\"counts\":[\"3\",\"  -2 \",\"+0\"]},\"expected\":{\"counts\":[3,-2,0]}},{\"input\":{\"counts\":[\"oops\"]},\"expected\":{\"error\":\"ValueError\"}},{\"input\":{\"counts\":[\"0\"]},\"expected\":{\"counts\":[0]}},{\"input\":{\"counts\":[\"1_0\"]},\"expected\":{\"error\":\"ValueError\"}},{\"input\":{\"counts\":[\"٣\"]},\"expected\":{\"error\":\"ValueError\"}},{\"input\":{\"counts\":[\"\"]},\"expected\":{\"error\":\"ValueError\"}},{\"input\":{\"counts\":[]},\"expected\":{\"counts\":[]}},{\"input\":{\"counts\":[\"+12\",\"-0\"]},\"expected\":{\"counts\":[12,0]}}]},{\"candidate\":\"maple\",\"decision\":\"reject\",\"location\":{\"path\":\"candidates/maple/parse.py\",\"line\":10},\"behavior\":\"The candidate violates the documented public behavior on the supplied executable counterexample.\",\"cases\":[{\"input\":{\"counts\":[\"3\",\"  -2 \",\"+0\"]},\"expected\":{\"counts\":[3,-2,0]}},{\"input\":{\"counts\":[\"oops\"]},\"expected\":{\"error\":\"ValueError\"}},{\"input\":{\"counts\":[\"0\"]},\"expected\":{\"counts\":[0]}},{\"input\":{\"counts\":[\"1_0\"]},\"expected\":{\"error\":\"ValueError\"}},{\"input\":{\"counts\":[\"٣\"]},\"expected\":{\"error\":\"ValueError\"}},{\"input\":{\"counts\":[\"\"]},\"expected\":{\"error\":\"ValueError\"}},{\"input\":{\"counts\":[]},\"expected\":{\"counts\":[]}},{\"input\":{\"counts\":[\"+12\",\"-0\"]},\"expected\":{\"counts\":[12,0]}}]},{\"candidate\":\"birch\",\"decision\":\"reject\",\"location\":{\"path\":\"candidates/birch/parse.py\",\"line\":8},\"behavior\":\"The candidate violates the documented public behavior on the supplied executable counterexample.\",\"cases\":[{\"input\":{\"counts\":[\"3\",\"  -2 \",\"+0\"]},\"expected\":{\"counts\":[3,-2,0]}},{\"input\":{\"counts\":[\"oops\"]},\"expected\":{\"error\":\"ValueError\"}},{\"input\":{\"counts\":[\"0\"]},\"expected\":{\"counts\":[0]}},{\"input\":{\"counts\":[\"1_0\"]},\"expected\":{\"error\":\"ValueError\"}},{\"input\":{\"counts\":[\"٣\"]},\"expected\":{\"error\":\"ValueError\"}},{\"input\":{\"counts\":[\"\"]},\"expected\":{\"error\":\"ValueError\"}},{\"input\":{\"counts\":[]},\"expected\":{\"counts\":[]}},{\"input\":{\"counts\":[\"+12\",\"-0\"]},\"expected\":{\"counts\":[12,0]}}]},{\"candidate\":\"willow\",\"decision\":\"accept\",\"location\":null,\"behavior\":null,\"cases\":[{\"input\":{\"counts\":[\"3\",\"  -2 \",\"+0\"]},\"expected\":{\"counts\":[3,-2,0]}},{\"input\":{\"counts\":[\"oops\"]},\"expected\":{\"error\":\"ValueError\"}},{\"input\":{\"counts\":[\"0\"]},\"expected\":{\"counts\":[0]}},{\"input\":{\"counts\":[\"1_0\"]},\"expected\":{\"error\":\"ValueError\"}},{\"input\":{\"counts\":[\"٣\"]},\"expected\":{\"error\":\"ValueError\"}},{\"input\":{\"counts\":[\"\"]},\"expected\":{\"error\":\"ValueError\"}},{\"input\":{\"counts\":[]},\"expected\":{\"counts\":[]}},{\"input\":{\"counts\":[\"+12\",\"-0\"]},\"expected\":{\"counts\":[12,0]}}]}]}")
+
+def main():
+    candidates = json.loads((REPO / "candidates.json").read_text())["candidates"]
+    assert set(candidates) == {row["candidate"] for row in REPORT["reviews"]}
+    APP.mkdir(parents=True, exist_ok=True)
+    (APP / "review.json").write_text(json.dumps(REPORT, ensure_ascii=False, allow_nan=False, indent=2) + "\n", encoding="utf-8")
+
+if __name__ == "__main__":
+    main()
+

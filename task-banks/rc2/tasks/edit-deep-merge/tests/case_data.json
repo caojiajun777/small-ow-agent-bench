@@ -1,0 +1,243 @@
+{
+  "calls": [
+    {
+      "module": "merge",
+      "function": "deep_merge",
+      "args": [
+        {
+          "a": {
+            "x": 1,
+            "y": 2
+          },
+          "b": [
+            1,
+            2
+          ]
+        },
+        {
+          "a": {
+            "y": 3,
+            "z": 4
+          },
+          "b": [
+            8
+          ],
+          "d": 0
+        }
+      ],
+      "expected": {
+        "a": {
+          "x": 1,
+          "y": 3,
+          "z": 4
+        },
+        "b": [
+          8
+        ],
+        "d": 0
+      },
+      "isolate_nested": true
+    },
+    {
+      "module": "merge",
+      "function": "deep_merge",
+      "args": [
+        {
+          "x": {
+            "a": 1
+          }
+        },
+        {
+          "x": null
+        }
+      ],
+      "expected": {
+        "x": null
+      },
+      "isolate_nested": true
+    },
+    {
+      "module": "merge",
+      "function": "deep_merge",
+      "args": [
+        {
+          "x": [
+            1
+          ]
+        },
+        {
+          "x": {
+            "a": 2
+          }
+        }
+      ],
+      "expected": {
+        "x": {
+          "a": 2
+        }
+      },
+      "isolate_nested": true
+    },
+    {
+      "module": "merge",
+      "function": "deep_merge",
+      "args": [
+        {
+          "keep": {
+            "x": [
+              1
+            ]
+          }
+        },
+        {}
+      ],
+      "expected": {
+        "keep": {
+          "x": [
+            1
+          ]
+        }
+      },
+      "isolate_nested": true
+    },
+    {
+      "module": "merge",
+      "function": "deep_merge",
+      "args": [
+        {
+          "enabled": false,
+          "nested": {
+            "retries": 0,
+            "empty": null
+          }
+        },
+        {}
+      ],
+      "expected": {
+        "enabled": false,
+        "nested": {
+          "retries": 0,
+          "empty": null
+        }
+      },
+      "isolate_nested": true
+    }
+  ],
+  "flows": [
+    {
+      "request": {
+        "layers": [
+          {
+            "db": {
+              "host": "local",
+              "port": 10
+            },
+            "tags": [
+              "a"
+            ]
+          },
+          {
+            "db": {
+              "port": 20
+            }
+          },
+          {
+            "tags": [],
+            "enabled": false
+          }
+        ]
+      },
+      "expected": {
+        "config": {
+          "db": {
+            "host": "local",
+            "port": 20
+          },
+          "tags": [],
+          "enabled": false
+        },
+        "layers_applied": 3
+      }
+    },
+    {
+      "request": {
+        "layers": []
+      },
+      "expected": {
+        "config": {},
+        "layers_applied": 0
+      }
+    },
+    {
+      "request": {
+        "layers": [
+          {
+            "untouched": {
+              "nested": [
+                {
+                  "value": 3
+                }
+              ]
+            },
+            "tags": [
+              "x"
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "config": {
+          "untouched": {
+            "nested": [
+              {
+                "value": 3
+              }
+            ]
+          },
+          "tags": [
+            "x"
+          ]
+        },
+        "layers_applied": 1
+      }
+    },
+    {
+      "request": {
+        "layers": [
+          {
+            "db": {
+              "host": "local"
+            }
+          },
+          {
+            "features": {
+              "enabled": false
+            },
+            "queue": [
+              {
+                "id": "q"
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "config": {
+          "db": {
+            "host": "local"
+          },
+          "features": {
+            "enabled": false
+          },
+          "queue": [
+            {
+              "id": "q"
+            }
+          ]
+        },
+        "layers_applied": 2
+      }
+    }
+  ]
+}
+

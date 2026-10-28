@@ -1,0 +1,8 @@
+{
+  "schema_version": 2,
+  "task_id": "loc-unused-fix",
+  "task_version": "2.0.0-rc.2",
+  "grader_version": "2.0.0-rc.2",
+  "skill": "loc",
+  "worker_timeout_sec": 165
+}

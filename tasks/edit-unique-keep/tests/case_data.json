@@ -1,0 +1,115 @@
+{
+  "calls": [
+    {
+      "module": "unique",
+      "function": "unique",
+      "args": [
+        [
+          2,
+          1,
+          2,
+          1
+        ]
+      ],
+      "expected": [
+        2,
+        1
+      ]
+    },
+    {
+      "module": "unique",
+      "function": "unique",
+      "args": [
+        []
+      ],
+      "expected": []
+    },
+    {
+      "module": "unique",
+      "function": "unique",
+      "args": [
+        [
+          {
+            "a": 1
+          },
+          {
+            "a": 1
+          },
+          {
+            "a": 2
+          }
+        ]
+      ],
+      "expected": [
+        {
+          "a": 1
+        },
+        {
+          "a": 2
+        }
+      ]
+    },
+    {
+      "module": "unique",
+      "function": "unique",
+      "args": [
+        [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          1
+        ],
+        [
+          2
+        ]
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "request": {
+        "events": [
+          {
+            "key": "b",
+            "payload": 1
+          },
+          {
+            "key": "a",
+            "payload": 2
+          },
+          {
+            "key": "b",
+            "payload": 9
+          }
+        ]
+      },
+      "expected": [
+        {
+          "key": "b",
+          "payload": 1
+        },
+        {
+          "key": "a",
+          "payload": 2
+        }
+      ]
+    },
+    {
+      "request": {
+        "events": []
+      },
+      "expected": []
+    }
+  ]
+}
+

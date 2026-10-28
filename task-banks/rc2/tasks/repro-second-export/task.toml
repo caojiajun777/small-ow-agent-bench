@@ -1,0 +1,52 @@
+schema_version = "1.4"
+artifacts = [{ source = "/app/repo", destination = "submission/repo", exclude = ["__pycache__", "*.pyc", ".pytest_cache", ".git", ".env", ".env.*", "credentials.json", "id_rsa", "id_ed25519"] }, { source = "/app/repro.py", destination = "submission/repro.py" }]
+
+[task]
+name = "small-ow-agent-bench/repro-second-export"
+version = "2.0.0-rc.2"
+authors = []
+keywords = ["agentic-coding", "issue-reproduction", "hard-release"]
+
+[metadata]
+author_name = ""
+author_email = ""
+difficulty = "hard"
+construct_difficulty = "hard"
+empirical_band = "uncalibrated"
+calibration_status = "not_run"
+benchmark_revision = "contract-diagnostics-2026-10-25"
+source_type = "handcrafted-workflow"
+legacy_task_version = "1.0.0"
+legacy_empirical_band = "medium"
+legacy_calibration_status = "calibrated"
+difficulty_weight = 2.0
+trap_id = "RR1"
+category = "software"
+subcategory = "issue-reproduction"
+tags = ["issue-reproduction", "hard", "hard-release", "agentic-coding", "atomic-skills"]
+difficulty_explanation = "Inherited original trap tier only; upgraded workflow has not been empirically calibrated."
+expert_time_estimate_hours = 0.3
+
+[verifier]
+environment_mode = "separate"
+network_mode = "no-network"
+timeout_sec = 180.0
+
+[verifier.environment]
+network_mode = "no-network"
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+
+[agent]
+network_mode = "no-network"
+timeout_sec = 180.0
+
+[environment]
+network_mode = "no-network"
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+gpus = 0
+mcp_servers = []

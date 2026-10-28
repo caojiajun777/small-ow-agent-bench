@@ -1,7 +1,16 @@
-`/app/repo/order.py` implements `line_total(qty, price)`.
+# Invoice line-item import: write regression tests
 
-`qty` is an int or `None`. Quantity must be a non-negative integer when present.
-Missing quantity is an error. Line total is quantity times unit price.
-Details are on `line_total`.
+The file-backed worker is at `/app/repo`. Read `README.md` for the complete public
+batch/API/CLI contract. The existing order.py functionality is now consumed
+by service.py and workflow.py; tests must exercise that real entry point and its
+published report, not only an isolated helper.
 
-Write unit tests in `/app/repo/tests/test_order.py`. Do not change `order.py`. You have 180 seconds.
+Write tests under `/app/repo/tests/test_*.py`, with any small fixtures under tests/.
+Do not modify application files or add conftest.py. Cover the domain rules,
+file publication and collect/stop error policies. Correct alternative implementations
+must pass; behaviorally wrong implementations must be detected reproducibly.
+Imports, collection failures, empty suites and timeouts do not count as detection.
+Normal subprocess CLI tests are allowed. Source/bytecode/hidden-path introspection
+is not. Use temporary fixture/output directories and normal imports.
+
+You may run `python3 -m pytest /app/repo/tests -q`. The original task time limit applies.

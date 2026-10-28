@@ -1,0 +1,86 @@
+{
+  "calls": [
+    {
+      "module": "filter_jsonl",
+      "function": "keep_ok",
+      "args": [
+        [
+          "",
+          "null",
+          "[]",
+          "42",
+          "\"ok\"",
+          "{\"status\":\"OK\"}",
+          "{\"status\":\"ok\",\"id\":0}"
+        ]
+      ],
+      "expected": [
+        {
+          "status": "ok",
+          "id": 0
+        }
+      ]
+    },
+    {
+      "module": "filter_jsonl",
+      "function": "keep_ok",
+      "args": [
+        [
+          "bad",
+          "{\"id\":2,\"status\":\"ok\"}",
+          "{\"id\":3}"
+        ]
+      ],
+      "expected": [
+        {
+          "id": 2,
+          "status": "ok"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "request": {
+        "lines": [
+          "{\"status\":\"ok\",\"tenant\":\"x\",\"id\":1}",
+          "bad",
+          "{\"status\":\"ok\",\"tenant\":\"x\",\"id\":2}",
+          "null",
+          "{\"status\":\"ok\"}"
+        ]
+      },
+      "expected": {
+        "accepted": [
+          {
+            "status": "ok",
+            "tenant": "x",
+            "id": 1
+          },
+          {
+            "status": "ok",
+            "tenant": "x",
+            "id": 2
+          },
+          {
+            "status": "ok"
+          }
+        ],
+        "counts": {
+          "x": 2,
+          "unknown": 1
+        }
+      }
+    },
+    {
+      "request": {
+        "lines": []
+      },
+      "expected": {
+        "accepted": [],
+        "counts": {}
+      }
+    }
+  ]
+}
+

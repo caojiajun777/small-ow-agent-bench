@@ -1,8 +1,9 @@
 schema_version = "1.4"
+artifacts = [{ source = "/app/repo", destination = "submission/repo", exclude = ["__pycache__", "*.pyc", ".pytest_cache", ".git", ".env", ".env.*", "credentials.json", "id_rsa", "id_ed25519"] }]
 
 [task]
 name = "small-ow-agent-bench/testgen-clip"
-version = "1.0.0"
+version = "2.0.0-rc.1"
 authors = []
 keywords = ["agentic-coding", "unit-test-generation"]
 
@@ -11,23 +12,38 @@ author_name = ""
 author_email = ""
 difficulty = "medium"
 construct_difficulty = "medium"
-empirical_band = "medium"
-calibration_status = "calibrated"
+empirical_band = "uncalibrated"
+calibration_status = "not_run"
+benchmark_revision = "workflow-2026-10-19"
+source_type = "handcrafted-workflow"
+legacy_task_version = "1.0.0"
+legacy_empirical_band = "medium"
+legacy_calibration_status = "calibrated"
 difficulty_weight = 1.5
 trap_id = "T1"
 category = "software"
 subcategory = "unit-test-generation"
 tags = ["unit-test-generation", "medium", "agentic-coding", "atomic-skills"]
-difficulty_explanation = "Tests must pass on the gold clip implementation and fail on semantic mutants."
+difficulty_explanation = "Inherited original trap tier only; upgraded workflow has not been empirically calibrated."
 expert_time_estimate_hours = 0.2
 
 [verifier]
+environment_mode = "separate"
+network_mode = "no-network"
 timeout_sec = 180.0
 
+[verifier.environment]
+network_mode = "no-network"
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+
 [agent]
+network_mode = "no-network"
 timeout_sec = 180.0
 
 [environment]
+network_mode = "no-network"
 build_timeout_sec = 600.0
 cpus = 1
 memory_mb = 2048
