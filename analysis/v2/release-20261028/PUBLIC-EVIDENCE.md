@@ -1,5 +1,10 @@
 # SmallOWBench 2.0: public evidence summary
 
+Execution update, 2026-10-29: the user waived monetary admission limits after
+120 scored attempts. The initial evidence and fee records remain intact; the
+remaining 376 slots continue under unchanged evaluation conditions. US$40 below
+identifies the initial phase. See the [dated amendment](MONETARY-POLICY-AMENDMENT-20261029.md).
+
 Date: 2026-10-28. This is a manually reviewed projection of local engineering
 evidence, not a raw trial archive or a replacement input for any validator.
 Host paths, credentials, request traces and Docker host inventories are omitted.

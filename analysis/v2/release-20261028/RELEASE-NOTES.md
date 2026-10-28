@@ -1,5 +1,7 @@
 # SmallOWBench 2.0 — release notes
 
+2026-10-29 update: the user waived the monetary admission cap for the ongoing run. Its initial 120 scored attempts are retained; the remaining 376 continue with unchanged evaluation resources. US$40 references below describe the initial phase. See the [dated execution amendment](MONETARY-POLICY-AMENDMENT-20261029.md).
+
 日期：2026-10-28。发布组件为 task／grader `2.0.0-rc.2`、harness `2.0.0-rc.1`，使用独立 release CLI。正式模型结果尚待本轮实际运行与证据验收；最终运行身份和状态以单独冻结的发布记录为准。
 
 SmallOWBench 是面向紧凑开放权重 Coding Agent 的可执行诊断基准。2.0 将 62 个任务改写为人工设计的小型 Python 工程工作流，用确定性验证器检查交付物，并区分产物正确与协议正常完成。任务在开发过程中已经被检查、修复和试跑；它们不是未见保留集，也不代表真实大型仓库 issue 或长程自主软件维护。
