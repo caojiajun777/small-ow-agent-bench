@@ -1,0 +1,18 @@
+{
+  "kind": "localization",
+  "foils": [
+    {
+      "id": "plausible-wrong-owner",
+      "answer": [
+        "text/normalize_legacy.py"
+      ]
+    },
+    {
+      "id": "extra-correct-caller",
+      "answer": [
+        "text/normalize.py",
+        "app.py"
+      ]
+    }
+  ]
+}

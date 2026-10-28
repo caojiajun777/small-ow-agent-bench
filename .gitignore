@@ -25,3 +25,15 @@ __pycache__/
 .ruff_cache/
 .harbor/
 *.log
+
+# 诊断实验的原始逐轮日志与本地缓存（与 jobs/ 同一政策：不进 git）
+experiments/**/jobs/
+analysis/.plot-deps/
+analysis/.mpl-cache/
+# 本地草稿/测试工作区
+.ef*/
+.eft/
+.qwen-test-*/
+
+# 预检原始作业目录（含存档）
+experiments/**/jobs*/

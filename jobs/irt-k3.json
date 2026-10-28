@@ -3,8 +3,8 @@
   "published": false,
   "n_trials": 3,
   "note": "Exploratory 1PL on compact-shell k=3. Each cell is Binomial(3, p), not majority vote. Main theta is 10 compact models only. 27B/35B are sensitivity. Hard-15 is not fitted. All-0 / all-3 items have no finite b. Order only; not a scale.",
-  "source_core": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\locked-core-k3.json",
-  "source_upper": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\locked-upper-base-k3.json",
+  "source_core": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\locked-core-k3.json",
+  "source_upper": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\locked-upper-base-k3.json",
   "main": {
     "atomic": {
       "kind": "irt_1pl_main",

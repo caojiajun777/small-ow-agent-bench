@@ -1,0 +1,43 @@
+{
+  "kind": "testgen",
+  "correct": [
+    {
+      "name": "reference",
+      "patch": {
+        "anagram.py": "gold/anagram.py"
+      }
+    },
+    {
+      "name": "alternative",
+      "patch": {
+        "anagram.py": "gold_alt/anagram.py"
+      }
+    }
+  ],
+  "incorrect": [
+    {
+      "name": "case_sensitive",
+      "patch": {
+        "anagram.py": "mutants/case_sensitive.py"
+      }
+    },
+    {
+      "name": "keeps_spaces",
+      "patch": {
+        "anagram.py": "mutants/keeps_spaces.py"
+      }
+    },
+    {
+      "name": "does_not_publish_output",
+      "patch": {
+        "workflow.py": "workflow_mutants/no_publish.py"
+      }
+    },
+    {
+      "name": "ignores_stop_policy",
+      "patch": {
+        "service.py": "workflow_mutants/ignore_stop.py"
+      }
+    }
+  ]
+}

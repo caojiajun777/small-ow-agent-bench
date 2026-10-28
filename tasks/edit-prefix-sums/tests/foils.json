@@ -1,0 +1,20 @@
+{
+  "kind": "edit",
+  "foils": [
+    {
+      "id": "primitive-only",
+      "files": {
+        "scan.py": "def prefix_sums(nums):\n    result = []\n    total = 0\n    for value in nums:\n        total += value\n        result.append(total)\n    return result\n",
+        "workflow.py": "from scan import prefix_sums\n\ndef process(request):\n    opening = request.get(\"opening\", 0)\n    running = prefix_sums([row[\"amount\"] for row in request[\"postings\"]])\n    balances = [value for value in running]\n    return {\"balances\": balances, \"closing\": balances[-1] if balances else opening}\n"
+      }
+    },
+    {
+      "id": "workflow-only",
+      "files": {
+        "scan.py": "def prefix_sums(nums):\n    return []\n",
+        "workflow.py": "from scan import prefix_sums\n\ndef process(request):\n    opening = request.get(\"opening\", 0)\n    running = prefix_sums([row[\"amount\"] for row in request[\"postings\"]])\n    balances = [opening + value for value in running]\n    return {\"balances\": balances, \"closing\": balances[-1] if balances else opening}\n"
+      }
+    }
+  ]
+}
+

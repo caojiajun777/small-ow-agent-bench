@@ -1,0 +1,41 @@
+{
+  "kind": "edit",
+  "foils": [
+    {
+      "id": "primitive-only",
+      "files": {
+        "merge.py": "from copy import deepcopy\n\ndef deep_merge(left, right):\n    result = deepcopy(left)\n    for key, value in right.items():\n        if isinstance(result.get(key), dict) and isinstance(value, dict):\n            result[key] = deep_merge(result[key], value)\n        else:\n            result[key] = deepcopy(value)\n    return result\n",
+        "workflow.py": "from merge import deep_merge\n\ndef process(request):\n    config = {}\n    for layer in request[\"layers\"]:\n        config.update(layer)\n    return {\"config\": config, \"layers_applied\": len(request[\"layers\"])}\n"
+      }
+    },
+    {
+      "id": "workflow-only",
+      "files": {
+        "merge.py": "def deep_merge(left, right):\n    return {}\n",
+        "workflow.py": "from merge import deep_merge\n\ndef process(request):\n    config = {}\n    for layer in request[\"layers\"]:\n        config = deep_merge(config, layer)\n    return {\"config\": config, \"layers_applied\": len(request[\"layers\"])}\n"
+      }
+    },
+    {
+      "id": "workflow-alias-only",
+      "files": {
+        "merge.py": "from copy import deepcopy\n\ndef deep_merge(left, right):\n    result = deepcopy(left)\n    for key, value in right.items():\n        if isinstance(result.get(key), dict) and isinstance(value, dict):\n            result[key] = deep_merge(result[key], value)\n        else:\n            result[key] = deepcopy(value)\n    return result\n",
+        "workflow.py": "from merge import deep_merge\n\n\ndef process(request):\n    config = {}\n    for layer in request[\"layers\"]:\n        merged = deep_merge(config, layer)\n        for key, value in layer.items():\n            if key not in config:\n                merged[key] = value\n        config = merged\n    return {\"config\": config, \"layers_applied\": len(request[\"layers\"])}\n"
+      }
+    },
+    {
+      "id": "workflow-bool-as-int",
+      "files": {
+        "merge.py": "from copy import deepcopy\n\ndef deep_merge(left, right):\n    result = deepcopy(left)\n    for key, value in right.items():\n        if isinstance(result.get(key), dict) and isinstance(value, dict):\n            result[key] = deep_merge(result[key], value)\n        else:\n            result[key] = deepcopy(value)\n    return result\n",
+        "workflow.py": "def _coerce(value):\n    if isinstance(value, bool):\n        return int(value)\n    if isinstance(value, dict):\n        return {key: _coerce(item) for key, item in value.items()}\n    if isinstance(value, list):\n        return [_coerce(item) for item in value]\n    return value\n\nfrom merge import deep_merge\n\ndef process(request):\n    config = {}\n    for layer in request[\"layers\"]:\n        config = deep_merge(config, layer)\n    return _coerce({\"config\": config, \"layers_applied\": len(request[\"layers\"])})\n"
+      }
+    },
+    {
+      "id": "primitive-bool-as-int",
+      "files": {
+        "merge.py": "def _coerce(value):\n    if isinstance(value, bool):\n        return int(value)\n    if isinstance(value, dict):\n        return {key: _coerce(item) for key, item in value.items()}\n    if isinstance(value, list):\n        return [_coerce(item) for item in value]\n    return value\n\nfrom copy import deepcopy\n\ndef deep_merge(left, right):\n    result = deepcopy(left)\n    for key, value in right.items():\n        if isinstance(result.get(key), dict) and isinstance(value, dict):\n            result[key] = deep_merge(result[key], value)\n        else:\n            result[key] = deepcopy(value)\n    return _coerce(result)\n",
+        "workflow.py": "from merge import deep_merge\n\ndef process(request):\n    config = {}\n    for layer in request[\"layers\"]:\n        config = deep_merge(config, layer)\n    return {\"config\": config, \"layers_applied\": len(request[\"layers\"])}\n"
+      }
+    }
+  ]
+}
+

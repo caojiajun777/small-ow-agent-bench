@@ -1,0 +1,20 @@
+{
+  "kind": "edit",
+  "foils": [
+    {
+      "id": "primitive-only",
+      "files": {
+        "parse.py": "def parse_int_list(text):\n    return [int(part.strip()) for part in text.split(\",\") if part.strip()]\n",
+        "workflow.py": "from parse import parse_int_list\n\ndef process(request):\n    ids = parse_int_list(request[\"ids\"])\n    lookup = {row[\"id\"]: row for row in request[\"rows\"]}\n    return [dict(lookup[ident]) for ident in sorted(set(ids)) if ident in lookup]\n"
+      }
+    },
+    {
+      "id": "workflow-only",
+      "files": {
+        "parse.py": "def parse_int_list(text):\n    return [int(text)]\n",
+        "workflow.py": "from parse import parse_int_list\n\ndef process(request):\n    ids = parse_int_list(request[\"ids\"])\n    lookup = {row[\"id\"]: row for row in request[\"rows\"]}\n    return [dict(lookup[ident]) for ident in ids if ident in lookup]\n"
+      }
+    }
+  ]
+}
+

@@ -1,6 +1,18 @@
-Issue:
-Member checkout should charge 90% of list price. Example: a $100 member checkout is $90.
+Review the four candidate patches for **wiring member pricing into the public checkout** in `/app/repo`.
 
-The candidate change is already applied in `/app/repo`. Decide whether this repository fully addresses the issue.
+The user contract and runnable JSON CLI are documented in `README.md`. `base/` is the pre-change workspace. Each subdirectory in `candidates/` is the result of applying a different proposed patch independently. The actual API entrypoint is `service.handle`; inspect the call chain, not only an attractive helper. Do not edit the repository.
 
-Write a single character to `/app/answer.txt`: `1` if it fully addresses the issue, `0` otherwise. You may inspect and run code. Do not change the repository. You have 180 seconds.
+Contract:
+`lines` contains objects with nonnegative integer `unit_cents` and `quantity`; `member` is boolean. Compute the full subtotal. Members pay 90% of that subtotal, rounded to the nearest cent with exact halves rounded up; others pay the subtotal. Apply the discount exactly once. Return `{"total_cents": integer}`. Judge the actual service entrypoint, not the mere existence of a helper.
+
+Write `/app/review.json` with this exact structure:
+```json
+{"schema_version":2,"reviews":[{"candidate":"cedar","decision":"accept","location":null,"behavior":null,"cases":[{"input":{},"expected":{}},{"input":{},"expected":{}}]}]}
+```
+The example shows structure only, not a verdict or valid test input. Include exactly one entry for every name in `candidates.json`, with no extras.
+
+- `decision`: `accept` only when the candidate satisfies the entire contract; otherwise `reject`.
+- For acceptance, `location` and `behavior` must be null: do not manufacture a finding. Provide 2–8 distinct compatibility cases, with exact contractual expected JSON outputs.
+- For rejection, provide a nonempty description of the violated behavior and `location` as `{"path":"candidates/<name>/<module>.py","line":N}`. That line must be executed by at least one supplied failing case. Supply 2–8 distinct cases, including at least one input where the candidate's actual public result differs from the contractual `expected` output. Documented `ValueError` outcomes use `{"error":"ValueError"}`.
+
+The verifier runs the same cases on clean copies of both base and candidate, validates expected outputs against a private contract, and independently checks candidate correctness using hidden regression cases. An import/collection/infrastructure failure is not a behavioral counterexample. Reason wording is not matched to a golden phrase and no LLM judge is used. Only the final review file is graded.

@@ -1,0 +1,18 @@
+{
+  "kind": "localization",
+  "foils": [
+    {
+      "id": "plausible-wrong-owner",
+      "answer": [
+        "unused_fix.py"
+      ]
+    },
+    {
+      "id": "extra-correct-caller",
+      "answer": [
+        "serve.py",
+        "app.py"
+      ]
+    }
+  ]
+}

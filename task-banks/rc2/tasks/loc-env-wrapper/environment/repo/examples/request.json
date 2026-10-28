@@ -1,0 +1,6 @@
+{
+  "environment": {
+    "APP_LOG": "/caller/path",
+    "APP_LEVEL": "DEBUG"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "limits": {
+    "temp": [
+      0,
+      10
+    ]
+  },
+  "readings": [
+    {
+      "id": 1,
+      "channel": "temp",
+      "value": 8,
+      "scale": 2
+    },
+    {
+      "id": 2,
+      "channel": "temp",
+      "value": -1,
+      "offset": 5
+    }
+  ]
+}
+

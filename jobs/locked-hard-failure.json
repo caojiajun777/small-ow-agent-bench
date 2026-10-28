@@ -1,8 +1,8 @@
 {
   "kind": "locked_hard_failure",
   "published": false,
-  "source": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\locked-hard-release-k3.json",
-  "note": "lock_kind is the published composition: atomic \u00d7 termination from jobs/locked-hard-release-k3.json. Sidecar kinds need job dirs and are diagnostic. Missing Hard-15 examinees stay missing, not 0.",
+  "source": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\locked-hard-release-k3.json",
+  "note": "lock_kind is the published composition: atomic × termination from jobs/locked-hard-release-k3.json. Sidecar kinds need job dirs and are diagnostic. Missing Hard-15 examinees stay missing, not 0.",
   "n_rows": 270,
   "lock_kind_counts": {
     "task_pass_clean": 118,

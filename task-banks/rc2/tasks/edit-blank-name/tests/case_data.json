@@ -1,0 +1,100 @@
+{
+  "calls": [
+    {
+      "module": "profile",
+      "function": "display_name",
+      "args": [
+        {}
+      ],
+      "expected": "guest"
+    },
+    {
+      "module": "profile",
+      "function": "display_name",
+      "args": [
+        {
+          "name": "Ada"
+        }
+      ],
+      "expected": "Ada"
+    },
+    {
+      "module": "profile",
+      "function": "display_name",
+      "args": [
+        {
+          "name": ""
+        }
+      ],
+      "expected": ""
+    },
+    {
+      "module": "profile",
+      "function": "display_name",
+      "args": [
+        {
+          "name": null
+        }
+      ],
+      "expected": null
+    },
+    {
+      "module": "profile",
+      "function": "display_name",
+      "args": [
+        {
+          "name": "  Ada  "
+        }
+      ],
+      "expected": "  Ada  "
+    }
+  ],
+  "flows": [
+    {
+      "request": {
+        "users": [
+          {
+            "id": 1
+          },
+          {
+            "id": 2,
+            "name": ""
+          },
+          {
+            "id": 3,
+            "name": "Ada"
+          },
+          {
+            "id": 4,
+            "name": null
+          }
+        ]
+      },
+      "expected": [
+        {
+          "id": 1,
+          "display": "guest"
+        },
+        {
+          "id": 2,
+          "display": ""
+        },
+        {
+          "id": 3,
+          "display": "Ada"
+        },
+        {
+          "id": 4,
+          "display": null
+        }
+      ]
+    },
+    {
+      "request": {
+        "users": []
+      },
+      "expected": []
+    }
+  ]
+}
+

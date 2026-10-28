@@ -1,0 +1,56 @@
+[
+  {
+    "lines": [
+      {
+        "unit_cents": 10000,
+        "quantity": 1
+      }
+    ],
+    "member": true,
+    "credit_cents": 1000
+  },
+  {
+    "lines": [
+      {
+        "unit_cents": 10000,
+        "quantity": 1
+      }
+    ],
+    "member": false,
+    "credit_cents": 1000
+  },
+  {
+    "lines": [
+      {
+        "unit_cents": 105,
+        "quantity": 1
+      }
+    ],
+    "member": true
+  },
+  {
+    "lines": [
+      {
+        "unit_cents": 100,
+        "quantity": 2
+      }
+    ],
+    "member": true,
+    "credit_cents": 1000
+  },
+  {
+    "lines": [],
+    "member": false
+  },
+  {
+    "lines": [
+      {
+        "unit_cents": 99,
+        "quantity": 3
+      }
+    ],
+    "member": true,
+    "credit_cents": 5
+  }
+]
+

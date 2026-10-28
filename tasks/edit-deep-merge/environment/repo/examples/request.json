@@ -1,0 +1,23 @@
+{
+  "layers": [
+    {
+      "db": {
+        "host": "local",
+        "port": 10
+      },
+      "tags": [
+        "a"
+      ]
+    },
+    {
+      "db": {
+        "port": 20
+      }
+    },
+    {
+      "tags": [],
+      "enabled": false
+    }
+  ]
+}
+

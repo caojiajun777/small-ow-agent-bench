@@ -1,0 +1,18 @@
+{
+  "kind": "localization",
+  "foils": [
+    {
+      "id": "plausible-wrong-owner",
+      "answer": [
+        "tests/test_invoice.py"
+      ]
+    },
+    {
+      "id": "extra-correct-caller",
+      "answer": [
+        "tax.py",
+        "app.py"
+      ]
+    }
+  ]
+}

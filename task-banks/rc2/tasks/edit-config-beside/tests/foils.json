@@ -1,0 +1,20 @@
+{
+  "kind": "edit",
+  "foils": [
+    {
+      "id": "primitive-only",
+      "files": {
+        "settings.py": "import json\nfrom pathlib import Path\n\ndef load():\n    with Path(__file__).with_name(\"settings.json\").open(encoding=\"utf-8\") as handle:\n        return json.load(handle)\n",
+        "workflow.py": "from settings import load\n\ndef process(request):\n    config = {\"retry\": 5, \"mode\": \"prod\"}\n    return [{\"id\": ident, \"retry\": config[\"retry\"], \"mode\": config[\"mode\"],\n             \"queue\": config.get(\"queue\", \"default\")} for ident in request[\"jobs\"]]\n"
+      }
+    },
+    {
+      "id": "workflow-only",
+      "files": {
+        "settings.py": "import json\n\n\ndef load():\n    with open('settings.json') as handle:\n        return json.load(handle)\n",
+        "workflow.py": "from settings import load\n\ndef process(request):\n    config = load()\n    return [{\"id\": ident, \"retry\": config[\"retry\"], \"mode\": config[\"mode\"],\n             \"queue\": config.get(\"queue\", \"default\")} for ident in request[\"jobs\"]]\n"
+      }
+    }
+  ]
+}
+

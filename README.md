@@ -1,6 +1,60 @@
-# Small-OW-Agent-Bench
+# SmallOWBench 2.0
 
 **简体中文** | [English](README_EN.md)
+
+SmallOWBench 2.0 是面向紧凑开放权重 Coding Agent 的可执行诊断基准。62 道题由人工设计为小型 Python 工程工作流，覆盖定位、修改、测试、复现和补丁判断；交付物由确定性 verifier 验收。题目已在开发过程中检查、修复和试跑，不代表未见保留集、真实大型仓库 issue 或长程自主维护。
+
+**发布组件：task／grader `2.0.0-rc.2`，harness `2.0.0-rc.1`。本轮正式分数待实际运行和证据验收，尚未发布新榜。** 新入口显式使用 `task-banks/rc2/tasks`；根 `VERSION`、原 `tasks` 和 manifest 保持 RC1 来源身份，供完整性与历史复算使用。不能通过修改根版本号或切换旧入口来启用新版。
+
+| 技能 | 题数 | 验收产物 |
+|---|---:|---|
+| Localization / Loc | 11 | 完整且无多余项的目标文件集合 |
+| Editing / Edit | 15 | 通过行为与回归检查的代码修改 |
+| Test Generation / Testgen | 13 | 接受正确实现并检出错误实现的测试 |
+| Reproduction / Repro | 13 | 修复前触发问题、标准修复后通过的复现程序 |
+| Patch Validation / Review | 10 | 对任务内候选补丁的判断及所需证据 |
+
+**Artifact** 表示交付物正确；**Clean** 进一步要求 Agent 按协议正常 finish。Clean 不是实际软件开发的端到端成功率。每技能内任务等权、五技能等权得到 macro，另报 62 题 task-micro；不沿用旧榜的经验难度权重或 IRT 结论。Review 的 40 个候选仍只组成 10 道任务。
+
+2026-10-27 已完成 RC2 固定五题 **10 个 oracle/nop 槽符合预期**（5 参考解 pass、5 空提交 fail），以及 **232 passed、1 skipped** 的离线回归。这验证了所选链路；全库 62 题的 RC2 容器门仍未通过，旧 RC1 `full124` 不继承。实际镜像初始化只构建／绑定 62 题双镜像并记录依赖版本，不新增 oracle/nop 或校准。详见 [公开证据摘要](analysis/v2/release-20261028/PUBLIC-EVIDENCE.md)。
+
+本轮正式计划为 **8 个原配置 × 62 题 × 1 次重复，最多 496 个任务尝试**，预算 US$40、4 workers、整槽 infra 重试 0 次；496 不是 HTTP 请求数。预算入场控制或供应商故障可能留下缺槽，缺失／infra 不填模型零分。正式分数只从本轮原始证据重算，完整性不足时不生成完整正式排名。[8 配置目录核对](analysis/v2/release-20261028/ROUTES.md) 只证明公开端点元数据匹配，不证明长期容量或参数实际生效；未纳入的旧模型不擅自换模型或精度。
+
+## 2.0 入口与发布材料
+
+[评测协议](STANDARD-v2.md) · [发布说明](analysis/v2/release-20261028/RELEASE-NOTES.md) · [发布清单](analysis/v2/release-20261028/PUBLICATION-CHECKLIST.md) · [公开证据摘要](analysis/v2/release-20261028/PUBLIC-EVIDENCE.md)
+
+公开证据文件是去标识摘要，保留原件哈希和范围说明；它不是原始报告或完整轨迹，也不是 validator 的替代输入。
+
+先按 [Harbor 固定依赖说明](vendor/harbor-patches/README.md) 使用相邻 checkout、指定 upstream commit、随仓库提供的补丁和 `uv sync --locked` 安装环境，再从本仓库根目录使用该环境中的 Python。需要本地 Linux Docker。模型密钥只留在宿主所需环境，不注入题目容器，不上传环境文件或原始请求日志。
+
+**首次外部克隆的环境初始化**：若没有自己机器的五题原始证据，先执行以下命令，在尚不存在的 `r2smk` 中生成本机 profile、五题 10 个 oracle/nop 槽及传输记录。运行不调用模型；构建显式联网，运行禁网。它是公开复现者的本地初始化选项，**本轮已拥有证据的正式运行不重复执行这一步**。
+
+跨宿主平台复现另有已知限制：旧 `validate_upgraded_tasks.task_digest` 使用 `sorted(Path.rglob(...))`，Windows／Linux 的 `Path` 大小写排序规则不同。冻结文件字节及逐文件 SHA-256 可复核，但旧目录聚合摘要尚未确认跨平台一致，不能承诺 Linux 宿主直接通过原聚合摘要检查；本轮 Windows 同平台运行不改冻结函数或值，也不增加测试阶段。
+
+```powershell
+python scripts/validate_rc2_containers.py --directory experiments/smallowbench-v2/r2smk --execute --allow-build-network
+```
+
+随后初始化镜像并冻结正式运行。以下是本轮配置；新运行换成新的短目录名，不能覆盖已有目录。不要将发布者机器的绝对路径收据或公开脱敏摘要直接喂给 validator。
+
+```powershell
+# 只初始化镜像和版本记录；不运行题目或调用模型。
+python scripts/build_release_v2_images.py --output experiments/smallowbench-v2/im2 --execute --workers 4 --allow-build-network
+
+# prepare / lock / plan 加 --write 才落盘；prepare 创建初始 STOP。
+python scripts/run_release_v2.py prepare --directory experiments/smallowbench-v2/rel2 --models-file analysis/v2/models.route-ready.json --preflight experiments/smallowbench-v2/r2smk/preflight-rc2.json --runtime experiments/smallowbench-v2/im2/runtime.json --budget-usd 40 --workers 4 --max-infra-retries 0 --visit-reserve-usd 3.5 --repetitions 1 --isolate-model-infra --write
+python scripts/run_release_v2.py lock --directory experiments/smallowbench-v2/rel2 --write
+python scripts/run_release_v2.py plan --directory experiments/smallowbench-v2/rel2 --write
+python scripts/run_release_v2.py status --directory experiments/smallowbench-v2/rel2
+python scripts/run_release_v2.py analyze --directory experiments/smallowbench-v2/rel2
+```
+
+这些路径依赖自己机器生成的五题原始验收材料和新建的镜像记录；公开脱敏摘要不能直接替代本地完整证据，也不能据此声称另一台机器与发布运行字节一致。模型执行还要求独立 `authorization.json` 绑定 manifest、execution lock 与批准预算，并由授权操作者处理**新运行**的初始 STOP。`execute --execute --worker 0 --workers 4` 只启动编号 0 的 worker；完整四 worker 运行须分别启动编号 0–3。准备、锁定和模型执行是分开的动作，旧实验的 STOP 保持不变。完整执行命令见 [协议入口](STANDARD-v2.md#入口)。
+
+## 历史版本介绍与结果（不是 2.0 成绩）
+
+**以下整段介绍、评分权重、图表、模型数字与运行示例均属于历史版本。** 旧版本任务已归档；新旧同名任务不能直接比较分数。2.0 执行和报告只使用独立的新实验目录，不续跑旧矩阵。下方 `run_locked.py`／Novita 示例不是 2.0 发布入口。
 
 [![Leaderboard](https://img.shields.io/badge/leaderboard-v1.0.1-0f4c81)](results/leaderboard.md)
 [![License](https://img.shields.io/badge/license-Apache%202.0-2f6f4e)](LICENSE)

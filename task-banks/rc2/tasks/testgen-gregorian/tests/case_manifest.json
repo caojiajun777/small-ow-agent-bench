@@ -1,0 +1,49 @@
+{
+  "kind": "testgen",
+  "correct": [
+    {
+      "name": "reference",
+      "patch": {
+        "dates.py": "gold/dates.py"
+      }
+    },
+    {
+      "name": "alternative",
+      "patch": {
+        "dates.py": "gold_alt/dates.py"
+      }
+    }
+  ],
+  "incorrect": [
+    {
+      "name": "april_has_31",
+      "patch": {
+        "dates.py": "mutants/april_has_31.py"
+      }
+    },
+    {
+      "name": "divisible_by_four",
+      "patch": {
+        "dates.py": "mutants/divisible_by_four.py"
+      }
+    },
+    {
+      "name": "feb_always_29",
+      "patch": {
+        "dates.py": "mutants/feb_always_29.py"
+      }
+    },
+    {
+      "name": "does_not_publish_output",
+      "patch": {
+        "workflow.py": "workflow_mutants/no_publish.py"
+      }
+    },
+    {
+      "name": "ignores_stop_policy",
+      "patch": {
+        "service.py": "workflow_mutants/ignore_stop.py"
+      }
+    }
+  ]
+}

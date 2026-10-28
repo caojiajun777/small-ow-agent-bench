@@ -1,0 +1,99 @@
+{
+  "calls": [
+    {
+      "module": "timefmt",
+      "function": "format_hms",
+      "args": [
+        65
+      ],
+      "expected": "0:01:05"
+    },
+    {
+      "module": "timefmt",
+      "function": "format_hms",
+      "args": [
+        0
+      ],
+      "expected": "0:00:00"
+    },
+    {
+      "module": "timefmt",
+      "function": "format_hms",
+      "args": [
+        3661
+      ],
+      "expected": "1:01:01"
+    },
+    {
+      "module": "timefmt",
+      "function": "format_hms",
+      "args": [
+        90061
+      ],
+      "expected": "25:01:01"
+    }
+  ],
+  "flows": [
+    {
+      "request": {
+        "jobs": [
+          {
+            "id": "a",
+            "start": 10,
+            "end": 80,
+            "paused": 5
+          },
+          {
+            "id": "b",
+            "start": 0,
+            "end": 3600
+          }
+        ]
+      },
+      "expected": {
+        "jobs": [
+          {
+            "id": "a",
+            "duration": "0:01:05"
+          },
+          {
+            "id": "b",
+            "duration": "1:00:00"
+          }
+        ],
+        "total": "1:01:05"
+      }
+    },
+    {
+      "request": {
+        "jobs": [
+          {
+            "id": "x",
+            "start": 10,
+            "end": 5
+          },
+          {
+            "id": "y",
+            "start": 0,
+            "end": 5,
+            "paused": 9
+          }
+        ]
+      },
+      "expected": {
+        "jobs": [
+          {
+            "id": "x",
+            "duration": "0:00:00"
+          },
+          {
+            "id": "y",
+            "duration": "0:00:00"
+          }
+        ],
+        "total": "0:00:00"
+      }
+    }
+  ]
+}
+

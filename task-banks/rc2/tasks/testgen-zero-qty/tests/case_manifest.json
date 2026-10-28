@@ -1,0 +1,43 @@
+{
+  "kind": "testgen",
+  "correct": [
+    {
+      "name": "reference",
+      "patch": {
+        "order.py": "gold/order.py"
+      }
+    },
+    {
+      "name": "alternative",
+      "patch": {
+        "order.py": "gold_alt/order.py"
+      }
+    }
+  ],
+  "incorrect": [
+    {
+      "name": "default_one",
+      "patch": {
+        "order.py": "mutants/default_one.py"
+      }
+    },
+    {
+      "name": "truthy",
+      "patch": {
+        "order.py": "mutants/truthy.py"
+      }
+    },
+    {
+      "name": "does_not_publish_output",
+      "patch": {
+        "workflow.py": "workflow_mutants/no_publish.py"
+      }
+    },
+    {
+      "name": "ignores_stop_policy",
+      "patch": {
+        "service.py": "workflow_mutants/ignore_stop.py"
+      }
+    }
+  ]
+}

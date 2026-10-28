@@ -1,0 +1,17 @@
+{
+  "events": [
+    {
+      "key": "b",
+      "payload": 1
+    },
+    {
+      "key": "a",
+      "payload": 2
+    },
+    {
+      "key": "b",
+      "payload": 9
+    }
+  ]
+}
+

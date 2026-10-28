@@ -1,3 +1,13 @@
 * text=auto
 *.sh text eol=lf
 Dockerfile text eol=lf
+
+# Frozen benchmark provenance is byte-addressed; preserve its original bytes.
+/agents/** -text
+/scripts/** -text
+/tasks/** -text
+/task-banks/** -text
+/VERSION -text
+/task-bank-v2.manifest.json -text
+/analysis/v2/models.route-ready.json -text
+/vendor/harbor-patches/*.patch -text

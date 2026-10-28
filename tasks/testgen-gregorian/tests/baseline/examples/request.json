@@ -1,0 +1,11 @@
+{
+  "batch_id": "example",
+  "records": [
+    {
+      "id": "item-1",
+      "year": 2026,
+      "month": 10,
+      "day": 19
+    }
+  ]
+}

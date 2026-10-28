@@ -1,0 +1,8 @@
+{
+  "schema_version": 2,
+  "task_id": "review-dead-helper",
+  "task_version": "2.0.0-rc.1",
+  "grader_version": "2.0.0-rc.1",
+  "skill": "review",
+  "worker_timeout_sec": 165
+}

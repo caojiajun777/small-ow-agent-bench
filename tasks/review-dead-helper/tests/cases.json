@@ -1,0 +1,56 @@
+[
+  {
+    "lines": [
+      {
+        "unit_cents": 10000,
+        "quantity": 1
+      }
+    ],
+    "member": true
+  },
+  {
+    "lines": [
+      {
+        "unit_cents": 125,
+        "quantity": 3
+      },
+      {
+        "unit_cents": 7,
+        "quantity": 2
+      }
+    ],
+    "member": true
+  },
+  {
+    "lines": [
+      {
+        "unit_cents": 105,
+        "quantity": 1
+      }
+    ],
+    "member": true
+  },
+  {
+    "lines": [
+      {
+        "unit_cents": 10000,
+        "quantity": 1
+      }
+    ],
+    "member": false
+  },
+  {
+    "lines": [],
+    "member": true
+  },
+  {
+    "lines": [
+      {
+        "unit_cents": 0,
+        "quantity": 7
+      }
+    ],
+    "member": true
+  }
+]
+

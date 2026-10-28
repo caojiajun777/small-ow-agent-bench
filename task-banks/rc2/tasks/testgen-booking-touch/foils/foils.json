@@ -1,0 +1,13 @@
+{
+  "kind": "testgen",
+  "foils": [
+    {
+      "id": "happy-path-only",
+      "why": "tests that never hit mutant-killing cases still pass gold"
+    },
+    {
+      "id": "mutant-also-passes",
+      "why": "if agent tests match a mutant, hidden test_detect_all_mutants fails"
+    }
+  ]
+}

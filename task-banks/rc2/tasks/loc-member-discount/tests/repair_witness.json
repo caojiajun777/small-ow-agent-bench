@@ -1,0 +1,10 @@
+{
+  "kind": "localization",
+  "public_tests": "tests",
+  "files": {
+    "pricing.py": "def list_price(item):\n    return float(item[\"price\"])\n\n\ndef member_price(item):\n    return list_price(item) * .9\n"
+  },
+  "required": [
+    "pricing.py"
+  ]
+}

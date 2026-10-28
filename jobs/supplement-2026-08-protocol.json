@@ -2,7 +2,7 @@
   "kind": "supplement_2026_08_protocol",
   "published": false,
   "benchmark_version": "benchmark-v1.0.1-supplement-2026-08",
-  "lock": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\models.supplement-2026-08.yaml",
+  "lock": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\models.supplement-2026-08.yaml",
   "pass_rule": "all protocol tasks atomic_correct=1 and termination=clean",
   "formal_gate": "all protocol tasks scored with no infra reason and at least one parsed shell/finish action; task misses and failure to halt remain scored signals",
   "models": [
@@ -76,19 +76,19 @@
         "hello-world": {
           "atomic_correct": 1,
           "termination": "clean",
-          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-10-13",
+          "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-10-13",
           "reason": null
         },
         "collect-todos": {
           "atomic_correct": 0,
           "termination": "protocol_error",
-          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-10-47",
+          "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-10-47",
           "reason": null
         },
         "loc-member-discount": {
           "atomic_correct": 0,
           "termination": "clean",
-          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-11-55",
+          "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-11-55",
           "reason": null
         }
       }
@@ -101,19 +101,19 @@
         "hello-world": {
           "atomic_correct": 1,
           "termination": "clean",
-          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-13-18",
+          "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-13-18",
           "reason": null
         },
         "collect-todos": {
           "atomic_correct": 1,
           "termination": "protocol_error",
-          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-13-48",
+          "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-13-48",
           "reason": null
         },
         "loc-member-discount": {
           "atomic_correct": 0,
           "termination": "clean",
-          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-14-39",
+          "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-14-39",
           "reason": null
         }
       }
@@ -126,19 +126,19 @@
         "hello-world": {
           "atomic_correct": 1,
           "termination": "clean",
-          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-15-10",
+          "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-15-10",
           "reason": null
         },
         "collect-todos": {
           "atomic_correct": 1,
           "termination": "clean",
-          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-15-45",
+          "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-15-45",
           "reason": null
         },
         "loc-member-discount": {
           "atomic_correct": 0,
           "termination": "protocol_error",
-          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-16-42",
+          "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-16-42",
           "reason": null
         }
       }
@@ -151,19 +151,19 @@
         "hello-world": {
           "atomic_correct": 1,
           "termination": "clean",
-          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-17-28",
+          "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-17-28",
           "reason": null
         },
         "collect-todos": {
           "atomic_correct": 0,
           "termination": "clean",
-          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-17-54",
+          "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-17-54",
           "reason": null
         },
         "loc-member-discount": {
           "atomic_correct": 0,
           "termination": "clean",
-          "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-18-40",
+          "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-18-40",
           "reason": null
         }
       }
@@ -183,7 +183,7 @@
       "timeout_kind": "pass",
       "stall_retried": false,
       "infra_retries": 0,
-      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-10-13",
+      "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-10-13",
       "reason": null,
       "benchmark_version": "benchmark-v1.0.1-supplement-2026-08",
       "agent": "agents.compact_shell:CompactShellAgent",
@@ -209,7 +209,7 @@
       "timeout_kind": "task_miss",
       "stall_retried": false,
       "infra_retries": 0,
-      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-10-47",
+      "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-10-47",
       "reason": null,
       "benchmark_version": "benchmark-v1.0.1-supplement-2026-08",
       "agent": "agents.compact_shell:CompactShellAgent",
@@ -235,7 +235,7 @@
       "timeout_kind": "pass",
       "stall_retried": false,
       "infra_retries": 0,
-      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-13-18",
+      "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-13-18",
       "reason": null,
       "benchmark_version": "benchmark-v1.0.1-supplement-2026-08",
       "agent": "agents.compact_shell:CompactShellAgent",
@@ -261,7 +261,7 @@
       "timeout_kind": "pass",
       "stall_retried": false,
       "infra_retries": 0,
-      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-13-48",
+      "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-13-48",
       "reason": null,
       "benchmark_version": "benchmark-v1.0.1-supplement-2026-08",
       "agent": "agents.compact_shell:CompactShellAgent",
@@ -287,7 +287,7 @@
       "timeout_kind": "pass",
       "stall_retried": false,
       "infra_retries": 0,
-      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-15-10",
+      "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-15-10",
       "reason": null,
       "benchmark_version": "benchmark-v1.0.1-supplement-2026-08",
       "agent": "agents.compact_shell:CompactShellAgent",
@@ -313,7 +313,7 @@
       "timeout_kind": "pass",
       "stall_retried": false,
       "infra_retries": 0,
-      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-15-45",
+      "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-15-45",
       "reason": null,
       "benchmark_version": "benchmark-v1.0.1-supplement-2026-08",
       "agent": "agents.compact_shell:CompactShellAgent",
@@ -339,7 +339,7 @@
       "timeout_kind": "pass",
       "stall_retried": false,
       "infra_retries": 0,
-      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-17-28",
+      "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-17-28",
       "reason": null,
       "benchmark_version": "benchmark-v1.0.1-supplement-2026-08",
       "agent": "agents.compact_shell:CompactShellAgent",
@@ -365,7 +365,7 @@
       "timeout_kind": "task_miss",
       "stall_retried": false,
       "infra_retries": 0,
-      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-17-54",
+      "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-17-54",
       "reason": null,
       "benchmark_version": "benchmark-v1.0.1-supplement-2026-08",
       "agent": "agents.compact_shell:CompactShellAgent",
@@ -391,7 +391,7 @@
       "timeout_kind": "task_miss",
       "stall_retried": false,
       "infra_retries": 0,
-      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-11-55",
+      "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-11-55",
       "reason": null,
       "benchmark_version": "benchmark-v1.0.1-supplement-2026-08",
       "agent": "agents.compact_shell:CompactShellAgent",
@@ -417,7 +417,7 @@
       "timeout_kind": "task_miss",
       "stall_retried": false,
       "infra_retries": 0,
-      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-14-39",
+      "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-14-39",
       "reason": null,
       "benchmark_version": "benchmark-v1.0.1-supplement-2026-08",
       "agent": "agents.compact_shell:CompactShellAgent",
@@ -443,7 +443,7 @@
       "timeout_kind": "task_miss",
       "stall_retried": false,
       "infra_retries": 0,
-      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-16-42",
+      "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-16-42",
       "reason": null,
       "benchmark_version": "benchmark-v1.0.1-supplement-2026-08",
       "agent": "agents.compact_shell:CompactShellAgent",
@@ -469,7 +469,7 @@
       "timeout_kind": "task_miss",
       "stall_retried": false,
       "infra_retries": 0,
-      "job": "C:\\Users\\90556\\Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-18-40",
+      "job": "<HISTORICAL_USER_HOME>/Desktop\\learning\\benchmark\\small-ow-agent-bench\\jobs\\2026-08-28__03-18-40",
       "reason": null,
       "benchmark_version": "benchmark-v1.0.1-supplement-2026-08",
       "agent": "agents.compact_shell:CompactShellAgent",

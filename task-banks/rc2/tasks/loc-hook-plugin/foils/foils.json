@@ -1,0 +1,26 @@
+{
+  "kind": "loc",
+  "foils": [
+    {
+      "id": "documented-plugin",
+      "why": "unused sibling already has five attempts",
+      "paths": [
+        "plugins/retry.py"
+      ]
+    },
+    {
+      "id": "registry-only",
+      "why": "hooks.json is the pointer, not the live constant",
+      "paths": [
+        "hooks.json"
+      ]
+    },
+    {
+      "id": "docs-only",
+      "why": "the guide is already correct",
+      "paths": [
+        "docs/ops.md"
+      ]
+    }
+  ]
+}

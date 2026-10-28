@@ -1,0 +1,10 @@
+{
+  "kind": "localization",
+  "public_tests": "tests",
+  "files": {
+    "bin/serve.sh": "#!/bin/sh\nexport APP_LOG=/var/log/app.log\nexport APP_LEVEL=INFO\nexec python3 -m app\n"
+  },
+  "required": [
+    "bin/serve.sh"
+  ]
+}

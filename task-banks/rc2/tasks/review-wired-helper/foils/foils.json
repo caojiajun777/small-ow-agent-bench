@@ -1,0 +1,35 @@
+{
+  "kind": "structured-review",
+  "schema_version": 2,
+  "regression_suite": "scripts/test_task_upgrade_review.py",
+  "foils": [
+    {
+      "id": "always-accept",
+      "expected_reward": 0
+    },
+    {
+      "id": "always-reject",
+      "expected_reward": 0
+    },
+    {
+      "id": "flip-all-decisions",
+      "expected_reward": 0
+    },
+    {
+      "id": "invented-expected-output",
+      "expected_reward": 0
+    },
+    {
+      "id": "reject-without-counterexample",
+      "expected_reward": 0
+    },
+    {
+      "id": "unexecuted-location",
+      "expected_reward": 0
+    },
+    {
+      "id": "tampered-workspace",
+      "expected_reward": 0
+    }
+  ]
+}

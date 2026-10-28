@@ -23,8 +23,8 @@ def test_sanitize_drops_windows_path():
         "attempt": 1,
         "atomic_correct": 1,
         "termination": "clean",
-        "job": r"C:\Users\90556\Desktop\learning\benchmark\small-ow-agent-bench\jobs\2026-08-27__16-06-11",
-        "rerun_of": r"C:\Users\90556\Desktop\learning\benchmark\small-ow-agent-bench\jobs\old",
+        "job": r"C:/benchmark-fixture/small-ow-agent-bench\jobs\2026-08-27__16-06-11",
+        "rerun_of": r"C:/benchmark-fixture/small-ow-agent-bench\jobs\old",
         "openrouter_id": "openrouter/qwen/qwen3.5-9b",
     }
     got = sanitize(row)

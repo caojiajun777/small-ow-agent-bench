@@ -1,0 +1,13 @@
+{
+  "kind": "repro",
+  "foils": [
+    {
+      "id": "read-once",
+      "why": "never calls set_price after the first quote"
+    },
+    {
+      "id": "clear-cache-private",
+      "why": "calls quote.cache_clear instead of the public setter path"
+    }
+  ]
+}

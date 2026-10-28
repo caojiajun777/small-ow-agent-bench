@@ -1,0 +1,24 @@
+{
+  "now": 100,
+  "defaults": {
+    "timeout": 8
+  },
+  "jobs": [
+    {
+      "id": "a",
+      "config": {
+        "timeout": 0
+      }
+    },
+    {
+      "id": "b"
+    },
+    {
+      "id": "c",
+      "config": {
+        "timeout": 2
+      }
+    }
+  ]
+}
+

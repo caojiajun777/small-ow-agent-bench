@@ -1,0 +1,31 @@
+{
+  "kind": "localization",
+  "foils": [
+    {
+      "id": "plausible-wrong-owner",
+      "answer": [
+        "discounts/legacy.py"
+      ]
+    },
+    {
+      "id": "extra-correct-caller",
+      "answer": [
+        "checkout.py",
+        "pricing/vip.py",
+        "app.py"
+      ]
+    },
+    {
+      "id": "missing-checkout.py",
+      "answer": [
+        "pricing/vip.py"
+      ]
+    },
+    {
+      "id": "missing-pricing-vip.py",
+      "answer": [
+        "checkout.py"
+      ]
+    }
+  ]
+}

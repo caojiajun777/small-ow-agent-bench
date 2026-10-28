@@ -1,0 +1,12 @@
+{
+  "files": [
+    {
+      "name": "a.csv",
+      "size_mb": 20
+    },
+    {
+      "name": "empty.txt",
+      "size_mb": 0
+    }
+  ]
+}

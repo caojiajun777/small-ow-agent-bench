@@ -1,0 +1,43 @@
+{
+  "kind": "testgen",
+  "correct": [
+    {
+      "name": "reference",
+      "patch": {
+        "stats.py": "gold/stats.py"
+      }
+    },
+    {
+      "name": "alternative",
+      "patch": {
+        "stats.py": "gold_alt/stats.py"
+      }
+    }
+  ],
+  "incorrect": [
+    {
+      "name": "first",
+      "patch": {
+        "stats.py": "mutants/first.py"
+      }
+    },
+    {
+      "name": "sum",
+      "patch": {
+        "stats.py": "mutants/sum.py"
+      }
+    },
+    {
+      "name": "does_not_publish_output",
+      "patch": {
+        "workflow.py": "workflow_mutants/no_publish.py"
+      }
+    },
+    {
+      "name": "ignores_stop_policy",
+      "patch": {
+        "service.py": "workflow_mutants/ignore_stop.py"
+      }
+    }
+  ]
+}

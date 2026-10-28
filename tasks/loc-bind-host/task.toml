@@ -1,8 +1,9 @@
 schema_version = "1.4"
+artifacts = [{ source = "/app/repo", destination = "submission/repo", exclude = ["__pycache__", "*.pyc", ".pytest_cache", ".git", ".env", ".env.*", "credentials.json", "id_rsa", "id_ed25519"] }, { source = "/app/answer.txt", destination = "submission/answer.txt" }]
 
 [task]
 name = "small-ow-agent-bench/loc-bind-host"
-version = "1.0.0"
+version = "2.0.0-rc.1"
 authors = []
 keywords = ["agentic-coding", "localization"]
 
@@ -11,23 +12,38 @@ author_name = ""
 author_email = ""
 difficulty = "hard"
 construct_difficulty = "hard"
-empirical_band = "out_of_range"
-calibration_status = "out_of_range"
+empirical_band = "uncalibrated"
+calibration_status = "not_run"
+benchmark_revision = "workflow-2026-10-19"
+source_type = "handcrafted-workflow"
+legacy_task_version = "1.0.0"
+legacy_empirical_band = "out_of_range"
+legacy_calibration_status = "out_of_range"
 difficulty_weight = 2.0
 trap_id = "L2"
 category = "software"
 subcategory = "localization"
 tags = ["localization", "hard", "agentic-coding", "atomic-skills"]
-difficulty_explanation = "Exact file-set match for the hardcoded bind address."
+difficulty_explanation = "Inherited original trap tier only; upgraded workflow has not been empirically calibrated."
 expert_time_estimate_hours = 0.2
 
 [verifier]
+environment_mode = "separate"
+network_mode = "no-network"
 timeout_sec = 180.0
 
+[verifier.environment]
+network_mode = "no-network"
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+
 [agent]
+network_mode = "no-network"
 timeout_sec = 180.0
 
 [environment]
+network_mode = "no-network"
 build_timeout_sec = 600.0
 cpus = 1
 memory_mb = 2048

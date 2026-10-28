@@ -1,0 +1,43 @@
+{
+  "kind": "testgen",
+  "correct": [
+    {
+      "name": "reference",
+      "patch": {
+        "greet.py": "gold/greet.py"
+      }
+    },
+    {
+      "name": "alternative",
+      "patch": {
+        "greet.py": "gold_alt/greet.py"
+      }
+    }
+  ],
+  "incorrect": [
+    {
+      "name": "keyerror",
+      "patch": {
+        "greet.py": "mutants/keyerror.py"
+      }
+    },
+    {
+      "name": "none_as_name",
+      "patch": {
+        "greet.py": "mutants/none_as_name.py"
+      }
+    },
+    {
+      "name": "does_not_publish_output",
+      "patch": {
+        "workflow.py": "workflow_mutants/no_publish.py"
+      }
+    },
+    {
+      "name": "ignores_stop_policy",
+      "patch": {
+        "service.py": "workflow_mutants/ignore_stop.py"
+      }
+    }
+  ]
+}

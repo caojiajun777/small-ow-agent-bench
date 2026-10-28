@@ -1,0 +1,20 @@
+{
+  "kind": "edit",
+  "foils": [
+    {
+      "id": "primitive-only",
+      "files": {
+        "timefmt.py": "def format_hms(seconds):\n    hours, rest = divmod(seconds, 3600)\n    minutes, seconds = divmod(rest, 60)\n    return f\"{hours}:{minutes:02d}:{seconds:02d}\"\n",
+        "workflow.py": "from timefmt import format_hms\n\ndef process(request):\n    jobs = []\n    total = 0\n    for job in request[\"jobs\"]:\n        seconds = max(0, job[\"end\"] - job[\"start\"])\n        total += seconds\n        jobs.append({\"id\": job[\"id\"], \"duration\": format_hms(seconds)})\n    return {\"jobs\": jobs, \"total\": format_hms(total)}\n"
+      }
+    },
+    {
+      "id": "workflow-only",
+      "files": {
+        "timefmt.py": "def format_hms(seconds):\n    return str(seconds)\n",
+        "workflow.py": "from timefmt import format_hms\n\ndef process(request):\n    jobs = []\n    total = 0\n    for job in request[\"jobs\"]:\n        seconds = max(0, job[\"end\"] - job[\"start\"] - job.get(\"paused\", 0))\n        total += seconds\n        jobs.append({\"id\": job[\"id\"], \"duration\": format_hms(seconds)})\n    return {\"jobs\": jobs, \"total\": format_hms(total)}\n"
+      }
+    }
+  ]
+}
+
