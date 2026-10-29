@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "kind": "smallowbench_v2_provider_configuration_selection",
+  "created_at": "2026-10-29T13:57:38.096989+08:00",
+  "configuration_id": "qwen3.5-9b-primeintellect-bf16",
+  "source_configuration_id": "qwen3.5-9b",
+  "reason": "Parasail upstream shared-pool HTTP429 interrupted two different tasks",
+  "models": {
+    "qwen3.5-9b-primeintellect-bf16": {
+      "runtime_id": "openrouter/qwen/qwen3.5-9b",
+      "route": "primeintellect/bf16",
+      "agent_kwargs": {
+        "max_turns": 20,
+        "command_timeout_sec": 60,
+        "observation_limit": 8000,
+        "temperature": 0.0,
+        "llm_call_kwargs": {
+          "max_tokens": 8192,
+          "timeout": 180,
+          "top_p": 1.0,
+          "extra_body": {
+            "provider": {
+              "order": [
+                "primeintellect/bf16"
+              ],
+              "only": [
+                "primeintellect/bf16"
+              ],
+              "allow_fallbacks": false,
+              "require_parameters": true,
+              "quantizations": [
+                "bf16"
+              ]
+            },
+            "reasoning": {
+              "enabled": false
+            },
+            "enable_thinking": false
+          }
+        }
+      }
+    }
+  },
+  "changed_fields_only": [
+    "route",
+    "agent_kwargs.llm_call_kwargs.extra_body.provider.order",
+    "agent_kwargs.llm_call_kwargs.extra_body.provider.only"
+  ],
+  "all_other_model_parameters_identical": true,
+  "planned_task_count": 62,
+  "repetitions": 1,
+  "same_model_same_bf16": true,
+  "no_mixing_of_old29_results": true,
+  "monetary_cap_enforced": false,
+  "user_authorization": "把这个问题给我解决了",
+  "catalog_audit_path": "analysis/v2/provider-recovery-20261029/public-route-catalog-audit-20261029T054716Z.json",
+  "catalog_audit_sha256": "b0109e01412301faad478ccd6097201d9c8656f57a8a130ed45f3ed6716bdcdf"
+}

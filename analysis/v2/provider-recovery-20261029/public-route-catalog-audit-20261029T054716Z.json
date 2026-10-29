@@ -1,0 +1,93 @@
+{
+  "retrieved_at": "2026-10-29T05:47:16.296772+00:00",
+  "endpoint_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.5-9b/endpoints",
+  "endpoint_raw_file": "analysis/v2/provider-recovery-20261029/openrouter-qwen35-9b-endpoints-20261029T054716Z.json",
+  "endpoint_raw_sha256": "e5508e402c1d7beb9110d3328dbc1f4a64e0d787a557fdbc63aa3b83c3e2e631",
+  "selected_model_file": "analysis/v2/provider-recovery-20261029/openrouter-qwen35-9b-model-selection-20261029T054716Z.json",
+  "selected_model_file_sha256": "315ed9ef1f8eff607b31882697b252ec09f6216380a1d471d11781c17355842f",
+  "reasoning_mandatory": false,
+  "bf16_endpoints": [
+    {
+      "tag": "deepinfra/bf16",
+      "provider_name": "DeepInfra",
+      "status": 0,
+      "uptime_last_30m": 0,
+      "uptime_last_5m": null,
+      "max_completion_tokens": 81920,
+      "context_length": 262144,
+      "supported_parameters": [
+        "reasoning",
+        "include_reasoning",
+        "max_tokens",
+        "temperature",
+        "top_p",
+        "stop",
+        "frequency_penalty",
+        "presence_penalty",
+        "repetition_penalty",
+        "top_k",
+        "seed",
+        "min_p",
+        "logit_bias",
+        "structured_outputs",
+        "tools",
+        "tool_choice",
+        "response_format"
+      ]
+    },
+    {
+      "tag": "parasail/bf16",
+      "provider_name": "Parasail",
+      "status": 0,
+      "uptime_last_30m": 100,
+      "uptime_last_5m": 100,
+      "max_completion_tokens": 235929,
+      "context_length": 262144,
+      "supported_parameters": [
+        "reasoning",
+        "include_reasoning",
+        "max_tokens",
+        "temperature",
+        "top_p",
+        "frequency_penalty",
+        "presence_penalty",
+        "repetition_penalty",
+        "seed",
+        "stop",
+        "top_k",
+        "logit_bias",
+        "response_format",
+        "structured_outputs",
+        "logprobs",
+        "top_logprobs"
+      ]
+    },
+    {
+      "tag": "primeintellect/bf16",
+      "provider_name": "PrimeIntellect",
+      "status": 0,
+      "uptime_last_30m": 100,
+      "uptime_last_5m": 100,
+      "max_completion_tokens": 40960,
+      "context_length": 262144,
+      "supported_parameters": [
+        "reasoning",
+        "include_reasoning",
+        "response_format",
+        "structured_outputs",
+        "tools",
+        "tool_choice",
+        "temperature",
+        "top_p",
+        "top_k",
+        "min_p",
+        "presence_penalty",
+        "repetition_penalty",
+        "max_tokens",
+        "max_completion_tokens"
+      ]
+    }
+  ],
+  "model_calls": 0,
+  "authenticated_requests": 0
+}
