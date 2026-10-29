@@ -35,6 +35,7 @@ RESOURCE_FILES = (
     RELEASE + "/SCORES-PARTIAL-20261029.json",
     RELEASE + "/route-catalog.json",
     "analysis/v2/provider-recovery-20261029/PROVIDER-REASSESSMENT.md",
+    "analysis/v2/provider-recovery-20261029/CANCELLATION-AUDIT-AMENDMENT.md",
     "analysis/v2/provider-recovery-20261029/PUBLIC-ROUTE-FINDINGS-20261029.md",
     "analysis/v2/provider-recovery-20261029/models.qwen35-primeintellect-bf16.json",
     "analysis/v2/provider-recovery-20261029/openrouter-qwen35-9b-endpoints-20261029T054716Z.json",
@@ -51,6 +52,7 @@ ENTRY_POINTS = (
     "scripts/analyze_release_v2_fee_waiver.py", "scripts/audit_v2_capture_supplement.py",
     "scripts/analyze_release_v2_supplement.py", "scripts/retry_v2_single_infra.py",
     "scripts/provider_reassessment_v2.py", "scripts/provider_reassessment_scoring_v2.py",
+    "scripts/resume_provider_cancellation_v2.py", "scripts/provider_cancellation_scoring_v2.py",
 )
 REGRESSION_TESTS = (
     "scripts/test_release_v2_pipeline.py", "scripts/test_release_v2_glue.py",
@@ -61,6 +63,7 @@ REGRESSION_TESTS = (
     "scripts/test_release_v2_fee_waiver.py", "scripts/test_audit_v2_capture_supplement.py",
     "scripts/test_analyze_release_v2_supplement.py", "scripts/test_retry_v2_single_infra.py",
     "scripts/test_provider_reassessment_v2.py", "scripts/test_provider_reassessment_scoring_v2.py",
+    "scripts/test_resume_provider_cancellation_v2.py", "scripts/test_provider_cancellation_scoring_v2.py",
     "agents/test_artifacts_v2.py", "agents/test_compact_shell_v2.py",
     "agents/test_protocol_v2.py",
 )
