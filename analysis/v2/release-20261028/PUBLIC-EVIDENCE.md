@@ -1,5 +1,11 @@
 # SmallOWBench 2.0: public evidence summary
 
+Closeout update, 2026-10-29: a separate bounded protocol completes the 32 unvisited
+slots and permits exactly one user-approved HTTP-429 retry (497 attempts for 496
+unique scored slots). Two original zero-grade capture errors receive strictly
+negative-only observation audits. Original records stay intact; final ranking
+still requires full acceptance. See the [closeout protocol](CLOSEOUT-PROTOCOL-20261029.md).
+
 Execution update, 2026-10-29: the user waived monetary admission limits after
 120 scored attempts. The initial evidence and fee records remain intact; the
 remaining 376 slots continue under unchanged evaluation conditions. US$40 below

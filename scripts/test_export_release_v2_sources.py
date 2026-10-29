@@ -132,7 +132,9 @@ def test_invalid_manifest_and_undeclared_original_task_file_block(source):
 
 
 def test_excluded_products_are_never_read_or_selected(source, monkeypatch):
-    private = {".env", "experiments/private.json", "analysis/v2/runtime.json", "archives/source.zip", ".git/index"}
+    private = {".env", "experiments/private.json", "analysis/v2/runtime.json", "archives/source.zip", ".git/index",
+               export.RELEASE + "/CONTINUATION-MEMO-20261029.md",
+               export.RELEASE + "/capture-runtime-report.json"}
     for name in private:
         put(source, name, b"private contents\n")
     old_read = Path.read_bytes

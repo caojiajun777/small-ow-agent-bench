@@ -1,5 +1,7 @@
 # SmallOWBench 2.0
 
+**2026-10-29 result closeout:** 32 unvisited slots are being completed, followed by one separately approved HTTP-429 retry. The target remains 496 unique scored slots; the execution-attempt ceiling is 497, preserving the original infra record. Two original zero-grade capture errors have a narrowly audited negative-evidence supplement. Full ranking still requires final acceptance; see the [closeout protocol](analysis/v2/release-20261028/CLOSEOUT-PROTOCOL-20261029.md).
+
 [简体中文](README.md) | **English**
 
 **2026-10-29 execution amendment:** the user removed the monetary admission cap for this run. The remaining 376 slots continue, preserving the initial 120 scored attempts. Models, tasks, attempts and token/turn/time limits are unchanged; fees are recorded. US$40 below describes the initial phase; see the [dated amendment](analysis/v2/release-20261028/MONETARY-POLICY-AMENDMENT-20261029.md).

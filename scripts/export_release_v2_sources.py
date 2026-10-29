@@ -29,6 +29,8 @@ RESOURCE_FILES = (
     "analysis/v2/models.route-ready.json",
     RELEASE + "/ROUTES.md", RELEASE + "/RELEASE-NOTES.md",
     RELEASE + "/PUBLICATION-CHECKLIST.md", RELEASE + "/PUBLIC-EVIDENCE.md",
+    RELEASE + "/MONETARY-POLICY-AMENDMENT-20261029.md",
+    RELEASE + "/CLOSEOUT-PROTOCOL-20261029.md",
     RELEASE + "/route-catalog.json",
 )
 ENTRY_POINTS = (
@@ -37,6 +39,9 @@ ENTRY_POINTS = (
     "scripts/build_release_v2_images.py", "scripts/rc2_pipeline.py",
     "scripts/prepare_rc2_candidate.py", "scripts/rc2_task_patches.py",
     "scripts/validate_rc2_containers.py", "scripts/export_release_v2_sources.py",
+    "scripts/release_v2_fee_waiver_executor.py", "scripts/resume_release_v2.py",
+    "scripts/analyze_release_v2_fee_waiver.py", "scripts/audit_v2_capture_supplement.py",
+    "scripts/analyze_release_v2_supplement.py", "scripts/retry_v2_single_infra.py",
 )
 REGRESSION_TESTS = (
     "scripts/test_release_v2_pipeline.py", "scripts/test_release_v2_glue.py",
@@ -44,6 +49,8 @@ REGRESSION_TESTS = (
     "scripts/test_rc2_pipeline.py", "scripts/test_rc2_task_patches.py",
     "scripts/test_validate_rc2_containers.py",
     "scripts/test_export_release_v2_sources.py",
+    "scripts/test_release_v2_fee_waiver.py", "scripts/test_audit_v2_capture_supplement.py",
+    "scripts/test_analyze_release_v2_supplement.py", "scripts/test_retry_v2_single_infra.py",
     "agents/test_artifacts_v2.py", "agents/test_compact_shell_v2.py",
     "agents/test_protocol_v2.py",
 )
