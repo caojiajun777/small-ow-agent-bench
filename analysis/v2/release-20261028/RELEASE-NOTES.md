@@ -1,12 +1,16 @@
 # SmallOWBench 2.0 — release notes
 
+Results status: the resumed configuration encountered another shared-upstream-pool 429. Seven configurations have complete 62-task results; Qwen3.5-9B remains partial at 29/62 with two infra attempts and 31 unvisited slots. The separately approved retry has not executed. [Completed-configuration results](RESULTS-PARTIAL-20261029.md) are published with the global full-roster acceptance flag still false.
+
+2026-10-29 closeout update: 32 unvisited slots continue, and the user separately approved exactly one HTTP-429 retry. The unique scored-slot target remains 496; the attempt ceiling is 497 with the original infra preserved. Two existing fail/zero capture errors have a limited negative-evidence supplement. No complete result is claimed before final acceptance. See the [closeout protocol](CLOSEOUT-PROTOCOL-20261029.md).
+
 2026-10-29 update: the user waived the monetary admission cap for the ongoing run. Its initial 120 scored attempts are retained; the remaining 376 continue with unchanged evaluation resources. US$40 references below describe the initial phase. See the [dated execution amendment](MONETARY-POLICY-AMENDMENT-20261029.md).
 
-日期：2026-10-28。发布组件为 task／grader `2.0.0-rc.2`、harness `2.0.0-rc.1`，使用独立 release CLI。正式模型结果尚待本轮实际运行与证据验收；最终运行身份和状态以单独冻结的发布记录为准。
+原始源码发布日期：2026-10-28；结果状态更新于 2026-10-29。发布组件为 task／grader `2.0.0-rc.2`、harness `2.0.0-rc.1`，使用独立 release CLI。已公开 7 个完整配置的首轮成绩，整个原定名册仍不完整；运行身份和状态以冻结记录及本页修订为准。
 
 SmallOWBench 是面向紧凑开放权重 Coding Agent 的可执行诊断基准。2.0 将 62 个任务改写为人工设计的小型 Python 工程工作流，用确定性验证器检查交付物，并区分产物正确与协议正常完成。任务在开发过程中已经被检查、修复和试跑；它们不是未见保留集，也不代表真实大型仓库 issue 或长程自主软件维护。
 
-**本轮正式模型分数尚待运行，不在此预填榜单。** 已批准的范围为 8 个原配置 × 62 题 × 1 次重复，最多 496 个任务尝试，预算 US$40、4 workers、整槽 infra 重试 0 次。496 不是 HTTP 请求数；多轮交互和客户端调用级重试会产生更多请求。旧版公开榜单、RC1 校准和工程诊断都保持各自的历史版本口径，不能作为本次题库的成绩。
+**当前成绩来自实际运行与原始证据验收。** 初始范围为 8 个原配置 × 62 题 × 1 次重复、最多 496 个任务尝试、US$40、4 workers、整槽 infra 重试 0 次。费用条件随后撤销，唯一 429 重试例外的批准与条件见本页顶部。496 是唯一评分槽位目标，不是 HTTP 请求数；多轮交互和客户端调用级重试会产生更多请求。旧版榜单、RC1 校准和工程诊断保持各自历史口径，未混入新成绩。
 
 ## 发布身份与内容
 
@@ -115,4 +119,4 @@ python scripts/run_release_v2.py execute --directory experiments/smallowbench-v2
 
 ## English summary
 
-SmallOWBench 2.0 is an execution-based diagnostic benchmark for compact open-weight coding agents: 62 authored, developed small Python workflows across localization, editing, test generation, bug reproduction and patch validation. Artifact measures verified deliverables; Clean additionally requires a normal protocol finish and is not a real-world software-development E2E success rate. The current task/grader components are `2.0.0-rc.2`, while the harness remains `2.0.0-rc.1`. Existing evidence covers 232 passing offline tests with one skipped test, and five selected tasks with ten oracle/no-op container slots meeting their expected outcomes. New formal model scores await this release's complete run. Legacy scores, RC1 container acceptance and development diagnostics do not transfer to the new task bank.
+SmallOWBench 2.0 is an execution-based diagnostic benchmark for compact open-weight coding agents: 62 authored, developed small Python workflows across localization, editing, test generation, bug reproduction and patch validation. Artifact measures verified deliverables; Clean additionally requires a normal protocol finish and is not a real-world software-development E2E success rate. The current task/grader components are `2.0.0-rc.2`, while the harness remains `2.0.0-rc.1`. Existing evidence covers 232 passing offline tests with one skipped test, and five selected tasks with ten oracle/no-op container slots meeting their expected outcomes. Results for seven completed configurations are published; one provider-limited configuration remains partial. Legacy scores, RC1 container acceptance and development diagnostics do not transfer to the new task bank.

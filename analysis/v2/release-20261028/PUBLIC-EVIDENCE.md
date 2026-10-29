@@ -1,5 +1,17 @@
 # SmallOWBench 2.0: public evidence summary
 
+Latest result status: seven configurations have complete 62-task evidence after
+the two limited negative-observation supplements. Qwen3.5-9B is held after a
+second shared-upstream-pool 429: 29 scored, two infra, 31 unvisited. The extra
+approved retry remains unused. See the [completed-configuration results](RESULTS-PARTIAL-20261029.md);
+global full-roster acceptance remains false.
+
+Closeout update, 2026-10-29: a separate bounded protocol completes the 32 unvisited
+slots and permits exactly one user-approved HTTP-429 retry (497 attempts for 496
+unique scored slots). Two original zero-grade capture errors receive strictly
+negative-only observation audits. Original records stay intact; final ranking
+still requires full acceptance. See the [closeout protocol](CLOSEOUT-PROTOCOL-20261029.md).
+
 Execution update, 2026-10-29: the user waived monetary admission limits after
 120 scored attempts. The initial evidence and fee records remain intact; the
 remaining 376 slots continue under unchanged evaluation conditions. US$40 below
@@ -81,8 +93,9 @@ Frozen run manifest internal digest:
 Frozen execution-lock internal digest:
 `8468e1368799141f67fb3b30200499be60dd9763766f18284c0ff799001c07df`.
 
-**Model results are pending.** No score or ranking is inferred from the
-engineering checks above. Original run authorization, claims, budget ledgers and
+**The intended full-roster results remain incomplete.** Completed-configuration
+scores are published above; the engineering checks themselves do not establish
+model scores. Original run authorization, claims, budget ledgers and
 absolute-path runtime receipts remain local. Final results must be recomputed
 from the matching run's raw artifacts, with missing, infra, grader errors and
 termination categories disclosed. The old US$4 run and its holds are unchanged.
