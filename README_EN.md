@@ -1,6 +1,8 @@
 # SmallOWBench 2.0
 
-**2026-10-29 result closeout:** 32 unvisited slots are being completed, followed by one separately approved HTTP-429 retry. The target remains 496 unique scored slots; the execution-attempt ceiling is 497, preserving the original infra record. Two original zero-grade capture errors have a narrowly audited negative-evidence supplement. Full ranking still requires final acceptance; see the [closeout protocol](analysis/v2/release-20261028/CLOSEOUT-PROTOCOL-20261029.md).
+**First RC2 results are available for seven complete configurations; one configuration is provider-limited.** Each completed configuration has 62 valid task observations. Qwen3.5-9B has 29 valid observations and two Parasail shared-upstream-pool 429 failures; it has no full-bank score. See the [results and skill breakdown](analysis/v2/release-20261028/RESULTS-PARTIAL-20261029.md) and [safe data projection](analysis/v2/release-20261028/SCORES-PARTIAL-20261029.json). The original eight-configuration acceptance flag remains false; missing data are not model zeros.
+
+**2026-10-29 closeout record:** the first task in the 32-slot continuation encountered another 429 and the configuration is held again. The separately approved original retry remains unused. The target remains 496 unique scored slots; that conditional exception permits a 497-attempt ceiling while preserving original infra history. See the [closeout protocol](analysis/v2/release-20261028/CLOSEOUT-PROTOCOL-20261029.md).
 
 [简体中文](README.md) | **English**
 
@@ -8,7 +10,7 @@
 
 SmallOWBench 2.0 is an execution-based diagnostic benchmark for compact open-weight coding agents. Its 62 authored small Python workflows cover localization, editing, test generation, bug reproduction and patch validation, with deterministic verification of deliverables. The tasks have been inspected, repaired and used during development; they do not represent an unseen holdout set, real large-repository issues or long-horizon autonomous maintenance.
 
-**Release components: task/grader `2.0.0-rc.2`; harness `2.0.0-rc.1`. New formal scores await the actual run and evidence acceptance; no new leaderboard is published yet.** The new entry point explicitly selects `task-banks/rc2/tasks`. The root `VERSION`, original `tasks` and original manifest retain their protected RC1 provenance for integrity checks and historical reproduction. Changing the root version or using an old runner does not activate the new bank.
+**Release components: task/grader `2.0.0-rc.2`; harness `2.0.0-rc.1`. Results for seven completed configurations are published; the intended eight-configuration roster remains incomplete.** The new entry point explicitly selects `task-banks/rc2/tasks`. The root `VERSION`, original `tasks` and original manifest retain their protected RC1 provenance for integrity checks and historical reproduction. Changing the root version or using an old runner does not activate the new bank.
 
 | Skill | Tasks | Verified deliverable |
 |---|---:|---|

@@ -1,5 +1,14 @@
 # 2026-10-29 release-result closeout protocol
 
+**Status after the continuation attempt:** its first unvisited task received a
+new Parasail shared-upstream-pool HTTP429 after 12 completed API responses. The
+frozen executor held the configuration again. There are now seven complete
+62-task configurations, 29 valid Qwen3.5-9B observations, two retained infra
+attempts and 31 unvisited slots. The separately approved original retry has not
+executed because its closure prerequisites are unmet. The automatic supervisor
+stopped without an extra request. See the [completed-configuration results](RESULTS-PARTIAL-20261029.md);
+this is not a complete eight-configuration leaderboard.
+
 The first execution ended with 463 scored attempts, one HTTP-429 infrastructure
 attempt and 32 unvisited slots. The original analyzer admitted 461 observations
 and rejected two Llama3.2-3B capture errors. This note records the bounded
