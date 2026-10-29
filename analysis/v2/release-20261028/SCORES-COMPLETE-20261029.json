@@ -1,0 +1,5193 @@
+{
+  "schema_version": 2,
+  "kind": "smallowbench_v2_complete_superseding_roster_public_results",
+  "generated_at": "2026-10-29T10:59:13.371957+00:00",
+  "benchmark_version": "2.0.0-rc.2",
+  "harness_version": "2.0.0-rc.1",
+  "accepted": true,
+  "formal_ranking_eligible": true,
+  "parent_original_roster_accepted": false,
+  "repetitions": 1,
+  "complete_configurations": 8,
+  "valid_task_observations": 496,
+  "source_composition": {
+    "complete_parent_configurations": 7,
+    "parent_task_observations": 434,
+    "independent_primeintellect_task_observations": 62,
+    "old_parasail_observations_excluded": 29
+  },
+  "source_report_sha256": "8be134c7f71dc7ab36f3dd392690b681f8d50e84abc1adcaa9cde4f5e6865ec3",
+  "provider_manifest_sha256": "e0266b57e1660adb20189fc57c880b0532ad0e43d2155e54147d29bb738261f8",
+  "superseding_roster_manifest_sha256": "09d0355c73e955878ff7277f2378525bc937372a554cea65ad44e1b246e9b28e",
+  "source_sha256": {
+    "scripts/provider_reassessment_scoring_v2.py": "709daec0be00635b2bb3ad2f23a0dbe0289a0a66f476e62a3354f90bf1d11761",
+    "scripts/provider_reassessment_v2.py": "ac67db343ed1ede441a7eac235ae30bb1704a40630de5a6502352859e67d03ca"
+  },
+  "raw_artifacts_distributed": false,
+  "projection_limit": "Aggregation-reproducible labels only; original requests, traces, captures, receipts, authorization and host paths remain private.",
+  "scoring": "equal tasks within each skill; five equal skill means for macro; 62-task micro reported separately",
+  "scores": {
+    "gemma-3-12b-it": {
+      "scored_slots": 62,
+      "skills": {
+        "artifact": {
+          "loc": 0.0,
+          "edit": 0.0,
+          "testgen": 0.0,
+          "repro": 0.0,
+          "review": 0.0
+        },
+        "clean": {
+          "loc": 0.0,
+          "edit": 0.0,
+          "testgen": 0.0,
+          "repro": 0.0,
+          "review": 0.0
+        }
+      },
+      "artifact_macro_100": 0.0,
+      "clean_macro_100": 0.0,
+      "artifact_task_micro": 0.0,
+      "clean_task_micro": 0.0
+    },
+    "llama-3.2-3b-instruct": {
+      "scored_slots": 62,
+      "skills": {
+        "artifact": {
+          "loc": 0.0,
+          "edit": 0.0,
+          "testgen": 0.0,
+          "repro": 0.0,
+          "review": 0.0
+        },
+        "clean": {
+          "loc": 0.0,
+          "edit": 0.0,
+          "testgen": 0.0,
+          "repro": 0.0,
+          "review": 0.0
+        }
+      },
+      "artifact_macro_100": 0.0,
+      "clean_macro_100": 0.0,
+      "artifact_task_micro": 0.0,
+      "clean_task_micro": 0.0
+    },
+    "ministral-14b-2512": {
+      "scored_slots": 62,
+      "skills": {
+        "artifact": {
+          "loc": 0.2727272727272727,
+          "edit": 0.4,
+          "testgen": 0.0,
+          "repro": 0.07692307692307693,
+          "review": 0.0
+        },
+        "clean": {
+          "loc": 0.2727272727272727,
+          "edit": 0.4,
+          "testgen": 0.0,
+          "repro": 0.07692307692307693,
+          "review": 0.0
+        }
+      },
+      "artifact_macro_100": 14.993006993006995,
+      "clean_macro_100": 14.993006993006995,
+      "artifact_task_micro": 0.16129032258064516,
+      "clean_task_micro": 0.16129032258064516
+    },
+    "ministral-3b-2512": {
+      "scored_slots": 62,
+      "skills": {
+        "artifact": {
+          "loc": 0.0,
+          "edit": 0.13333333333333333,
+          "testgen": 0.0,
+          "repro": 0.0,
+          "review": 0.0
+        },
+        "clean": {
+          "loc": 0.0,
+          "edit": 0.06666666666666667,
+          "testgen": 0.0,
+          "repro": 0.0,
+          "review": 0.0
+        }
+      },
+      "artifact_macro_100": 2.666666666666667,
+      "clean_macro_100": 1.3333333333333335,
+      "artifact_task_micro": 0.03225806451612903,
+      "clean_task_micro": 0.016129032258064516
+    },
+    "ministral-8b-2512": {
+      "scored_slots": 62,
+      "skills": {
+        "artifact": {
+          "loc": 0.09090909090909091,
+          "edit": 0.06666666666666667,
+          "testgen": 0.0,
+          "repro": 0.23076923076923078,
+          "review": 0.0
+        },
+        "clean": {
+          "loc": 0.0,
+          "edit": 0.0,
+          "testgen": 0.0,
+          "repro": 0.0,
+          "review": 0.0
+        }
+      },
+      "artifact_macro_100": 7.766899766899767,
+      "clean_macro_100": 0.0,
+      "artifact_task_micro": 0.08064516129032258,
+      "clean_task_micro": 0.0
+    },
+    "qwen3.5-9b-primeintellect-bf16": {
+      "scored_slots": 62,
+      "skills": {
+        "artifact": {
+          "loc": 0.9090909090909091,
+          "edit": 0.8,
+          "testgen": 0.07692307692307693,
+          "repro": 0.07692307692307693,
+          "review": 0.0
+        },
+        "clean": {
+          "loc": 0.09090909090909091,
+          "edit": 0.8,
+          "testgen": 0.07692307692307693,
+          "repro": 0.0,
+          "review": 0.0
+        }
+      },
+      "artifact_macro_100": 37.25874125874126,
+      "clean_macro_100": 19.356643356643357,
+      "artifact_task_micro": 0.3870967741935484,
+      "clean_task_micro": 0.22580645161290322
+    },
+    "qwen3.6-35b-a3b": {
+      "scored_slots": 62,
+      "skills": {
+        "artifact": {
+          "loc": 0.2727272727272727,
+          "edit": 0.8666666666666667,
+          "testgen": 0.23076923076923078,
+          "repro": 0.15384615384615385,
+          "review": 0.0
+        },
+        "clean": {
+          "loc": 0.0,
+          "edit": 0.4666666666666667,
+          "testgen": 0.15384615384615385,
+          "repro": 0.07692307692307693,
+          "review": 0.0
+        }
+      },
+      "artifact_macro_100": 30.48018648018648,
+      "clean_macro_100": 13.948717948717947,
+      "artifact_task_micro": 0.3387096774193548,
+      "clean_task_micro": 0.16129032258064516
+    },
+    "qwen3.8-27b": {
+      "scored_slots": 62,
+      "skills": {
+        "artifact": {
+          "loc": 0.5454545454545454,
+          "edit": 0.4,
+          "testgen": 0.0,
+          "repro": 0.0,
+          "review": 0.0
+        },
+        "clean": {
+          "loc": 0.5454545454545454,
+          "edit": 0.3333333333333333,
+          "testgen": 0.0,
+          "repro": 0.0,
+          "review": 0.0
+        }
+      },
+      "artifact_macro_100": 18.90909090909091,
+      "clean_macro_100": 17.57575757575757,
+      "artifact_task_micro": 0.1935483870967742,
+      "clean_task_micro": 0.1774193548387097
+    }
+  },
+  "task_results": [
+    {
+      "model": "gemma-3-12b-it",
+      "task": "edit-blank-name",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "edit-clip",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "edit-config-beside",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "edit-covered-length",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "edit-deep-merge",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "edit-hhmmss",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "edit-int-list",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "edit-jsonl-keep",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "edit-pad-left",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "edit-prefix-sums",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "edit-retry-discount",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "edit-slugify",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "edit-timeout-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "edit-top-k",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "edit-unique-keep",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "loc-bind-host",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "loc-env-wrapper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "loc-failing-test-impl",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "loc-hook-plugin",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "loc-member-discount",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "loc-reexport",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "loc-similar-filenames",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "loc-traceback-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "loc-unused-fix",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "loc-vendor-shadow",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "loc-vip-two-files",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "repro-empty-mean",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "repro-end-exclusive",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "repro-first-index",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "not_stable_target_reproduction"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "repro-float-cents",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "repro-keep-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "repro-nested-alias",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "repro-none-name",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "repro-off-by-one",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "repro-second-export",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "rejects_correct_implementation"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "repro-stale-quote",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "repro-truthy-flag",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "repro-whitespace",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "rejects_correct_implementation"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "repro-zero-timeout",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "review-bare-except",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "review-clip-incomplete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "review-configured-timeout",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "review-dead-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "review-mean-wrong",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "review-prefix-complete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "review-rotate-right",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "review-slug-almost",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "review-slug-complete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "review-wired-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "testgen-anagram",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "testgen-booking-touch",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "testgen-cents",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "testgen-clip",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "testgen-greet-none",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "testgen-gregorian",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "testgen-mean",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "testgen-parse",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "testgen-tie-order",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "testgen-timeout-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "testgen-unique-order",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "testgen-window",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "gemma-3-12b-it",
+      "task": "testgen-zero-qty",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "edit-blank-name",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "edit-clip",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "edit-config-beside",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "edit-covered-length",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "edit-deep-merge",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "edit-hhmmss",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "edit-int-list",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "edit-jsonl-keep",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "edit-pad-left",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "edit-prefix-sums",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "edit-retry-discount",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "edit-slugify",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "edit-timeout-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "edit-top-k",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "edit-unique-keep",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "loc-bind-host",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "loc-env-wrapper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "loc-failing-test-impl",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "loc-hook-plugin",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "loc-member-discount",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "loc-reexport",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "loc-similar-filenames",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "loc-traceback-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "loc-unused-fix",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "loc-vendor-shadow",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "loc-vip-two-files",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "repro-empty-mean",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "repro-end-exclusive",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "repro-first-index",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "repro-float-cents",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "repro-keep-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "repro-nested-alias",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "repro-none-name",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "repro-off-by-one",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "repro-second-export",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "repro-stale-quote",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "repro-truthy-flag",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "repro-whitespace",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "repro-zero-timeout",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "review-bare-except",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "review-clip-incomplete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "review-configured-timeout",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "review-dead-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "review-mean-wrong",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "review-prefix-complete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "review-rotate-right",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "review-slug-almost",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "review-slug-complete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "review-wired-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "testgen-anagram",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "testgen-booking-touch",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "testgen-cents",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "testgen-clip",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "testgen-greet-none",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "testgen-gregorian",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "testgen-mean",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "testgen-parse",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "testgen-tie-order",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "testgen-timeout-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "testgen-unique-order",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "testgen-window",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "llama-3.2-3b-instruct",
+      "task": "testgen-zero-qty",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "edit-blank-name",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "edit-clip",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "edit-config-beside",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "edit-covered-length",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "edit-deep-merge",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "edit-hhmmss",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "edit-int-list",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "edit-jsonl-keep",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "edit-pad-left",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "edit-prefix-sums",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "edit-retry-discount",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "edit-slugify",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "edit-timeout-zero",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "edit-top-k",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "edit-unique-keep",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "loc-bind-host",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "loc-env-wrapper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "loc-failing-test-impl",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "loc-hook-plugin",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "loc-member-discount",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "loc-reexport",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "loc-similar-filenames",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "loc-traceback-helper",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "loc-unused-fix",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "loc-vendor-shadow",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "loc-vip-two-files",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "repro-empty-mean",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "repro-end-exclusive",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "rejects_correct_implementation"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "repro-first-index",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "repro-float-cents",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "repro-keep-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "repro-nested-alias",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "repro-none-name",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "rejects_correct_implementation"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "repro-off-by-one",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "rejects_correct_implementation"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "repro-second-export",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "repro-stale-quote",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "repro-truthy-flag",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "not_stable_target_reproduction"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "repro-whitespace",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "repro-zero-timeout",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "not_stable_target_reproduction"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "review-bare-except",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "review-clip-incomplete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "review-configured-timeout",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "review-dead-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "review-mean-wrong",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "review-prefix-complete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "review-rotate-right",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "review-slug-almost",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "review-slug-complete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "review-wired-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "testgen-anagram",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "testgen-booking-touch",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "testgen-cents",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "testgen-clip",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "testgen-greet-none",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "testgen-gregorian",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "testgen-mean",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "testgen-parse",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "testgen-tie-order",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "testgen-timeout-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "testgen-unique-order",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "testgen-window",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-14b-2512",
+      "task": "testgen-zero-qty",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "edit-blank-name",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "edit-clip",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "edit-config-beside",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "edit-covered-length",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "edit-deep-merge",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "edit-hhmmss",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "edit-int-list",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "edit-jsonl-keep",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "edit-pad-left",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "edit-prefix-sums",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "edit-retry-discount",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "edit-slugify",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "edit-timeout-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "edit-top-k",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "edit-unique-keep",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "loc-bind-host",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "loc-env-wrapper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "loc-failing-test-impl",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "loc-hook-plugin",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "loc-member-discount",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "loc-reexport",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "loc-similar-filenames",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "loc-traceback-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "loc-unused-fix",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "loc-vendor-shadow",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "loc-vip-two-files",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "repro-empty-mean",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "repro-end-exclusive",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "repro-first-index",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "rejects_correct_implementation"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "repro-float-cents",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "repro-keep-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "repro-nested-alias",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "repro-none-name",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "repro-off-by-one",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "repro-second-export",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "repro-stale-quote",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "repro-truthy-flag",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "repro-whitespace",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "repro-zero-timeout",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "review-bare-except",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "review-clip-incomplete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "review-configured-timeout",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "review-dead-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "review-mean-wrong",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "review-prefix-complete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "review-rotate-right",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "review-slug-almost",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "review-slug-complete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "review-wired-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "testgen-anagram",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "testgen-booking-touch",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "testgen-cents",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "testgen-clip",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "testgen-greet-none",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "testgen-gregorian",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "testgen-mean",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "testgen-parse",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "testgen-tie-order",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "testgen-timeout-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "testgen-unique-order",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "testgen-window",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-3b-2512",
+      "task": "testgen-zero-qty",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "edit-blank-name",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "edit-clip",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "edit-config-beside",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "edit-covered-length",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "edit-deep-merge",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "edit-hhmmss",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "edit-int-list",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "edit-jsonl-keep",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "edit-pad-left",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "edit-prefix-sums",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "edit-retry-discount",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "edit-slugify",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "edit-timeout-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "edit-top-k",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "edit-unique-keep",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "loc-bind-host",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "loc-env-wrapper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "loc-failing-test-impl",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "loc-hook-plugin",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "loc-member-discount",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "loc-reexport",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "loc-similar-filenames",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "loc-traceback-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "loc-unused-fix",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "loc-vendor-shadow",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "loc-vip-two-files",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "repro-empty-mean",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "rejects_correct_implementation"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "repro-end-exclusive",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "repro-first-index",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "repro-float-cents",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "rejects_correct_implementation"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "repro-keep-zero",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "repro-nested-alias",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "repro-none-name",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "repro-off-by-one",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "repro-second-export",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "repro-stale-quote",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "repro-truthy-flag",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "repro-whitespace",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "rejects_correct_implementation"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "repro-zero-timeout",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "review-bare-except",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "review-clip-incomplete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "review-configured-timeout",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "review-dead-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "review-mean-wrong",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "review-prefix-complete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "review-rotate-right",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "review-slug-almost",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "review-slug-complete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "review-wired-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "testgen-anagram",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "testgen-booking-touch",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "testgen-cents",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "testgen-clip",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "testgen-greet-none",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "testgen-gregorian",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "testgen-mean",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "testgen-parse",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "testgen-tie-order",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "testgen-timeout-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "testgen-unique-order",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "testgen-window",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "ministral-8b-2512",
+      "task": "testgen-zero-qty",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "rejects_correct_implementation"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "edit-blank-name",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "edit-clip",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "edit-config-beside",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "edit-covered-length",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "edit-deep-merge",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "edit-hhmmss",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "edit-int-list",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "edit-jsonl-keep",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "edit-pad-left",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "edit-prefix-sums",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "edit-retry-discount",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "edit-slugify",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "edit-timeout-zero",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "edit-top-k",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "edit-unique-keep",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "loc-bind-host",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "loc-env-wrapper",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "loc-failing-test-impl",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "loc-hook-plugin",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "loc-member-discount",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "loc-reexport",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "loc-similar-filenames",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "loc-traceback-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "loc-unused-fix",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "loc-vendor-shadow",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "loc-vip-two-files",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "repro-empty-mean",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "repro-end-exclusive",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "repro-first-index",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "repro-float-cents",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "repro-keep-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "repro-nested-alias",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "repro-none-name",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "repro-off-by-one",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "repro-second-export",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "repro-stale-quote",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "repro-truthy-flag",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "repro-whitespace",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "repro-zero-timeout",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "review-bare-except",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "review-clip-incomplete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "review-configured-timeout",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "review-dead-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "review-mean-wrong",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "review-prefix-complete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "review-rotate-right",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "review-slug-almost",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "review-slug-complete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "review-wired-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "testgen-anagram",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "testgen-booking-touch",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "testgen-cents",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "testgen-clip",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "rejects_correct_implementation"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "testgen-greet-none",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "testgen-gregorian",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "testgen-mean",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "rejects_correct_implementation"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "testgen-parse",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "testgen-tie-order",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "testgen-timeout-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "testgen-unique-order",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "rejects_correct_implementation"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "testgen-window",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "rejects_correct_implementation"
+    },
+    {
+      "model": "qwen3.5-9b-primeintellect-bf16",
+      "task": "testgen-zero-qty",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "edit-blank-name",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "edit-clip",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "edit-config-beside",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "edit-covered-length",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "edit-deep-merge",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "edit-hhmmss",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "edit-int-list",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "edit-jsonl-keep",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "edit-pad-left",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "edit-prefix-sums",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "edit-retry-discount",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "edit-slugify",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "edit-timeout-zero",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "edit-top-k",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "edit-unique-keep",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "loc-bind-host",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "loc-env-wrapper",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "loc-failing-test-impl",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "loc-hook-plugin",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "loc-member-discount",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "loc-reexport",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "loc-similar-filenames",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "loc-traceback-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "loc-unused-fix",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "loc-vendor-shadow",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "loc-vip-two-files",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "repro-empty-mean",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "repro-end-exclusive",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "repro-first-index",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "repro-float-cents",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "repro-keep-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "repro-nested-alias",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "repro-none-name",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "repro-off-by-one",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "repro-second-export",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "repro-stale-quote",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_execution"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "repro-truthy-flag",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "repro-whitespace",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "repro-zero-timeout",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "review-bare-except",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "review-clip-incomplete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "review-configured-timeout",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "review-dead-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "review-mean-wrong",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "review-prefix-complete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "review-rotate-right",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "review-slug-almost",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "review-slug-complete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "review-wired-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "testgen-anagram",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "testgen-booking-touch",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "testgen-cents",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "testgen-clip",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "testgen-greet-none",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "testgen-gregorian",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "testgen-mean",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "testgen-parse",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "testgen-tie-order",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "testgen-timeout-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "testgen-unique-order",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "missed_mutant"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "testgen-window",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "task": "testgen-zero-qty",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "edit-blank-name",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "edit-clip",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "edit-config-beside",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "edit-covered-length",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "edit-deep-merge",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "edit-hhmmss",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "edit-int-list",
+      "repetition": 1,
+      "artifact": true,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "edit-jsonl-keep",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "edit-pad-left",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "edit-prefix-sums",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "edit-retry-discount",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "edit-slugify",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "edit-timeout-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "edit-top-k",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "edit-unique-keep",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "loc-bind-host",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "loc-env-wrapper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "loc-failing-test-impl",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "loc-hook-plugin",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "loc-member-discount",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "loc-reexport",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "loc-similar-filenames",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "behavior_mismatch"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "loc-traceback-helper",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "loc-unused-fix",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "loc-vendor-shadow",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "loc-vip-two-files",
+      "repetition": 1,
+      "artifact": true,
+      "clean": true,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": null
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "repro-empty-mean",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "repro-end-exclusive",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "rejects_correct_implementation"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "repro-first-index",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "repro-float-cents",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "repro-keep-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "repro-nested-alias",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "repro-none-name",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "repro-off-by-one",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "repro-second-export",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "repro-stale-quote",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "repro-truthy-flag",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "repro-whitespace",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "repro-zero-timeout",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "review-bare-except",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "review-clip-incomplete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "review-configured-timeout",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "review-dead-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "review-mean-wrong",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "review-prefix-complete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "review-rotate-right",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "review-slug-almost",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "output_limit",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "review-slug-complete",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "review-wired-helper",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "budget_exhaustion",
+      "reason": "max_turns",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "testgen-anagram",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "testgen-booking-touch",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "testgen-cents",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "testgen-clip",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "testgen-greet-none",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "testgen-gregorian",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "clean",
+      "reason": "finish",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "testgen-mean",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "testgen-parse",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "testgen-tie-order",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "testgen-timeout-zero",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "testgen-unique-order",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "testgen-window",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task": "testgen-zero-qty",
+      "repetition": 1,
+      "artifact": false,
+      "clean": false,
+      "termination": "tle",
+      "reason": "cancelled",
+      "failure_category": "invalid_submission"
+    }
+  ],
+  "cancellation_amendment_source_sha256": {
+    "scripts/resume_provider_cancellation_v2.py": "21670fac8d522e99f08f372111f0d959cd4d89d2e68824ae184729d741b377fa",
+    "scripts/provider_cancellation_scoring_v2.py": "11755d83ca0f4219b62a8c554be3f5819cd9f869cbda60315488369444321dab"
+  },
+  "execution_amendment_sha256": "c6ae3b1084e21da75ba6fd6fdd7bd0ad9a479227506be516384cd15cbc8fb8a3",
+  "reclassification_sha256": "19fb913c2b5a585368a8f7dc21d19b7d9a82df123a09de6cdc73b5599fcfe596",
+  "final_closure_sha256": "7e2116c3ceada9f2158df5a449d34ce7bf1470cbe23629d7950641f1e45d1f34",
+  "cancellation_correction": {
+    "same_original_execution": true,
+    "corrected_task": "testgen-anagram",
+    "termination": "tle",
+    "artifact": false,
+    "clean": false,
+    "original_ledger_and_visit_preserved": true,
+    "additional_model_execution": false
+  }
+}

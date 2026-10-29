@@ -1,16 +1,27 @@
 # SmallOWBench 2.0
 
-**First RC2 results are available for seven complete configurations; one configuration is provider-limited.** Each completed configuration has 62 valid task observations. Qwen3.5-9B has 29 valid observations and two Parasail shared-upstream-pool 429 failures; it has no full-bank score. See the [results and skill breakdown](analysis/v2/release-20261028/RESULTS-PARTIAL-20261029.md) and [safe data projection](analysis/v2/release-20261028/SCORES-PARTIAL-20261029.json). The original eight-configuration acceptance flag remains false; missing data are not model zeros.
+**Complete RC2 results: eight configurations, 496 validated task observations.** Each configuration covers all 62 tasks once. Seven complete original configurations contribute 434 observations; the separately frozen Qwen3.5-9B configuration on PrimeIntellect BF16 contributes 62. Its 29 older Parasail observations are excluded. The new roster is accepted; the original p2 experiment remains accepted=false. [Results and skill breakdown](analysis/v2/release-20261028/RESULTS-COMPLETE-20261029.md) · [Safe task-level data](analysis/v2/release-20261028/SCORES-COMPLETE-20261029.json)
 
-**2026-10-29 closeout record:** the first task in the 32-slot continuation encountered another 429 and the configuration is held again. The separately approved original retry remains unused. The target remains 496 unique scored slots; that conditional exception permits a 497-attempt ceiling while preserving original infra history. See the [closeout protocol](analysis/v2/release-20261028/CLOSEOUT-PROTOCOL-20261029.md).
+| Configuration | Artifact macro /100 | Clean macro /100 |
+|---|---:|---:|
+| Qwen3.5-9B · PrimeIntellect BF16 | 37.26 | 19.36 |
+| Qwen3.6-35B-A3B | 30.48 | 13.95 |
+| Qwen3.8-27B | 18.91 | 17.58 |
+| Ministral-14B | 14.99 | 14.99 |
+| Ministral-8B | 7.77 | 0.00 |
+| Ministral-3B | 2.67 | 1.33 |
+| Gemma-3-12B | 0.00 | 0.00 |
+| Llama-3.2-3B | 0.00 | 0.00 |
 
 [简体中文](README.md) | **English**
 
-**2026-10-29 execution amendment:** the user removed the monetary admission cap for this run. The remaining 376 slots continue, preserving the initial 120 scored attempts. Models, tasks, attempts and token/turn/time limits are unchanged; fees are recorded. US$40 below describes the initial phase; see the [dated amendment](analysis/v2/release-20261028/MONETARY-POLICY-AMENDMENT-20261029.md).
+**2026-10-29 final status:** the complete replacement roster passed validation. The earlier shared-pool 429 failures and partial results remain historical records. The original US$40 monetary admission cap was removed by user authorization; fees and unknown reserves remain recorded. See the [fixed-provider protocol](analysis/v2/provider-recovery-20261029/PROVIDER-REASSESSMENT.md).
+
+**Cancellation audit amendment:** one existing `testgen-anagram` execution was restored as a time-limit failure with score zero. It was not rerun; only the twelve never-started tasks continued. Original sources, ledger, visits and initial reports remain unchanged. [Audit and execution amendment](analysis/v2/provider-recovery-20261029/CANCELLATION-AUDIT-AMENDMENT.md).
 
 SmallOWBench 2.0 is an execution-based diagnostic benchmark for compact open-weight coding agents. Its 62 authored small Python workflows cover localization, editing, test generation, bug reproduction and patch validation, with deterministic verification of deliverables. The tasks have been inspected, repaired and used during development; they do not represent an unseen holdout set, real large-repository issues or long-horizon autonomous maintenance.
 
-**Release components: task/grader `2.0.0-rc.2`; harness `2.0.0-rc.1`. Results for seven completed configurations are published; the intended eight-configuration roster remains incomplete.** The new entry point explicitly selects `task-banks/rc2/tasks`. The root `VERSION`, original `tasks` and original manifest retain their protected RC1 provenance for integrity checks and historical reproduction. Changing the root version or using an old runner does not activate the new bank.
+**Release components: task/grader `2.0.0-rc.2`; harness `2.0.0-rc.1`. A separately validated eight-configuration roster has 496 complete task observations; the original p2 acceptance flag remains false.** The new entry point explicitly selects `task-banks/rc2/tasks`. The root `VERSION`, original `tasks` and original manifest retain their protected RC1 provenance for integrity checks and historical reproduction. Changing the root version or using an old runner does not activate the new bank.
 
 | Skill | Tasks | Verified deliverable |
 |---|---:|---|
@@ -24,7 +35,7 @@ SmallOWBench 2.0 is an execution-based diagnostic benchmark for compact open-wei
 
 The 2026-10-27 RC2 evidence covers **ten oracle/no-op slots across five selected tasks meeting their expected outcomes**: five reference passes and five no-op failures, plus **232 passed and one skipped** offline test. This verifies the selected paths. Full-bank RC2 container acceptance remains incomplete, and RC1's `full124` does not transfer. Image initialization builds/freezes both image roles for 62 tasks and records dependency versions; it does not add oracle/no-op evaluations or calibration. See the [public evidence summary](analysis/v2/release-20261028/PUBLIC-EVIDENCE.md).
 
-The formal plan is **8 original configurations × 62 tasks × 1 repetition: at most 496 task attempts**, with a US$40 budget, four workers and zero whole-trial infrastructure retries. This is not a cap of 496 HTTP requests. Budget admission or provider failures may leave missing slots; missing/infrastructure results are not model zeros. Scores must be recomputed from this run's original evidence, and incomplete data cannot produce a complete formal ranking. The [eight-route catalog check](analysis/v2/release-20261028/ROUTES.md) verifies public endpoint metadata, not sustained capacity or actual parameter enforcement. Excluded legacy models are not silently replaced with other models or precisions.
+The historical initial plan was **8 original configurations × 62 tasks × 1 repetition: at most 496 task attempts**, with an initial US$40 cap, four workers and zero whole-trial infrastructure retries. The monetary cap was later removed; the complete published roster uses seven complete original profiles plus one independent 62-task PrimeIntellect BF16 reassessment, with its separately frozen transient-infrastructure retry policy. This is not a cap of 496 HTTP requests. Budget admission or provider failures may leave missing slots; missing/infrastructure results are not model zeros. Scores must be recomputed from this run's original evidence, and incomplete data cannot produce a complete formal ranking. The [eight-route catalog check](analysis/v2/release-20261028/ROUTES.md) verifies public endpoint metadata, not sustained capacity or actual parameter enforcement. Excluded legacy models are not silently replaced with other models or precisions.
 
 ## Version 2.0 entry points and release materials
 
@@ -42,7 +53,7 @@ Cross-host portability has a known limitation: the legacy `validate_upgraded_tas
 python scripts/validate_rc2_containers.py --directory experiments/smallowbench-v2/r2smk --execute --allow-build-network
 ```
 
-Then prepare the images and freeze the formal run. The following commands describe this run's configuration. New runs need fresh short directory names; existing directories must not be overwritten. Do not feed another machine's absolute-path receipts or public redacted summaries directly to the validator.
+Then prepare the images and freeze the formal run. The following commands document the historical initial configuration, including its original monetary cap; they do not launch the later replacement-provider protocol. New runs need fresh short directory names; existing directories must not be overwritten. Do not feed another machine's absolute-path receipts or public redacted summaries directly to the validator.
 
 ```powershell
 # Image preparation and version receipts only; no task evaluations or model calls.
